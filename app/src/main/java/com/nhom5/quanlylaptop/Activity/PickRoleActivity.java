@@ -2,6 +2,7 @@ package com.nhom5.quanlylaptop.Activity;
 //Test 1
 // Test 2
 // Test 3
+// Test 4
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
