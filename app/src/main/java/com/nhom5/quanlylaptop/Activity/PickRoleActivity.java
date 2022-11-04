@@ -1,4 +1,5 @@
 package com.nhom5.quanlylaptop.Activity;
+//Test 1
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
