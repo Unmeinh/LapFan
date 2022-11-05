@@ -12,6 +12,7 @@ import com.nhom5.quanlylaptop.R;
 public class PickRoleActivity extends AppCompatActivity {
 
     AppCompatButton rollAdmin, rollNV, rollKH;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +42,4 @@ public class PickRoleActivity extends AppCompatActivity {
             }
         });
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 3a8000a (Initial commit)
