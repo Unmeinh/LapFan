@@ -16,7 +16,7 @@
             android:layout_marginTop="20dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
-            android:src="@drawable/laptopicon"
+            android:src="@drawable/laptop_icon"
             android:layout_width="54dp"
             android:layout_height="54dp"/>
 
@@ -40,13 +40,13 @@
                 android:layout_marginStart="35dp"
                 android:layout_marginEnd="35dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/shapesignin"
+                android:background="@drawable/shape_sign_in"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <ImageButton
                     android:backgroundTint="#FFEFE0"
-                    android:src="@drawable/searchicon"
+                    android:src="@drawable/search_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content">
 
                 <ImageView
-                    android:src="@drawable/imademolaptop"
+                    android:src="@drawable/img_demo_laptop"
                     android:layout_width="250dp"
                     android:layout_height="250dp"/>
 
@@ -103,7 +103,7 @@
                     android:textSize="25sp"
                     android:textColor="#4E352F"
                     android:text="BUY NOW"
-                    android:background="@drawable/shapebutton1"
+                    android:background="@drawable/shape_button1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 

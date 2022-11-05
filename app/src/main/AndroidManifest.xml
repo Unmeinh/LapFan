@@ -6,9 +6,9 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/laptopicon"
+        android:icon="@drawable/laptop_icon"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/laptopicon"
+        android:roundIcon="@drawable/laptop_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.QuanLyLaptop"
         tools:targetApi="31" >

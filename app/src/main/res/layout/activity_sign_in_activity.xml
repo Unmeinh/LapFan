@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/logofptshop" />
+            android:src="@drawable/logo_fpt_shop" />
 
     </LinearLayout>
 
@@ -25,7 +25,7 @@
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/shapesignin"
+        android:background="@drawable/shape_sign_in"
         android:orientation="vertical">
 
         <TextView
@@ -59,7 +59,7 @@
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:startIconDrawable="@drawable/emailicon"
+                    app:startIconDrawable="@drawable/email_icon"
                     app:startIconTint="#4E352F">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -97,7 +97,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:passwordToggleEnabled="true"
-                        app:startIconDrawable="@drawable/passwordicon"
+                        app:startIconDrawable="@drawable/password_icon"
                         app:startIconTint="#4E352F">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -150,7 +150,7 @@
                 android:textSize="25sp"
                 android:textColor="#4E352F"
                 android:text="@string/log_in"
-                android:background="@drawable/shapebutton1"
+                android:background="@drawable/shape_button1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
