@@ -39,7 +39,6 @@ public class PickRoleActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(PickRoleActivity.this, SignInActivity.class));
-                finish();
             }
         });
     }

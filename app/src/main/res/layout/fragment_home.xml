@@ -5,5 +5,112 @@
     android:layout_height="match_parent"
     tools:context=".FragmentKH.HomeFragment">
 
+    <RelativeLayout
+        android:background="#D2422F"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/homeAvatarAccount"
+            android:layout_marginEnd="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/laptopicon"
+            android:layout_width="54dp"
+            android:layout_height="54dp"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/homeAvatarAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_marginStart="37dp"
+                android:textSize="35sp"
+                android:text="Hello User..."
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginStart="35dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/shapesignin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:backgroundTint="#FFEFE0"
+                    android:src="@drawable/searchicon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <EditText
+                    android:textColor="#4E352F"
+                    android:hint="@string/search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_marginTop="25dp"
+                android:layout_marginStart="30dp"
+                android:textSize="33sp"
+                android:text="NEW IN NOVEMBER"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:src="@drawable/imademolaptop"
+                    android:layout_width="250dp"
+                    android:layout_height="250dp"/>
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:text="DELL Latitude 9420"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textSize="27sp"
+                    android:text="32.500.000 đ"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_marginTop="15dp"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:paddingStart="75dp"
+                    android:paddingEnd="75dp"
+                    android:textSize="25sp"
+                    android:textColor="#4E352F"
+                    android:text="BUY NOW"
+                    android:background="@drawable/shapebutton1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </FrameLayout>
