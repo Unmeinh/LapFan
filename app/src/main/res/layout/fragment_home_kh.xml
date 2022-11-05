@@ -3,37 +3,46 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentKH.HomeFragment">
+    tools:context=".FragmentKH.KHHomeFragment">
 
     <RelativeLayout
         android:background="#D2422F"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/home_Avatar_Account"
-            android:layout_marginEnd="25dp"
-            android:layout_marginTop="20dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:src="@drawable/laptop_icon"
-            android:layout_width="54dp"
-            android:layout_height="54dp"/>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_marginTop="15dp"
-            android:layout_below="@id/home_Avatar_Account"
+        <RelativeLayout
+            android:id="@+id/top"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="74dp">
 
             <TextView
+                android:layout_alignParentBottom="true"
                 android:layout_marginStart="37dp"
                 android:textSize="35sp"
                 android:text="Hello User..."
                 android:textColor="@color/white"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:id="@+id/home_Avatar_Account"
+                android:layout_marginEnd="25dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/laptop_icon"
+                android:layout_width="54dp"
+                android:layout_height="54dp"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:orientation="horizontal"

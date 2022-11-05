@@ -38,7 +38,7 @@ public class PickRoleActivity extends AppCompatActivity {
         rollKH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PickRoleActivity.this, SignInActivity.class));
+                startActivity(new Intent(PickRoleActivity.this, MainKHNaviActivity.class));
             }
         });
     }

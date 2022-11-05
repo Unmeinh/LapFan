@@ -19,7 +19,11 @@
     <style name="TextInputLayoutOutlinedBox." parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">#9C27B0</item>
         <item name="hintTextColor">@color/black</item>
-        ....
+    </style>
+
+    <style name="TextInputLayoutOut" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">#A19F9F</item>
+        <item name="hintTextColor">@color/black</item>
     </style>
 
     <style name="Theme.QuanLyLaptop.NoActionBar">
