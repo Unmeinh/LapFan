@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/roleAdmin"
+            android:id="@+id/role_Admin"
             android:textStyle="bold"
             android:layout_marginTop="40dp"
             android:paddingTop="15dp"
@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/roleNhanVien"
+            android:id="@+id/role_NhanVien"
             android:textStyle="bold"
             android:layout_marginTop="40dp"
             android:paddingTop="15dp"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/roleKhachHang"
+            android:id="@+id/role_KhachHang"
             android:textStyle="bold"
             android:layout_marginTop="40dp"
             android:paddingTop="15dp"

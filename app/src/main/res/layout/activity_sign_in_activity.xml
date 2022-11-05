@@ -143,6 +143,7 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:onClick="logInDemo"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:paddingStart="75dp"
@@ -170,7 +171,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/gotoSignUpAct"
+                    android:id="@+id/go_to_SignUpAct"
                     android:layout_marginStart="5dp"
                     android:textStyle="bold"
                     android:textColor="#4E352F"

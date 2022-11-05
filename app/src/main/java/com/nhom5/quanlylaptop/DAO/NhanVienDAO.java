@@ -42,7 +42,9 @@ public class NhanVienDAO {
                 String gioiTinh = c.getString(3);
                 String email = c.getString(4);
                 String matKhau = c.getString(5);
-                NhanVien newNV = new NhanVien(maNV, hoTen, gioiTinh, email, matKhau, avatar);
+                String queQuan = c.getString(6);
+                String phone = c.getString(7);
+                NhanVien newNV = new NhanVien(maNV, hoTen, gioiTinh, email, matKhau, queQuan, phone, avatar);
                 Log.d(TAG, "selectNhanVien: new NhanVien: " + newNV.toString());
 
                 listNV.add(newNV);
@@ -67,6 +69,8 @@ public class NhanVienDAO {
         values.put("gioiTinh", nhanVien.getGioiTinh());
         values.put("email", nhanVien.getEmail());
         values.put("matKhau", nhanVien.getMatKhau());
+        values.put("queQuan", nhanVien.getQueQuan());
+        values.put("phone", nhanVien.getPhone());
         Log.d(TAG, "insertNhanVien: NhanVien: " + nhanVien.toString());
         Log.d(TAG, "insertNhanVien: Values: " + values);
 
@@ -91,6 +95,8 @@ public class NhanVienDAO {
         values.put("gioiTinh", nhanVien.getGioiTinh());
         values.put("email", nhanVien.getEmail());
         values.put("matKhau", nhanVien.getMatKhau());
+        values.put("queQuan", nhanVien.getQueQuan());
+        values.put("phone", nhanVien.getPhone());
         Log.d(TAG, "insertNhanVien: NhanVien: " + nhanVien.toString());
         Log.d(TAG, "insertNhanVien: Values: " + values);
 

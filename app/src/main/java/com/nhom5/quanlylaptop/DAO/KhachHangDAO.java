@@ -42,7 +42,9 @@ public class KhachHangDAO {
                 String gioiTinh = c.getString(3);
                 String email = c.getString(4);
                 String matKhau = c.getString(5);
-                KhachHang newKH = new KhachHang(maKH, hoTen, gioiTinh, email, matKhau, avatar);
+                String queQuan = c.getString(6);
+                String phone = c.getString(7);
+                KhachHang newKH = new KhachHang(maKH, hoTen, gioiTinh, email, matKhau, queQuan, phone, avatar);
                 Log.d(TAG, "selectKhachHang: new KhachHang: " + newKH.toString());
 
                 listKH.add(newKH);
@@ -67,6 +69,8 @@ public class KhachHangDAO {
         values.put("gioiTinh", khachHang.getGioiTinh());
         values.put("email", khachHang.getEmail());
         values.put("matKhau", khachHang.getMatKhau());
+        values.put("queQuan", khachHang.getQueQuan());
+        values.put("phone", khachHang.getPhone());
         Log.d(TAG, "insertKhachHang: KhachHang: " + khachHang.toString());
         Log.d(TAG, "insertKhachHang: Values: " + values);
 
@@ -91,6 +95,8 @@ public class KhachHangDAO {
         values.put("gioiTinh", khachHang.getGioiTinh());
         values.put("email", khachHang.getEmail());
         values.put("matKhau", khachHang.getMatKhau());
+        values.put("queQuan", khachHang.getQueQuan());
+        values.put("phone", khachHang.getPhone());
         Log.d(TAG, "updateKhachHang: KhachHang: " + khachHang.toString());
         Log.d(TAG, "updateKhachHang: Values: " + values);
 

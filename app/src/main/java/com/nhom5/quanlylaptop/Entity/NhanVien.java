@@ -10,14 +10,18 @@ public class NhanVien extends Binder {
     private String gioiTinh;
     private String email;
     private String matKhau;
+    private String queQuan;
+    private String phone;
     private byte[] avatar;
 
-    public NhanVien(String maNV, String hoTen, String gioiTinh, String email, String matKhau, byte[] avatar) {
+    public NhanVien(String maNV, String hoTen, String gioiTinh, String email, String matKhau, String queQuan, String phone, byte[] avatar) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
         this.email = email;
         this.matKhau = matKhau;
+        this.queQuan = queQuan;
+        this.phone = phone;
         this.avatar = avatar;
     }
 
@@ -61,6 +65,22 @@ public class NhanVien extends Binder {
         this.matKhau = matKhau;
     }
 
+    public String getQueQuan() {
+        return queQuan;
+    }
+
+    public void setQueQuan(String queQuan) {
+        this.queQuan = queQuan;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     public byte[] getAvatar() {
         return avatar;
     }
@@ -77,6 +97,8 @@ public class NhanVien extends Binder {
                 ", gioiTinh = '" + gioiTinh + '\'' +
                 ", email = '" + email + '\'' +
                 ", matKhau = '" + matKhau + '\'' +
+                ", queQuan = '" + queQuan + '\'' +
+                ", phone = '" + phone + '\'' +
                 ", avatar = " +  avatar +
                 " : " + Arrays.toString(avatar) +
                 '}';

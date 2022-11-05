@@ -33,5 +33,16 @@
     <string name="nh_p_l_i_m_t_kh_u_m_i">Nhập lại mật khẩu mới *</string>
     <string name="thay_i_m_t_kh_u">Thay đổi mật khẩu</string>
     <string name="h_y">Hủy</string>
+    <string name="h">Họ</string>
+    <string name="t_n">Tên</string>
+    <string name="s_i_n_tho_i">Số điện thoại</string>
+    <string name="gi_i_t_nh">Giới tính</string>
+    <string name="qu_qu_n">Quê quán</string>
+    <string name="c_p_nh_t">CẬP NHẬT</string>
 
+    <string-array name="gender_array">
+        <item>Nam</item>
+        <item>Nữ</item>
+        <item>Khác</item>
+    </string-array>
 </resources>

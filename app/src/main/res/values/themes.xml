@@ -13,6 +13,13 @@
         <item name="android:statusBarColor">#D2422F</item>
         <!-- Customize your theme here. -->
         <item name="android:fontFamily">serif</item>
+        <item name="android:textColorHint">#2B2A2A</item>
+    </style>
+
+    <style name="TextInputLayoutOutlinedBox." parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">#9C27B0</item>
+        <item name="hintTextColor">@color/black</item>
+        ....
     </style>
 
     <style name="Theme.QuanLyLaptop.NoActionBar">

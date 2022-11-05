@@ -11,7 +11,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/homeAvatarAccount"
+            android:id="@+id/home_Avatar_Account"
             android:layout_marginEnd="25dp"
             android:layout_marginTop="20dp"
             android:layout_alignParentEnd="true"
@@ -23,7 +23,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_marginTop="15dp"
-            android:layout_below="@id/homeAvatarAccount"
+            android:layout_below="@id/home_Avatar_Account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 

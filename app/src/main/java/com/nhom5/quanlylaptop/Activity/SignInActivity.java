@@ -16,14 +16,17 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_activity);
-        gotoSignUpAct = findViewById(R.id.gotoSignUpAct);
+        gotoSignUpAct = findViewById(R.id.go_to_SignUpAct);
 
         gotoSignUpAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(SignInActivity.this, SignUpAcitivity.class));
-                finish();
             }
         });
+    }
+
+    public void logInDemo(View view) {
+        startActivity(new Intent(SignInActivity.this, AccountKHManagerActivity.class));
     }
 }

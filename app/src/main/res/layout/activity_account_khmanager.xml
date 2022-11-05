@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Activity.AccountKHManagerActivity"
+    android:paddingStart="30dp"
+    android:paddingEnd="30dp"
+    android:paddingTop="50dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/TextInputLayoutOutlinedBox."
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:hint="@string/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginEnd="20dp"
+            style="@style/TextInputLayoutOutlinedBox."
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="65dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:hint="@string/h"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutOutlinedBox."
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="65dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:hint="@string/t_n"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginTop="30dp"
+        style="@style/TextInputLayoutOutlinedBox."
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/black"
+            android:inputType="number"
+            android:textSize="20sp"
+            android:hint="@string/s_i_n_tho_i"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextInputLayoutOutlinedBox."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:text="    "
+                android:textSize="20sp"
+                android:hint="@string/gi_i_t_nh"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:paddingStart="10dp"
+            android:textColor="@color/black"
+            android:id="@+id/gender_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/update_que_quan_khach_hang"
+        android:layout_marginTop="30dp"
+        style="@style/TextInputLayoutOutlinedBox."
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:hint="@string/qu_qu_n"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
+            android:paddingStart="60dp"
+            android:paddingEnd="60dp"
+            android:textSize="25sp"
+            android:textColor="#4E352F"
+            android:text="@string/c_p_nh_t"
+            android:background="@drawable/shape_button3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+</LinearLayout>

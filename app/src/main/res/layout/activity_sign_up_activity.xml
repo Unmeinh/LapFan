@@ -193,7 +193,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/gotoSignInAct"
+                    android:id="@+id/go_to_SignInAct"
                     android:layout_marginStart="5dp"
                     android:textStyle="bold"
                     android:textColor="#4E352F"

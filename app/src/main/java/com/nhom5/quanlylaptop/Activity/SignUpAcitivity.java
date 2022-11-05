@@ -16,7 +16,7 @@ public class SignUpAcitivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_activity);
-        gotoSignInAct = findViewById(R.id.gotoSignInAct);
+        gotoSignInAct = findViewById(R.id.go_to_SignInAct);
 
         gotoSignInAct.setOnClickListener(new View.OnClickListener() {
             @Override

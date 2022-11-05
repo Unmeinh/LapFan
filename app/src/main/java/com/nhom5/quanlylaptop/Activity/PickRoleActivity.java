@@ -17,9 +17,9 @@ public class PickRoleActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pick_role);
-        rollAdmin = findViewById(R.id.roleAdmin);
-        rollNV = findViewById(R.id.roleNhanVien);
-        rollKH = findViewById(R.id.roleKhachHang);
+        rollAdmin = findViewById(R.id.role_Admin);
+        rollNV = findViewById(R.id.role_NhanVien);
+        rollKH = findViewById(R.id.role_KhachHang);
 
         rollAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
