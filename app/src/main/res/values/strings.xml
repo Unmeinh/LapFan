@@ -51,4 +51,15 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="a_ch_nh_n_h_ng">Địa chỉ nhận hàng</string>
+    <string name="thay_i">Thay đổi</string>
+    <string name="h_nh_th_c_thanh_to_n">Hình thức thanh toán</string>
+    <string name="voucher">Voucher</string>
+    <string name="chi_ti_t_n_h_ng">Chi tiết đơn hàng</string>
+    <string name="t_ng_ti_n_h_ng">Tổng tiền hàng</string>
+    <string name="voucher_gi_m_gi">Voucher giảm giá</string>
+    <string name="t_ng_thanh_to_n">Tổng thanh toán</string>
+    <string name="t_h_ng">Đặt hàng</string>
+    <string name="info">Info</string>
+    <string name="x_c_nh_n_n_h_ng">Xác nhận đơn hàng</string>
 </resources>

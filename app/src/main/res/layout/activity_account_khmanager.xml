@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.AccountKHManagerActivity"
+    tools:context=".Activity.Account_KH_Manager_Activity"
     android:paddingStart="30dp"
     android:paddingEnd="30dp"
     android:paddingTop="50dp">

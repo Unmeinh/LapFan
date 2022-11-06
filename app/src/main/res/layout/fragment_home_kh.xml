@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentKH.KHHomeFragment">
+    tools:context=".FragmentKH.KH_Home_Fragment">
 
     <RelativeLayout
         android:background="#D2422F"
@@ -49,7 +49,7 @@
                 android:layout_marginStart="35dp"
                 android:layout_marginEnd="35dp"
                 android:layout_marginTop="15dp"
-                android:background="@drawable/shape_sign_in"
+                android:background="@drawable/shape_search_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -62,7 +62,7 @@
                 <EditText
                     android:textColor="#4E352F"
                     android:hint="@string/search"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>

@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 
 import com.nhom5.quanlylaptop.R;
 
-public class KHHomeFragment extends Fragment {
+public class KH_GioHang_Fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home_kh, container, false);
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_k_h_gio_hang, container, false);
     }
 }

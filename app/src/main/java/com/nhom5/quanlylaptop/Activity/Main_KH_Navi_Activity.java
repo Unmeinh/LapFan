@@ -9,10 +9,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.nhom5.quanlylaptop.PagerAdapter.PagerAdapter;
+import com.nhom5.quanlylaptop.PagerAdapter.KH_PagerAdapter;
 import com.nhom5.quanlylaptop.R;
 
-public class MainKHNaviActivity extends AppCompatActivity {
+public class Main_KH_Navi_Activity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     ViewPager viewPager;
@@ -23,7 +23,7 @@ public class MainKHNaviActivity extends AppCompatActivity {
         bottomNavigationView = findViewById(R.id.bottomNavi);
         viewPager = findViewById(R.id.viewP);
 
-        PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
+        KH_PagerAdapter adapter = new KH_PagerAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(0);
 
@@ -32,26 +32,26 @@ public class MainKHNaviActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int i = item.getItemId();
                 if (i == R.id.item_navi_bottom_home){
-                    Toast.makeText(MainKHNaviActivity.this, "Home", Toast.LENGTH_SHORT).show();
-                    PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
+                    Toast.makeText(Main_KH_Navi_Activity.this, "Home", Toast.LENGTH_SHORT).show();
+                    KH_PagerAdapter adapter = new KH_PagerAdapter(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(0);
                 }
                 if (i == R.id.item_navi_bottom_noti){
-                    Toast.makeText(MainKHNaviActivity.this, "Thông Báo", Toast.LENGTH_SHORT).show();
-                    PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
+                    Toast.makeText(Main_KH_Navi_Activity.this, "Thông Báo", Toast.LENGTH_SHORT).show();
+                    KH_PagerAdapter adapter = new KH_PagerAdapter(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(1);
                 }
                 if (i == R.id.item_navi_bottom_gioHang){
-                    Toast.makeText(MainKHNaviActivity.this, "Giỏ hàng", Toast.LENGTH_SHORT).show();
-                    PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
+                    Toast.makeText(Main_KH_Navi_Activity.this, "Giỏ hàng", Toast.LENGTH_SHORT).show();
+                    KH_PagerAdapter adapter = new KH_PagerAdapter(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(2);
                 }
                 if (i == R.id.item_navi_bottom_acc){
-                    Toast.makeText(MainKHNaviActivity.this, "Account", Toast.LENGTH_SHORT).show();
-                    PagerAdapter adapter = new PagerAdapter(getSupportFragmentManager());
+                    Toast.makeText(Main_KH_Navi_Activity.this, "Account", Toast.LENGTH_SHORT).show();
+                    KH_PagerAdapter adapter = new KH_PagerAdapter(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(3);
                 }

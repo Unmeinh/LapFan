@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.nhom5.quanlylaptop.R;
 
-public class PickRoleActivity extends AppCompatActivity {
+public class PickRole_Activity extends AppCompatActivity {
 
     AppCompatButton rollAdmin, rollNV, rollKH;
 
@@ -24,21 +24,21 @@ public class PickRoleActivity extends AppCompatActivity {
         rollAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PickRoleActivity.this, SignInActivity.class));
+                startActivity(new Intent(PickRole_Activity.this, SignIn_Activity.class));
             }
         });
 
         rollNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PickRoleActivity.this, SignInActivity.class));
+                startActivity(new Intent(PickRole_Activity.this, SignIn_Activity.class));
             }
         });
 
         rollKH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PickRoleActivity.this, MainKHNaviActivity.class));
+                startActivity(new Intent(PickRole_Activity.this, Main_KH_Navi_Activity.class));
             }
         });
     }

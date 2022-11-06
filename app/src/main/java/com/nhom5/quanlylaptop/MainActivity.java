@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.nhom5.quanlylaptop.Activity.PickRoleActivity;
-import com.nhom5.quanlylaptop.Activity.SignInActivity;
+import com.nhom5.quanlylaptop.Activity.PickRole_Activity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +14,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startActivity(new Intent(MainActivity.this, PickRoleActivity.class));
+        startActivity(new Intent(MainActivity.this, PickRole_Activity.class));
     }
 }

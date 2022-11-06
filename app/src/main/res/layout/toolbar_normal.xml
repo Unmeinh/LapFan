@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFEFE0">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:background="#FFEFE0"
+                android:src="@drawable/arrow_back_icon"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                app:tint="#D2422F" />
+
+            <TextView
+                android:textStyle="bold"
+                android:textColor="#4E352F"
+                android:textSize="27sp"
+                android:gravity="center"
+                android:text="Địa chỉ đơn hàng"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+</LinearLayout>

@@ -13,21 +13,21 @@
         android:theme="@style/Theme.QuanLyLaptop"
         tools:targetApi="31">
         <activity
-            android:name=".Activity.MainKHNaviActivity"
+            android:name=".Activity.Main_KH_Navi_Activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.AccountKHManagerActivity"
+            android:name=".Activity.Account_KH_Manager_Activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.PickRoleActivity"
+            android:name=".Activity.PickRole_Activity"
             android:exported="false"
             android:label="@string/title_activity_pick_role"
             android:theme="@style/Theme.QuanLyLaptop.NoActionBar">
@@ -36,14 +36,14 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.SignUpAcitivity"
+            android:name=".Activity.SignUp_Acitivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".Activity.SignInActivity"
+            android:name=".Activity.SignIn_Activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

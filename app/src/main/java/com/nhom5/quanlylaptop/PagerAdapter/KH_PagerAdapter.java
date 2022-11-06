@@ -5,16 +5,17 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.nhom5.quanlylaptop.FragmentKH.KHAccountFragment;
-import com.nhom5.quanlylaptop.FragmentKH.KHGioHangFragment;
-import com.nhom5.quanlylaptop.FragmentKH.KHHomeFragment;
-import com.nhom5.quanlylaptop.FragmentKH.KHNotifiFragment;
+import com.nhom5.quanlylaptop.FragmentKH.KH_Account_Fragment;
+import com.nhom5.quanlylaptop.FragmentKH.KH_DonHang_Fragment;
+import com.nhom5.quanlylaptop.FragmentKH.KH_GioHang_Fragment;
+import com.nhom5.quanlylaptop.FragmentKH.KH_Home_Fragment;
+import com.nhom5.quanlylaptop.FragmentKH.KH_Notifi_Fragment;
 
 
-public class PagerAdapter extends FragmentStatePagerAdapter {
+public class KH_PagerAdapter extends FragmentStatePagerAdapter {
     String TAG = "PagerAdapter_____";
 
-    public PagerAdapter(@NonNull FragmentManager fm) {
+    public KH_PagerAdapter(@NonNull FragmentManager fm) {
         super(fm);
     }
 
@@ -24,16 +25,16 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
         Fragment frag = null;
         switch (n) {
             case 0:
-                frag = new KHHomeFragment();
+                frag = new KH_Home_Fragment();
                 break;
             case 1:
-                frag = new KHNotifiFragment();
+                frag = new KH_DonHang_Fragment();
                 break;
             case 2:
-                frag = new KHGioHangFragment();
+                frag = new KH_GioHang_Fragment();
                 break;
             case 3:
-                frag = new KHAccountFragment();
+                frag = new KH_Account_Fragment();
                 break;
         }
         return frag;

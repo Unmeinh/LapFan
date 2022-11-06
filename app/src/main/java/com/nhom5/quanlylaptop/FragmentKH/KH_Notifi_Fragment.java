@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 
 import com.nhom5.quanlylaptop.R;
 
-public class KHAccountFragment extends Fragment {
+public class KH_Notifi_Fragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_k_h_account, container, false);
+        return inflater.inflate(R.layout.fragment_k_h_notifi, container, false);
     }
 }

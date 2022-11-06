@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentKH.KHAccountFragment">
+    tools:context=".FragmentKH.KH_Account_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

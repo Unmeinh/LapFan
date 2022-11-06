@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.R;
 
-public class SignInActivity extends AppCompatActivity {
+public class SignIn_Activity extends AppCompatActivity {
 
     TextView gotoSignUpAct;
     @Override
@@ -21,12 +21,12 @@ public class SignInActivity extends AppCompatActivity {
         gotoSignUpAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SignInActivity.this, SignUpAcitivity.class));
+                startActivity(new Intent(SignIn_Activity.this, SignUp_Acitivity.class));
             }
         });
     }
 
     public void logInDemo(View view) {
-        startActivity(new Intent(SignInActivity.this, AccountKHManagerActivity.class));
+        startActivity(new Intent(SignIn_Activity.this, Account_KH_Manager_Activity.class));
     }
 }
