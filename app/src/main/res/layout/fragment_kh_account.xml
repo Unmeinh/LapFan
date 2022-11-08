@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D2422F"
+    tools:context=".FragmentKH.KH_Account_Fragment">
+
+    <LinearLayout
+        android:background="#D2422F"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EDD1D1"
+            android:orientation="horizontal">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/acc_navi_icon" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Họ Tên"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="Số điện thoại"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textColor="#000000" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/onclick_Ma_Voucher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#EDD1D1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="13dp"
+                android:src="@drawable/voucher_icon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/m_khuy_n_m_i"
+                android:textColor="#4E352F"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:src="@drawable/next_icon_black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/onclick_Danh_Gia_San_Pham"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#EDD1D1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="13dp"
+                android:src="@drawable/award_icon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/nh_gi_s_n_ph_m"
+                android:textColor="#4E352F"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:src="@drawable/next_icon_black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/onclick_Quan_Ly_Don_Hang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="13dp"
+                android:src="@drawable/clipboard_icon"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/qu_n_l_n_h_ng"
+                android:textColor="#fff"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:src="@drawable/next_icon_white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/onclick_Nhom_San_Voucher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="13dp"
+                android:src="@drawable/facebook" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/nh_m_s_n_voucher"
+                android:textColor="#fff"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:src="@drawable/next_icon_white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/onclick_Gio_Hang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_margin="10dp"
+                android:src="@drawable/shopping_cart_icon"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/gi_h_ng"
+                android:textColor="#fff"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:src="@drawable/next_icon_white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/onclick_Doi_Mat_Khau"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="13dp"
+                android:src="@drawable/padlock_icon"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/i_m_t_kh_u"
+                android:textColor="#fff"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:src="@drawable/next_icon_white" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/onclick_Thiet_Lap_Tai_Khoan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#EDD1D1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="13dp"
+                android:src="@drawable/user_icon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/thi_t_l_p_t_i_kho_n"
+                android:textColor="#4E352F"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:src="@drawable/next_icon_black" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="22dp"
+            android:background="@drawable/shape_button5"
+            android:padding="10dp"
+            android:text="@string/log_out"
+            android:textColor="#151212"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+</ScrollView>

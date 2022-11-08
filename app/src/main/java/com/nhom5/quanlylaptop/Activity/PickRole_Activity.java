@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.nhom5.quanlylaptop.R;
@@ -12,6 +13,8 @@ import com.nhom5.quanlylaptop.R;
 public class PickRole_Activity extends AppCompatActivity {
 
     AppCompatButton rollAdmin, rollNV, rollKH;
+    String roleUser = "";
+    String TAG = "PickRole_Activity_____";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,21 +27,36 @@ public class PickRole_Activity extends AppCompatActivity {
         rollAdmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PickRole_Activity.this, SignIn_Activity.class));
+                Log.d(TAG, "onClick: rollAdmin");
+                Intent intent = new Intent(PickRole_Activity.this, SignIn_Activity.class);
+                roleUser = "admin";
+                Log.d(TAG, "onClick: roleUser: " + roleUser);
+                intent.putExtra("role", roleUser);
+                startActivity(intent);
             }
         });
 
         rollNV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PickRole_Activity.this, SignIn_Activity.class));
+                Log.d(TAG, "onClick: rollNV");
+                Intent intent = new Intent(PickRole_Activity.this, SignIn_Activity.class);
+                roleUser = "nhanVien";
+                Log.d(TAG, "onClick: roleUser: " + roleUser);
+                intent.putExtra("role", roleUser);
+                startActivity(intent);
             }
         });
 
         rollKH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PickRole_Activity.this, Main_KH_Navi_Activity.class));
+                Log.d(TAG, "onClick: rollKH");
+                Intent intent = new Intent(PickRole_Activity.this, SignIn_Activity.class);
+                roleUser = "khachHang";
+                Log.d(TAG, "onClick: roleUser: " + roleUser);
+                intent.putExtra("role", roleUser);
+                startActivity(intent);
             }
         });
     }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_navi_drawer_kh_trangChu"
+        android:icon="@drawable/home_navi_icon"
+        android:title="@string/trang_ch" />
+
+    <item
+        android:id="@+id/item_navi_drawer_kh_thongBao"
+        android:icon="@drawable/noti_navi_icon"
+        android:title="@string/th_ng_b_o" />
+
+    <item
+        android:icon="@drawable/danh_muc_icon"
+        android:title="@string/danh_m_c_s_n_ph_m" />
+
+    <item
+        android:id="@+id/item_navi_drawer_kh_lTDell"
+        android:title="Laptop Dell" />
+
+    <item
+        android:id="@+id/item_navi_drawer_kh_lTHP"
+        android:title="Laptop HP" />
+
+    <item
+        android:id="@+id/item_navi_drawer_kh_lTAsus"
+        android:title="Laptop Asus" />
+
+    <item
+        android:id="@+id/item_navi_drawer_kh_lTRazer"
+        android:title="Laptop Razer" />
+
+    <item
+        android:id="@+id/item_navi_drawer_kh_lTSamsung"
+        android:title="Laptop SamSung" />
+
+    <item
+        android:id="@+id/item_navi_drawer_kh_gioHang"
+        android:title="Giỏ Hàng" />
+
+    <item
+        android:id="@+id/item_navi_drawer_kh_lienHe"
+        android:icon="@drawable/lien_he_icon"
+        android:title="@string/li_n_h" />
+
+
+</menu>

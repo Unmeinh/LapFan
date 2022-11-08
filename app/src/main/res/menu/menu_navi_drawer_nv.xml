@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/item_navi_drawer_nv_trangChu"
+        android:title="@string/trang_ch"
+        android:icon="@drawable/home_navi_icon"/>
+
+    <item android:id="@+id/item_navi_drawer_nv_thongBao"
+        android:title="@string/th_ng_b_o"
+        android:icon="@drawable/noti_navi_icon"/>
+
+    <item
+        android:title="@string/danh_m_c_qu_n_l"
+        android:icon="@drawable/danh_muc_icon"/>
+
+    <item android:id="@+id/item_navi_drawer_nv_Laptop"
+        android:title="Laptop"/>
+
+    <item android:id="@+id/item_navi_drawer_nv_HoaDon"
+        android:title="Đơn hàng"/>
+
+    <item android:id="@+id/item_navi_drawer_nv_KhachHang"
+        android:title="Khách hàng"/>
+
+    <item android:id="@+id/item_navi_drawer_nv_Voucher"
+        android:title="Voucher"/>
+
+    <item android:id="@+id/item_navi_drawer_nv_ThongKe"
+        android:title="Thống kê"/>
+
+    <item android:id="@+id/item_navi_drawer_nv_lienHe"
+        android:title="@string/li_n_h"
+        android:icon="@drawable/lien_he_icon"/>
+
+</menu>

@@ -143,7 +143,7 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:onClick="logInDemo"
+                android:id="@+id/login_button"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:paddingStart="75dp"

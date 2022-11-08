@@ -35,6 +35,7 @@
     </RelativeLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_Current_Password_KH"
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusBottomEnd="10dp"
@@ -59,6 +60,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_New_Password_KH"
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusBottomEnd="10dp"
@@ -83,6 +85,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/input_Confirm_Password_KH"
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusBottomEnd="10dp"

@@ -49,7 +49,7 @@
         <item>Nữ</item>
         <item>Khác</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="a_ch_nh_n_h_ng">Địa chỉ nhận hàng</string>
     <string name="thay_i">Thay đổi</string>
@@ -62,4 +62,32 @@
     <string name="t_h_ng">Đặt hàng</string>
     <string name="info">Info</string>
     <string name="x_c_nh_n_n_h_ng">Xác nhận đơn hàng</string>
+    <string name="li_n_h">Liên hệ</string>
+    <string name="trang_ch">Trang chủ</string>
+    <string name="danh_m_c_s_n_ph_m">⌄ Danh Mục Sản Phẩm ⌄</string>
+    <string name="danh_m_c_qu_n_l">⌄ Danh mục quản lý ⌄</string>
+    <string name="ch_n_mua">Chọn mua</string>
+    <string name="th_m_v_o_gi_h_ng">Thêm vào giỏ hàng</string>
+    <string name="nh_p_a_ch_nh_n_h_ng">Nhập địa chỉ nhận hàng</string>
+    <string name="t_n_ng_i_nh_n">Tên người nhận</string>
+    <string name="nh_p_h_t_n_ng_i_nh_n"><![CDATA[Nhập họ & tên người nhận]]></string>
+    <string name="nh_p_s_i_n_tho_i_nh_n_h_ng">Nhập số điện thoại nhận hàng</string>
+    <string name="nh_p_s_nh_t_n_ng">Nhập số nhà, tên đường...</string>
+    <string name="t_nh_th_nh_ph">Tỉnh/ Thành phố</string>
+    <string name="nh_p_t_nh_th_nh_ph">Nhập Tỉnh/ Thành phố</string>
+    <string name="qu_n_huy_n">Quận/ Huyện</string>
+    <string name="nh_p_qu_n_huy_n">Nhập Quận/ Huyện</string>
+    <string name="ph_ng_x">Phường/ Xã</string>
+    <string name="nh_p_ph_ng_x">Nhập Phường/ Xã</string>
+    <string name="thi_t_l_p_t_i_kho_n">Thiết lập tài khoản</string>
+    <string name="nh_m_s_n_voucher">Nhóm săn voucher</string>
+    <string name="i_m_t_kh_u">Đổi mật khẩu</string>
+    <string name="qu_n_l_n_h_ng">Quản lý đơn hàng</string>
+    <string name="nh_gi_s_n_ph_m">Đánh giá sản phẩm</string>
+    <string name="m_khuy_n_m_i">Mã khuyến mãi</string>
+    <string name="log_out">LOG OUT</string>
+    <string name="n_h_ng">Đơn hàng</string>
+    <string name="add_staff">Add Staff</string>
+    <string name="ng_xu_t">Đăng xuất</string>
+    <string name="th_ng_k">Thống Kê</string>
 </resources>
