@@ -90,4 +90,7 @@
     <string name="add_staff">Add Staff</string>
     <string name="ng_xu_t">Đăng xuất</string>
     <string name="th_ng_k">Thống Kê</string>
+    <string name="h_t_n">Họ Tên</string>
+    <string name="m_o_b_n_h_ng_chuy_n_nghi_p">Mẹo bán hàng chuyên nghiệp</string>
+    <string name="c_ng_ng_nh_n_vi_n">Cộng đồng nhân viên</string>
 </resources>
