@@ -1,14 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D2422F"
+    android:orientation="vertical"
+    android:padding="20dp"
     tools:context=".FragmentLaptop.LaptopHPFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content">
 
-</FrameLayout>
+        <ImageView
+            android:src="@drawable/img_demo_laptop"
+            android:layout_width="300dp"
+            android:layout_height="200dp"/>
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <TextView
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:text="@string/laptop_hp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <GridView
+            android:id="@+id/gridView_laptop_hp"
+            android:gravity="center"
+            android:numColumns="2"
+            android:columnWidth="150dp"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="16dp"
+            tools:listitem="@layout/cardview_kh_laptop"
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        
+    </LinearLayout>
+
+
+</LinearLayout>

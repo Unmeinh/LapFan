@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentKH.KH_DonHang_Fragment">
+    tools:context=".ActivityKH.KH_DonHang_Activity">
 
     <include
         android:id="@+id/top"

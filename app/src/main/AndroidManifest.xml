@@ -48,6 +48,13 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".ActivityKH.KH_DonHang_Activity"
+            android:exported="false" >
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".Activity.PickRole_Activity"
             android:exported="false"
             android:label="@string/title_activity_pick_role"

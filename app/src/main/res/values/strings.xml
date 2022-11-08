@@ -93,4 +93,12 @@
     <string name="h_t_n">Họ Tên</string>
     <string name="m_o_b_n_h_ng_chuy_n_nghi_p">Mẹo bán hàng chuyên nghiệp</string>
     <string name="c_ng_ng_nh_n_vi_n">Cộng đồng nhân viên</string>
+    <string name="total">Total</string>
+    <string name="pay_now">PAY NOW</string>
+    <string name="gi_h_ng_tr_ng">Giỏ hàng trống</string>
+    <string name="laptop_hp">Laptop HP</string>
+    <string name="laptop_dell">Laptop Dell</string>
+    <string name="laptop_asus">Laptop Asus</string>
+    <string name="laptop_razer">Laptop Razer</string>
+    <string name="laptop_samsung">Laptop Samsung</string>
 </resources>
