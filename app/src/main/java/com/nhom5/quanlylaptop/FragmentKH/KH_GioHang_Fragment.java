@@ -13,13 +13,11 @@ import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.nhom5.quanlylaptop.ActivityKH.InfoLaptopActivity;
-import com.nhom5.quanlylaptop.ActivityKH.KH_DonHang_Activity;
+import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
+import com.nhom5.quanlylaptop.ActivityKH.KH_ThanhToan_Activity;
 import com.nhom5.quanlylaptop.R;
 
 import java.util.ArrayList;
@@ -68,24 +66,16 @@ public class KH_GioHang_Fragment extends Fragment {
         buttonPayNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewGHLayout.setVisibility(View.GONE);
-                emptyGHLayout.setVisibility(View.VISIBLE);
+                Intent intent = new Intent(getContext(), KH_ThanhToan_Activity.class);
+                startActivity(intent);
             }
         });
 
         totalMoney.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), KH_DonHang_Activity.class);
-                startActivity(intent);
-            }
-        });
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), KH_DonHang_Activity.class);
-                startActivity(intent);
+                viewGHLayout.setVisibility(View.GONE);
+                emptyGHLayout.setVisibility(View.VISIBLE);
             }
         });
 

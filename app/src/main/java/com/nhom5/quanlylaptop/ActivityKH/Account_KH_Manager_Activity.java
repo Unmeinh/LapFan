@@ -2,7 +2,9 @@ package com.nhom5.quanlylaptop.ActivityKH;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.Toolbar;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,7 +12,9 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.nhom5.quanlylaptop.R;
@@ -19,6 +23,7 @@ public class Account_KH_Manager_Activity extends AppCompatActivity {
 
     Spinner genderSpinner;
     AppCompatButton buttonUpdate;
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,21 @@ public class Account_KH_Manager_Activity extends AppCompatActivity {
         genderSpinner.setAdapter(adapter);
 
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        useToolbar();
+    }
+
+    private void useToolbar() {
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Normal));
+        TextView titleToolbar = findViewById(R.id.title_Toolbar);
+        titleToolbar.setText("Thông tin của bạn");
+        ImageButton back = findViewById(R.id.button_Back_Toolbar);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

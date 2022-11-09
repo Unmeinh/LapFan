@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -29,6 +30,8 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
     String TAG = "Main_NV_Navi_Activity_____";
     DrawerLayout drawerLayout;
     int itemNaviDr;
+    Context context = this;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +40,13 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewP);
         naviView = findViewById(R.id.naviView);
         drawerLayout = findViewById(R.id.drawerLayout);
+        useToolbar();
         setViewNaviBottom();
         setViewNaviDrawer();
-        openNaviDrawer();
     }
 
-    public void openNaviDrawer() {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+    private void useToolbar() {
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Account));
         ImageButton open = findViewById(R.id.open_navi_drawer);
         open.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,9 +143,10 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
             }
         });
         Log.d(TAG, "onNavigationItemSelected: itemNavi: " + itemNaviDr);
+        getSupportActionBar().show();
     }
 
-    private void setViewNaviBottom(){
+    private void setViewNaviBottom() {
         NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         viewPager.setCurrentItem(0);
@@ -151,7 +155,7 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int i = item.getItemId();
-                if (i == R.id.item_navi_bottom_nv_home){
+                if (i == R.id.item_navi_bottom_nv_home) {
                     Toast.makeText(Main_NV_Navi_Activity.this, "Home", Toast.LENGTH_SHORT).show();
                     NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
@@ -159,8 +163,9 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     naviView.getMenu().getItem(0).setChecked(true);
                     naviView.getMenu().getItem(0).setCheckable(true);
                     itemNaviDr = 0;
+                    getSupportActionBar().show();
                 }
-                if (i == R.id.item_navi_bottom_nv_noti){
+                if (i == R.id.item_navi_bottom_nv_noti) {
                     Toast.makeText(Main_NV_Navi_Activity.this, "Thông Báo", Toast.LENGTH_SHORT).show();
                     NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
@@ -168,17 +173,19 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     naviView.getMenu().getItem(1).setChecked(true);
                     naviView.getMenu().getItem(1).setCheckable(true);
                     itemNaviDr = 1;
+                    getSupportActionBar().show();
                 }
-                if (i == R.id.item_navi_bottom_nv_thongKe){
+                if (i == R.id.item_navi_bottom_nv_thongKe) {
                     Toast.makeText(Main_NV_Navi_Activity.this, "Giỏ hàng", Toast.LENGTH_SHORT).show();
                     NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(2);
-                    naviView.getMenu().getItem(7).setChecked(true);
-                    naviView.getMenu().getItem(7).setCheckable(true);
-                    itemNaviDr = 8;
+                    naviView.getMenu().getItem(6).setChecked(true);
+                    naviView.getMenu().getItem(6).setCheckable(true);
+                    itemNaviDr = 6;
+                    getSupportActionBar().show();
                 }
-                if (i == R.id.item_navi_bottom_nv_acc){
+                if (i == R.id.item_navi_bottom_nv_acc) {
                     Toast.makeText(Main_NV_Navi_Activity.this, "Account", Toast.LENGTH_SHORT).show();
                     NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
@@ -186,9 +193,12 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     Log.d(TAG, "onNavigationItemSelected: itemNavi: " + itemNaviDr);
                     naviView.getMenu().getItem(itemNaviDr).setChecked(false);
                     naviView.getMenu().getItem(itemNaviDr).setCheckable(false);
+                    getSupportActionBar().hide();
                 }
                 return true;
             }
         });
     }
+
+
 }

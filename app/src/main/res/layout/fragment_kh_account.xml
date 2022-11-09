@@ -117,36 +117,11 @@
                 android:src="@drawable/next_icon_black" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/onclick_Quan_Ly_Don_Hang"
+        <View
+            android:layout_marginTop="60dp"
+            android:background="#BBA19A"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="9dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="13dp"
-                android:src="@drawable/clipboard_icon"
-                app:tint="@color/white" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="7"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/qu_n_l_n_h_ng"
-                android:textColor="#fff"
-                android:textSize="22sp" />
-
-            <ImageView
-                android:layout_width="45dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:src="@drawable/next_icon_white" />
-
-        </LinearLayout>
+            android:layout_height="1dp"/>
 
         <LinearLayout
             android:id="@+id/onclick_Nhom_San_Voucher"
@@ -175,6 +150,11 @@
                 android:layout_gravity="end"
                 android:src="@drawable/next_icon_white" />
         </LinearLayout>
+
+        <View
+            android:background="#BBA19A"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
 
         <LinearLayout
             android:id="@+id/onclick_Gio_Hang"
@@ -205,6 +185,11 @@
                 android:src="@drawable/next_icon_white" />
         </LinearLayout>
 
+        <View
+            android:background="#BBA19A"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
         <LinearLayout
             android:id="@+id/onclick_Doi_Mat_Khau"
             android:layout_width="match_parent"
@@ -234,7 +219,13 @@
                 android:src="@drawable/next_icon_white" />
         </LinearLayout>
 
+        <View
+            android:background="#BBA19A"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
         <LinearLayout
+            android:layout_marginTop="30dp"
             android:id="@+id/onclick_Thiet_Lap_Tai_Khoan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

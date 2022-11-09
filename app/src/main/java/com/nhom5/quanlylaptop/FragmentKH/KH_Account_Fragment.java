@@ -15,25 +15,25 @@ import android.widget.TextView;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.ActivityKH.Account_KH_Manager_Activity;
+import com.nhom5.quanlylaptop.ActivityKH.KH_DonHang_Activity;
+import com.nhom5.quanlylaptop.ActivityKH.KH_Rating_Activity;
 import com.nhom5.quanlylaptop.R;
 
 public class KH_Account_Fragment extends Fragment {
 
-    LinearLayout maVoucher, danhGiaSanPham, quanLyDonHang, nhomSanVou, gioHang, doiMatKhau, thietLapTaiKhoan;
+    LinearLayout maVoucher, danhGiaSanPham, nhomSanVou, gioHang, doiMatKhau, thietLapTaiKhoan;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kh_account, container, false);
         maVoucher = view.findViewById(R.id.onclick_Ma_Voucher);
         danhGiaSanPham = view.findViewById(R.id.onclick_Danh_Gia_San_Pham);
-        quanLyDonHang = view.findViewById(R.id.onclick_Quan_Ly_Don_Hang);
         nhomSanVou = view.findViewById(R.id.onclick_Nhom_San_Voucher);
         gioHang = view.findViewById(R.id.onclick_Gio_Hang);
         doiMatKhau = view.findViewById(R.id.onclick_Doi_Mat_Khau);
         thietLapTaiKhoan = view.findViewById(R.id.onclick_Thiet_Lap_Tai_Khoan);
         clickMaVoucher();
         clickDanhGiaSanPham();
-        clickQuanLyDonHang();
         clickNhomSanVou();
         clickGioHang();
         clickDoiMatKhau();
@@ -45,7 +45,7 @@ public class KH_Account_Fragment extends Fragment {
         maVoucher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getContext(), KH_Rating_Activity.class));
             }
         });
     }
@@ -54,16 +54,7 @@ public class KH_Account_Fragment extends Fragment {
         danhGiaSanPham.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-            }
-        });
-    }
-
-    private void clickQuanLyDonHang(){
-        quanLyDonHang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
+                startActivity(new Intent(getContext(), KH_DonHang_Activity.class));
             }
         });
     }

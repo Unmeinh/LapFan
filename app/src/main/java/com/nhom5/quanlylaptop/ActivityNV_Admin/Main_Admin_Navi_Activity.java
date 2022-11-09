@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -30,6 +31,7 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
     String TAG = "Main_Admin_Navi_Activity_____";
     DrawerLayout drawerLayout;
     int itemNaviDr;
+    Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,11 +42,11 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
         drawerLayout = findViewById(R.id.drawerLayout);
         setViewNaviBottom();
         setViewNaviDrawer();
-        openNaviDrawer();
+        useToolbar();
     }
 
-    public void openNaviDrawer() {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+    private void useToolbar() {
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Account));
         ImageButton open = findViewById(R.id.open_navi_drawer);
         ImageView imageView = findViewById(R.id.home_Avatar_Account);
         imageView.setImageResource(R.drawable.admin_avatar);
@@ -186,9 +188,9 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                     Admin_PagerAdapter_Bottom adapter = new Admin_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(2);
-                    naviView.getMenu().getItem(8).setChecked(true);
-                    naviView.getMenu().getItem(8).setCheckable(true);
-                    itemNaviDr = 8;
+                    naviView.getMenu().getItem(7).setChecked(true);
+                    naviView.getMenu().getItem(7).setCheckable(true);
+                    itemNaviDr = 7;
                 }
                 if (i == R.id.item_navi_bottom_add_staff){
                     Toast.makeText(Main_Admin_Navi_Activity.this, "Account", Toast.LENGTH_SHORT).show();

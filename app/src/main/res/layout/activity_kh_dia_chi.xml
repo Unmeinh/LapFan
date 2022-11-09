@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".FragmentKH.KH_DiaChi_Fragment">
+    tools:context=".ActivityKH.KH_DiaChi_Activity">
 
     <include layout="@layout/toolbar_normal"/>
 

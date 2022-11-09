@@ -6,7 +6,7 @@
     android:background="#FFEFE0">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar_Normal"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -16,6 +16,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
+                android:id="@+id/button_Back_Toolbar"
                 android:background="#FFEFE0"
                 android:src="@drawable/arrow_back_icon"
                 android:layout_width="35dp"
@@ -23,11 +24,11 @@
                 app:tint="#4E352F" />
 
             <TextView
+                android:id="@+id/title_Toolbar"
                 android:textStyle="bold"
                 android:textColor="#4E352F"
                 android:textSize="27sp"
                 android:gravity="center"
-                android:text="Địa chỉ đơn hàng"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 

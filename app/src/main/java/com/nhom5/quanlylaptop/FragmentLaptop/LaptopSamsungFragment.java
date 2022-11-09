@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
-import com.nhom5.quanlylaptop.ActivityKH.InfoLaptopActivity;
+import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.R;
 
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class LaptopSamsungFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getContext(), InfoLaptopActivity.class));
+                startActivity(new Intent(getContext(), Info_Laptop_Activity.class));
             }
         });
 

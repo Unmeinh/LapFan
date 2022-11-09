@@ -7,6 +7,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -29,6 +30,7 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
     String TAG = "Main_KH_Navi_Activity_____";
     DrawerLayout drawerLayout;
     int itemNaviDr;
+    Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +39,13 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewP);
         naviView = findViewById(R.id.naviView);
         drawerLayout = findViewById(R.id.drawerLayout);
+        useToolbar();
         setViewNaviBottom();
         setViewNaviDrawer();
-        openNaviDrawer();
     }
 
-    public void openNaviDrawer() {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+    private void useToolbar() {
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Account));
         ImageButton open = findViewById(R.id.open_navi_drawer);
         open.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,6 +151,7 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
             }
         });
         Log.d(TAG, "onNavigationItemSelected: itemNavi: " + itemNaviDr);
+        getSupportActionBar().show();
     }
 
     private void setViewNaviBottom(){
@@ -168,6 +171,7 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                     naviView.getMenu().getItem(0).setChecked(true);
                     naviView.getMenu().getItem(0).setCheckable(true);
                     itemNaviDr = 0;
+                    getSupportActionBar().show();
                 }
                 if (i == R.id.item_navi_bottom_kh_noti){
                     Toast.makeText(Main_KH_Navi_Activity.this, "Thông Báo", Toast.LENGTH_SHORT).show();
@@ -177,6 +181,7 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                     naviView.getMenu().getItem(1).setChecked(true);
                     naviView.getMenu().getItem(1).setCheckable(true);
                     itemNaviDr = 1;
+                    getSupportActionBar().show();
                 }
                 if (i == R.id.item_navi_bottom_kh_gioHang){
                     Toast.makeText(Main_KH_Navi_Activity.this, "Giỏ hàng", Toast.LENGTH_SHORT).show();
@@ -186,6 +191,7 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                     naviView.getMenu().getItem(8).setChecked(true);
                     naviView.getMenu().getItem(8).setCheckable(true);
                     itemNaviDr = 8;
+                    getSupportActionBar().show();
                 }
                 if (i == R.id.item_navi_bottom_kh_acc){
                     Toast.makeText(Main_KH_Navi_Activity.this, "Account", Toast.LENGTH_SHORT).show();
@@ -195,10 +201,12 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                     Log.d(TAG, "onNavigationItemSelected: itemNavi: " + itemNaviDr);
                     naviView.getMenu().getItem(itemNaviDr).setChecked(false);
                     naviView.getMenu().getItem(itemNaviDr).setCheckable(false);
+                    getSupportActionBar().hide();
                 }
                 return true;
             }
         });
     }
+
 
 }

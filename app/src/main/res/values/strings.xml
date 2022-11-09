@@ -101,4 +101,19 @@
     <string name="laptop_asus">Laptop Asus</string>
     <string name="laptop_razer">Laptop Razer</string>
     <string name="laptop_samsung">Laptop Samsung</string>
+    <string name="s_l_ng">Số lượng: </string>
+    <string name="luu_y_danh_gia">Chia sẻ cảm nhận của bạn về sản phẩm trong đơn hàng để nhận ưu đãi. Lưu ý: Nếu đánh giá nội dung không phù hợp, tài khoản sẽ bị xóa.</string>
+    <string name="ch_t_l_ng_s_n_ph_m">Chất lượng sản phẩm:</string>
+    <string name="ch_t_l_ng_s_n_ph_m_tuy_t_v_i">Chất lượng sản phẩm tuyệt vời</string>
+    <string name="r_t_ng_ti_n">Rất đáng tiền</string>
+    <string name="shop_ph_c_v_t_t">Shop phục vụ tốt</string>
+    <string name="th_i_gian_giao_h_ng_r_t_nhanh">Thời gian giao hàng rất nhanh</string>
+    <string name="hint_review"><font color="#817F7F" size="15">Hãy chia sẻ những điều bạn thích về sản phẩm nhé...</font></string>
+    <string name="ho_n_th_nh">Hoàn Thành</string>
+    <string name="fpt_shop">FPT SHOP</string>
+    <string name="giao_h_ng_th_nh_c_ng">Giao hàng thành công</string>
+    <string name="nh_gi_ngay_v_nh_n_u_i">Đánh giá ngay và nhận ưu đãi</string>
+    <string name="noti_danh_gia">Bạn hãy đánh giá sản phẩm sớm để chúng tôi biết cảm nhận của bạn về sản phẩm nhé</string>
+    <string name="nh_gi">Đánh giá</string>
+    <string name="h_ng_d_n_s_d_ng_app">Hướng dẫn sử dụng app</string>
 </resources>

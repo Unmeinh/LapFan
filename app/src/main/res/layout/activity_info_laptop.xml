@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#D2422F"
     android:orientation="vertical"
-    tools:context=".ActivityKH.InfoLaptopActivity">
+    tools:context=".ActivityKH.Info_Laptop_Activity">
 
     <include android:id="@+id/top"
         layout="@layout/toolbar_navi_kh"/>

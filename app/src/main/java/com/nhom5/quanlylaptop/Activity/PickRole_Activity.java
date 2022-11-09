@@ -3,6 +3,7 @@ package com.nhom5.quanlylaptop.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +16,7 @@ public class PickRole_Activity extends AppCompatActivity {
     AppCompatButton rollAdmin, rollNV, rollKH;
     String roleUser = "";
     String TAG = "PickRole_Activity_____";
+    Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +30,7 @@ public class PickRole_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: rollAdmin");
-                Intent intent = new Intent(PickRole_Activity.this, SignIn_Activity.class);
+                Intent intent = new Intent(context, SignIn_Activity.class);
                 roleUser = "admin";
                 Log.d(TAG, "onClick: roleUser: " + roleUser);
                 intent.putExtra("role", roleUser);
@@ -40,7 +42,7 @@ public class PickRole_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: rollNV");
-                Intent intent = new Intent(PickRole_Activity.this, SignIn_Activity.class);
+                Intent intent = new Intent(context, SignIn_Activity.class);
                 roleUser = "nhanVien";
                 Log.d(TAG, "onClick: roleUser: " + roleUser);
                 intent.putExtra("role", roleUser);
@@ -52,7 +54,7 @@ public class PickRole_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d(TAG, "onClick: rollKH");
-                Intent intent = new Intent(PickRole_Activity.this, SignIn_Activity.class);
+                Intent intent = new Intent(context, SignIn_Activity.class);
                 roleUser = "khachHang";
                 Log.d(TAG, "onClick: roleUser: " + roleUser);
                 intent.putExtra("role", roleUser);

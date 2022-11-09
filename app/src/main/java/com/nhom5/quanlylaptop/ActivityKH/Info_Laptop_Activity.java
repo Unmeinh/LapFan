@@ -1,29 +1,34 @@
-package com.nhom5.quanlylaptop.Activity;
+package com.nhom5.quanlylaptop.ActivityKH;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.R;
 
-public class SignUp_Acitivity extends AppCompatActivity {
+public class Info_Laptop_Activity extends AppCompatActivity {
 
-    TextView gotoSignInAct;
     Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up_activity);
-        gotoSignInAct = findViewById(R.id.go_to_SignInAct);
+        setContentView(R.layout.activity_info_laptop);
+        useToolbar();
 
-        gotoSignInAct.setOnClickListener(new View.OnClickListener() {
+    }
+
+    private void useToolbar() {
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Navi));
+        ImageButton back = findViewById(R.id.button_Back_Toolbar);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(context, SignIn_Activity.class));
                 finish();
             }
         });

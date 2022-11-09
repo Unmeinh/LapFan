@@ -3,6 +3,7 @@ package com.nhom5.quanlylaptop.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +21,7 @@ public class SignIn_Activity extends AppCompatActivity {
     String TAG = "SignIn_Activity_____";
     String roleUser = "";
     AppCompatButton loginButton;
+    Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,17 +39,17 @@ public class SignIn_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 if (roleUser.equals("admin")){
                     Log.d(TAG, "loginTime: U r admin");
-                    Intent intent = new Intent(SignIn_Activity.this, Main_Admin_Navi_Activity.class);
+                    Intent intent = new Intent(context, Main_Admin_Navi_Activity.class);
                     startActivity(intent);
                 }
                 if (roleUser.equals("nhanVien")){
                     Log.d(TAG, "loginTime: U r nhanVien");
-                    Intent intent = new Intent(SignIn_Activity.this, Main_NV_Navi_Activity.class);
+                    Intent intent = new Intent(context, Main_NV_Navi_Activity.class);
                     startActivity(intent);
                 }
                 if (roleUser.equals("khachHang")){
                     Log.d(TAG, "loginTime: U r khachHang");
-                    Intent intent = new Intent(SignIn_Activity.this, Main_KH_Navi_Activity.class);
+                    Intent intent = new Intent(context, Main_KH_Navi_Activity.class);
                     startActivity(intent);
                 }
             }
@@ -67,7 +69,7 @@ public class SignIn_Activity extends AppCompatActivity {
         gotoSignUpAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(SignIn_Activity.this, SignUp_Acitivity.class);
+                Intent intent = new Intent(context, SignUp_Acitivity.class);
                 Log.d(TAG, "goToSignUp: roleUser: " + roleUser);
                 intent.putExtra("role", roleUser);
                 startActivity(intent);
