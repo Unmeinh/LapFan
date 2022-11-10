@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#FFEFE0">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_Normal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/button_Back_Toolbar"
+                android:background="#FFEFE0"
+                android:src="@drawable/arrow_back_icon"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                app:tint="#4E352F" />
+
+            <TextView
+                android:text="Nhân viên"
+                android:id="@+id/title_Toolbar"
+                android:textStyle="bold"
+                android:textColor="#4E352F"
+                android:textSize="27sp"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_weight="9"
+                android:layout_height="match_parent"/>
+
+            <ImageButton
+                android:id="@+id/button_Search_Toolbar"
+                android:background="#FFEFE0"
+                android:src="@drawable/search_icon"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                app:tint="#4E352F" />
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+</LinearLayout>

@@ -42,8 +42,14 @@ public class GioHangDAO {
                 String maGio = c.getString(0);
                 String maLaptop = c.getString(1);
                 String maKH = c.getString(2);
+                int soLuong = 0;
+                try {
+                    soLuong = Integer.parseInt(c.getString(3));
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
                 @SuppressLint("Range") String ngayThem = changeType.longDateToString(c.getLong(c.getColumnIndex("ngayThem")));
-                GioHang newGio = new GioHang(maGio, maLaptop, maKH, ngayThem);
+                GioHang newGio = new GioHang(maGio, maLaptop, maKH, ngayThem, soLuong);
                 Log.d(TAG, "selectGioHang: new GioHang: " + newGio.toString());
 
                 listGio.add(newGio);
@@ -65,6 +71,7 @@ public class GioHangDAO {
         values.put("maGio", gioHang.getMaGio());
         values.put("maLaptop", gioHang.getMaLaptop());
         values.put("maKH", gioHang.getMaKH());
+        values.put("soLuong", gioHang.getSoLuong());
         values.put("ngayThem", changeType.stringToLongDate(gioHang.getNgayThem()));
         Log.d(TAG, "insertGioHang: GioHang: " + gioHang.toString());
         Log.d(TAG, "insertGioHang: Values: " + values);
@@ -87,6 +94,7 @@ public class GioHangDAO {
         values.put("maGio", gioHang.getMaGio());
         values.put("maLaptop", gioHang.getMaLaptop());
         values.put("maKH", gioHang.getMaKH());
+        values.put("soLuong", gioHang.getSoLuong());
         values.put("ngayThem", gioHang.getNgayThem());
         Log.d(TAG, "updateGioHang: GioHang: " + gioHang.toString());
         Log.d(TAG, "updateGioHang: Values: " + values);

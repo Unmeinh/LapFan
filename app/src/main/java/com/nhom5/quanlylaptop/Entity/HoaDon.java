@@ -12,10 +12,12 @@ public class HoaDon extends Binder {
     private String diaChi;
     private String ngayMua;
     private String loaiThanhToan;
+    private String isDanhGia;
     private int soLuong;
     private double thanhTien;
 
-    public HoaDon(String maHD, String maNV, String maKH, String maLaptop, String maVoucher, String maRate, String diaChi, String ngayMua, String loaiThanhToan, int soLuong, double thanhTien) {
+    public HoaDon(String maHD, String maNV, String maKH, String maLaptop, String maVoucher, String maRate,
+                  String diaChi, String ngayMua, String loaiThanhToan, String isDanhGia, int soLuong, double thanhTien) {
         this.maHD = maHD;
         this.maNV = maNV;
         this.maKH = maKH;
@@ -25,6 +27,7 @@ public class HoaDon extends Binder {
         this.diaChi = diaChi;
         this.ngayMua = ngayMua;
         this.loaiThanhToan = loaiThanhToan;
+        this.isDanhGia = isDanhGia;
         this.soLuong = soLuong;
         this.thanhTien = thanhTien;
     }
@@ -99,6 +102,14 @@ public class HoaDon extends Binder {
 
     public void setLoaiThanhToan(String loaiThanhToan) {
         this.loaiThanhToan = loaiThanhToan;
+    }
+
+    public String getIsDanhGia() {
+        return isDanhGia;
+    }
+
+    public void setIsDanhGia(String isDanhGia) {
+        this.isDanhGia = isDanhGia;
     }
 
     public int getSoLuong() {

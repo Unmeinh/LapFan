@@ -4,9 +4,9 @@
         android:title="@string/trang_ch"
         android:icon="@drawable/home_navi_icon"/>
 
-    <item android:id="@+id/item_navi_drawer_nv_thongBao"
-        android:title="@string/th_ng_b_o"
-        android:icon="@drawable/noti_navi_icon"/>
+    <item android:id="@+id/item_navi_drawer_nv_fptShop"
+        android:title="@string/fpt_shop"
+        android:icon="@drawable/fpt_icon"/>
 
     <item
         android:title="@string/danh_m_c_qu_n_l"

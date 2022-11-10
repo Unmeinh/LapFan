@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80BBA19A"
+    tools:context=".FragmentQuanLy.Tab_Laptop_Fragment">
+
+    <GridView
+        android:layout_marginTop="20dp"
+        android:id="@+id/gridView_laptop"
+        android:gravity="center"
+        android:numColumns="2"
+        android:columnWidth="150dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="16dp"
+        tools:listitem="@layout/cardview_nva_laptop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>

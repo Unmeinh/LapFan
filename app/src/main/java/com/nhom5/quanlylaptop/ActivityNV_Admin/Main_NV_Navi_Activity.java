@@ -74,7 +74,7 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_home).setCheckable(true);
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_home).setChecked(true);
                 }
-                if (id == R.id.item_navi_drawer_nv_thongBao) {
+                if (id == R.id.item_navi_drawer_nv_fptShop) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 1 - phiếu mượn");
                     NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
@@ -82,8 +82,8 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     viewPager.setCurrentItem(1);
                     itemNaviDr = 1;
                     bottomNavigationView.setVisibility(View.VISIBLE);
-                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_noti).setCheckable(true);
-                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_noti).setChecked(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_fpt).setCheckable(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_fpt).setChecked(true);
                 }
                 if (id == R.id.item_navi_drawer_nv_Laptop) {
                     item.setCheckable(true);
@@ -165,7 +165,7 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     itemNaviDr = 0;
                     getSupportActionBar().show();
                 }
-                if (i == R.id.item_navi_bottom_nv_noti) {
+                if (i == R.id.item_navi_bottom_nv_fpt) {
                     Toast.makeText(Main_NV_Navi_Activity.this, "Thông Báo", Toast.LENGTH_SHORT).show();
                     NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);

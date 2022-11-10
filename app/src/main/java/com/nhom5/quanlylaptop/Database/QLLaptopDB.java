@@ -54,14 +54,14 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         String tableHoaDon = "CREATE TABLE TB_HoaDon( maHD INT PRIMARY KEY not null, maNV VARCHAR(15) not null," +
                 " maKH VARCHAR(15) not null, maLaptop VARCHAR(15) not null, maVoucher VARCHAR(15) not null," +
                 " maRate VARCHAR(15) not null, soLuong INT not null, diaChi TEXT, ngayMua DATE not null," +
-                " loaiThanhToan TEXT, thanhTien MONEY not null," +
+                " loaiThanhToan TEXT, isDanhGia TEXT, thanhTien MONEY not null," +
                 " FOREIGN KEY(maNV) REFERENCES TB_NhanVien (maNV), FOREIGN KEY(maKH) REFERENCES TB_KhachHang (maKH)," +
                 " FOREIGN KEY(maLaptop) REFERENCES TB_Laptop (maLaptop), FOREIGN KEY(maVoucher) REFERENCES TB_Voucher (maVoucher)," +
                 " FOREIGN KEY(maRate) REFERENCES TB_LaptopRate (maRate))";
 
         // Bảng GioHang
         String tableGioHang = "CREATE TABLE TB_GioHang( maGio VARCHAR(15) PRIMARY KEY not null," +
-                " maLaptop VARCHAR(15) not null, maKH VARCHAR(15) not null, ngayThem DATE," +
+                " maLaptop VARCHAR(15) not null, maKH VARCHAR(15) not null, soLuong INT, ngayThem DATE," +
                 " FOREIGN KEY(maLaptop) REFERENCES TB_Laptop (maLaptop), FOREIGN KEY(maKH) REFERENCES TB_KhachHang (maKH))";
 
         // Bảng ThongBao

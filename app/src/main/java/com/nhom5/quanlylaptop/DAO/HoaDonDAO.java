@@ -54,13 +54,14 @@ public class HoaDonDAO {
                 String diaChi = c.getString(7);
                 @SuppressLint("Range") String ngayMua = changeType.longDateToString(c.getLong(c.getColumnIndex("ngayMua")));
                 String loaiThanhToan = c.getString(9);
+                String isDanhGia = c.getString(10);
                 float thanhTien = 0;
                 try {
-                    thanhTien = Float.parseFloat(c.getString(10));
+                    thanhTien = Float.parseFloat(c.getString(11));
                 } catch (Exception e){
                     e.printStackTrace();
                 }
-                HoaDon newHD = new HoaDon(maHD, maNV, maKH, maLaptop, maVoucher, maRate, diaChi, ngayMua, loaiThanhToan, soLuong, thanhTien);
+                HoaDon newHD = new HoaDon(maHD, maNV, maKH, maLaptop, maVoucher, maRate, diaChi, ngayMua, loaiThanhToan, isDanhGia, soLuong, thanhTien);
                 Log.d(TAG, "selectHoaDon: new HoaDon: " + newHD.toString());
 
                 listHD.add(newHD);
@@ -89,6 +90,7 @@ public class HoaDonDAO {
         values.put("diaChi", hoaDon.getDiaChi());
         values.put("ngayMua", changeType.stringToLongDate(hoaDon.getNgayMua()));
         values.put("loaiThanhToan", hoaDon.getLoaiThanhToan());
+        values.put("isDanhGia", hoaDon.getIsDanhGia());
         values.put("thanhTien", hoaDon.getThanhTien());
         Log.d(TAG, "insertHoaDon: HoaDon: " + hoaDon.toString());
         Log.d(TAG, "insertHoaDon: Values: " + values);
@@ -118,6 +120,7 @@ public class HoaDonDAO {
         values.put("diaChi", hoaDon.getDiaChi());
         values.put("ngayMua", changeType.stringToLongDate(hoaDon.getNgayMua()));
         values.put("loaiThanhToan", hoaDon.getLoaiThanhToan());
+        values.put("isDanhGia", hoaDon.getIsDanhGia());
         values.put("thanhTien", hoaDon.getThanhTien());
         Log.d(TAG, "updateHoaDon: HoaDon: " + hoaDon.toString());
         Log.d(TAG, "updateHoaDon: Values: " + values);

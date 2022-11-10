@@ -43,7 +43,7 @@ public class KH_DonHang_Activity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(context, KH_Rating_Activity.class));
+                startActivity(new Intent(context, KH_DanhGia_Activity.class));
             }
         });
         useToolbar();

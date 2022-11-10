@@ -10,13 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.ActivityKH.Account_KH_Manager_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_DonHang_Activity;
-import com.nhom5.quanlylaptop.ActivityKH.KH_Rating_Activity;
+import com.nhom5.quanlylaptop.ActivityKH.KH_DanhGia_Activity;
+import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
 import com.nhom5.quanlylaptop.R;
 
 public class KH_Account_Fragment extends Fragment {
@@ -45,7 +45,7 @@ public class KH_Account_Fragment extends Fragment {
         maVoucher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), KH_Rating_Activity.class));
+                startActivity(new Intent(getContext(), KH_Voucher_Activity.class));
             }
         });
     }

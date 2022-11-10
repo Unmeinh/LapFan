@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp">
+
+    <LinearLayout
+        android:padding="3dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="185dp"
+            android:layout_height="200dp"
+            android:src="@drawable/laptopdemo"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="Laptop Dell Gaming G15"
+            android:lineHeight="25.02sp"
+            android:gravity="center_horizontal"
+            android:textSize="13sp"
+            android:textColor="#000000" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="33dp"
+                android:layout_height="19dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/icon_free_truck" />
+
+           <LinearLayout
+               android:layout_marginStart="5dp"
+               android:orientation="vertical"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content">
+
+               <TextView
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:layout_marginTop="5dp"
+                   android:text="@string/mi_n_ph_v_n_chuy_n"
+                   android:textColor="#F20C0C" />
+
+               <TextView
+                   android:layout_gravity="end"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="21.990.000 VNĐ"
+                   android:textColor="#F20C0C"
+                   android:layout_marginTop="5dp"
+                   android:textSize="18sp"/>
+
+           </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

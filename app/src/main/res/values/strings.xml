@@ -110,10 +110,25 @@
     <string name="th_i_gian_giao_h_ng_r_t_nhanh">Thời gian giao hàng rất nhanh</string>
     <string name="hint_review"><font color="#817F7F" size="15">Hãy chia sẻ những điều bạn thích về sản phẩm nhé...</font></string>
     <string name="ho_n_th_nh">Hoàn Thành</string>
-    <string name="fpt_shop">FPT SHOP</string>
+    <string name="fpt_shop">FPT Shop</string>
     <string name="giao_h_ng_th_nh_c_ng">Giao hàng thành công</string>
     <string name="nh_gi_ngay_v_nh_n_u_i">Đánh giá ngay và nhận ưu đãi</string>
     <string name="noti_danh_gia">Bạn hãy đánh giá sản phẩm sớm để chúng tôi biết cảm nhận của bạn về sản phẩm nhé</string>
     <string name="nh_gi">Đánh giá</string>
     <string name="h_ng_d_n_s_d_ng_app">Hướng dẫn sử dụng app</string>
+    <string name="gi_m_gi">Giảm giá</string>
+    <string name="s_d_ng">Sử dụng</string>
+    <string name="danh_s_ch_voucher">Danh sách Voucher</string>
+    <string name="th_ng_n_y">Tháng này</string>
+    <string name="doanh_thu_b_n_h_ng">Doanh thu bán hàng</string>
+    <string name="theo_doanh_thu">Theo doanh thu</string>
+    <string name="theo_s_l_ng">Theo số lượng</string>
+    <string name="s_n_ph_m_b_n_ch_y">Sản phẩm bán chạy</string>
+    <string name="m_t_kh_u">Mật khẩu</string>
+    <string name="t_n_li_n_h">Tên liên hệ</string>
+    <string name="t_n_nh_n_vi_n">Tên nhân viên</string>
+    <string name="t_o_m_i">Tạo mới</string>
+    <string name="mi_n_ph_v_n_chuy_n">Miễn phí vận chuyển</string>
+    <string name="laptop">Laptop</string>
+    <string name="h_ng_laptop">Hãng laptop</string>
 </resources>

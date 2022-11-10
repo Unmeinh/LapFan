@@ -7,12 +7,14 @@ public class GioHang extends Binder {
     private String maLaptop;
     private String maKH;
     private String ngayThem;
+    private int soLuong;
 
-    public GioHang(String maGio, String maLaptop, String maKH, String ngayThem) {
+    public GioHang(String maGio, String maLaptop, String maKH, String ngayThem, int soLuong) {
         this.maGio = maGio;
         this.maLaptop = maLaptop;
         this.maKH = maKH;
         this.ngayThem = ngayThem;
+        this.soLuong = soLuong;
     }
 
     public String getMaGio() {
@@ -37,6 +39,14 @@ public class GioHang extends Binder {
 
     public void setMaKH(String maKH) {
         this.maKH = maKH;
+    }
+
+    public int getSoLuong() {
+        return soLuong;
+    }
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
     }
 
     public String getNgayThem() {

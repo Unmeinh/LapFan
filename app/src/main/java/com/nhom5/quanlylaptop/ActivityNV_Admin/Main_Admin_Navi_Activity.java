@@ -76,7 +76,7 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_home).setCheckable(true);
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_home).setChecked(true);
                 }
-                if (id == R.id.item_navi_drawer_admin_thongBao) {
+                if (id == R.id.item_navi_drawer_admin_fptShop) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 1 - phiếu mượn");
                     Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
@@ -84,8 +84,8 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                     viewPager.setCurrentItem(1);
                     itemNaviDr = 1;
                     bottomNavigationView.setVisibility(View.VISIBLE);
-                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_noti).setCheckable(true);
-                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_noti).setChecked(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_fptShop).setCheckable(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_fptShop).setChecked(true);
                 }
                 if (id == R.id.item_navi_drawer_admin_Laptop) {
                     item.setCheckable(true);
@@ -174,7 +174,7 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                     naviView.getMenu().getItem(0).setCheckable(true);
                     itemNaviDr = 0;
                 }
-                if (i == R.id.item_navi_bottom_admin_noti){
+                if (i == R.id.item_navi_bottom_admin_fptShop){
                     Toast.makeText(Main_Admin_Navi_Activity.this, "Thông Báo", Toast.LENGTH_SHORT).show();
                     Admin_PagerAdapter_Bottom adapter = new Admin_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);

@@ -13,6 +13,7 @@ import com.nhom5.quanlylaptop.FragmentLaptop.LaptopDellFragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.LaptopHPFragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.LaptopRazerFragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.LaptopSamsungFragment;
+import com.nhom5.quanlylaptop.FragmentNV_Admin.NVA_FPTShop_Fragment;
 import com.nhom5.quanlylaptop.FragmentNV_Admin.NVA_Home_Fragment;
 import com.nhom5.quanlylaptop.FragmentQuanLy.QL_DonHang_Fragment;
 import com.nhom5.quanlylaptop.FragmentQuanLy.QL_KhachHang_Fragment;
@@ -37,7 +38,7 @@ public class NV_PagerAdapter_Drawer extends FragmentStatePagerAdapter {
                 frag = new NVA_Home_Fragment();
                 break;
             case 1:
-                frag = new KH_Notifi_Fragment();
+                frag = new NVA_FPTShop_Fragment();
                 break;
             case 2:
                 frag = new QL_Laptop_Fragment();

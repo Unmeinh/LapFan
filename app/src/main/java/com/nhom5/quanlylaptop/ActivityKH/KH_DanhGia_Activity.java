@@ -11,13 +11,13 @@ import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.R;
 
-public class KH_Rating_Activity extends AppCompatActivity {
+public class KH_DanhGia_Activity extends AppCompatActivity {
 
     Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_kh_rating);
+        setContentView(R.layout.activity_kh_danh_gia);
         useToolbar();
     }
 
