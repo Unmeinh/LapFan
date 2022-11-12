@@ -37,11 +37,11 @@ public class KH_GioHang_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kh_gio_hang, container, false);
-        emptyGHLayout = view.findViewById(R.id.empty_Gio_Hang);
+        emptyGHLayout = view.findViewById(R.id.empty_GioHang);
         viewGHLayout = view.findViewById(R.id.view_Gio_Hang);
-        listView = view.findViewById(R.id.listView_Gio_Hang);
-        buttonPayNow = view.findViewById(R.id.button_Pay_Now);
-        totalMoney = view.findViewById(R.id.total_Money_GH);
+        listView = view.findViewById(R.id.listView_GioHang);
+        buttonPayNow = view.findViewById(R.id.button_PayNow);
+        totalMoney = view.findViewById(R.id.textView_Total);
 
         list.add(new HashMap<>());
         list.add(new HashMap<>());

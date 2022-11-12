@@ -21,8 +21,10 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_Ten_Nhanvien"
-            style="@style/TextInputLayoutOut"
+            android:id="@+id/textView_TenNV"
+            style="@style/TextInputLayoutOutlinedBoxBrown"
+            app:startIconDrawable="@drawable/account_circle_icon"
+            app:startIconTint="#4E352F"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -34,8 +36,10 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_Email_Nhanvien"
-            style="@style/TextInputLayoutOut"
+            android:id="@+id/textInput_Email"
+            style="@style/TextInputLayoutOutlinedBoxBrown"
+            app:startIconDrawable="@drawable/email_icon"
+            app:startIconTint="#4E352F"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp">
@@ -48,13 +52,16 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_SDT_Nhanvien"
-            style="@style/TextInputLayoutOut"
+            android:id="@+id/textInput_SDT"
+            style="@style/TextInputLayoutOutlinedBoxBrown"
+            app:startIconDrawable="@drawable/old_phone_icon"
+            app:startIconTint="#4E352F"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:inputType="number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/s_i_n_tho_i"
@@ -62,13 +69,17 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/input_MK_Nhanvien"
-            style="@style/TextInputLayoutOut"
+            android:id="@+id/textInput_Password"
+            style="@style/TextInputLayoutOutlinedBoxBrown"
+            app:startIconDrawable="@drawable/password_icon"
+            app:startIconTint="#4E352F"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:passwordToggleEnabled="true"
             android:layout_marginTop="25dp">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:inputType="textPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/m_t_kh_u"
@@ -76,7 +87,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/button_taoMoi"
+            android:id="@+id/button_AddNV"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

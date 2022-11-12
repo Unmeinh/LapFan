@@ -16,7 +16,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/button_Back_Toolbar"
+                android:id="@+id/imageButton_Back_Toolbar"
                 android:background="#FFEFE0"
                 android:src="@drawable/arrow_back_icon"
                 android:layout_width="35dp"

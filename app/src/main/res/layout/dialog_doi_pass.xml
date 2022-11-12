@@ -24,7 +24,7 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/cancel"
+            android:id="@+id/button_Cancel_Dialog"
             android:layout_alignParentEnd="true"
             android:textStyle="bold"
             android:textColor="#0DEE23"
@@ -35,7 +35,7 @@
     </RelativeLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_Current_Password_KH"
+        android:id="@+id/textInput_Current_Password"
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusBottomEnd="10dp"
@@ -45,7 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:startIconDrawable="@drawable/password_icon"
-        style="@style/TextInputLayoutOut"
+        style="@style/TextInputLayoutOutlinedBoxGray"
         app:startIconTint="#0DEE23"
         app:passwordToggleEnabled="true">
 
@@ -60,7 +60,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_New_Password_KH"
+        android:id="@+id/textInput_New_Password"
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusBottomEnd="10dp"
@@ -70,7 +70,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:startIconDrawable="@drawable/password_icon"
-        style="@style/TextInputLayoutOut"
+        style="@style/TextInputLayoutOutlinedBoxGray"
         app:startIconTint="#0DEE23"
         app:passwordToggleEnabled="true">
 
@@ -85,7 +85,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/input_Confirm_Password_KH"
+        android:id="@+id/textInput_Confirm_Password"
         app:boxCornerRadiusTopStart="10dp"
         app:boxCornerRadiusBottomStart="10dp"
         app:boxCornerRadiusBottomEnd="10dp"
@@ -95,7 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:startIconDrawable="@drawable/password_icon"
-        style="@style/TextInputLayoutOut"
+        style="@style/TextInputLayoutOutlinedBoxGray"
         app:startIconTint="#0DEE23"
         app:passwordToggleEnabled="true">
 
@@ -117,6 +117,7 @@
         android:layout_height="65dp">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_Change_Pass"
             android:paddingTop="15dp"
             android:paddingBottom="15dp"
             android:paddingStart="55dp"

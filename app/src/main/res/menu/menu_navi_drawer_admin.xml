@@ -15,7 +15,7 @@
     <item android:id="@+id/item_navi_drawer_admin_Laptop"
         android:title="Laptop"/>
 
-    <item android:id="@+id/item_navi_drawer_admin_HoaDon"
+    <item android:id="@+id/item_navi_drawer_admin_DonHang"
         android:title="Đơn hàng"/>
 
     <item android:id="@+id/item_navi_drawer_admin_KhachHang"

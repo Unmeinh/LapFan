@@ -16,30 +16,47 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/button_Back_Toolbar"
+                android:id="@+id/imageButton_Back_Toolbar"
                 android:background="#FFEFE0"
                 android:src="@drawable/arrow_back_icon"
                 android:layout_width="35dp"
                 android:layout_height="match_parent"
                 app:tint="#4E352F" />
 
-            <TextView
-                android:text="Nhân viên"
-                android:id="@+id/title_Toolbar"
-                android:textStyle="bold"
-                android:textColor="#4E352F"
-                android:textSize="27sp"
-                android:gravity="center"
+            <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="0dp"
                 android:layout_weight="9"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:gravity="center"
+                    android:text="Nhân viên"
+                    android:id="@+id/textView_Title_Toolbar"
+                    android:textStyle="bold"
+                    android:textColor="#4E352F"
+                    android:textSize="27sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <EditText
+                    android:visibility="gone"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:textColor="#4E352F"
+                    android:textSize="23sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
 
             <ImageButton
-                android:id="@+id/button_Search_Toolbar"
+                android:id="@+id/imageButton_Search_Toolbar"
                 android:background="#FFEFE0"
                 android:src="@drawable/search_icon"
                 android:layout_width="35dp"
                 android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
                 app:tint="#4E352F" />
 
         </LinearLayout>

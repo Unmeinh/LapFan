@@ -23,9 +23,9 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
 
     private void useToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Normal));
-        TextView titleToolbar = findViewById(R.id.title_Toolbar);
+        TextView titleToolbar = findViewById(R.id.textView_Title_Toolbar);
         titleToolbar.setText("Đánh giá Sản phẩm");
-        ImageButton back = findViewById(R.id.button_Back_Toolbar);
+        ImageButton back = findViewById(R.id.imageButton_Back_Toolbar);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

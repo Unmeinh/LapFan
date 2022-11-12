@@ -57,6 +57,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInput_Email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:startIconDrawable="@drawable/email_icon"
@@ -75,6 +76,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/textInput_Password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -114,6 +116,7 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/textView_Forgot_Pass"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="35dp"
@@ -126,6 +129,7 @@
             </LinearLayout>
 
             <CheckBox
+                android:id="@+id/checkBox_Remember_Me"
                 android:layout_marginTop="5dp"
                 android:textColor="#4E352F"
                 android:textSize="17sp"
@@ -143,7 +147,7 @@
             android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/login_button"
+                android:id="@+id/button_Login"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:paddingStart="75dp"

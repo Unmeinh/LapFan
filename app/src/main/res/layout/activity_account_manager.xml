@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ActivityKH.Account_KH_Manager_Activity">
+    tools:context=".Activity.Account_Manager_Activity">
 
     <include layout="@layout/toolbar_normal"/>
 
@@ -18,7 +18,8 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/TextInputLayoutOutlinedBox."
+            android:id="@+id/textInput_Email"
+            style="@style/TextInputLayoutOutlinedBoxViolet"
             android:layout_width="match_parent"
             android:layout_height="65dp">
 
@@ -38,8 +39,9 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInput_Ho"
                 android:layout_marginEnd="20dp"
-                style="@style/TextInputLayoutOutlinedBox."
+                style="@style/TextInputLayoutOutlinedBoxViolet"
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:layout_height="65dp">
@@ -54,7 +56,8 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/TextInputLayoutOutlinedBox."
+                android:id="@+id/textInput_Ten"
+                style="@style/TextInputLayoutOutlinedBoxViolet"
                 android:layout_width="0dp"
                 android:layout_weight="5"
                 android:layout_height="65dp">
@@ -71,8 +74,9 @@
         </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInput_SDT"
             android:layout_marginTop="30dp"
-            style="@style/TextInputLayoutOutlinedBox."
+            style="@style/TextInputLayoutOutlinedBoxViolet"
             android:layout_width="match_parent"
             android:layout_height="65dp">
 
@@ -92,7 +96,7 @@
             android:layout_height="65dp">
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/TextInputLayoutOutlinedBox."
+                style="@style/TextInputLayoutOutlinedBoxViolet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -108,16 +112,16 @@
             <Spinner
                 android:paddingStart="10dp"
                 android:textColor="@color/black"
-                android:id="@+id/gender_spinner"
+                android:id="@+id/spinner_Gender"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
         </RelativeLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/update_que_quan_khach_hang"
+            android:id="@+id/textInput_QueQuan"
             android:layout_marginTop="30dp"
-            style="@style/TextInputLayoutOutlinedBox."
+            style="@style/TextInputLayoutOutlinedBoxViolet"
             android:layout_width="match_parent"
             android:layout_height="65dp">
 
@@ -137,7 +141,7 @@
             android:layout_height="match_parent">
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_Update_Account_KH"
+                android:id="@+id/button_Update_Account"
                 android:paddingTop="15dp"
                 android:paddingBottom="15dp"
                 android:paddingStart="60dp"

@@ -16,7 +16,7 @@
             android:layout_height="match_parent">
 
             <ImageButton
-                android:id="@+id/button_Back_Toolbar"
+                android:id="@+id/imageButton_Back_Toolbar"
                 android:background="#FFEFE0"
                 android:src="@drawable/arrow_back_icon"
                 android:layout_width="35dp"
@@ -24,7 +24,7 @@
                 app:tint="#4E352F" />
 
             <TextView
-                android:id="@+id/title_Toolbar"
+                android:id="@+id/textView_Title_Toolbar"
                 android:textStyle="bold"
                 android:textColor="#4E352F"
                 android:textSize="27sp"

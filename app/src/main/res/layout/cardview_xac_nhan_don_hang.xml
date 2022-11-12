@@ -7,6 +7,7 @@
     android:padding="10dp">
 
     <TextView
+        android:id="@+id/textView_Date"
         android:textColor="#4E352F"
         android:text="06/11/2022"
         android:layout_width="match_parent"
@@ -19,6 +20,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            android:id="@+id/imageView_Laptop"
             android:src="@drawable/img_demo_laptop"
             android:layout_width="72dp"
             android:layout_height="72dp"/>
@@ -30,6 +32,7 @@
             android:layout_height="match_parent">
 
             <TextView
+                android:id="@+id/textView_TenLaptop"
                 android:textStyle="bold"
                 android:textSize="18sp"
                 android:textColor="#4E352F"
@@ -42,14 +45,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
+                <LinearLayout
                     android:layout_alignParentBottom="true"
-                    android:textColor="#4E352F"
-                    android:text="SL: x 1"
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:textColor="#4E352F"
+                        android:text="SL: x "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/textView_Soluong"
+                        android:textColor="#4E352F"
+                        android:text="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
 
                 <TextView
+                    android:id="@+id/textView_GiaTien"
                     android:textSize="16sp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentBottom="true"

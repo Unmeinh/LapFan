@@ -27,7 +27,7 @@ public class SignIn_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in_activity);
         gotoSignUpAct = findViewById(R.id.go_to_SignUpAct);
-        loginButton = findViewById(R.id.login_button);
+        loginButton = findViewById(R.id.button_Login);
         getDataIntent();
         loginTime();
         goToSignUp();

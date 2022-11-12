@@ -20,6 +20,7 @@
             android:orientation="horizontal">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imageView_Avatar"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_margin="10dp"
@@ -33,6 +34,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/textView_HoTen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -40,6 +42,7 @@
                     android:textColor="#000000" />
 
                 <TextView
+                    android:id="@+id/textView_SDT"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -47,6 +50,7 @@
                     android:textColor="#000000" />
 
                 <TextView
+                    android:id="@+id/textView_Email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/email"
@@ -107,6 +111,36 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/nh_gi_s_n_ph_m"
+                android:textColor="#4E352F"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:src="@drawable/next_icon_black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/onclick_Huong_Dan_Su_Dung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#EDD1D1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="13dp"
+                android:src="@drawable/video_icon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="7"
+                android:text="@string/h_ng_d_n_s_d_ng_app"
                 android:textColor="#4E352F"
                 android:textSize="22sp" />
 
@@ -256,6 +290,7 @@
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button_LogOut"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

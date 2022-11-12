@@ -50,6 +50,20 @@
         <item>Khác</item>
     </string-array>
 
+    <string-array name="hang_laptop_array">
+        <item>Dell</item>
+        <item>HP</item>
+        <item>Asus</item>
+        <item>Razer</item>
+        <item>Samsung</item>
+    </string-array>
+
+    <string-array name="ram_array">
+        <item>RAM 4GB</item>
+        <item>RAM 8GB</item>
+        <item>RAM 16GB</item>
+    </string-array>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="a_ch_nh_n_h_ng">Địa chỉ nhận hàng</string>
     <string name="thay_i">Thay đổi</string>
@@ -60,7 +74,7 @@
     <string name="voucher_gi_m_gi">Voucher giảm giá</string>
     <string name="t_ng_thanh_to_n">Tổng thanh toán</string>
     <string name="t_h_ng">Đặt hàng</string>
-    <string name="info">Info</string>
+    <string name="info">Info Laptop</string>
     <string name="x_c_nh_n_n_h_ng">Xác nhận đơn hàng</string>
     <string name="li_n_h">Liên hệ</string>
     <string name="trang_ch">Trang chủ</string>
@@ -131,4 +145,19 @@
     <string name="mi_n_ph_v_n_chuy_n">Miễn phí vận chuyển</string>
     <string name="laptop">Laptop</string>
     <string name="h_ng_laptop">Hãng laptop</string>
+    <string name="doanh_s_b_n_h_ng_c_a_nh_n_vi_n">Doanh số bán hàng của nhân viên</string>
+    <string name="doanh_thu">Doanh thu</string>
+    <string name="th_m_voucher">Thêm Voucher</string>
+    <string name="th_m_kh_ch_h_ng">Thêm Khách hàng</string>
+    <string name="th_ng_tin_n_h_ng">Thông tin đơn hàng</string>
+    <string name="t_n_laptop">Tên Laptop</string>
+    <string name="th_ng_s_kt">Thông số KT</string>
+    <string name="lo_i_laptop">Loại Laptop</string>
+    <string name="gi_ti_n">Giá tiền</string>
+    <string name="th_i_gian_k_t_th_c">Thời gian kết thúc</string>
+    <string name="th_i_gian_b_t_u">Thời gian bắt đầu</string>
+    <string name="u_i">Ưu đãi</string>
+    <string name="t_n_voucher">Tên Voucher</string>
+    <string name="m_voucher">Mã Voucher</string>
+    <string name="t_n_kh_ch_h_ng">Tên khách hàng</string>
 </resources>

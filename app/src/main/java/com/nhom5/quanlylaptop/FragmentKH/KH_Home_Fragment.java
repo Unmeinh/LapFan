@@ -20,13 +20,7 @@ public class KH_Home_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kh_home, container, false);
-        laptopView = view.findViewById(R.id.home_kh_Laptop_View);
-        laptopView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), Info_Laptop_Activity.class));
-            }
-        });
+        laptopView = view.findViewById(R.id.imageView_Laptop);
         return view;
     }
 

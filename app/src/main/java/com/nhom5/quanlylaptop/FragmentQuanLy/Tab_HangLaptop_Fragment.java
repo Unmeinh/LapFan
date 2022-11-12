@@ -18,24 +18,46 @@ import java.util.List;
 
 public class Tab_HangLaptop_Fragment extends Fragment {
 
-    List<HashMap<String, String>> list = new ArrayList<>();
+    List<HashMap<String, Object>> list = new ArrayList<>();
+    HashMap<String, Object> hashMap;
+    String[] from = {"img", "name"};
+    int[] to = {R.id.imageView_HangLaptop, R.id.textView_TenHang_Laptop};
     GridView gridView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_hang_laptop, container, false);
         gridView = view.findViewById(R.id.gridView_hangLaptop);
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(), list, R.layout.cardview_nva_hanglaptop, new String[]{}, new int[]{});
-        gridView.setAdapter(simpleAdapter);
+        setUpGridView();
         return view;
+    }
+
+    private void setUpGridView(){
+        hashMap = new HashMap<>();
+        hashMap.put("img", R.drawable.img_laptop_dell);
+        hashMap.put("name", "Laptop Dell");
+        list.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("img", R.drawable.img_laptop_hp);
+        hashMap.put("name", "Laptop HP");
+        list.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("img", R.drawable.img_laptop_asus);
+        hashMap.put("name", "Laptop Asus");
+        list.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("img", R.drawable.img_laptop_razer);
+        hashMap.put("name", "Laptop Razer");
+        list.add(hashMap);
+
+        hashMap = new HashMap<>();
+        hashMap.put("img", R.drawable.img_laptop_samsung);
+        hashMap.put("name", "Laptop Samsung");
+        list.add(hashMap);
+        SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(), list, R.layout.cardview_nva_hanglaptop, from, to);
+        gridView.setAdapter(simpleAdapter);
     }
 }

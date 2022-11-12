@@ -6,9 +6,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.nhom5.quanlylaptop.FragmentNV_Admin.Add_Staff_Fragment;
-import com.nhom5.quanlylaptop.FragmentNV_Admin.NVA_DonHang_Fragment;
 import com.nhom5.quanlylaptop.FragmentNV_Admin.NVA_FPTShop_Fragment;
 import com.nhom5.quanlylaptop.FragmentNV_Admin.NVA_Home_Fragment;
+import com.nhom5.quanlylaptop.FragmentQuanLy.QL_ThongKe_Fragment;
 
 
 public class Admin_PagerAdapter_Bottom extends FragmentStatePagerAdapter {
@@ -30,7 +30,7 @@ public class Admin_PagerAdapter_Bottom extends FragmentStatePagerAdapter {
                 frag = new NVA_FPTShop_Fragment();
                 break;
             case 2:
-                frag = new NVA_DonHang_Fragment();
+                frag = new QL_ThongKe_Fragment();
                 break;
             case 3:
                 frag = new Add_Staff_Fragment();

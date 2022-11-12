@@ -52,7 +52,7 @@
                 android:layout_margin="5dp">
 
                 <ImageView
-                    android:id="@+id/img_Laptop"
+                    android:id="@+id/imageView_Laptop"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:layout_gravity="center"
@@ -65,7 +65,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_TenLaptop"
+                        android:id="@+id/textView_TenLaptop"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Laptop Acer Aspire 7 Gaming A715 42G R4XX R5 5500U"
@@ -93,7 +93,7 @@
                                 android:textStyle="bold" />
 
                             <TextView
-                                android:id="@+id/tv_Soluong"
+                                android:id="@+id/textView_Soluong"
                                 android:layout_width="wrap_content"
                                 android:layout_height="25dp"
                                 android:layout_marginTop="12dp"
@@ -105,6 +105,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/textView_GiaTien"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -185,6 +186,7 @@
                         android:gravity="center">
 
                         <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/button_Hint_DanhGia1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/shape_button0"
@@ -203,6 +205,7 @@
                         android:gravity="center">
 
                         <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/button_Hint_DanhGia2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/shape_button0"
@@ -229,6 +232,7 @@
                         android:gravity="center">
 
                         <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/button_Hint_DanhGia3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/shape_button0"
@@ -247,6 +251,7 @@
                         android:gravity="center">
 
                         <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/button_Hint_DanhGia4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:background="@drawable/shape_button0"
@@ -263,6 +268,7 @@
             </LinearLayout>
 
             <EditText
+                android:id="@+id/editText_DanhGia"
                 android:layout_marginTop="20dp"
                 android:padding="7dp"
                 android:background="@drawable/shape_text_input_layout"
@@ -280,6 +286,7 @@
                 android:layout_height="wrap_content">
 
                 <Button
+                    android:id="@+id/button_DanhGia"
                     android:backgroundTint="#EF2D13"
                     android:textColor="@color/white"
                     android:text="@string/ho_n_th_nh"

@@ -50,8 +50,8 @@ public class QLLaptopDB extends SQLiteOpenHelper {
                 " maLaptop VARCHAR(15) not null, danhGia TEXT, rating FLOAT," +
                 " FOREIGN KEY(maLaptop) REFERENCES TB_Laptop (maLaptop))";
 
-        // Bảng HoaDon
-        String tableHoaDon = "CREATE TABLE TB_HoaDon( maHD INT PRIMARY KEY not null, maNV VARCHAR(15) not null," +
+        // Bảng DonHang
+        String tableDonHang = "CREATE TABLE TB_DonHang( maDH INT PRIMARY KEY not null, maNV VARCHAR(15) not null," +
                 " maKH VARCHAR(15) not null, maLaptop VARCHAR(15) not null, maVoucher VARCHAR(15) not null," +
                 " maRate VARCHAR(15) not null, soLuong INT not null, diaChi TEXT, ngayMua DATE not null," +
                 " loaiThanhToan TEXT, isDanhGia TEXT, thanhTien MONEY not null," +
@@ -76,7 +76,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         db.execSQL(tableVoucher);
         db.execSQL(tableLaptop);
         db.execSQL(tableLaptopRate);
-        db.execSQL(tableHoaDon);
+        db.execSQL(tableDonHang);
         db.execSQL(tableGioHang);
         db.execSQL(tableThongBao);
     }

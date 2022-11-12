@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -47,7 +48,9 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
 
     private void useToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Account));
-        ImageButton open = findViewById(R.id.open_navi_drawer);
+        ImageButton open = findViewById(R.id.imageButton_Open_Drawer);
+        ImageView imageView = findViewById(R.id.imageView_Avatar);
+        imageView.setImageResource(R.drawable.ryan_reynolds);
         open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,7 +97,7 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     itemNaviDr = 2;
                     bottomNavigationView.setVisibility(View.GONE);
                 }
-                if (id == R.id.item_navi_drawer_nv_HoaDon) {
+                if (id == R.id.item_navi_drawer_nv_DonHang) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 3 - sách");
                     NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());

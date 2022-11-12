@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:visibility="gone"
-        android:id="@+id/empty_Gio_Hang"
+        android:id="@+id/empty_GioHang"
         android:gravity="center_vertical"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -40,7 +40,7 @@
 
         <ListView
             android:layout_above="@id/bottom_Layout"
-            android:id="@+id/listView_Gio_Hang"
+            android:id="@+id/listView_GioHang"
             android:padding="5dp"
             tools:listitem="@layout/cardview_gio_hang"
             android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"/>
 
                 <TextView
-                    android:id="@+id/total_Money_GH"
+                    android:id="@+id/textView_Total"
                     android:layout_marginEnd="20dp"
                     android:layout_marginStart="20dp"
                     android:textColor="#4E352F"
@@ -82,7 +82,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/button_Pay_Now"
+                android:id="@+id/button_PayNow"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

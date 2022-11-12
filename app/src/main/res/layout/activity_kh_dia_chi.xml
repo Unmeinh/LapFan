@@ -48,6 +48,7 @@
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:id="@+id/editText_HoTen"
                         android:textColorHint="#BBA19A"
                         android:backgroundTint="#BBA19A"
                         android:hint="@string/nh_p_h_t_n_ng_i_nh_n"
@@ -73,6 +74,7 @@
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:id="@+id/editText_SDT"
                         android:textColorHint="#BBA19A"
                         android:backgroundTint="#BBA19A"
                         android:hint="@string/nh_p_s_i_n_tho_i_nh_n_h_ng"
@@ -98,6 +100,7 @@
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:id="@+id/editText_DiaChi"
                         android:textColorHint="#BBA19A"
                         android:backgroundTint="#BBA19A"
                         android:hint="@string/nh_p_s_nh_t_n_ng"
@@ -123,6 +126,7 @@
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:id="@+id/editText_ThanhPho"
                         android:textColorHint="#BBA19A"
                         android:backgroundTint="#BBA19A"
                         android:hint="@string/nh_p_t_nh_th_nh_ph"
@@ -148,6 +152,7 @@
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:id="@+id/editText_QuanHuyen"
                         android:textColorHint="#BBA19A"
                         android:backgroundTint="#BBA19A"
                         android:hint="@string/nh_p_qu_n_huy_n"
@@ -173,6 +178,7 @@
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:id="@+id/editText_PhuongXa"
                         android:textColorHint="#BBA19A"
                         android:backgroundTint="#BBA19A"
                         android:hint="@string/nh_p_ph_ng_x"
@@ -182,6 +188,7 @@
                 </LinearLayout>
 
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_Finish"
                     android:background="@drawable/shape_button5"
                     android:layout_width="250dp"
                     android:layout_height="wrap_content"

@@ -20,7 +20,7 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_thanh_toan);
-        changeAddress = findViewById(R.id.textView_ChangeAddress);
+        changeAddress = findViewById(R.id.textView_Change_Address);
         doiDiaChi();
         useToolbar();
     }
@@ -36,7 +36,7 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
 
     private void useToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_DonHang));
-        ImageButton back = findViewById(R.id.button_Back_Toolbar);
+        ImageButton back = findViewById(R.id.imageButton_Back_Toolbar);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

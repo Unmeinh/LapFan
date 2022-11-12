@@ -33,6 +33,9 @@
         android:layout_height="1sp"/>
 
     <ListView
+        android:layout_marginTop="18dp"
+        android:divider="#FFFFFF"
+        android:dividerHeight="18dp"
         android:id="@+id/listView_Voucher_KH"
         tools:listitem="@layout/cardview_kh_voucher"
         android:layout_width="match_parent"

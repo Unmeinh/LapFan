@@ -2,8 +2,8 @@ package com.nhom5.quanlylaptop.Entity;
 
 import android.os.Binder;
 
-public class HoaDon extends Binder {
-    private String maHD;
+public class DonHang extends Binder {
+    private String maDH;
     private String maNV;
     private String maKH;
     private String maLaptop;
@@ -16,9 +16,9 @@ public class HoaDon extends Binder {
     private int soLuong;
     private double thanhTien;
 
-    public HoaDon(String maHD, String maNV, String maKH, String maLaptop, String maVoucher, String maRate,
-                  String diaChi, String ngayMua, String loaiThanhToan, String isDanhGia, int soLuong, double thanhTien) {
-        this.maHD = maHD;
+    public DonHang(String maDH, String maNV, String maKH, String maLaptop, String maVoucher, String maRate,
+                   String diaChi, String ngayMua, String loaiThanhToan, String isDanhGia, int soLuong, double thanhTien) {
+        this.maDH = maDH;
         this.maNV = maNV;
         this.maKH = maKH;
         this.maLaptop = maLaptop;
@@ -32,12 +32,12 @@ public class HoaDon extends Binder {
         this.thanhTien = thanhTien;
     }
 
-    public String getMaHD() {
-        return maHD;
+    public String getMaDH() {
+        return maDH;
     }
 
-    public void setMaHD(String maHD) {
-        this.maHD = maHD;
+    public void setMaDH(String maDH) {
+        this.maDH = maDH;
     }
 
     public String getMaNV() {
@@ -130,8 +130,8 @@ public class HoaDon extends Binder {
 
     @Override
     public String toString() {
-        return "HoaDon{" +
-                "maHD = '" + maHD + '\'' +
+        return "DonHang{" +
+                "maDH = '" + maDH + '\'' +
                 ", maNV = '" + maNV + '\'' +
                 ", maKH = '" + maKH + '\'' +
                 ", maLaptop = '" + maLaptop + '\'' +

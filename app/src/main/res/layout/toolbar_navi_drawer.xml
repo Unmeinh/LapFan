@@ -7,6 +7,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_Account"
         android:background="#D2422F"
+        android:paddingStart="0dp"
         android:paddingEnd="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -18,7 +19,7 @@
             android:layout_height="74dp">
 
             <ImageButton
-                android:id="@+id/open_navi_drawer"
+                android:id="@+id/imageButton_Open_Drawer"
                 android:src="@drawable/menu_navi_drawer"
                 android:background="#D2422F"
                 android:layout_width="74dp"
@@ -31,7 +32,7 @@
                 android:layout_height="match_parent"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/home_Avatar_Account"
+                android:id="@+id/imageView_Avatar"
                 android:src="@drawable/laptop_icon"
                 android:layout_weight="2"
                 android:layout_width="0dp"

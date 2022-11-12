@@ -14,6 +14,7 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -46,7 +47,9 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
 
     private void useToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Account));
-        ImageButton open = findViewById(R.id.open_navi_drawer);
+        ImageButton open = findViewById(R.id.imageButton_Open_Drawer);
+        ImageView imageView = findViewById(R.id.imageView_Avatar);
+        imageView.setImageResource(R.drawable.hugh_jackman);
         open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

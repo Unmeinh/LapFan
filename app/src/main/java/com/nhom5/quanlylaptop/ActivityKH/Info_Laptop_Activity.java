@@ -25,7 +25,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
 
     private void useToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Navi));
-        ImageButton back = findViewById(R.id.button_Back_Toolbar);
+        ImageButton back = findViewById(R.id.imageButton_Back_Toolbar);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

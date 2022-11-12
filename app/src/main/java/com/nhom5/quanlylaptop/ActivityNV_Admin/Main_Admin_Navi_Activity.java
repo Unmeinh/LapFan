@@ -47,8 +47,8 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
 
     private void useToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Account));
-        ImageButton open = findViewById(R.id.open_navi_drawer);
-        ImageView imageView = findViewById(R.id.home_Avatar_Account);
+        ImageButton open = findViewById(R.id.imageButton_Open_Drawer);
+        ImageView imageView = findViewById(R.id.imageView_Avatar);
         imageView.setImageResource(R.drawable.admin_avatar);
         open.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +96,7 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                     itemNaviDr = 2;
                     bottomNavigationView.setVisibility(View.GONE);
                 }
-                if (id == R.id.item_navi_drawer_admin_HoaDon) {
+                if (id == R.id.item_navi_drawer_admin_DonHang) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 3 - sách");
                     Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());

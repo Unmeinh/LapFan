@@ -1,4 +1,4 @@
-package com.nhom5.quanlylaptop.ActivityKH;
+package com.nhom5.quanlylaptop.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -10,16 +10,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.nhom5.quanlylaptop.R;
 
-public class Account_KH_Manager_Activity extends AppCompatActivity {
+public class Account_Manager_Activity extends AppCompatActivity {
 
     Spinner genderSpinner;
     AppCompatButton buttonUpdate;
@@ -28,9 +26,9 @@ public class Account_KH_Manager_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_account_khmanager);
-        genderSpinner = findViewById(R.id.gender_spinner);
-        buttonUpdate = findViewById(R.id.button_Update_Account_KH);
+        setContentView(R.layout.activity_account_manager);
+        genderSpinner = findViewById(R.id.spinner_Gender);
+        buttonUpdate = findViewById(R.id.button_Update_Account);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.gender_array, android.R.layout.simple_spinner_item);
@@ -49,9 +47,9 @@ public class Account_KH_Manager_Activity extends AppCompatActivity {
 
     private void useToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Normal));
-        TextView titleToolbar = findViewById(R.id.title_Toolbar);
+        TextView titleToolbar = findViewById(R.id.textView_Title_Toolbar);
         titleToolbar.setText("Thông tin của bạn");
-        ImageButton back = findViewById(R.id.button_Back_Toolbar);
+        ImageButton back = findViewById(R.id.imageButton_Back_Toolbar);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
