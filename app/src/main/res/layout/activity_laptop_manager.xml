@@ -89,23 +89,6 @@
 
                 </RelativeLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textInput_LoaiLaptop"
-                    android:layout_marginTop="30dp"
-                    style="@style/TextInputLayoutOutlinedBoxBrown"
-                    android:layout_width="match_parent"
-                    android:layout_height="65dp">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:textColor="@color/black"
-                        android:inputType="number"
-                        android:textSize="20sp"
-                        android:hint="@string/lo_i_laptop"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                </com.google.android.material.textfield.TextInputLayout>
-
                 <RelativeLayout
                     android:layout_marginTop="30dp"
                     android:layout_width="match_parent"

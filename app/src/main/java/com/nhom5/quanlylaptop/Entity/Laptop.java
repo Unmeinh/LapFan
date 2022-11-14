@@ -8,16 +8,14 @@ public class Laptop extends Binder {
     private String maLaptop;
     private String maHangLap;
     private String tenLaptop;
-    private String loaiLaptop;
     private String thongSoKT;
     private float giaTien;
     private byte[] anhLaptop;
 
-    public Laptop(String maLaptop, String maHangLap, String tenLaptop, String loaiLaptop, String thongSoKT, float giaTien, byte[] anhLaptop) {
+    public Laptop(String maLaptop, String maHangLap, String tenLaptop, String thongSoKT, float giaTien, byte[] anhLaptop) {
         this.maLaptop = maLaptop;
         this.maHangLap = maHangLap;
         this.tenLaptop = tenLaptop;
-        this.loaiLaptop = loaiLaptop;
         this.thongSoKT = thongSoKT;
         this.giaTien = giaTien;
         this.anhLaptop = anhLaptop;
@@ -45,14 +43,6 @@ public class Laptop extends Binder {
 
     public void setTenLaptop(String tenLaptop) {
         this.tenLaptop = tenLaptop;
-    }
-
-    public String getLoaiLaptop() {
-        return loaiLaptop;
-    }
-
-    public void setLoaiLaptop(String loaiLaptop) {
-        this.loaiLaptop = loaiLaptop;
     }
 
     public String getThongSoKT() {
@@ -85,7 +75,6 @@ public class Laptop extends Binder {
                 "maLaptop = '" + maLaptop + '\'' +
                 ", maHangLap = '" + maHangLap + '\'' +
                 ", tenLaptop = '" + tenLaptop + '\'' +
-                ", loaiLaptop = '" + loaiLaptop + '\'' +
                 ", thongSoKT = '" + thongSoKT + '\'' +
                 ", giaTien = " + giaTien +
                 ", anhLaptop = " + anhLaptop +
