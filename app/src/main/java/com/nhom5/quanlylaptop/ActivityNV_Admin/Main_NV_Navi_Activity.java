@@ -13,8 +13,11 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,7 +33,7 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
     NavigationView naviView;
     String TAG = "Main_NV_Navi_Activity_____";
     DrawerLayout drawerLayout;
-    int itemNaviDr;
+    int itemNaviDr, count;
     Context context = this;
 
     @Override
@@ -41,20 +44,69 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewP);
         naviView = findViewById(R.id.naviView);
         drawerLayout = findViewById(R.id.drawerLayout);
-        useToolbar();
+        useToolbar("", 0);
         setViewNaviBottom();
         setViewNaviDrawer();
     }
 
-    private void useToolbar() {
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Account));
+    private void useToolbar(String title, int type) {
+        setSupportActionBar(findViewById(R.id.toolbar_Account));
+        if (type == 0) {
+            layoutAccount(title);
+        } else {
+            layoutSearch(title);
+        }
         ImageButton open = findViewById(R.id.imageButton_Open_Drawer);
-        ImageView imageView = findViewById(R.id.imageView_Avatar);
-        imageView.setImageResource(R.drawable.ryan_reynolds);
         open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(Gravity.LEFT);
+            }
+        });
+    }
+
+    private void layoutAccount(String title) {
+        LinearLayout layoutAcc = findViewById(R.id.layout_Account);
+        LinearLayout layoutSearch = findViewById(R.id.layout_Search);
+        TextView titleView = findViewById(R.id.textView_Title_Toolbar_Acc);
+        ImageView imageView = findViewById(R.id.imageView_Avatar);
+
+        layoutAcc.setVisibility(View.VISIBLE);
+        layoutSearch.setVisibility(View.GONE);
+        titleView.setText(title);
+        imageView.setImageResource(R.drawable.ryan_reynolds);
+    }
+
+    private void layoutSearch(String title) {
+        LinearLayout layoutAcc = findViewById(R.id.layout_Account);
+        LinearLayout layoutSearch = findViewById(R.id.layout_Search);
+        TextView titleView = findViewById(R.id.textView_Title_Toolbar_Search);
+        EditText search = findViewById(R.id.editText_Search);
+        ImageButton open = findViewById(R.id.imageButton_Search_Toolbar);
+        count = 0;
+
+        layoutAcc.setVisibility(View.GONE);
+        layoutSearch.setVisibility(View.VISIBLE);
+        titleView.setText(title);
+        if (count % 2 == 0) {
+            titleView.setVisibility(View.VISIBLE);
+            search.setText("");
+            search.setVisibility(View.GONE);
+            count++;
+        }
+        open.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: count: " + count);
+                if (count % 2 == 0) {
+                    titleView.setVisibility(View.VISIBLE);
+                    search.setVisibility(View.GONE);
+                    count++;
+                } else {
+                    titleView.setVisibility(View.GONE);
+                    search.setVisibility(View.VISIBLE);
+                    count++;
+                }
             }
         });
     }
@@ -73,72 +125,79 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(0);
                     itemNaviDr = 0;
+                    useToolbar("", 0);
                     bottomNavigationView.setVisibility(View.VISIBLE);
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_home).setCheckable(true);
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_home).setChecked(true);
                 }
                 if (id == R.id.item_navi_drawer_nv_fptShop) {
                     item.setCheckable(true);
-                    Log.d(TAG, "onNavigationItemSelected: 1 - phiếu mượn");
+                    Log.d(TAG, "onNavigationItemSelected: 1 - fptshop");
                     NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(1);
                     itemNaviDr = 1;
+                    useToolbar("FPT Shop", 0);
                     bottomNavigationView.setVisibility(View.VISIBLE);
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_fpt).setCheckable(true);
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_fpt).setChecked(true);
                 }
                 if (id == R.id.item_navi_drawer_nv_Laptop) {
                     item.setCheckable(true);
-                    Log.d(TAG, "onNavigationItemSelected: 2 - thành viên");
+                    Log.d(TAG, "onNavigationItemSelected: 2 - laptop");
                     NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(2);
-                    itemNaviDr = 2;
+                    itemNaviDr = 3;
+                    useToolbar("QLý Laptop", 1);
                     bottomNavigationView.setVisibility(View.GONE);
                 }
                 if (id == R.id.item_navi_drawer_nv_DonHang) {
                     item.setCheckable(true);
-                    Log.d(TAG, "onNavigationItemSelected: 3 - sách");
+                    Log.d(TAG, "onNavigationItemSelected: 3 - đơn hàng");
                     NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(3);
-                    itemNaviDr = 3;
+                    itemNaviDr = 4;
+                    useToolbar("QLý Đơn Hàng", 1);
                     bottomNavigationView.setVisibility(View.GONE);
                 }
                 if (id == R.id.item_navi_drawer_nv_KhachHang) {
                     item.setCheckable(true);
-                    Log.d(TAG, "onNavigationItemSelected: 4 - loại sách");
+                    Log.d(TAG, "onNavigationItemSelected: 4 - khách hàng");
                     NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(4);
-                    itemNaviDr = 4;
+                    itemNaviDr = 5;
+                    useToolbar("QLý Khách Hàng", 1);
                     bottomNavigationView.setVisibility(View.GONE);
                 }
                 if (id == R.id.item_navi_drawer_nv_Voucher) {
                     item.setCheckable(true);
-                    Log.d(TAG, "onNavigationItemSelected: 5 - doanh thu");
+                    Log.d(TAG, "onNavigationItemSelected: 5 - voucher");
                     NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(5);
-                    itemNaviDr = 5;
+                    itemNaviDr = 6;
+                    useToolbar("QLý Voucher", 1);
                     bottomNavigationView.setVisibility(View.GONE);
                 }
                 if (id == R.id.item_navi_drawer_nv_ThongKe) {
                     item.setCheckable(true);
-                    Log.d(TAG, "onNavigationItemSelected: 7 - thêm mem");
+                    Log.d(TAG, "onNavigationItemSelected: 6 - thống kê");
                     NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(6);
-                    itemNaviDr = 6;
+                    itemNaviDr = 7;
+                    useToolbar("Doanh Thu\nThống Kê", 0);
                     bottomNavigationView.setVisibility(View.VISIBLE);
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_thongKe).setCheckable(true);
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_thongKe).setChecked(true);
                 }
                 if (id == R.id.item_navi_drawer_nv_lienHe) {
-                    itemNaviDr = 7;
+                    itemNaviDr = 8;
                     item.setCheckable(true);
-                    Log.d(TAG, "onNavigationItemSelected: 8 - đổi pass");
+                    Log.d(TAG, "onNavigationItemSelected: 8 - liên hệ");
                     bottomNavigationView.setVisibility(View.VISIBLE);
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
@@ -159,37 +218,36 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int i = item.getItemId();
                 if (i == R.id.item_navi_bottom_nv_home) {
-                    Toast.makeText(Main_NV_Navi_Activity.this, "Home", Toast.LENGTH_SHORT).show();
                     NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(0);
                     naviView.getMenu().getItem(0).setChecked(true);
                     naviView.getMenu().getItem(0).setCheckable(true);
                     itemNaviDr = 0;
+                    useToolbar("", 0);
                     getSupportActionBar().show();
                 }
                 if (i == R.id.item_navi_bottom_nv_fpt) {
-                    Toast.makeText(Main_NV_Navi_Activity.this, "Thông Báo", Toast.LENGTH_SHORT).show();
                     NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(1);
                     naviView.getMenu().getItem(1).setChecked(true);
                     naviView.getMenu().getItem(1).setCheckable(true);
                     itemNaviDr = 1;
+                    useToolbar("FPT Shop", 0);
                     getSupportActionBar().show();
                 }
                 if (i == R.id.item_navi_bottom_nv_thongKe) {
-                    Toast.makeText(Main_NV_Navi_Activity.this, "Giỏ hàng", Toast.LENGTH_SHORT).show();
                     NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(2);
-                    naviView.getMenu().getItem(6).setChecked(true);
-                    naviView.getMenu().getItem(6).setCheckable(true);
-                    itemNaviDr = 6;
+                    naviView.getMenu().getItem(7).setChecked(true);
+                    naviView.getMenu().getItem(7).setCheckable(true);
+                    itemNaviDr = 7;
+                    useToolbar("Doanh Thu\nThống Kê", 0);
                     getSupportActionBar().show();
                 }
                 if (i == R.id.item_navi_bottom_nv_acc) {
-                    Toast.makeText(Main_NV_Navi_Activity.this, "Account", Toast.LENGTH_SHORT).show();
                     NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(3);

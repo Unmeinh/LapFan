@@ -38,18 +38,17 @@ public class LaptopDAO {
                 Log.d(TAG, "selectLaptop: Cursor not last");
                 String maLaptop = c.getString(0);
                 String maHangLap = c.getString(1);
-                String maRate = c.getString(2);
-                byte[] anhLaptop = c.getBlob(3);
-                String tenLaptop = c.getString(4);
+                byte[] anhLaptop = c.getBlob(2);
+                String tenLaptop = c.getString(3);
                 String loaiLaptop = c.getString(4);
-                String thongSoKT = c.getString(4);
+                String thongSoKT = c.getString(5);
                 float giaTien = 0;
                 try {
-                    giaTien = Float.parseFloat(c.getString(4));
+                    giaTien = Float.parseFloat(c.getString(6));
                 } catch (Exception e){
                     e.printStackTrace();
                 }
-                Laptop newLap = new Laptop(maLaptop, maHangLap, maRate, tenLaptop, loaiLaptop, thongSoKT, giaTien, anhLaptop);
+                Laptop newLap = new Laptop(maLaptop, maHangLap, tenLaptop, loaiLaptop, thongSoKT, giaTien, anhLaptop);
                 Log.d(TAG, "selectLaptop: new Laptop: " + newLap.toString());
 
                 listLap.add(newLap);
@@ -70,7 +69,6 @@ public class LaptopDAO {
         ContentValues values = new ContentValues();
         values.put("maLaptop", laptop.getMaLaptop());
         values.put("maHangLap", laptop.getMaHangLap());
-        values.put("maRate", laptop.getMaRate());
         values.put("anhLaptop", laptop.getAnhLaptop());
         values.put("tenLaptop", laptop.getTenLaptop());
         values.put("loaiLaptop", laptop.getLoaiLaptop());
@@ -96,7 +94,6 @@ public class LaptopDAO {
         ContentValues values = new ContentValues();
         values.put("maLaptop", laptop.getMaLaptop());
         values.put("maHangLap", laptop.getMaHangLap());
-        values.put("maRate", laptop.getMaRate());
         values.put("anhLaptop", laptop.getAnhLaptop());
         values.put("tenLaptop", laptop.getTenLaptop());
         values.put("loaiLaptop", laptop.getLoaiLaptop());

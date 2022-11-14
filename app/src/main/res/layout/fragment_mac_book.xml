@@ -7,45 +7,45 @@
     android:background="#D2422F"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".FragmentLaptop.LaptopHPFragment">
+    tools:context=".FragmentLaptop.MacBookFragment">
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:gravity="center">
 
         <ImageView
-            android:src="@drawable/img_demo_laptop"
             android:layout_width="300dp"
-            android:layout_height="200dp"/>
+            android:layout_height="200dp"
+            android:src="@drawable/img_demo_laptop" />
 
     </LinearLayout>
-    
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <TextView
-            android:textSize="40sp"
-            android:textColor="@color/white"
-            android:gravity="center"
-            android:text="@string/laptop_hp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/macbook"
+            android:textColor="@color/white"
+            android:textSize="40sp" />
 
         <GridView
-            android:id="@+id/gridView_laptop_hp"
+            android:id="@+id/gridView_macbook"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"
+            android:columnWidth="170dp"
             android:gravity="center"
             android:numColumns="2"
-            android:columnWidth="170dp"
             android:stretchMode="columnWidth"
             android:verticalSpacing="16dp"
-            tools:listitem="@layout/cardview_kh_laptop"
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        
+            tools:listitem="@layout/cardview_kh_laptop" />
+
     </LinearLayout>
 
 

@@ -13,6 +13,7 @@ import com.nhom5.quanlylaptop.FragmentLaptop.LaptopAsusFragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.LaptopHPFragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.LaptopRazerFragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.LaptopSamsungFragment;
+import com.nhom5.quanlylaptop.FragmentLaptop.MacBookFragment;
 
 
 public class KH_PagerAdapter_Drawer extends FragmentStatePagerAdapter {
@@ -49,6 +50,9 @@ public class KH_PagerAdapter_Drawer extends FragmentStatePagerAdapter {
                 frag = new LaptopSamsungFragment();
                 break;
             case 7:
+                frag = new MacBookFragment();
+                break;
+            case 8:
                 frag = new KH_GioHang_Fragment();
                 break;
             default:
@@ -60,6 +64,6 @@ public class KH_PagerAdapter_Drawer extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 8;
+        return 9;
     }
 }

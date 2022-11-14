@@ -7,17 +7,15 @@ import java.util.Arrays;
 public class Laptop extends Binder {
     private String maLaptop;
     private String maHangLap;
-    private String maRate;
     private String tenLaptop;
     private String loaiLaptop;
     private String thongSoKT;
     private float giaTien;
     private byte[] anhLaptop;
 
-    public Laptop(String maLaptop, String maHangLap, String maRate, String tenLaptop, String loaiLaptop, String thongSoKT, float giaTien, byte[] anhLaptop) {
+    public Laptop(String maLaptop, String maHangLap, String tenLaptop, String loaiLaptop, String thongSoKT, float giaTien, byte[] anhLaptop) {
         this.maLaptop = maLaptop;
         this.maHangLap = maHangLap;
-        this.maRate = maRate;
         this.tenLaptop = tenLaptop;
         this.loaiLaptop = loaiLaptop;
         this.thongSoKT = thongSoKT;
@@ -39,14 +37,6 @@ public class Laptop extends Binder {
 
     public void setMaHangLap(String maHangLap) {
         this.maHangLap = maHangLap;
-    }
-
-    public String getMaRate() {
-        return maRate;
-    }
-
-    public void setMaRate(String maRate) {
-        this.maRate = maRate;
     }
 
     public String getTenLaptop() {
@@ -94,7 +84,6 @@ public class Laptop extends Binder {
         return "Laptop{" +
                 "maLaptop = '" + maLaptop + '\'' +
                 ", maHangLap = '" + maHangLap + '\'' +
-                ", maRate = '" + maRate + '\'' +
                 ", tenLaptop = '" + tenLaptop + '\'' +
                 ", loaiLaptop = '" + loaiLaptop + '\'' +
                 ", thongSoKT = '" + thongSoKT + '\'' +

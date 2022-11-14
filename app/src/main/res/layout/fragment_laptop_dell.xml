@@ -38,7 +38,7 @@
             android:id="@+id/gridView_laptop_dell"
             android:gravity="center"
             android:numColumns="2"
-            android:columnWidth="150dp"
+            android:columnWidth="170dp"
             android:stretchMode="columnWidth"
             android:verticalSpacing="16dp"
             tools:listitem="@layout/cardview_kh_laptop"

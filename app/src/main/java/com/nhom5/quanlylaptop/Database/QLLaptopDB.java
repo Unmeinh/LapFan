@@ -40,10 +40,9 @@ public class QLLaptopDB extends SQLiteOpenHelper {
 
         // Bảng Laptop
         String tableLaptop = "CREATE TABLE TB_Laptop( maLaptop VARCHAR(15) PRIMARY KEY not null," +
-                " maHangLap VARCHAR(15) not null, maRate VARCHAR(15) not null, anhLaptop BLOB," +
+                " maHangLap VARCHAR(15) not null, anhLaptop BLOB," +
                 " tenLaptop TEXT not null, loaiLaptop TEXT not null, thongSoKT TEXT, giaTien MONEY," +
-                " FOREIGN KEY(maHangLap) REFERENCES TB_HangLaptop (maHangLap)," +
-                " FOREIGN KEY(maRate) REFERENCES TB_LaptopRate (maRate))";
+                " FOREIGN KEY(maHangLap) REFERENCES TB_HangLaptop (maHangLap))";
 
         // Bảng LaptopRate
         String tableLaptopRate = "CREATE TABLE TB_LaptopRate( maRate VARCHAR(15) PRIMARY KEY not null," +

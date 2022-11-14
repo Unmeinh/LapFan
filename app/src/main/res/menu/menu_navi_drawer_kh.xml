@@ -35,6 +35,10 @@
         android:title="Laptop SamSung" />
 
     <item
+        android:id="@+id/item_navi_drawer_kh_mac"
+        android:title="MacBook"/>
+
+    <item
         android:id="@+id/item_navi_drawer_kh_gioHang"
         android:title="Giỏ Hàng" />
 

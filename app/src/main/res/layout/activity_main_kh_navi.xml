@@ -13,8 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include android:id="@+id/top"
-            layout="@layout/toolbar_navi_drawer"/>
+        <include
+            android:id="@+id/top"
+            layout="@layout/toolbar_navi_drawer" />
 
         <androidx.viewpager.widget.ViewPager
             android:layout_below="@id/top"
