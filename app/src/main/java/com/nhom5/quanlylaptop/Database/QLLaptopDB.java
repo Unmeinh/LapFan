@@ -23,12 +23,12 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         // Bảng NhanVien
         String tableNhanVien = "CREATE TABLE TB_NhanVien( maNV VARCHAR(15) PRIMARY KEY not null, avatar BLOB," +
                 " hoTen TEXT not null, gioiTinh TEXT not null, email VARCHAR(50) UNIQUE not null, matKhau TEXT not null," +
-                " queQuan TEXT, phone NUMBER)";
+                " queQuan TEXT, phone TEXT)";
 
         // Bảng KhachHang
         String tableKhachHang = "CREATE TABLE TB_KhachHang( maKH VARCHAR(15) PRIMARY KEY not null, avatar BLOB," +
                 " hoTen TEXT not null, gioiTinh TEXT not null, email VARCHAR(50) UNIQUE not null, matKhau TEXT not null," +
-                " queQuan TEXT, phone NUMBER)";
+                " queQuan TEXT, phone TEXT)";
 
         // Bảng HangLaptop
         String tableHangLaptop = "CREATE TABLE TB_HangLaptop( maHangLap VARCHAR(15) PRIMARY KEY not null" +

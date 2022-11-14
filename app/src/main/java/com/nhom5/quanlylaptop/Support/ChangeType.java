@@ -13,14 +13,14 @@ import java.util.Date;
 public class ChangeType {
     String TAG = "ChangeType_____";
 
-    private Bitmap byteToBitmap(byte[] avatar) {
+    public Bitmap byteToBitmap(byte[] avatar) {
         if (avatar != null) {
             return BitmapFactory.decodeByteArray(avatar, 0, avatar.length);
         }
         return null;
     }
 
-    private byte[] bitmapToByte(Bitmap bitmap) {
+    public byte[] bitmapToByte(Bitmap bitmap) {
         if (bitmap != null) {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
@@ -30,7 +30,7 @@ public class ChangeType {
         return null;
     }
 
-    private byte[] checkByteInput(byte[] checkByte) {
+    public byte[] checkByteInput(byte[] checkByte) {
         while (checkByte.length > 500000) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(checkByte, 0, checkByte.length);
             Bitmap resized = Bitmap.createScaledBitmap(bitmap, (int) (bitmap.getWidth() * 0.8), (int) (bitmap.getHeight() * 0.8), true);
