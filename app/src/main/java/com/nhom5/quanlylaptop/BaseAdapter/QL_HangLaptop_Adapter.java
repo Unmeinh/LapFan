@@ -1,18 +1,14 @@
 package com.nhom5.quanlylaptop.BaseAdapter;
 
-import android.app.Dialog;
 import android.graphics.Bitmap;
-import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.DAO.HangLaptopDAO;
 import com.nhom5.quanlylaptop.Entity.HangLaptop;
 import com.nhom5.quanlylaptop.R;
@@ -21,15 +17,15 @@ import com.nhom5.quanlylaptop.Support.ChangeType;
 import java.util.ArrayList;
 
 
-public class HangLaptopAdapter extends BaseAdapter {
+public class QL_HangLaptop_Adapter extends BaseAdapter {
 
     ArrayList<HangLaptop> listHang;
     HangLaptopDAO hangLaptopDAO;
-    String TAG = "HangLaptopAdapter_____";
+    String TAG = "QL_HangLaptop_Adapter_____";
     ImageView img;
     TextView name;
 
-    public HangLaptopAdapter(ArrayList<HangLaptop> listHang) {
+    public QL_HangLaptop_Adapter(ArrayList<HangLaptop> listHang) {
         this.listHang = listHang;
     }
 

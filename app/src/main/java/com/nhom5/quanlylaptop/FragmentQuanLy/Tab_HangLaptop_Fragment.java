@@ -11,24 +11,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
-import android.widget.SimpleAdapter;
 
-import com.nhom5.quanlylaptop.BaseAdapter.HangLaptopAdapter;
+import com.nhom5.quanlylaptop.BaseAdapter.QL_HangLaptop_Adapter;
 import com.nhom5.quanlylaptop.DAO.HangLaptopDAO;
 import com.nhom5.quanlylaptop.Entity.HangLaptop;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class Tab_HangLaptop_Fragment extends Fragment {
 
     ArrayList<HangLaptop> listHang = new ArrayList<>();
     GridView gridView;
     ChangeType changeType;
-    HangLaptopAdapter hangLaptopAdapter;
+    QL_HangLaptop_Adapter QLHangLaptopAdapter;
     HangLaptopDAO hangLaptopDAO;
     String TAG = "Tab_HangLaptop_Fragment_____";
     @Override
@@ -43,20 +40,20 @@ public class Tab_HangLaptop_Fragment extends Fragment {
         if (listHang == null){
             Log.d(TAG, "onCreateView: list null");
             addHangLaptop();
-            hangLaptopAdapter = new HangLaptopAdapter(listHang);
-            gridView.setAdapter(hangLaptopAdapter);
+            QLHangLaptopAdapter = new QL_HangLaptop_Adapter(listHang);
+            gridView.setAdapter(QLHangLaptopAdapter);
         } else {
             if (listHang.size() == 0){
                 Log.d(TAG, "onCreateView: list not null");
                 Log.d(TAG, "onCreateView: list size = " + listHang.size());
                 addHangLaptop();
-                hangLaptopAdapter = new HangLaptopAdapter(listHang);
-                gridView.setAdapter(hangLaptopAdapter);
+                QLHangLaptopAdapter = new QL_HangLaptop_Adapter(listHang);
+                gridView.setAdapter(QLHangLaptopAdapter);
             } else {
                 Log.d(TAG, "onCreateView: list not null");
                 Log.d(TAG, "onCreateView: list size = " + listHang.size());
-                hangLaptopAdapter = new HangLaptopAdapter(listHang);
-                gridView.setAdapter(hangLaptopAdapter);
+                QLHangLaptopAdapter = new QL_HangLaptop_Adapter(listHang);
+                gridView.setAdapter(QLHangLaptopAdapter);
             }
         }
 
@@ -70,20 +67,20 @@ public class Tab_HangLaptop_Fragment extends Fragment {
         if (listHang == null){
             Log.d(TAG, "onCreateView: list null");
             addHangLaptop();
-            hangLaptopAdapter = new HangLaptopAdapter(listHang);
-            gridView.setAdapter(hangLaptopAdapter);
+            QLHangLaptopAdapter = new QL_HangLaptop_Adapter(listHang);
+            gridView.setAdapter(QLHangLaptopAdapter);
         } else {
             if (listHang.size() == 0){
                 Log.d(TAG, "onCreateView: list not null");
                 Log.d(TAG, "onCreateView: list size = " + listHang.size());
                 addHangLaptop();
-                hangLaptopAdapter = new HangLaptopAdapter(listHang);
-                gridView.setAdapter(hangLaptopAdapter);
+                QLHangLaptopAdapter = new QL_HangLaptop_Adapter(listHang);
+                gridView.setAdapter(QLHangLaptopAdapter);
             } else {
                 Log.d(TAG, "onCreateView: list not null");
                 Log.d(TAG, "onCreateView: list size = " + listHang.size());
-                hangLaptopAdapter = new HangLaptopAdapter(listHang);
-                gridView.setAdapter(hangLaptopAdapter);
+                QLHangLaptopAdapter = new QL_HangLaptop_Adapter(listHang);
+                gridView.setAdapter(QLHangLaptopAdapter);
             }
         }
     }

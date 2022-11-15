@@ -39,15 +39,32 @@
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView_Soluong"
-        android:gravity="center"
-        android:textColor="#F0270C"
-        android:text="43.190.000đ"
-        android:textStyle="bold"
-        android:textSize="20sp"
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="bottom"
         android:layout_width="0dp"
         android:layout_weight="3"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView_Soluong"
+            android:textColor="#F0270C"
+            android:text="43.190.000đ"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/textView_Date"
+            android:gravity="end"
+            android:layout_marginTop="15dp"
+            android:textColor="#4E352F"
+            android:text="15/11/2022"
+            android:textSize="19sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
 
 </LinearLayout>
