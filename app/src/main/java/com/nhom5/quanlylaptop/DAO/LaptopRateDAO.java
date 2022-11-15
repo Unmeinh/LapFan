@@ -74,11 +74,9 @@ public class LaptopRateDAO {
 
         long ketqua = db.insert("TB_LaptopRate", null, values);
         if (ketqua > 0) {
-            Log.d(TAG, "insertLaptopRate: Thêm thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "insertLaptopRate: Thêm thành công"); 
         } else {
-            Log.d(TAG, "insertLaptopRate: Thêm thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "insertLaptopRate: Thêm thất bại");  
         }
         db.close();
     }
@@ -96,11 +94,9 @@ public class LaptopRateDAO {
 
         long ketqua = db.update("TB_LaptopRate", values, "maRate=?", new String[]{String.valueOf(laptopRate.getMaRate())});
         if (ketqua > 0) {
-            Log.d(TAG, "updateLaptopRate: Sửa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "updateLaptopRate: Sửa thành công"); 
         } else {
-            Log.d(TAG, "updateLaptopRate: Sửa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "updateLaptopRate: Sửa thất bại");  
         }
         db.close();
     }
@@ -112,11 +108,9 @@ public class LaptopRateDAO {
 
         long ketqua = db.delete("TB_LaptopRate", "maRate=?", new String[]{String.valueOf(laptopRate.getMaRate())});
         if (ketqua > 0) {
-            Log.d(TAG, "deleteLaptopRate: Xóa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "deleteLaptopRate: Xóa thành công"); 
         } else {
-            Log.d(TAG, "deleteLaptopRate: Xóa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "deleteLaptopRate: Xóa thất bại");  
         }
         db.close();
     }

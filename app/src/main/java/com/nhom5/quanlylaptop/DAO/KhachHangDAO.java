@@ -76,11 +76,9 @@ public class KhachHangDAO {
 
         long ketqua = db.insert("TB_KhachHang", null, values);
         if (ketqua > 0) {
-            Log.d(TAG, "insertKhachHang: Thêm thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "insertKhachHang: Thêm thành công"); 
         } else {
-            Log.d(TAG, "insertKhachHang: Thêm thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "insertKhachHang: Thêm thất bại");  
         }
         db.close();
     }
@@ -102,11 +100,9 @@ public class KhachHangDAO {
 
         long ketqua = db.update("TB_KhachHang", values, "maKH=?", new String[]{String.valueOf(khachHang.getMaKH())});
         if (ketqua > 0) {
-            Log.d(TAG, "updateKhachHang: Sửa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "updateKhachHang: Sửa thành công"); 
         } else {
-            Log.d(TAG, "updateKhachHang: Sửa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "updateKhachHang: Sửa thất bại");  
         }
         db.close();
     }
@@ -118,11 +114,9 @@ public class KhachHangDAO {
 
         long ketqua = db.delete("TB_KhachHang", "maKH=?", new String[]{String.valueOf(khachHang.getMaKH())});
         if (ketqua > 0) {
-            Log.d(TAG, "deleteKhachHang: Xóa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "deleteKhachHang: Xóa thành công"); 
         } else {
-            Log.d(TAG, "deleteKhachHang: Xóa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "deleteKhachHang: Xóa thất bại");  
         }
         db.close();
     }

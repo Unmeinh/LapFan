@@ -98,10 +98,8 @@ public class DonHangDAO {
         long ketqua = db.insert("TB_DonHang", null, values);
         if (ketqua > 0) {
             Log.d(TAG, "insertDonHang: Thêm thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
         } else {
             Log.d(TAG, "insertDonHang: Thêm thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
         }
         db.close();
     }
@@ -128,10 +126,8 @@ public class DonHangDAO {
         long ketqua = db.update("TB_DonHang", values, "maDH=?", new String[]{String.valueOf(donHang.getMaDH())});
         if (ketqua > 0) {
             Log.d(TAG, "updateDonHang: Sửa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
         } else {
             Log.d(TAG, "updateDonHang: Sửa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
         }
         db.close();
     }
@@ -144,10 +140,8 @@ public class DonHangDAO {
         long ketqua = db.delete("TB_DonHang", "maDH=?", new String[]{String.valueOf(donHang.getMaDH())});
         if (ketqua > 0) {
             Log.d(TAG, "deleteDonHang: Xóa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
         } else {
             Log.d(TAG, "deleteDonHang: Xóa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
         }
         db.close();
     }

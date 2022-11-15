@@ -122,9 +122,9 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                     useToolbar("");
                     bottomNavigationView.setVisibility(View.GONE);
                 }
-                if (id == R.id.item_navi_drawer_kh_lTRazer) {
+                if (id == R.id.item_navi_drawer_kh_lTAcer) {
                     item.setCheckable(true);
-                    Log.d(TAG, "onNavigationItemSelected: 5 - laptop razer");
+                    Log.d(TAG, "onNavigationItemSelected: 5 - laptop acer");
                     KH_PagerAdapter_Drawer adapter = new KH_PagerAdapter_Drawer(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(5);
@@ -132,9 +132,9 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                     useToolbar("");
                     bottomNavigationView.setVisibility(View.GONE);
                 }
-                if (id == R.id.item_navi_drawer_kh_lTSamsung) {
+                if (id == R.id.item_navi_drawer_kh_lTMsi) {
                     item.setCheckable(true);
-                    Log.d(TAG, "onNavigationItemSelected: 6 - laptop samsung");
+                    Log.d(TAG, "onNavigationItemSelected: 6 - laptop msi");
                     KH_PagerAdapter_Drawer adapter = new KH_PagerAdapter_Drawer(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(6);

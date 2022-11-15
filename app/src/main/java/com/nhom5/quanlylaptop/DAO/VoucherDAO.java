@@ -73,11 +73,9 @@ public class VoucherDAO {
 
         long ketqua = db.insert("TB_Voucher", null, values);
         if (ketqua > 0) {
-            Log.d(TAG, "insertVoucher: Thêm thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "insertVoucher: Thêm thành công"); 
         } else {
-            Log.d(TAG, "insertVoucher: Thêm thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "insertVoucher: Thêm thất bại");  
         }
         db.close();
     }
@@ -96,11 +94,9 @@ public class VoucherDAO {
 
         long ketqua = db.update("TB_Voucher", values, "maVoucher=?", new String[]{String.valueOf(voucher.getMaVoucher())});
         if (ketqua > 0) {
-            Log.d(TAG, "updateVoucher: Sửa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "updateVoucher: Sửa thành công"); 
         } else {
-            Log.d(TAG, "updateVoucher: Sửa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "updateVoucher: Sửa thất bại");  
         }
         db.close();
     }
@@ -112,11 +108,9 @@ public class VoucherDAO {
 
         long ketqua = db.delete("TB_Voucher", "maVoucher=?", new String[]{String.valueOf(voucher.getMaVoucher())});
         if (ketqua > 0) {
-            Log.d(TAG, "deleteVoucher: Xóa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "deleteVoucher: Xóa thành công"); 
         } else {
-            Log.d(TAG, "deleteVoucher: Xóa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "deleteVoucher: Xóa thất bại");  
         }
         db.close();
     }

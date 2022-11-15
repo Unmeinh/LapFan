@@ -1,15 +1,22 @@
 package com.nhom5.quanlylaptop.BaseAdapter;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.nhom5.quanlylaptop.Activity.Laptop_Manager_Activity;
 import com.nhom5.quanlylaptop.DAO.HangLaptopDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.HangLaptop;
@@ -18,63 +25,67 @@ import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class QL_Laptop_Adapter extends BaseAdapter {
+public class QL_Laptop_Adapter  extends RecyclerView.Adapter<QL_Laptop_Adapter.AuthorViewHolder> {
 
+    Context context;
     ArrayList<HangLaptop> listHang;
     ArrayList<Laptop> listLap;
     HangLaptopDAO hangLaptopDAO;
     LaptopDAO laptopDAO;
     String TAG = "QL_Laptop_Adapter_____";
-    ImageView imgLaptop, imgHang;
-    TextView name, gia, soLuong;
-    ImageButton delete;
 
-    public QL_Laptop_Adapter(ArrayList<HangLaptop> listHang, ArrayList<Laptop> listLap) {
-        this.listHang = listHang;
+    public QL_Laptop_Adapter(ArrayList<Laptop> listLap, ArrayList<HangLaptop> listHang, Context context) {
         this.listLap = listLap;
+        this.listHang = listHang;
+        this.context = context;
+    }
+
+    @NonNull
+    @Override
+    public AuthorViewHolder onCreateViewHolder(@NonNull ViewGroup vGroup, int i) {
+        View v = LayoutInflater.from(context).inflate(R.layout.cardview_nva_laptop, vGroup , false);
+        return new AuthorViewHolder(v);
     }
 
     @Override
-    public int getCount() {
-        int count = listLap.size();
-        Log.d(TAG, "getCount: count: " + count);
-        return count;
+    public void onBindViewHolder(@NonNull AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
+        setRow(pos, author);
+
+        author.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Delete", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public int getItemCount() {
+        return listLap.size();
     }
 
-    @Override
-    public long getItemId(int position) {
-        return 0;
+    public static class AuthorViewHolder extends RecyclerView.ViewHolder{
+        ImageView imgLaptop, imgHang;
+        TextView name, gia, soLuong;
+        ImageButton delete;
+        public AuthorViewHolder(@NonNull View itemView) {
+            super(itemView);
+            imgLaptop = itemView.findViewById(R.id.imageView_Laptop);
+            imgHang = itemView.findViewById(R.id.imageView_HangLaptop);
+            name = itemView.findViewById(R.id.textView_TenLaptop);
+            gia = itemView.findViewById(R.id.textView_GiaTien);
+            soLuong = itemView.findViewById(R.id.textView_Soluong);
+            delete = itemView.findViewById(R.id.imageButton_Delete);
+        }
     }
 
-    @Override
-    public View getView(int pos, View v, ViewGroup vGroup) {
-        View row = LayoutInflater.from(vGroup.getContext()).inflate(R.layout.cardview_nva_laptop, vGroup, false);
-        imgLaptop = row.findViewById(R.id.imageView_Laptop);
-        imgHang = row.findViewById(R.id.imageView_HangLaptop);
-        name = row.findViewById(R.id.textView_TenLaptop);
-        gia = row.findViewById(R.id.textView_Soluong);
-        soLuong = row.findViewById(R.id.textView_GiaTien);
-        delete = row.findViewById(R.id.imageButton_Delete);
-
-        hangLaptopDAO = new HangLaptopDAO(vGroup.getContext());
-        setRow(pos);
-
-        return row;
-    }
-
-    public void setRow(int pos) {
+    public void setRow(int pos, @NonNull AuthorViewHolder author) {
         Log.d(TAG, "setRow: " + pos);
         Laptop laptop = listLap.get(pos);
         HangLaptop hangLaptop = new HangLaptop("null", "null", new byte[]{});
         Log.d(TAG, "setRow: Laptop: " + laptop.toString());
-//        byte[] avatar = bitmapToByte(bitmap);
-//        avatar = checkByteInput(avatar);
 
 
         for (int i = 0; i < listHang.size(); i++) {
@@ -84,15 +95,14 @@ public class QL_Laptop_Adapter extends BaseAdapter {
             }
         }
 
-
         ChangeType changeType = new ChangeType();
         Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
         Bitmap anhHang = changeType.byteToBitmap(hangLaptop.getAnhHang());
 
-        imgLaptop.setImageBitmap(anhLap);
-        imgHang.setImageBitmap(anhHang);
-        name.setText(laptop.getTenLaptop());
-        gia.setText(String.valueOf(laptop.getGiaTien()));
-        soLuong.setText("19");
+        author.imgLaptop.setImageBitmap(anhLap);
+        author.imgHang.setImageBitmap(anhHang);
+        author.name.setText(laptop.getTenLaptop());
+        author.gia.setText(laptop.getGiaTien()+" VNĐ");
+        author.soLuong.setText("19");
     }
 }

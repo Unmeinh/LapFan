@@ -68,11 +68,9 @@ public class HangLaptopDAO {
 
         long ketqua = db.insert("TB_HangLaptop", null, values);
         if (ketqua > 0) {
-            Log.d(TAG, "insertHangLaptop: Thêm thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "insertHangLaptop: Thêm thành công"); 
         } else {
-            Log.d(TAG, "insertHangLaptop: Thêm thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "insertHangLaptop: Thêm thất bại");  
         }
         db.close();
     }
@@ -89,11 +87,9 @@ public class HangLaptopDAO {
 
         long ketqua = db.update("TB_HangLaptop", values, "maHangLap=?", new String[]{String.valueOf(hangLaptop.getMaHangLap())});
         if (ketqua > 0) {
-            Log.d(TAG, "updateHangLaptop: Sửa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "updateHangLaptop: Sửa thành công"); 
         } else {
-            Log.d(TAG, "updateHangLaptop: Sửa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "updateHangLaptop: Sửa thất bại");  
         }
         db.close();
     }
@@ -105,11 +101,9 @@ public class HangLaptopDAO {
 
         long ketqua = db.delete("TB_HangLaptop", "maHangLap=?", new String[]{String.valueOf(hangLaptop.getMaHangLap())});
         if (ketqua > 0) {
-            Log.d(TAG, "deleteHangLaptop: Xóa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "deleteHangLaptop: Xóa thành công"); 
         } else {
-            Log.d(TAG, "deleteHangLaptop: Xóa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "deleteHangLaptop: Xóa thất bại");  
         }
         db.close();
     }

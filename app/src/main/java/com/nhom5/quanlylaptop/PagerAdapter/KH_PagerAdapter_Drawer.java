@@ -11,8 +11,8 @@ import com.nhom5.quanlylaptop.FragmentKH.KH_Notifi_Fragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.LaptopDellFragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.LaptopAsusFragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.LaptopHPFragment;
-import com.nhom5.quanlylaptop.FragmentLaptop.LaptopRazerFragment;
-import com.nhom5.quanlylaptop.FragmentLaptop.LaptopSamsungFragment;
+import com.nhom5.quanlylaptop.FragmentLaptop.LaptopAcerFragment;
+import com.nhom5.quanlylaptop.FragmentLaptop.LaptopMsiFragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.MacBookFragment;
 
 
@@ -44,10 +44,10 @@ public class KH_PagerAdapter_Drawer extends FragmentStatePagerAdapter {
                 frag = new LaptopAsusFragment();
                 break;
             case 5:
-                frag = new LaptopRazerFragment();
+                frag = new LaptopAcerFragment();
                 break;
             case 6:
-                frag = new LaptopSamsungFragment();
+                frag = new LaptopMsiFragment();
                 break;
             case 7:
                 frag = new MacBookFragment();

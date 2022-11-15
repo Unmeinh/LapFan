@@ -27,12 +27,12 @@
         android:title="Laptop Asus" />
 
     <item
-        android:id="@+id/item_navi_drawer_kh_lTRazer"
-        android:title="Laptop Razer" />
+        android:id="@+id/item_navi_drawer_kh_lTAcer"
+        android:title="Laptop Acer" />
 
     <item
-        android:id="@+id/item_navi_drawer_kh_lTSamsung"
-        android:title="Laptop SamSung" />
+        android:id="@+id/item_navi_drawer_kh_lTMsi"
+        android:title="Laptop MSi" />
 
     <item
         android:id="@+id/item_navi_drawer_kh_mac"

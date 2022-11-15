@@ -78,11 +78,9 @@ public class GioHangDAO {
 
         long ketqua = db.insert("TB_GioHang", null, values);
         if (ketqua > 0) {
-            Log.d(TAG, "insertGioHang: Thêm thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "insertGioHang: Thêm thành công"); 
         } else {
-            Log.d(TAG, "insertGioHang: Thêm thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "insertGioHang: Thêm thất bại");  
         }
         db.close();
     }
@@ -101,11 +99,9 @@ public class GioHangDAO {
 
         long ketqua = db.update("TB_GioHang", values, "maGio=?", new String[]{String.valueOf(gioHang.getMaGio())});
         if (ketqua > 0) {
-            Log.d(TAG, "updateGioHang: Sửa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "updateGioHang: Sửa thành công"); 
         } else {
-            Log.d(TAG, "updateGioHang: Sửa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "updateGioHang: Sửa thất bại");  
         }
         db.close();
     }
@@ -117,11 +113,9 @@ public class GioHangDAO {
 
         long ketqua = db.delete("TB_GioHang", "maGio=?", new String[]{String.valueOf(gioHang.getMaGio())});
         if (ketqua > 0) {
-            Log.d(TAG, "deleteGioHang: Xóa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "deleteGioHang: Xóa thành công"); 
         } else {
-            Log.d(TAG, "deleteGioHang: Xóa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "deleteGioHang: Xóa thất bại");  
         }
         db.close();
     }

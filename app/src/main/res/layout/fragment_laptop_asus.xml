@@ -34,17 +34,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-        <GridView
-            android:id="@+id/gridView_laptop_asus"
-            android:gravity="center"
-            android:numColumns="2"
-            android:columnWidth="170dp"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="16dp"
-            tools:listitem="@layout/cardview_kh_laptop"
+        <LinearLayout
             android:layout_marginTop="20dp"
+            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/cardview_kh_laptop"
+                android:id="@+id/recyclerView_Laptop_Asus"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

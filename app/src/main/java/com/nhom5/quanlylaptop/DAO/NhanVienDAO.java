@@ -76,11 +76,9 @@ public class NhanVienDAO {
 
         long ketqua = db.insert("TB_NhanVien", null, values);
         if (ketqua > 0) {
-            Log.d(TAG, "insertNhanVien: Thêm thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "insertNhanVien: Thêm thành công"); 
         } else {
-            Log.d(TAG, "insertNhanVien: Thêm thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "insertNhanVien: Thêm thất bại");  
         }
         db.close();
     }
@@ -102,11 +100,9 @@ public class NhanVienDAO {
 
         long ketqua = db.update("TB_NhanVien", values, "maNV=?", new String[]{String.valueOf(nhanVien.getMaNV())});
         if (ketqua > 0) {
-            Log.d(TAG, "updateVoucher: Sửa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "updateVoucher: Sửa thành công"); 
         } else {
-            Log.d(TAG, "updateVoucher: Sửa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "updateVoucher: Sửa thất bại");  
         }
         db.close();
     }
@@ -118,11 +114,9 @@ public class NhanVienDAO {
 
         long ketqua = db.delete("TB_NhanVien", "maNV=?", new String[]{String.valueOf(nhanVien.getMaNV())});
         if (ketqua > 0) {
-            Log.d(TAG, "deleteNhanVien: Xóa thành công");
-            Toast.makeText(context, "Thành công", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "deleteNhanVien: Xóa thành công"); 
         } else {
-            Log.d(TAG, "deleteNhanVien: Xóa thất bại");
-            Toast.makeText(context, "Thất bại", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "deleteNhanVien: Xóa thất bại");  
         }
         db.close();
     }

@@ -19,12 +19,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class LaptopHPFragment extends Fragment {
+public class LaptopMsiFragment extends Fragment {
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view =  inflater.inflate(R.layout.fragment_laptop_hp, container, false);
+        View view = inflater.inflate(R.layout.fragment_laptop_msi, container, false);
 
 
         return view;

@@ -7,17 +7,19 @@
     android:background="#80BBA19A"
     tools:context=".FragmentQuanLy.Tab_Laptop_Fragment">
 
-    <GridView
-        android:layout_marginTop="20dp"
-        android:id="@+id/gridView_laptop"
+    <LinearLayout
+        android:layout_marginTop="15dp"
         android:gravity="center"
-        android:numColumns="2"
-        android:columnWidth="150dp"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="16dp"
-        tools:listitem="@layout/cardview_nva_laptop"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            tools:listitem="@layout/cardview_nva_laptop"
+            android:id="@+id/recyclerView_Laptop"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_Add_Laptop"

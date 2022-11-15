@@ -5,14 +5,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
-import com.nhom5.quanlylaptop.FragmentKH.KH_GioHang_Fragment;
-import com.nhom5.quanlylaptop.FragmentKH.KH_Home_Fragment;
-import com.nhom5.quanlylaptop.FragmentKH.KH_Notifi_Fragment;
-import com.nhom5.quanlylaptop.FragmentLaptop.LaptopAsusFragment;
-import com.nhom5.quanlylaptop.FragmentLaptop.LaptopDellFragment;
-import com.nhom5.quanlylaptop.FragmentLaptop.LaptopHPFragment;
-import com.nhom5.quanlylaptop.FragmentLaptop.LaptopRazerFragment;
-import com.nhom5.quanlylaptop.FragmentLaptop.LaptopSamsungFragment;
 import com.nhom5.quanlylaptop.FragmentNV_Admin.NVA_FPTShop_Fragment;
 import com.nhom5.quanlylaptop.FragmentNV_Admin.NVA_Home_Fragment;
 import com.nhom5.quanlylaptop.FragmentQuanLy.QL_DonHang_Fragment;

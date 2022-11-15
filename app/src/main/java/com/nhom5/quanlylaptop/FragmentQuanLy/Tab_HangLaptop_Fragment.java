@@ -25,7 +25,7 @@ public class Tab_HangLaptop_Fragment extends Fragment {
     ArrayList<HangLaptop> listHang = new ArrayList<>();
     GridView gridView;
     ChangeType changeType;
-    QL_HangLaptop_Adapter QLHangLaptopAdapter;
+    QL_HangLaptop_Adapter ql_hangLaptop_adapter;
     HangLaptopDAO hangLaptopDAO;
     String TAG = "Tab_HangLaptop_Fragment_____";
     @Override
@@ -40,20 +40,20 @@ public class Tab_HangLaptop_Fragment extends Fragment {
         if (listHang == null){
             Log.d(TAG, "onCreateView: list null");
             addHangLaptop();
-            QLHangLaptopAdapter = new QL_HangLaptop_Adapter(listHang);
-            gridView.setAdapter(QLHangLaptopAdapter);
+            ql_hangLaptop_adapter = new QL_HangLaptop_Adapter(listHang);
+            gridView.setAdapter(ql_hangLaptop_adapter);
         } else {
             if (listHang.size() == 0){
                 Log.d(TAG, "onCreateView: list not null");
                 Log.d(TAG, "onCreateView: list size = " + listHang.size());
                 addHangLaptop();
-                QLHangLaptopAdapter = new QL_HangLaptop_Adapter(listHang);
-                gridView.setAdapter(QLHangLaptopAdapter);
+                ql_hangLaptop_adapter = new QL_HangLaptop_Adapter(listHang);
+                gridView.setAdapter(ql_hangLaptop_adapter);
             } else {
                 Log.d(TAG, "onCreateView: list not null");
                 Log.d(TAG, "onCreateView: list size = " + listHang.size());
-                QLHangLaptopAdapter = new QL_HangLaptop_Adapter(listHang);
-                gridView.setAdapter(QLHangLaptopAdapter);
+                ql_hangLaptop_adapter = new QL_HangLaptop_Adapter(listHang);
+                gridView.setAdapter(ql_hangLaptop_adapter);
             }
         }
 
@@ -67,20 +67,20 @@ public class Tab_HangLaptop_Fragment extends Fragment {
         if (listHang == null){
             Log.d(TAG, "onCreateView: list null");
             addHangLaptop();
-            QLHangLaptopAdapter = new QL_HangLaptop_Adapter(listHang);
-            gridView.setAdapter(QLHangLaptopAdapter);
+            ql_hangLaptop_adapter = new QL_HangLaptop_Adapter(listHang);
+            gridView.setAdapter(ql_hangLaptop_adapter);
         } else {
-            if (listHang.size() == 0){
+            if (listHang.size() < 6){
                 Log.d(TAG, "onCreateView: list not null");
                 Log.d(TAG, "onCreateView: list size = " + listHang.size());
                 addHangLaptop();
-                QLHangLaptopAdapter = new QL_HangLaptop_Adapter(listHang);
-                gridView.setAdapter(QLHangLaptopAdapter);
+                ql_hangLaptop_adapter = new QL_HangLaptop_Adapter(listHang);
+                gridView.setAdapter(ql_hangLaptop_adapter);
             } else {
                 Log.d(TAG, "onCreateView: list not null");
                 Log.d(TAG, "onCreateView: list size = " + listHang.size());
-                QLHangLaptopAdapter = new QL_HangLaptop_Adapter(listHang);
-                gridView.setAdapter(QLHangLaptopAdapter);
+                ql_hangLaptop_adapter = new QL_HangLaptop_Adapter(listHang);
+                gridView.setAdapter(ql_hangLaptop_adapter);
             }
         }
     }
@@ -88,37 +88,37 @@ public class Tab_HangLaptop_Fragment extends Fragment {
     private void addHangLaptop(){
         Bitmap bmDell = BitmapFactory.decodeResource(getContext().getResources(),
                 R.drawable.img_laptop_dell);
-        HangLaptop dell = new HangLaptop("HLP01", "Laptop Dell",
+        HangLaptop dell = new HangLaptop("LDell", "Laptop Dell",
                 changeType.checkByteInput(changeType.bitmapToByte(bmDell)));
         hangLaptopDAO.insertHangLaptop(dell);
 
         Bitmap bmHp = BitmapFactory.decodeResource(getContext().getResources(),
                 R.drawable.img_laptop_hp);
-        HangLaptop hp = new HangLaptop("HLP02", "Laptop HP",
+        HangLaptop hp = new HangLaptop("LHP", "Laptop HP",
                 changeType.checkByteInput(changeType.bitmapToByte(bmHp)));
         hangLaptopDAO.insertHangLaptop(hp);
 
         Bitmap bmAsus = BitmapFactory.decodeResource(getContext().getResources(),
                 R.drawable.img_laptop_asus);
-        HangLaptop asus = new HangLaptop("HLP03", "Laptop Asus",
+        HangLaptop asus = new HangLaptop("LAsus", "Laptop Asus",
                 changeType.checkByteInput(changeType.bitmapToByte(bmAsus)));
         hangLaptopDAO.insertHangLaptop(asus);
 
         Bitmap bmRazer = BitmapFactory.decodeResource(getContext().getResources(),
-                R.drawable.img_laptop_razer);
-        HangLaptop razer = new HangLaptop("HLP04", "Laptop Razer",
+                R.drawable.img_laptop_acer);
+        HangLaptop razer = new HangLaptop("LAcer", "Laptop Acer",
                 changeType.checkByteInput(changeType.bitmapToByte(bmRazer)));
         hangLaptopDAO.insertHangLaptop(razer);
 
         Bitmap bmSS = BitmapFactory.decodeResource(getContext().getResources(),
-                R.drawable.img_laptop_samsung);
-        HangLaptop ss = new HangLaptop("HLP05", "Laptop Samsung",
+                R.drawable.img_laptop_msi);
+        HangLaptop ss = new HangLaptop("LMSi", "Laptop MSi",
                 changeType.checkByteInput(changeType.bitmapToByte(bmSS)));
         hangLaptopDAO.insertHangLaptop(ss);
 
         Bitmap bmMac = BitmapFactory.decodeResource(getContext().getResources(),
                 R.drawable.img_macbook);
-        HangLaptop mac = new HangLaptop("HLP06", "MacBook",
+        HangLaptop mac = new HangLaptop("LMac", "MacBook",
                 changeType.checkByteInput(changeType.bitmapToByte(bmMac)));
         hangLaptopDAO.insertHangLaptop(mac);
     }

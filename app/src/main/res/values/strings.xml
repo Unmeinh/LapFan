@@ -54,8 +54,9 @@
         <item>Dell</item>
         <item>HP</item>
         <item>Asus</item>
-        <item>Razer</item>
-        <item>Samsung</item>
+        <item>Acer</item>
+        <item>MSi</item>
+        <item>MacBook</item>
     </string-array>
 
     <string-array name="ram_array">
@@ -113,8 +114,8 @@
     <string name="laptop_hp">Laptop HP</string>
     <string name="laptop_dell">Laptop Dell</string>
     <string name="laptop_asus">Laptop Asus</string>
-    <string name="laptop_razer">Laptop Razer</string>
-    <string name="laptop_samsung">Laptop Samsung</string>
+    <string name="laptop_acer">Laptop Acer</string>
+    <string name="laptop_msi">Laptop MSi</string>
     <string name="s_l_ng">Số lượng: </string>
     <string name="luu_y_danh_gia">Chia sẻ cảm nhận của bạn về sản phẩm trong đơn hàng để nhận ưu đãi. Lưu ý: Nếu đánh giá nội dung không phù hợp, tài khoản sẽ bị xóa.</string>
     <string name="ch_t_l_ng_s_n_ph_m">Chất lượng sản phẩm:</string>
