@@ -29,9 +29,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="#FFEFE0"
-            app:itemIconTint="#4E352F"
-            app:itemTextColor="#4E352F"
+            android:background="#ECDBCB"
+            app:itemIconTint="#000000"
+            app:itemTextColor="#000000"
             app:menu="@menu/menu_navi_bottom_nv" />
 
     </RelativeLayout>
@@ -41,7 +41,7 @@
         android:layout_width="240dp"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background=" #EAD1CE"
+        android:background="#EAD1CE"
         app:headerLayout="@layout/header_navi_drawer"
         app:itemBackground="@drawable/navi_drawer_item_backg"
         app:itemIconTint="@color/navi_drawer_item_color"

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
+    android:paddingBottom="18dp"
     android:gravity="bottom">
 
 
@@ -19,6 +21,7 @@
             android:gravity="center">
 
             <TextView
+                android:id="@+id/textView_TenVoucher"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -35,6 +38,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/textView_MaVoucher"
                 android:layout_width="150dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="15dp"
@@ -59,6 +63,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -67,11 +72,11 @@
                 android:id="@+id/button_Use_Voucher"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:layout_marginTop="30dp"
                 android:backgroundTint="#D2422F"
                 android:text="@string/s_d_ng"
                 android:textSize="8sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="SmallSp" />
 
         </LinearLayout>
 

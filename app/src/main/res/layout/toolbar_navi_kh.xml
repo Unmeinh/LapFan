@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FFEFE0">
+    android:background="#ECDBCB">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_Navi"
@@ -17,16 +17,16 @@
 
             <ImageButton
                 android:id="@+id/imageButton_Back_Toolbar"
-                android:background="#FFEFE0"
+                android:background="#ECDBCB"
                 android:src="@drawable/arrow_back_icon"
                 android:layout_width="35dp"
                 android:layout_height="match_parent"
-                app:tint="#4E352F" />
+                app:tint="#000000" />
 
             <TextView
                 android:layout_marginStart="10dp"
                 android:textStyle="bold"
-                android:textColor="#4E352F"
+                android:textColor="#000000"
                 android:textSize="25sp"
                 android:gravity="center"
                 android:text="@string/info"
@@ -41,28 +41,28 @@
 
                 <ImageButton
                     android:id="@+id/imageButton_Home"
-                    android:background="#FFEFE0"
+                    android:background="#ECDBCB"
                     android:src="@drawable/home_navi_icon"
                     android:layout_width="64dp"
                     android:layout_height="match_parent"
-                    app:tint="#4E352F" />
+                    app:tint="#000000" />
 
                 <ImageButton
                     android:id="@+id/imageButton_Notifi"
-                    android:background="#FFEFE0"
+                    android:background="#ECDBCB"
                     android:src="@drawable/noti_navi_icon"
                     android:layout_width="64dp"
                     android:layout_height="match_parent"
-                    app:tint="#4E352F" />
+                    app:tint="#000000" />
 
                 <ImageButton
                     android:id="@+id/imageButton_GioHang"
                     android:layout_marginEnd="10dp"
-                    android:background="#FFEFE0"
+                    android:background="#ECDBCB"
                     android:src="@drawable/gio_hang_navi_icon"
                     android:layout_width="64dp"
                     android:layout_height="match_parent"
-                    app:tint="#4E352F" />
+                    app:tint="#000000" />
 
             </LinearLayout>
 

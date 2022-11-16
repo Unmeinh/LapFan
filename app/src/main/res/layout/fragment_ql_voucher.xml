@@ -5,11 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".FragmentQuanLy.QL_Voucher_Fragment">
 
-    <ListView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_marginTop="18dp"
-        android:divider="#FFFFFF"
-        android:dividerHeight="18dp"
-        android:id="@+id/listView_Voucher_NVA"
+        android:id="@+id/recyclerView_Voucher_NVA"
         tools:listitem="@layout/cardview_nva_voucher"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

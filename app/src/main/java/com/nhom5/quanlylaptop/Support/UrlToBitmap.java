@@ -9,7 +9,7 @@ import android.util.Log;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nhom5.quanlylaptop.BaseAdapter.QL_Laptop_Adapter;
+import com.nhom5.quanlylaptop.NAV_Adapter.QL_Laptop_Adapter;
 import com.nhom5.quanlylaptop.DAO.HangLaptopDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.HangLaptop;

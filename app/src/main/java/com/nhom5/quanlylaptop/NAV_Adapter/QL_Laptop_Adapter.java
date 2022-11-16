@@ -1,8 +1,7 @@
-package com.nhom5.quanlylaptop.BaseAdapter;
+package com.nhom5.quanlylaptop.NAV_Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nhom5.quanlylaptop.Activity.Laptop_Manager_Activity;
 import com.nhom5.quanlylaptop.DAO.HangLaptopDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.HangLaptop;
@@ -25,7 +23,6 @@ import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class QL_Laptop_Adapter  extends RecyclerView.Adapter<QL_Laptop_Adapter.AuthorViewHolder> {
 

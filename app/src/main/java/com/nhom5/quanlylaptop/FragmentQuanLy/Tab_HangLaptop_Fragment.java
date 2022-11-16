@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import com.nhom5.quanlylaptop.BaseAdapter.QL_HangLaptop_Adapter;
+import com.nhom5.quanlylaptop.NAV_Adapter.QL_HangLaptop_Adapter;
 import com.nhom5.quanlylaptop.DAO.HangLaptopDAO;
 import com.nhom5.quanlylaptop.Entity.HangLaptop;
 import com.nhom5.quanlylaptop.R;

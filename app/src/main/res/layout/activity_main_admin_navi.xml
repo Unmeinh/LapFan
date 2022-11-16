@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:background="#FFEFE0"
+            android:background="#ECDBCB"
             app:itemIconTint="#4E352F"
             app:itemTextColor="#4E352F"
             app:menu="@menu/menu_navi_bottom_admin" />

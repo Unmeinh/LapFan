@@ -27,6 +27,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -34,17 +35,19 @@
             android:textColor="@color/white"
             android:textSize="40sp" />
 
-        <GridView
-            android:id="@+id/gridView_macbook"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <LinearLayout
             android:layout_marginTop="20dp"
-            android:columnWidth="170dp"
             android:gravity="center"
-            android:numColumns="2"
-            android:stretchMode="columnWidth"
-            android:verticalSpacing="16dp"
-            tools:listitem="@layout/cardview_kh_laptop" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                tools:listitem="@layout/cardview_kh_laptop"
+                android:id="@+id/recyclerView_Macbook"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

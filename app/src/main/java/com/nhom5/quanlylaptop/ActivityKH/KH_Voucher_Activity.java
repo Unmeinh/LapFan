@@ -1,12 +1,18 @@
 package com.nhom5.quanlylaptop.ActivityKH;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import com.nhom5.quanlylaptop.DAO.VoucherDAO;
+import com.nhom5.quanlylaptop.Entity.Voucher;
+import com.nhom5.quanlylaptop.NAV_Adapter.QL_Voucher_Adapter;
 import com.nhom5.quanlylaptop.R;
 
 import java.util.ArrayList;
@@ -15,25 +21,27 @@ import java.util.List;
 
 public class KH_Voucher_Activity extends AppCompatActivity {
 
-    List<HashMap<String, String>> list = new ArrayList<>();
-    ListView listView;
+    RecyclerView recyclerView;
+    ArrayList<Voucher> listVou = new ArrayList<>();
+    VoucherDAO voucherDAO;
+    QL_Voucher_Adapter ql_voucher_adapter;
+    String TAG = "QL_Voucher_Fragment_____";
     Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_voucher);
-        listView = findViewById(R.id.listView_Voucher_KH);
+        recyclerView = findViewById(R.id.recyclerView_Voucher_KH);
+        voucherDAO = new VoucherDAO(context);
 
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        SimpleAdapter simpleAdapter = new SimpleAdapter(context, list, R.layout.cardview_kh_voucher, new String[]{}, new int[]{});
-        listView.setAdapter(simpleAdapter);
+        listVou = voucherDAO.selectVoucher(null, null, null, null);
+        setUpRecyclerView(context);
+    }
+
+    public void setUpRecyclerView(Context context) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        ql_voucher_adapter = new QL_Voucher_Adapter(listVou, context);
+        recyclerView.setAdapter(ql_voucher_adapter);
     }
 }

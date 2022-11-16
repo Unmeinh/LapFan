@@ -107,7 +107,6 @@
         <activity
             android:name=".Activity.PickRole_Activity"
             android:exported="false"
-            android:label="@string/title_activity_pick_role"
             android:theme="@style/Theme.QuanLyLaptop.NoActionBar">
             <meta-data
                 android:name="android.app.lib_name"

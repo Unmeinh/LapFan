@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:background="@drawable/shape_button5"
-        android:backgroundTint="#FFEFE0"
+        android:backgroundTint="#FFFFFF"
         android:gravity="center"
         android:layout_width="170dp"
         android:layout_height="match_parent"
@@ -19,13 +19,11 @@
             android:layout_marginTop="5dp"
             android:id="@+id/imageView_Laptop"
             android:layout_width="136dp"
-            android:layout_height="136dp"
-            android:src="@drawable/laptopdemo"/>
+            android:layout_height="120dp"/>
 
         <TextView
             android:id="@+id/textView_TenLaptop"
             android:gravity="center"
-            android:text="Laptop Acer Nitro 5 Gaming AN515 45 R6EV R5 5600H"
             android:padding="5dp"
             android:textColor="#422D29"
             android:textSize="11sp"
@@ -47,7 +45,6 @@
                 android:paddingEnd="5dp"
                 android:textColor="#4E352F"
                 android:background="@drawable/shape_square"
-                android:text="RAM 4GB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -97,7 +94,6 @@
                 android:layout_width="0dp"
                 android:layout_weight="9"
                 android:layout_height="match_parent"
-                android:text="22.300.000 VNĐ"
                 android:textColor="#4E352F"
                 android:textSize="15sp" />
 

@@ -27,9 +27,9 @@
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottomNavi"
             app:menu="@menu/menu_navi_bottom_kh"
-            app:itemTextColor="#4E352F"
-            app:itemIconTint="#4E352F"
-            android:background="#FFEFE0"
+            app:itemTextColor="#000000"
+            app:itemIconTint="#000000"
+            android:background="#ECDBCB"
             android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

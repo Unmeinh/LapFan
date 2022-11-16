@@ -1,33 +1,27 @@
 <resources>
     <string name="app_name">QuanLyLaptop</string>
-    <string name="sign_in">Sign in</string>
+    <string name="sign_in">Đăng nhập</string>
     <string name="email">Email</string>
     <string name="emailhint">Email...</string>
-    <string name="password">Password</string>
-    <string name="passwordhint">Password...</string>
-    <string name="forgot_password">Forgot password?</string>
-    <string name="log_in">Log in</string>
-    <string name="don_t_have_account_yet">Don\'t have account yet?</string>
-    <string name="sign_up">Sign up</string>
-    <string name="remember_me">Remember me?</string>
-    <string name="confirm_password">Confirm password</string>
-    <string name="confirm_password_hint">Confirm password...</string>
-    <string name="register">Register</string>
-    <string name="already_have_an_account">Already have an account?</string>
-    <string name="title_activity_pick_role">PickRoleActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="password">Mật khẩu</string>
+    <string name="passwordhint">Mật khẩu...</string>
+    <string name="forgot_password">Quên mật khẩu?</string>
+    <string name="log_in">Đăng nhập</string>
+    <string name="don_t_have_account_yet">Chưa có tài khoản?</string>
+    <string name="sign_up">Đăng ký</string>
+    <string name="remember_me">Ghi nhớ tôi?</string>
+    <string name="confirm_password">Nhập lại mật khẩu</string>
+    <string name="confirm_password_hint">Nhập lại mật khẩu...</string>
+    <string name="register">Đăng ký</string>
+    <string name="already_have_an_account">Đã có tài khoản?</string>
+    <string name="next">Tiếp theo</string>
+    <string name="previous">Quay lại</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="ng_nh_p_v_i_t_c_ch">Đăng nhập với tư cách</string>
     <string name="admin">Admin</string>
     <string name="nh_n_vi_n">Nhân viên</string>
     <string name="kh_ch_h_ng">Khách hàng</string>
-    <string name="search">search...</string>
+    <string name="search">tìm kiếm...</string>
     <string name="m_t_kh_u_hi_n_t_i">Mật khẩu hiện tại *</string>
     <string name="m_t_kh_u_m_i">Mật khẩu mới *</string>
     <string name="nh_p_l_i_m_t_kh_u_m_i">Nhập lại mật khẩu mới *</string>
@@ -38,11 +32,11 @@
     <string name="s_i_n_tho_i">Số điện thoại</string>
     <string name="gi_i_t_nh">Giới tính</string>
     <string name="qu_qu_n">Quê quán</string>
-    <string name="c_p_nh_t">CẬP NHẬT</string>
+    <string name="c_p_nh_t">Cập nhật</string>
     <string name="home">Home</string>
     <string name="th_ng_b_o">Thông Báo</string>
     <string name="gi_h_ng">Giỏ Hàng</string>
-    <string name="account">Account</string>
+    <string name="account">Tài Khoản</string>
 
     <string-array name="gender_array">
         <item>Nam</item>
@@ -65,7 +59,6 @@
         <item>RAM 16GB</item>
     </string-array>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="a_ch_nh_n_h_ng">Địa chỉ nhận hàng</string>
     <string name="thay_i">Thay đổi</string>
     <string name="h_nh_th_c_thanh_to_n">Hình thức thanh toán</string>
@@ -75,7 +68,7 @@
     <string name="voucher_gi_m_gi">Voucher giảm giá</string>
     <string name="t_ng_thanh_to_n">Tổng thanh toán</string>
     <string name="t_h_ng">Đặt hàng</string>
-    <string name="info">Info SP</string>
+    <string name="info">Laptop</string>
     <string name="x_c_nh_n_n_h_ng">Xác nhận đơn hàng</string>
     <string name="li_n_h">Liên hệ</string>
     <string name="trang_ch">Trang chủ</string>
@@ -100,16 +93,16 @@
     <string name="qu_n_l_n_h_ng">Quản lý đơn hàng</string>
     <string name="nh_gi_s_n_ph_m">Đánh giá sản phẩm</string>
     <string name="m_khuy_n_m_i">Mã khuyến mãi</string>
-    <string name="log_out">LOG OUT</string>
+    <string name="log_out">Đăng xuất</string>
     <string name="n_h_ng">Đơn hàng</string>
-    <string name="add_staff">Add Staff</string>
+    <string name="add_staff">Thêm Nhân viên</string>
     <string name="ng_xu_t">Đăng xuất</string>
     <string name="th_ng_k">Thống Kê</string>
     <string name="h_t_n">Họ Tên</string>
     <string name="m_o_b_n_h_ng_chuy_n_nghi_p">Mẹo bán hàng chuyên nghiệp</string>
     <string name="c_ng_ng_nh_n_vi_n">Cộng đồng nhân viên</string>
-    <string name="total">Total</string>
-    <string name="pay_now">PAY NOW</string>
+    <string name="total">Tổng tiền</string>
+    <string name="pay_now">Thanh toán</string>
     <string name="gi_h_ng_tr_ng">Giỏ hàng trống</string>
     <string name="laptop_hp">Laptop HP</string>
     <string name="laptop_dell">Laptop Dell</string>
@@ -161,9 +154,9 @@
     <string name="t_n_voucher">Tên Voucher</string>
     <string name="m_voucher">Mã Voucher</string>
     <string name="t_n_kh_ch_h_ng">Tên khách hàng</string>
-    <string name="tskt_ram_4g"> - CPU: i3, 1005G1, 1.2GHz \n - RAM: 4 GB, DDR4 (Onboard 4 GB +1 khe rời), 2400 MHz \n - Ổ cứng: Hỗ trợ khe cắm HDD SATA (Nâng cấp tối đa 2TB), 256 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 512 GB)  \n - Màn hình: 15.6", Full HD (1920 x 1080) \n - Card màn hình: Card rời, MX330 2GB \n - Cổng kết nối: USB 2.0, HDMI, Jack tai nghe 3.5 mm, 2 x USB 3.1 \n - Hệ điều hành: Windows 11 Home SL \n - Thiết kế: Vỏ nhựa \n - Kích thước, khối lượng: Dài 363.4 mm - Rộng 250.5 mm - Dày 19.95 mm - Nặng 1.9 kg \n - Thời điểm ra mắt: 2021</string>
-    <string name="tskt_ram_8g"> - CPU: i7, 12700H, 2.30 GHz \n -RAM: 8 GB, DDR4 2 khe (1 khe 8 GB + 1 khe rời), 3200 MHz \n - Ổ cứng: 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB) \n - Màn hình: 15.6", Full HD (1920 x 1080) 144Hz \n - Card màn hình: Card rời, RTX 3050Ti 4GB \n - Cổng kết nối: USB Type-CLAN (RJ45), 3 x USB 3.2, HDMI, Jack tai nghe 3.5 mm \n - Đặc biệt: Có đèn bàn phím \n - Hệ điều hành: Windows 11 Home SL \n - Thiết kế: Vỏ nhựa \n - Kích thước, khối lượng: Dài 360.4 mm - Rộng 271.09 mm - Dày 25.9 mm - Nặng 2.5 kg \n - Thời điểm ra mắt: 2022</string>
-    <string name="tskt_ram_16g"> - CPU: i5, 1240P, 1.7GHz \n - RAM: 16 GB, LPDDR4X (Onboard), 4267 MHz \n - Ổ cứng: 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB) \n - Màn hình: 14", QHD (2160 x 1440) \n - Card màn hình: Card tích hợp, Intel Iris Xe \n - Cổng kết nối: 2 x Thunderbolt 4, HDMIJack tai nghe 3.5 mm, 2 x USB 3.2 \n - Đặc biệt: Có đèn bàn phím \n - Hệ điều hành: Windows 11 Home SL \n - Thiết kế: Vỏ kim loại \n - Kích thước, khối lượng: Dài 321 mm - Rộng 210.8 mm - Dày 15.9 mm - Nặng 1.2 kg \n - Thời điểm ra mắt: 2022</string>
+    <string name="tskt_ram_4g">Thông số kĩ thuật: \n - CPU: i3, 1005G1, 1.2GHz \n - RAM: 4 GB, DDR4 (Onboard 4 GB +1 khe rời), 2400 MHz \n - Ổ cứng: Hỗ trợ khe cắm HDD SATA (Nâng cấp tối đa 2TB), 256 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 512 GB)  \n - Màn hình: 15.6", Full HD (1920 x 1080) \n - Card màn hình: Card rời, MX330 2GB \n - Cổng kết nối: USB 2.0, HDMI, Jack tai nghe 3.5 mm, 2 x USB 3.1 \n - Hệ điều hành: Windows 11 Home SL \n - Thiết kế: Vỏ nhựa \n - Kích thước, khối lượng: Dài 363.4 mm - Rộng 250.5 mm - Dày 19.95 mm - Nặng 1.9 kg \n - Thời điểm ra mắt: 2021</string>
+    <string name="tskt_ram_8g">Thông số kĩ thuật: \n - CPU: i7, 12700H, 2.30 GHz \n -RAM: 8 GB, DDR4 2 khe (1 khe 8 GB + 1 khe rời), 3200 MHz \n - Ổ cứng: 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1 TB), Hỗ trợ thêm 1 khe cắm SSD M.2 PCIe mở rộng (nâng cấp tối đa 2 TB) \n - Màn hình: 15.6", Full HD (1920 x 1080) 144Hz \n - Card màn hình: Card rời, RTX 3050Ti 4GB \n - Cổng kết nối: USB Type-CLAN (RJ45), 3 x USB 3.2, HDMI, Jack tai nghe 3.5 mm \n - Đặc biệt: Có đèn bàn phím \n - Hệ điều hành: Windows 11 Home SL \n - Thiết kế: Vỏ nhựa \n - Kích thước, khối lượng: Dài 360.4 mm - Rộng 271.09 mm - Dày 25.9 mm - Nặng 2.5 kg \n - Thời điểm ra mắt: 2022</string>
+    <string name="tskt_ram_16g">Thông số kĩ thuật: \n - CPU: i5, 1240P, 1.7GHz \n - RAM: 16 GB, LPDDR4X (Onboard), 4267 MHz \n - Ổ cứng: 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB) \n - Màn hình: 14", QHD (2160 x 1440) \n - Card màn hình: Card tích hợp, Intel Iris Xe \n - Cổng kết nối: 2 x Thunderbolt 4, HDMIJack tai nghe 3.5 mm, 2 x USB 3.2 \n - Đặc biệt: Có đèn bàn phím \n - Hệ điều hành: Windows 11 Home SL \n - Thiết kế: Vỏ kim loại \n - Kích thước, khối lượng: Dài 321 mm - Rộng 210.8 mm - Dày 15.9 mm - Nặng 1.2 kg \n - Thời điểm ra mắt: 2022</string>
     <string name="macbook">MacBook</string>
     <string name="b_n">Đã bán: </string>
 </resources>

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#FFEFE0">
+    android:background="#ECDBCB">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_Normal"
@@ -17,16 +17,16 @@
 
             <ImageButton
                 android:id="@+id/imageButton_Back_Toolbar"
-                android:background="#FFEFE0"
+                android:background="#ECDBCB"
                 android:src="@drawable/arrow_back_icon"
                 android:layout_width="35dp"
                 android:layout_height="match_parent"
-                app:tint="#4E352F" />
+                app:tint="#000000" />
 
             <TextView
                 android:id="@+id/textView_Title_Toolbar"
                 android:textStyle="bold"
-                android:textColor="#4E352F"
+                android:textColor="#000000"
                 android:textSize="27sp"
                 android:gravity="center"
                 android:layout_width="match_parent"

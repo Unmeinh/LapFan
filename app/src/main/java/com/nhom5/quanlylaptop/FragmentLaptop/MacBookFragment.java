@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +15,9 @@ import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
 import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
+import com.nhom5.quanlylaptop.DAO.LaptopDAO;
+import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.KH_Adapter.KH_Laptop_Adapter;
 import com.nhom5.quanlylaptop.R;
 
 import java.util.ArrayList;
@@ -21,32 +26,21 @@ import java.util.List;
 
 public class MacBookFragment extends Fragment {
 
-    List<HashMap<String, String>> list = new ArrayList<>();
-    GridView gridView;
+    LaptopDAO laptopDAO;
+    ArrayList<Laptop> listLap = new ArrayList<>();
+    KH_Laptop_Adapter kh_laptop_adapter;
+    RecyclerView recyclerView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mac_book, container, false);
-        gridView = view.findViewById(R.id.gridView_macbook);
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        SimpleAdapter simpleAdapter = new SimpleAdapter(getContext(), list, R.layout.cardview_kh_laptop, new String[]{}, new int[]{});
-        gridView.setAdapter(simpleAdapter);
-
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                startActivity(new Intent(getContext(), Info_Laptop_Activity.class));
-            }
-        });
-
+        recyclerView = view.findViewById(R.id.recyclerView_Macbook);
+        laptopDAO = new LaptopDAO(getContext());
+        listLap = laptopDAO.selectLaptop(null, "maHangLap=?", new String[]{"LMac"}, null);
+        kh_laptop_adapter = new KH_Laptop_Adapter(listLap, getContext());
+        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setAdapter(kh_laptop_adapter);
         return view;
     }
 }

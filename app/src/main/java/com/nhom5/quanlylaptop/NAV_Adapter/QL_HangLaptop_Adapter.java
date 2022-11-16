@@ -1,4 +1,4 @@
-package com.nhom5.quanlylaptop.BaseAdapter;
+package com.nhom5.quanlylaptop.NAV_Adapter;
 
 import android.graphics.Bitmap;
 import android.util.Log;
