@@ -7,10 +7,27 @@
     android:orientation="vertical"
     tools:context=".ActivityKH.KH_Voucher_Activity">
 
-    <ImageView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:src="@drawable/voucher_backg" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:src="@drawable/voucher_backg" />
+
+        <ImageButton
+            android:id="@+id/imageButton_Back"
+            android:src="@drawable/arrow_back_icon"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@android:color/transparent"
+            app:tint="#FFFFFF" />
+
+    </RelativeLayout>
 
     <View
         android:background="@color/black"
