@@ -41,7 +41,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         // Bảng Laptop
         String tableLaptop = "CREATE TABLE TB_Laptop( maLaptop VARCHAR(15) PRIMARY KEY not null," +
                 " maHangLap VARCHAR(15) not null, anhLaptop BLOB," +
-                " tenLaptop TEXT not null, thongSoKT TEXT, giaTien MONEY," +
+                " tenLaptop TEXT not null, thongSoKT TEXT, giaTien TEXT," +
                 " FOREIGN KEY(maHangLap) REFERENCES TB_HangLaptop (maHangLap))";
 
         // Bảng LaptopRate
@@ -53,7 +53,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         String tableDonHang = "CREATE TABLE TB_DonHang( maDH INT PRIMARY KEY not null, maNV VARCHAR(15) not null," +
                 " maKH VARCHAR(15) not null, maLaptop VARCHAR(15) not null, maVoucher VARCHAR(15) not null," +
                 " maRate VARCHAR(15) not null, soLuong INT not null, diaChi TEXT, ngayMua DATE not null," +
-                " loaiThanhToan TEXT, isDanhGia TEXT, thanhTien MONEY not null," +
+                " loaiThanhToan TEXT, isDanhGia TEXT, thanhTien TEXT not null," +
                 " FOREIGN KEY(maNV) REFERENCES TB_NhanVien (maNV), FOREIGN KEY(maKH) REFERENCES TB_KhachHang (maKH)," +
                 " FOREIGN KEY(maLaptop) REFERENCES TB_Laptop (maLaptop), FOREIGN KEY(maVoucher) REFERENCES TB_Voucher (maVoucher)," +
                 " FOREIGN KEY(maRate) REFERENCES TB_LaptopRate (maRate))";
@@ -68,6 +68,16 @@ public class QLLaptopDB extends SQLiteOpenHelper {
                 " maKH VARCHAR(15) not null, chiTiet TEXT not null, ngayTB DATE," +
                 " FOREIGN KEY(maKH) REFERENCES TB_KhachHang (maKH))";
 
+        // Bảng DiaChi
+        String tableDiaChi = "CREATE TABLE TB_DiaChi( maDC VARCHAR(15) PRIMARY KEY not null," +
+                " maKH VARCHAR(15) not null, phone TEXT not null, diaChi TEXT, thanhPho TEXT, quanHuyen TEXT, phuongXa TEXT," +
+                " FOREIGN KEY(maKH) REFERENCES TB_KhachHang (maKH))";
+
+        // Bảng DiaChi
+        String tableViTien = "CREATE TABLE TB_ViTien( maVi VARCHAR(15) PRIMARY KEY not null," +
+                " maKH VARCHAR(15) not null, soTien TEXT not null, nganHang TEXT, thanhPho TEXT," +
+                " FOREIGN KEY(maKH) REFERENCES TB_KhachHang (maKH))";
+
         //execSQL
         db.execSQL(tableNhanVien);
         db.execSQL(tableKhachHang);
@@ -78,6 +88,8 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         db.execSQL(tableDonHang);
         db.execSQL(tableGioHang);
         db.execSQL(tableThongBao);
+        db.execSQL(tableDiaChi);
+        db.execSQL(tableViTien);
     }
 
     @Override

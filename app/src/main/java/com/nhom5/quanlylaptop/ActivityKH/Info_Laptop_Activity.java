@@ -1,6 +1,7 @@
 package com.nhom5.quanlylaptop.ActivityKH;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
@@ -12,9 +13,13 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nhom5.quanlylaptop.DAO.GioHangDAO;
+import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
+
+import java.util.ArrayList;
 
 public class Info_Laptop_Activity extends AppCompatActivity {
 
@@ -24,6 +29,9 @@ public class Info_Laptop_Activity extends AppCompatActivity {
     ImageView imageLaptop;
     TextView tenLaptop, giaLaptop, tsktLaptop;
     ChangeType changeType = new ChangeType();
+    AppCompatButton buyNow, themVaoGio;
+    GioHangDAO gioHangDAO;
+    ArrayList<GioHang> listGio = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +41,28 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         tenLaptop = findViewById(R.id.textView_TenLaptop);
         giaLaptop = findViewById(R.id.textView_GiaTien);
         tsktLaptop = findViewById(R.id.textView_TSKT);
+        buyNow = findViewById(R.id.button_Mua);
+        themVaoGio = findViewById(R.id.button_Add_To_GioHang);
+        gioHangDAO = new GioHangDAO(context);
+
         useToolbar();
         getInfoLaptop();
         setInfoLaptop();
+        addToCart();
+    }
 
-
+    private void addToCart() {
+        listGio = gioHangDAO.selectGioHang(null, null, null, null);
+        if (listGio != null) {
+            themVaoGio.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    GioHang gioHang = new GioHang("GH" + listGio.size(), laptop.getMaLaptop(),
+                            "null", "2022-11-17", 1);
+                    gioHangDAO.insertGioHang(gioHang);
+                }
+            });
+        }
     }
 
     private void setInfoLaptop() {

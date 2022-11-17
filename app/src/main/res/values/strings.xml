@@ -74,7 +74,6 @@
     <string name="trang_ch">Trang chủ</string>
     <string name="danh_m_c_s_n_ph_m">⌄ Danh Mục Sản Phẩm ⌄</string>
     <string name="danh_m_c_qu_n_l">⌄ Danh mục quản lý ⌄</string>
-    <string name="ch_n_mua">Chọn mua</string>
     <string name="th_m_v_o_gi_h_ng">Thêm vào giỏ hàng</string>
     <string name="nh_p_a_ch_nh_n_h_ng">Nhập địa chỉ nhận hàng</string>
     <string name="t_n_ng_i_nh_n">Tên người nhận</string>
@@ -159,4 +158,7 @@
     <string name="tskt_ram_16g">Thông số kĩ thuật: \n - CPU: i5, 1240P, 1.7GHz \n - RAM: 16 GB, LPDDR4X (Onboard), 4267 MHz \n - Ổ cứng: 512 GB SSD NVMe PCIe (Có thể tháo ra, lắp thanh khác tối đa 1TB) \n - Màn hình: 14", QHD (2160 x 1440) \n - Card màn hình: Card tích hợp, Intel Iris Xe \n - Cổng kết nối: 2 x Thunderbolt 4, HDMIJack tai nghe 3.5 mm, 2 x USB 3.2 \n - Đặc biệt: Có đèn bàn phím \n - Hệ điều hành: Windows 11 Home SL \n - Thiết kế: Vỏ kim loại \n - Kích thước, khối lượng: Dài 321 mm - Rộng 210.8 mm - Dày 15.9 mm - Nặng 1.2 kg \n - Thời điểm ra mắt: 2022</string>
     <string name="macbook">MacBook</string>
     <string name="b_n">Đã bán: </string>
+    <string name="n_h_ng_mua">Đơn hàng đã mua</string>
+    <string name="n_h_ng_b_n">Đơn hàng đã bán</string>
+    <string name="mua_ngay">$ Mua ngay $</string>
 </resources>

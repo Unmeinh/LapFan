@@ -64,6 +64,7 @@ public class GioHang extends Binder {
                 ", maLaptop = '" + maLaptop + '\'' +
                 ", maKH = '" + maKH + '\'' +
                 ", ngayThem = '" + ngayThem + '\'' +
+                ", soLuong = '" + soLuong + '\'' +
                 '}';
     }
 }

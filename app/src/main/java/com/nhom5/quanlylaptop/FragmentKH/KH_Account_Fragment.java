@@ -22,7 +22,7 @@ import com.nhom5.quanlylaptop.R;
 
 public class KH_Account_Fragment extends Fragment {
 
-    LinearLayout maVoucher, danhGiaSanPham, hdsd, nhomSanVou, gioHang, doiMatKhau, thietLapTaiKhoan;
+    LinearLayout maVoucher, danhGiaSanPham, dhDaMua, nhomSanVou, hdsd, doiMatKhau, thietLapTaiKhoan;
     AppCompatButton logOut;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -30,17 +30,17 @@ public class KH_Account_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_kh_account, container, false);
         maVoucher = view.findViewById(R.id.onclick_Ma_Voucher);
         danhGiaSanPham = view.findViewById(R.id.onclick_Danh_Gia_San_Pham);
-        hdsd = view.findViewById(R.id.onclick_Huong_Dan_Su_Dung);
+        dhDaMua = view.findViewById(R.id.onclick_Don_Hang_Da_Mua);
         nhomSanVou = view.findViewById(R.id.onclick_Nhom_San_Voucher);
-        gioHang = view.findViewById(R.id.onclick_Gio_Hang);
+        hdsd = view.findViewById(R.id.onclick_Huong_Dan_Su_Dung);
         doiMatKhau = view.findViewById(R.id.onclick_Doi_Mat_Khau);
         thietLapTaiKhoan = view.findViewById(R.id.onclick_Thiet_Lap_Tai_Khoan);
         logOut = view.findViewById(R.id.button_LogOut);
         clickMaVoucher();
         clickDanhGiaSanPham();
-        clickHuongDanSuDung();
+        clickDonHangDaMua();
         clickNhomSanVou();
-        clickGioHang();
+        clickHuongDanSuDung();
         clickDoiMatKhau();
         clickThietLapTaiKhoan();
 
@@ -74,8 +74,8 @@ public class KH_Account_Fragment extends Fragment {
         });
     }
 
-    private void clickHuongDanSuDung(){
-        hdsd.setOnClickListener(new View.OnClickListener() {
+    private void clickDonHangDaMua(){
+        dhDaMua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -92,8 +92,8 @@ public class KH_Account_Fragment extends Fragment {
         });
     }
 
-    private void clickGioHang(){
-        gioHang.setOnClickListener(new View.OnClickListener() {
+    private void clickHuongDanSuDung(){
+        hdsd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

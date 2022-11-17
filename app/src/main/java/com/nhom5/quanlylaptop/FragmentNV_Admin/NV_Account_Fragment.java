@@ -26,40 +26,22 @@ public class NV_Account_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_nv_account, container, false);
+        qldh = view.findViewById(R.id.onclick_Don_Hang_Da_Ban);
         cdnv = view.findViewById(R.id.onclick_CD_NV);
-        hdsd = view.findViewById(R.id.onclick_Huong_Dan_Su_Dung);
-        qldh = view.findViewById(R.id.onclick_Quan_Ly_DH);
         meoBH = view.findViewById(R.id.onclick_Meo_Ban_Hang);
+        hdsd = view.findViewById(R.id.onclick_Huong_Dan_Su_Dung);
         doiMatKhau = view.findViewById(R.id.onclick_Doi_Mat_Khau);
         thietLapTaiKhoan = view.findViewById(R.id.onclick_Thiet_Lap_Tai_Khoan);
-        clickCongDongNhanVien();
-        clickHuongDanSuDung();
         clickQuanLyDonHang();
+        clickCongDongNhanVien();
         clickMeoBanHang();
+        clickHuongDanSuDung();
         clickDoiMatKhau();
         clickThietLapTaiKhoan();
 
         ImageView imageView = view.findViewById(R.id.imageView_Avatar);
         imageView.setImageResource(R.drawable.ryan_reynolds);
         return view;
-    }
-
-    private void clickCongDongNhanVien(){
-        cdnv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
-
-    private void clickHuongDanSuDung(){
-        hdsd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 
     private void clickQuanLyDonHang(){
@@ -71,8 +53,26 @@ public class NV_Account_Fragment extends Fragment {
         });
     }
 
+    private void clickCongDongNhanVien(){
+        cdnv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
     private void clickMeoBanHang(){
         meoBH.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    private void clickHuongDanSuDung(){
+        hdsd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

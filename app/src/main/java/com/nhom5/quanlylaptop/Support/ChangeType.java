@@ -45,7 +45,7 @@ public class ChangeType {
         return checkByte;
     }
 
-    public long stringToLongDate(String string){
+    public long stringToLongDate(String string) {
         long date = 0;
         try {
             date = new SimpleDateFormat("yyyy-MM-dd").parse(string).getTime();
@@ -55,7 +55,23 @@ public class ChangeType {
         return date;
     }
 
-    public String longDateToString(long date){
+    public String longDateToString(long date) {
         return new SimpleDateFormat("dd-MM-yyyy").format(new Date(date));
+    }
+
+    public int stringMoneyToInt(String sMoney) {
+        int money = 0;
+        String afterCheck = "";
+        String check = "[0-9]";
+        for (int i = 0; i < sMoney.length(); i++) {
+            String checkS = sMoney.substring(i, i + 1);
+            if (checkS.matches(check)){
+                afterCheck += checkS;
+            }
+        }
+        if (afterCheck.length() > 0){
+            money = Integer.parseInt(afterCheck);
+        }
+        return money;
     }
 }

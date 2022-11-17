@@ -41,12 +41,7 @@ public class LaptopDAO {
                 byte[] anhLaptop = c.getBlob(2);
                 String tenLaptop = c.getString(3);
                 String thongSoKT = c.getString(4);
-                float giaTien = 0;
-                try {
-                    giaTien = Float.parseFloat(c.getString(5));
-                } catch (Exception e){
-                    e.printStackTrace();
-                }
+                String giaTien = c.getString(5);
                 Laptop newLap = new Laptop(maLaptop, maHangLap, tenLaptop, thongSoKT, giaTien, anhLaptop);
                 Log.d(TAG, "selectLaptop: new Laptop: " + newLap.toString());
 

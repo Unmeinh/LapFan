@@ -13,11 +13,11 @@ public class DonHang extends Binder {
     private String ngayMua;
     private String loaiThanhToan;
     private String isDanhGia;
+    private String thanhTien;
     private int soLuong;
-    private double thanhTien;
 
     public DonHang(String maDH, String maNV, String maKH, String maLaptop, String maVoucher, String maRate,
-                   String diaChi, String ngayMua, String loaiThanhToan, String isDanhGia, int soLuong, double thanhTien) {
+                   String diaChi, String ngayMua, String loaiThanhToan, String isDanhGia, String thanhTien, int soLuong) {
         this.maDH = maDH;
         this.maNV = maNV;
         this.maKH = maKH;
@@ -120,11 +120,11 @@ public class DonHang extends Binder {
         this.soLuong = soLuong;
     }
 
-    public double getThanhTien() {
+    public String getThanhTien() {
         return thanhTien;
     }
 
-    public void setThanhTien(double thanhTien) {
+    public void setThanhTien(String thanhTien) {
         this.thanhTien = thanhTien;
     }
 

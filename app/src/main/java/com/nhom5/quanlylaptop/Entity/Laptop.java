@@ -9,10 +9,10 @@ public class Laptop extends Binder {
     private String maHangLap;
     private String tenLaptop;
     private String thongSoKT;
-    private float giaTien;
+    private String giaTien;
     private byte[] anhLaptop;
 
-    public Laptop(String maLaptop, String maHangLap, String tenLaptop, String thongSoKT, float giaTien, byte[] anhLaptop) {
+    public Laptop(String maLaptop, String maHangLap, String tenLaptop, String thongSoKT, String giaTien, byte[] anhLaptop) {
         this.maLaptop = maLaptop;
         this.maHangLap = maHangLap;
         this.tenLaptop = tenLaptop;
@@ -53,11 +53,11 @@ public class Laptop extends Binder {
         this.thongSoKT = thongSoKT;
     }
 
-    public float getGiaTien() {
+    public String getGiaTien() {
         return giaTien;
     }
 
-    public void setGiaTien(float giaTien) {
+    public void setGiaTien(String giaTien) {
         this.giaTien = giaTien;
     }
 

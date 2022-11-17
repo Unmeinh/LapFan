@@ -22,7 +22,7 @@
             android:textColor="#DB5050"
             android:text="@string/gi_h_ng_tr_ng"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"/>
 
         <ImageView
             android:src="@drawable/empty_gio_hang_icon"
@@ -38,13 +38,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <ListView
+        <androidx.recyclerview.widget.RecyclerView
             android:layout_above="@id/bottom_Layout"
-            android:id="@+id/listView_GioHang"
+            android:id="@+id/recyclerView_GioHang"
             android:padding="5dp"
             tools:listitem="@layout/cardview_gio_hang"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"/>
 
         <LinearLayout
             android:id="@+id/bottom_Layout"
@@ -54,7 +54,7 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:background="#EAD1CE"
+                android:background="#FFFFFF"
                 android:layout_marginTop="30dp"
                 android:padding="10dp"
                 android:layout_width="match_parent"

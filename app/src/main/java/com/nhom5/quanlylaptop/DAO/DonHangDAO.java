@@ -55,13 +55,8 @@ public class DonHangDAO {
                 @SuppressLint("Range") String ngayMua = changeType.longDateToString(c.getLong(c.getColumnIndex("ngayMua")));
                 String loaiThanhToan = c.getString(9);
                 String isDanhGia = c.getString(10);
-                float thanhTien = 0;
-                try {
-                    thanhTien = Float.parseFloat(c.getString(11));
-                } catch (Exception e){
-                    e.printStackTrace();
-                }
-                DonHang newDH = new DonHang(maDH, maNV, maKH, maLaptop, maVoucher, maRate, diaChi, ngayMua, loaiThanhToan, isDanhGia, soLuong, thanhTien);
+                String thanhTien = c.getString(11);
+                DonHang newDH = new DonHang(maDH, maNV, maKH, maLaptop, maVoucher, maRate, diaChi, ngayMua, loaiThanhToan, isDanhGia, thanhTien, soLuong);
                 Log.d(TAG, "selectDonHang: new DonHang: " + newDH.toString());
 
                 listDH.add(newDH);

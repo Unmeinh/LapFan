@@ -91,6 +91,37 @@
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:id="@+id/onclick_Don_Hang_Da_Mua"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="#EDD1D1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="13dp"
+                android:src="@drawable/don_hang_navi_icon" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="7"
+                android:text="@string/n_h_ng_mua"
+                android:textColor="#4E352F"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:src="@drawable/next_icon_black" />
+        </LinearLayout>
+
         <LinearLayout
             android:id="@+id/onclick_Danh_Gia_San_Pham"
             android:layout_width="match_parent"
@@ -121,35 +152,6 @@
                 android:src="@drawable/next_icon_black" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/onclick_Huong_Dan_Su_Dung"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="#EDD1D1"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="13dp"
-                android:src="@drawable/video_icon" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="7"
-                android:text="@string/h_ng_d_n_s_d_ng_app"
-                android:textColor="#4E352F"
-                android:textSize="22sp" />
-
-            <ImageView
-                android:layout_width="45dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:src="@drawable/next_icon_black" />
-        </LinearLayout>
 
         <View
             android:layout_marginTop="60dp"
@@ -191,16 +193,16 @@
             android:layout_height="1dp"/>
 
         <LinearLayout
-            android:id="@+id/onclick_Gio_Hang"
+            android:id="@+id/onclick_Huong_Dan_Su_Dung"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ImageView
-                android:layout_width="46dp"
-                android:layout_height="46dp"
-                android:layout_margin="10dp"
-                android:src="@drawable/shopping_cart_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="13dp"
+                android:src="@drawable/video_icon"
                 app:tint="@color/white" />
 
             <TextView
@@ -208,7 +210,7 @@
                 android:layout_weight="7"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/gi_h_ng"
+                android:text="@string/h_ng_d_n_s_d_ng_app"
                 android:textColor="#fff"
                 android:textSize="22sp" />
 
