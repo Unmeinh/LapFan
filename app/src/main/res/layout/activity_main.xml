@@ -9,7 +9,7 @@
     tools:context=".Activity.MainActivity">
 
     <TextView
-        android:text="13.990.000₫"
+        android:id="@+id/showMoney"
         android:textSize="25dp"
         android:textColor="@color/black"
         android:layout_width="wrap_content"

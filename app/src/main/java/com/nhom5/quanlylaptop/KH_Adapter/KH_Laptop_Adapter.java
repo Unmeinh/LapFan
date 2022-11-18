@@ -91,7 +91,7 @@ public class KH_Laptop_Adapter extends RecyclerView.Adapter<KH_Laptop_Adapter.Au
 
         author.imgLaptop.setImageBitmap(anhLap);
         author.name.setText(laptop.getTenLaptop());
-        author.gia.setText(laptop.getGiaTien()+" VNĐ");
+        author.gia.setText(laptop.getGiaTien());
         author.ram.setText(laptop.getThongSoKT());
     }
 }

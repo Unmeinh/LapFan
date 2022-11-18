@@ -99,7 +99,7 @@ public class QL_Laptop_Adapter  extends RecyclerView.Adapter<QL_Laptop_Adapter.A
         author.imgLaptop.setImageBitmap(anhLap);
         author.imgHang.setImageBitmap(anhHang);
         author.name.setText(laptop.getTenLaptop());
-        author.gia.setText(laptop.getGiaTien()+" VNĐ");
+        author.gia.setText(laptop.getGiaTien());
         author.soLuong.setText("19");
     }
 }

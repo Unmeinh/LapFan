@@ -65,13 +65,31 @@ public class ChangeType {
         String check = "[0-9]";
         for (int i = 0; i < sMoney.length(); i++) {
             String checkS = sMoney.substring(i, i + 1);
-            if (checkS.matches(check)){
+            if (checkS.matches(check)) {
                 afterCheck += checkS;
             }
         }
-        if (afterCheck.length() > 0){
+        if (afterCheck.length() > 0) {
             money = Integer.parseInt(afterCheck);
         }
+        Log.d(TAG, "stringMoneyToInt: Money: " + money);
+        return money;
+    }
+
+    public String intMoneyToString(int iMoney) {
+        String money = "₫";
+        String sMoney = String.valueOf(iMoney);
+        int length = sMoney.length() - 1;
+        for (int i = length; i >= 0; i--) {
+            String iS = sMoney.substring(i, i + 1);
+            int check = (length - i) % 3;
+            if (check == 0) {
+                money = iS + "." + money;
+            } else {
+                money = iS + money;
+            }
+        }
+        Log.d(TAG, "intMoneyToString: Money: " + money);
         return money;
     }
 }

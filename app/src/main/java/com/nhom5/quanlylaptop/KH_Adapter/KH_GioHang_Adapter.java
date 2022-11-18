@@ -144,10 +144,12 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
 
         ChangeType changeType = new ChangeType();
         Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
+        int giaTien = changeType.stringMoneyToInt(laptop.getGiaTien());
+        giaTien = giaTien * gioHang.getSoLuong();
 
         author.imgLaptop.setImageBitmap(anhLap);
         author.name.setText(laptop.getTenLaptop());
-        author.gia.setText(laptop.getGiaTien() + " VNĐ");
+        author.gia.setText(changeType.intMoneyToString(giaTien));
         author.soLuong.setText(String.valueOf(gioHang.getSoLuong()));
         return laptop;
     }
