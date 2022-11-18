@@ -55,8 +55,7 @@
                     android:id="@+id/imageView_Laptop"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/laptopdemo" />
+                    android:layout_gravity="center" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -67,8 +66,7 @@
                     <TextView
                         android:id="@+id/textView_TenLaptop"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Laptop Acer Aspire 7 Gaming A715 42G R4XX R5 5500U"
+                        android:layout_height="47dp"
                         android:textColor="#4E352F"
                         android:textSize="19sp" />
 
@@ -98,7 +96,6 @@
                                 android:layout_height="25dp"
                                 android:layout_marginTop="12dp"
                                 android:gravity="center"
-                                android:text="1"
                                 android:textColor="@color/black"
                                 android:textSize="17sp"
                                 android:textStyle="bold" />
@@ -111,7 +108,6 @@
                             android:layout_gravity="bottom"
                             android:layout_weight="5"
                             android:gravity="end"
-                            android:text="21.990.000"
                             android:textColor="#F20C0C"
                             android:textSize="23sp" />
 

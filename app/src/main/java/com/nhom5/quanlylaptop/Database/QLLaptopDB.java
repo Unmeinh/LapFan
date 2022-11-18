@@ -28,7 +28,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         // Bảng KhachHang
         String tableKhachHang = "CREATE TABLE TB_KhachHang( maKH VARCHAR(15) PRIMARY KEY not null, avatar BLOB," +
                 " hoTen TEXT not null, gioiTinh TEXT not null, email VARCHAR(50) UNIQUE not null, matKhau TEXT not null," +
-                " queQuan TEXT, phone TEXT)";
+                " queQuan TEXT, phone TEXT, haveVi TEXT)";
 
         // Bảng HangLaptop
         String tableHangLaptop = "CREATE TABLE TB_HangLaptop( maHangLap VARCHAR(15) PRIMARY KEY not null" +
@@ -65,7 +65,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
 
         // Bảng ThongBao
         String tableThongBao = "CREATE TABLE TB_ThongBao( maTB VARCHAR(15) PRIMARY KEY not null," +
-                " maKH VARCHAR(15) not null, chiTiet TEXT not null, ngayTB DATE," +
+                " maKH VARCHAR(15) not null, title TEXT not null, chiTiet TEXT not null, ngayTB DATE," +
                 " FOREIGN KEY(maKH) REFERENCES TB_KhachHang (maKH))";
 
         // Bảng DiaChi
@@ -75,8 +75,12 @@ public class QLLaptopDB extends SQLiteOpenHelper {
 
         // Bảng DiaChi
         String tableViTien = "CREATE TABLE TB_ViTien( maVi VARCHAR(15) PRIMARY KEY not null," +
-                " maKH VARCHAR(15) not null, soTien TEXT not null, nganHang TEXT, thanhPho TEXT," +
+                " maKH VARCHAR(15) not null, soTien TEXT not null, nganHang TEXT," +
                 " FOREIGN KEY(maKH) REFERENCES TB_KhachHang (maKH))";
+
+        String tableGiaoDich = "CREATE TABLE TB_GiaoDich( maGD VARCHAR(15) PRIMARY KEY not null," +
+                " maVi VARCHAR(15) not null, title TEXT, chiTiet TEXT, soTien TEXT, ngayTT DATE," +
+                " FOREIGN KEY(maVi) REFERENCES TB_ViTien (maVi))";
 
         //execSQL
         db.execSQL(tableNhanVien);
@@ -90,6 +94,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         db.execSQL(tableThongBao);
         db.execSQL(tableDiaChi);
         db.execSQL(tableViTien);
+        db.execSQL(tableGiaoDich);
     }
 
     @Override

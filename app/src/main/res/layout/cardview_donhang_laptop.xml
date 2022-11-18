@@ -172,11 +172,43 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:text="@string/noti_danh_gia"
+                android:text="@string/nh_gi_c_a_b_n"
                 android:textColor="@color/black"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"/>
+                android:layout_height="wrap_content"/>
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/start_img" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/start_img" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/start_img" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/start_img" />
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/start_img" />
+
+            </LinearLayout>
 
             <TextView
                 android:text="@string/nh_gi_ngay_v_nh_n_u_i"

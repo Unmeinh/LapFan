@@ -41,9 +41,10 @@ public class ThongBaoDAO {
                 Log.d(TAG, "selectThongBao: Cursor not last");
                 String maTB = c.getString(0);
                 String maKH = c.getString(1);
-                String chiTiet = c.getString(2);
+                String title = c.getString(2);
+                String chiTiet = c.getString(3);
                 @SuppressLint("Range") String ngayTB = changeType.longDateToString(c.getLong(c.getColumnIndex("ngayTB")));
-                ThongBao newThongBao = new ThongBao(maTB, maKH, chiTiet, ngayTB);
+                ThongBao newThongBao = new ThongBao(maTB, maKH, title, chiTiet, ngayTB);
                 Log.d(TAG, "selectThongBao: new ThongBao: " + newThongBao.toString());
 
                 listTB.add(newThongBao);
@@ -64,6 +65,7 @@ public class ThongBaoDAO {
         ContentValues values = new ContentValues();
         values.put("maTB", thongBao.getMaTB());
         values.put("maKH", thongBao.getMaKH());
+        values.put("title", thongBao.getTitle());
         values.put("chiTiet", thongBao.getChiTiet());
         values.put("ngayTB", changeType.stringToLongDate(thongBao.getNgayTB()));
         Log.d(TAG, "insertThongBao: ThongBao: " + thongBao.toString());
@@ -84,6 +86,7 @@ public class ThongBaoDAO {
         ContentValues values = new ContentValues();
         values.put("maTB", thongBao.getMaTB());
         values.put("maKH", thongBao.getMaKH());
+        values.put("title", thongBao.getTitle());
         values.put("chiTiet", thongBao.getChiTiet());
         values.put("ngayTB", changeType.stringToLongDate(thongBao.getNgayTB()));
         Log.d(TAG, "updateThongBao: ThongBao: " + thongBao.toString());

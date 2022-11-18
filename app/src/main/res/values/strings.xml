@@ -120,7 +120,6 @@
     <string name="fpt_shop">FPT Shop</string>
     <string name="giao_h_ng_th_nh_c_ng">Giao hàng thành công</string>
     <string name="nh_gi_ngay_v_nh_n_u_i">Đánh giá ngay và nhận ưu đãi</string>
-    <string name="noti_danh_gia">Bạn hãy đánh giá sản phẩm sớm để chúng tôi biết cảm nhận của bạn về sản phẩm nhé</string>
     <string name="nh_gi">Đánh giá</string>
     <string name="h_ng_d_n_s_d_ng_app">Hướng dẫn sử dụng app</string>
     <string name="gi_m_gi">Giảm giá</string>
@@ -161,4 +160,5 @@
     <string name="n_h_ng_mua">Đơn hàng đã mua</string>
     <string name="n_h_ng_b_n">Đơn hàng đã bán</string>
     <string name="mua_ngay">$ Mua ngay $</string>
+    <string name="nh_gi_c_a_b_n">Đánh giá của bạn:</string>
 </resources>

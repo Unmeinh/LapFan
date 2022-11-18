@@ -75,6 +75,7 @@ public class KH_GioHang_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), KH_ThanhToan_Activity.class);
+                intent.putExtra("input", "giohang");
                 startActivity(intent);
             }
         });

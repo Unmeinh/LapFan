@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
@@ -49,6 +50,26 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         getInfoLaptop();
         setInfoLaptop();
         addToCart();
+        buyNowLaptop();
+    }
+
+    private void buyNowLaptop(){
+        buyNow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (laptop != null) {
+                    Intent intent = new Intent(context, KH_ThanhToan_Activity.class);
+                    final Bundle bundle = new Bundle();
+                    bundle.putBinder("laptop", laptop);
+                    Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
+                    intent.putExtras(bundle);
+                    intent.putExtra("input", "muangay");
+                    context.startActivity(intent);
+                } else {
+                    Toast.makeText(context, "Load thông tin sản phẩm lỗi!\nXin vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void addToCart() {

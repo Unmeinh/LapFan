@@ -21,31 +21,13 @@ import java.util.List;
 
 public class KH_DonHang_Activity extends AppCompatActivity {
 
-    List<HashMap<String, String>> list = new ArrayList<>();
-    ListView listView;
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_don_hang);
         context = this;
-        listView = findViewById(R.id.listView_Laptop_KH_DanhGia);
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        list.add(new HashMap<>());
-        SimpleAdapter simpleAdapter = new SimpleAdapter(context, list, R.layout.cardview_laptop_rating, new String[]{}, new int[]{});
-        listView.setAdapter(simpleAdapter);
 
-        View view = getLayoutInflater().inflate(R.layout.cardview_laptop_rating, null);
-        Button button = view.findViewById(R.id.button_Open_DanhGia);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(context, KH_DanhGia_Activity.class));
-            }
-        });
         useToolbar();
     }
 

@@ -5,12 +5,14 @@ import android.os.Binder;
 public class ThongBao extends Binder {
     private String maTB;
     private String maKH;
+    private String title;
     private String chiTiet;
     private String ngayTB;
 
-    public ThongBao(String maTB, String maKH, String chiTiet, String ngayTB) {
+    public ThongBao(String maTB, String maKH, String title, String chiTiet, String ngayTB) {
         this.maTB = maTB;
         this.maKH = maKH;
+        this.title = title;
         this.chiTiet = chiTiet;
         this.ngayTB = ngayTB;
     }
@@ -29,6 +31,14 @@ public class ThongBao extends Binder {
 
     public void setMaKH(String maKH) {
         this.maKH = maKH;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getChiTiet() {
@@ -52,6 +62,7 @@ public class ThongBao extends Binder {
         return "ThongBao{" +
                 "maTB = '" + maTB + '\'' +
                 ", maKH = '" + maKH + '\'' +
+                ", title = '" + title + '\'' +
                 ", chiTiet = '" + chiTiet + '\'' +
                 ", ngayTB = '" + ngayTB + '\'' +
                 '}';

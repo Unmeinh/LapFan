@@ -22,7 +22,7 @@
             android:textColor="#DB5050"
             android:text="@string/gi_h_ng_tr_ng"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
 
         <ImageView
             android:src="@drawable/empty_gio_hang_icon"

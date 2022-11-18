@@ -21,7 +21,7 @@ public class KH_Voucher_Adapter extends RecyclerView.Adapter<KH_Voucher_Adapter.
 
     Context context;
     ArrayList<Voucher> listVou;
-    String TAG = "QL_Voucher_Adapter_____";
+    String TAG = "KH_Voucher_Adapter_____";
 
     public KH_Voucher_Adapter(ArrayList<Voucher> listVou, Context context) {
         this.listVou = listVou;

@@ -9,9 +9,9 @@
 
     <include layout="@layout/toolbar_normal"/>
 
-    <ListView
-        android:id="@+id/listView_Laptop_KH_DanhGia"
-        tools:listitem="@layout/cardview_laptop_rating"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_KH_DonHang"
+        tools:listitem="@layout/cardview_donhang_laptop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

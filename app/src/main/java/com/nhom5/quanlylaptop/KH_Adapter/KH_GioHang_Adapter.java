@@ -93,8 +93,8 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
         author.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, Info_Laptop_Activity.class);
                 if (laptop != null) {
+                    Intent intent = new Intent(context, Info_Laptop_Activity.class);
                     final Bundle bundle = new Bundle();
                     bundle.putBinder("laptop", laptop);
                     Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
