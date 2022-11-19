@@ -62,8 +62,8 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
 
     private void setLaptopView(){
         ImageView imageLaptop = findViewById(R.id.imageView_Laptop);
-        TextView name = findViewById(R.id.textView_Soluong);
-        TextView soLuong = findViewById(R.id.textView_TenLaptop);
+        TextView name = findViewById(R.id.textView_TenLaptop);
+        TextView soLuong = findViewById(R.id.textView_Soluong);
         TextView giaTien = findViewById(R.id.textView_GiaTien);
         Laptop laptop = new Laptop("null", "null", "null", "null", "0", new byte[]{});
         Log.d(TAG, "setRow: DonHang: " + donHang.toString());

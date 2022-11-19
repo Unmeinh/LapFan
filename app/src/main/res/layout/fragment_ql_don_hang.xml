@@ -40,14 +40,12 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/listView_DonHang"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_NVA_DonHang"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearNhanvien"
         android:layout_marginTop="10dp"
-        android:divider="#FFFFFF"
-        android:dividerHeight="5dp"
         tools:listitem="@layout/cardview_nva_don_hang" />
 
 </RelativeLayout>
