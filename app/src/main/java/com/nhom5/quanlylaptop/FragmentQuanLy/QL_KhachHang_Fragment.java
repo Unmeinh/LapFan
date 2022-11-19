@@ -107,8 +107,8 @@ public class QL_KhachHang_Fragment extends Fragment {
                 KhachHang khachHang = new KhachHang("KH" + listKH.size(), lastName, firstName, "No Data",
                         email, password, "No Data", sdt, "false", avatar);
                 khachHangDAO.insertKhachHang(khachHang);
-                setUpReView();
                 dialog.cancel();
+                setUpReView();
             }
         });
     }

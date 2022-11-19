@@ -61,8 +61,8 @@
         android:layout_width="match_parent"
         android:layout_height="7dp"/>
 
-    <ListView
-        android:id="@+id/listView_ThongKe"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_ThongKe"
         tools:listitem="@layout/cardview_nva_thongke"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

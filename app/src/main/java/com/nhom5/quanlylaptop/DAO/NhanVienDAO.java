@@ -45,7 +45,14 @@ public class NhanVienDAO {
                 String matKhau = c.getString(6);
                 String queQuan = c.getString(7);
                 String phone = c.getString(8);
-                NhanVien newNV = new NhanVien(maNV, hoNV, tenNV, gioiTinh, email, matKhau, queQuan, phone, avatar);
+                String doanhSo = c.getString(9);
+                int soSP = 0;
+                try {
+                    soSP = Integer.parseInt(c.getString(10));
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                NhanVien newNV = new NhanVien(maNV, hoNV, tenNV, gioiTinh, email, matKhau, queQuan, phone, doanhSo, soSP, avatar);
                 Log.d(TAG, "selectNhanVien: new NhanVien: " + newNV.toString());
 
                 listNV.add(newNV);
@@ -73,6 +80,8 @@ public class NhanVienDAO {
         values.put("matKhau", nhanVien.getMatKhau());
         values.put("queQuan", nhanVien.getQueQuan());
         values.put("phone", nhanVien.getPhone());
+        values.put("doanhSo", nhanVien.getDoanhSo());
+        values.put("soSP", nhanVien.getSoSP());
         Log.d(TAG, "insertNhanVien: NhanVien: " + nhanVien.toString());
         Log.d(TAG, "insertNhanVien: Values: " + values);
 
@@ -98,6 +107,8 @@ public class NhanVienDAO {
         values.put("matKhau", nhanVien.getMatKhau());
         values.put("queQuan", nhanVien.getQueQuan());
         values.put("phone", nhanVien.getPhone());
+        values.put("doanhSo", nhanVien.getDoanhSo());
+        values.put("soSP", nhanVien.getSoSP());
         Log.d(TAG, "insertNhanVien: NhanVien: " + nhanVien.toString());
         Log.d(TAG, "insertNhanVien: Values: " + values);
 

@@ -13,9 +13,11 @@ public class NhanVien extends Binder {
     private String matKhau;
     private String queQuan;
     private String phone;
+    private String doanhSo;
+    private int soSP;
     private byte[] avatar;
 
-    public NhanVien(String maNV, String hoNV, String tenNV, String gioiTinh, String email, String matKhau, String queQuan, String phone, byte[] avatar) {
+    public NhanVien(String maNV, String hoNV, String tenNV, String gioiTinh, String email, String matKhau, String queQuan, String phone, String doanhSo, int soSP, byte[] avatar) {
         this.maNV = maNV;
         this.hoNV = hoNV;
         this.tenNV = tenNV;
@@ -23,7 +25,9 @@ public class NhanVien extends Binder {
         this.email = email;
         this.matKhau = matKhau;
         this.queQuan = queQuan;
+        this.doanhSo = doanhSo;
         this.phone = phone;
+        this.soSP = soSP;
         this.avatar = avatar;
     }
 
@@ -91,6 +95,22 @@ public class NhanVien extends Binder {
         this.phone = phone;
     }
 
+    public String getDoanhSo() {
+        return doanhSo;
+    }
+
+    public void setDoanhSo(String doanhSo) {
+        this.doanhSo = doanhSo;
+    }
+
+    public int getSoSP() {
+        return soSP;
+    }
+
+    public void setSoSP(int soSP) {
+        this.soSP = soSP;
+    }
+
     public byte[] getAvatar() {
         return avatar;
     }
@@ -110,7 +130,7 @@ public class NhanVien extends Binder {
                 ", matKhau = '" + matKhau + '\'' +
                 ", queQuan = '" + queQuan + '\'' +
                 ", phone = '" + phone + '\'' +
-                ", avatar = " +  avatar +
+                ", avatar = " + avatar +
                 " : " + Arrays.toString(avatar) +
                 '}';
     }

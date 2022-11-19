@@ -116,6 +116,7 @@
     <string name="shop_ph_c_v_t_t">Shop phục vụ tốt</string>
     <string name="th_i_gian_giao_h_ng_r_t_nhanh">Thời gian giao hàng rất nhanh</string>
     <string name="hint_review"><font color="#817F7F" size="15">Hãy chia sẻ những điều bạn thích về sản phẩm nhé...</font></string>
+    <string name="hint_review2"><font color="#817F7F" size="15">Đánh giá của khách hàng...</font></string>
     <string name="ho_n_th_nh">Hoàn Thành</string>
     <string name="fpt_shop">FPT Shop</string>
     <string name="giao_h_ng_th_nh_c_ng">Giao hàng thành công</string>
@@ -162,4 +163,6 @@
     <string name="mua_ngay">$ Mua ngay $</string>
     <string name="nh_gi_c_a_b_n">Đánh giá của bạn:</string>
     <string name="v_i_n_t_fptpay">Ví điện tử FPTPay</string>
+    <string name="nh_gi_c_a_kh_ch_h_ng">Đánh giá của khách hàng:</string>
+    <string name="th_ng_tin_kh_ch_h_ng">Thông tin khách hàng:</string>
 </resources>

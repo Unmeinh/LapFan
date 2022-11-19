@@ -56,7 +56,7 @@ public class Add_Staff_Fragment extends Fragment {
                 Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.image_avatar);
                 byte[] avatar = changeType.checkByteInput(changeType.bitmapToByte(bitmap));
                 NhanVien nhanVien = new NhanVien("NV" + listNV.size(), lastName, firstName, "No Data",
-                        email, password, "No Data", sdt, avatar);
+                        email, password, "No Data", sdt, "No Data", 0, avatar);
                 nhanVienDAO.insertNhanVien(nhanVien);
             }
         });

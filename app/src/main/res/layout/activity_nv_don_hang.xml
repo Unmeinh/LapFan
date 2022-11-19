@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ActivityKH.KH_DonHang_Activity">
+    tools:context=".ActivityNV_Admin.NV_DonHang_Activity">
 
     <include layout="@layout/toolbar_normal"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_KH_DonHang"
-        tools:listitem="@layout/cardview_kh_donhang_laptop"
+        android:id="@+id/recyclerView_NV_DonHang"
+        tools:listitem="@layout/cardview_nv_donhang_laptop"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

@@ -1,4 +1,4 @@
-package com.nhom5.quanlylaptop.KH_Adapter;
+package com.nhom5.quanlylaptop.NAV_Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.quanlylaptop.ActivityKH.KH_DanhGia_Activity;
+import com.nhom5.quanlylaptop.ActivityNV_Admin.NV_DanhGia_Activity;
 import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.R;
@@ -25,14 +26,14 @@ import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.util.ArrayList;
 
-public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.AuthorViewHolder> {
+public class NV_DonHang_Adapter extends RecyclerView.Adapter<NV_DonHang_Adapter.AuthorViewHolder> {
 
     Context context;
     ArrayList<Laptop> listLap;
     ArrayList<DonHang> listDon;
-    String TAG = "KH_DonHang_Adapter_____";
+    String TAG = "NV_DonHang_Adapter_____";
 
-    public KH_DonHang_Adapter(ArrayList<Laptop> listLap, ArrayList<DonHang> listDon, Context context) {
+    public NV_DonHang_Adapter(ArrayList<Laptop> listLap, ArrayList<DonHang> listDon, Context context) {
         this.listLap = listLap;
         this.listDon = listDon;
         this.context = context;
@@ -40,20 +41,20 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
 
     @NonNull
     @Override
-    public KH_DonHang_Adapter.AuthorViewHolder onCreateViewHolder(@NonNull ViewGroup vGroup, int i) {
-        View v = LayoutInflater.from(context).inflate(R.layout.cardview_kh_donhang_laptop, vGroup, false);
-        return new KH_DonHang_Adapter.AuthorViewHolder(v);
+    public NV_DonHang_Adapter.AuthorViewHolder onCreateViewHolder(@NonNull ViewGroup vGroup, int i) {
+        View v = LayoutInflater.from(context).inflate(R.layout.cardview_nv_donhang_laptop, vGroup, false);
+        return new NV_DonHang_Adapter.AuthorViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KH_DonHang_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
+    public void onBindViewHolder(@NonNull NV_DonHang_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         DonHang donHang = setRow(pos, author);
 
         author.danhGia.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (donHang != null) {
-                    Intent intent = new Intent(context, KH_DanhGia_Activity.class);
+                    Intent intent = new Intent(context, NV_DanhGia_Activity.class);
                     final Bundle bundle = new Bundle();
                     bundle.putBinder("donhang", donHang);
                     Log.d(TAG, "onBindViewHolder: DonHang: " + donHang.toString());
@@ -86,7 +87,7 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
         }
     }
 
-    public DonHang setRow(int pos, @NonNull KH_DonHang_Adapter.AuthorViewHolder author) {
+    public DonHang setRow(int pos, @NonNull NV_DonHang_Adapter.AuthorViewHolder author) {
         Log.d(TAG, "setRow: " + pos);
         DonHang donHang = listDon.get(pos);
         Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", new byte[]{});

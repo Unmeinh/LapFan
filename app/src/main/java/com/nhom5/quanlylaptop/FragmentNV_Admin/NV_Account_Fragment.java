@@ -17,6 +17,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.Activity.Account_Manager_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_DonHang_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
+import com.nhom5.quanlylaptop.ActivityNV_Admin.NV_DonHang_Activity;
 import com.nhom5.quanlylaptop.R;
 
 public class NV_Account_Fragment extends Fragment {
@@ -48,7 +49,8 @@ public class NV_Account_Fragment extends Fragment {
         qldh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getContext(), NV_DonHang_Activity.class);
+                startActivity(intent);
             }
         });
     }

@@ -65,13 +65,13 @@ public class QL_DonHang_Fragment extends Fragment {
 
     private void addDemoDH(){
         DonHang dh1 = new DonHang("DH1", "NV1", "KH1", "LP2", "VOU1", "Rate1",
-                "Hà Nội", "19/11/2022", "FPT Pay", "Chưa", "25.000.000đ", 3);
+                "Hà Nội", "19/11/2022", "FPT Pay", "Chưa", "63.570.000đ", 3);
         donHangDAO.insertDonHang(dh1);
-        DonHang dh2 = new DonHang("DH2", "NV6", "KH7", "LP5", "VOU4", "Rate9",
-                "HCM", "20/11/2022", "OPT", "Ròi", "25.000.000đ", 4);
+        DonHang dh2 = new DonHang("DH2", "NV2", "KH7", "LP5", "VOU4", "Rate9",
+                "HCM", "20/11/2022", "OPT", "Ròi", "65.180.000đ", 2);
         donHangDAO.insertDonHang(dh2);
-        DonHang dh3 = new DonHang("DH3", "NV5", "KH4", "LP7", "VOU6", "Rate6",
-                "Đà Nẵng", "21/11/2022", "FPT Pay", "Chưa", "25.000.000đ", 2);
+        DonHang dh3 = new DonHang("DH3", "NV2", "KH4", "LP7", "VOU6", "Rate6",
+                "Đà Nẵng", "21/11/2022", "FPT Pay", "Chưa", "25.590.000đ", 1);
         donHangDAO.insertDonHang(dh3);
     }
 
