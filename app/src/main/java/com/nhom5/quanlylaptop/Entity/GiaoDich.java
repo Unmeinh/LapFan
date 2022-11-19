@@ -8,15 +8,15 @@ public class GiaoDich extends Binder {
     private String title;
     private String chiTiet;
     private String soTien;
-    private String ngayTT;
+    private String ngayGD;
 
-    public GiaoDich(String maGD, String maVi, String title, String chiTiet, String soTien, String ngayTT) {
+    public GiaoDich(String maGD, String maVi, String title, String chiTiet, String soTien, String ngayGD) {
         this.maGD = maGD;
         this.maVi = maVi;
         this.title = title;
         this.chiTiet = chiTiet;
         this.soTien = soTien;
-        this.ngayTT = ngayTT;
+        this.ngayGD = ngayGD;
     }
 
     public String getMaGD() {
@@ -59,12 +59,12 @@ public class GiaoDich extends Binder {
         this.soTien = soTien;
     }
 
-    public String getNgayTT() {
-        return ngayTT;
+    public String getNgayGD() {
+        return ngayGD;
     }
 
-    public void setNgayTT(String ngayTT) {
-        this.ngayTT = ngayTT;
+    public void setNgayGD(String ngayGD) {
+        this.ngayGD = ngayGD;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class GiaoDich extends Binder {
                 ", title = '" + title + '\'' +
                 ", chiTiet = '" + chiTiet + '\'' +
                 ", soTien = '" + soTien + '\'' +
-                ", ngayTT = '" + ngayTT + '\'' +
+                ", ngayGD = '" + ngayGD + '\'' +
                 '}';
     }
 }

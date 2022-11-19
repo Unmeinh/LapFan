@@ -92,9 +92,9 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
     public DonHang setRow(int pos, @NonNull QL_DonHang_Adapter.AuthorViewHolder author) {
         Log.d(TAG, "setRow: " + pos);
         DonHang donHang = listDon.get(pos);
-        Laptop laptop = new Laptop("null", "null", "null", "null", "0", new byte[]{});
-        KhachHang khachHang = new KhachHang("null", "null",  "null", "null", "null", "null",
-                "null", "null", new byte[]{});
+        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", new byte[]{});
+        KhachHang khachHang = new KhachHang("No Data", "No Data", "No Data",  "No Data", "No Data", "No Data", "No Data",
+                "No Data", "No Data", new byte[]{});
         Log.d(TAG, "setRow: DonHang: " + donHang.toString());
 
         for (int i = 0; i < listLap.size(); i++) {
@@ -111,7 +111,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
             }
         }
 
-        author.tenKH.setText(khachHang.getHoTen());
+        author.tenKH.setText(khachHang.getHoKH() + " " + khachHang.getTenKH());
         author.tenLaptop.setText(laptop.getTenLaptop());
         author.phone.setText(khachHang.getPhone());
         author.money.setText(donHang.getThanhTien());

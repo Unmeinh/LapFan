@@ -12,7 +12,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ChangeType {
     String TAG = "ChangeType_____";
@@ -91,5 +93,34 @@ public class ChangeType {
         }
         Log.d(TAG, "intMoneyToString: Money: " + money);
         return money;
+    }
+
+    public String fullNameToFirstName(String name) {
+        String firstName = "";
+        List<Integer> index = new ArrayList<>();
+        for (int i = 0; i < name.length(); i++) {
+            String getString = name.substring(i, i + 1);
+            if (getString.equals(" ")) {
+                index.add(i);
+            }
+        }
+
+        if (index.size() > 0){
+            if (index.size() == 1){
+                int lastIndex = index.get(0);
+                firstName = name.substring(lastIndex);
+            } else {
+                int lastIndex = index.get(index.size() - 1);
+                firstName = name.substring(lastIndex);
+                if (firstName.equals("Anh")){
+                    lastIndex = index.get(index.size() - 2);
+                    firstName = name.substring(lastIndex);
+                }
+            }
+        } else {
+            firstName = name;
+        }
+
+        return firstName;
     }
 }

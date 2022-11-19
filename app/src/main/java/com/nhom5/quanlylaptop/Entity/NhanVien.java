@@ -6,7 +6,8 @@ import java.util.Arrays;
 
 public class NhanVien extends Binder {
     private String maNV;
-    private String hoTen;
+    private String hoNV;
+    private String tenNV;
     private String gioiTinh;
     private String email;
     private String matKhau;
@@ -14,9 +15,10 @@ public class NhanVien extends Binder {
     private String phone;
     private byte[] avatar;
 
-    public NhanVien(String maNV, String hoTen, String gioiTinh, String email, String matKhau, String queQuan, String phone, byte[] avatar) {
+    public NhanVien(String maNV, String hoNV, String tenNV, String gioiTinh, String email, String matKhau, String queQuan, String phone, byte[] avatar) {
         this.maNV = maNV;
-        this.hoTen = hoTen;
+        this.hoNV = hoNV;
+        this.tenNV = tenNV;
         this.gioiTinh = gioiTinh;
         this.email = email;
         this.matKhau = matKhau;
@@ -33,12 +35,20 @@ public class NhanVien extends Binder {
         this.maNV = maNV;
     }
 
-    public String getHoTen() {
-        return hoTen;
+    public String getHoNV() {
+        return hoNV;
     }
 
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
+    public void setHoNV(String hoNV) {
+        this.hoNV = hoNV;
+    }
+
+    public String getTenNV() {
+        return tenNV;
+    }
+
+    public void setTenNV(String tenNV) {
+        this.tenNV = tenNV;
     }
 
     public String getGioiTinh() {
@@ -93,7 +103,8 @@ public class NhanVien extends Binder {
     public String toString() {
         return "NhanVien{" +
                 "maNV = '" + maNV + '\'' +
-                ", hoTen = '" + hoTen + '\'' +
+                ", hoNV = '" + hoNV + '\'' +
+                ", tenNV = '" + tenNV + '\'' +
                 ", gioiTinh = '" + gioiTinh + '\'' +
                 ", email = '" + email + '\'' +
                 ", matKhau = '" + matKhau + '\'' +

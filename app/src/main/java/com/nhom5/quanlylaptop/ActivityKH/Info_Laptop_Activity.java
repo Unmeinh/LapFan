@@ -79,7 +79,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     GioHang gioHang = new GioHang("GH" + listGio.size(), laptop.getMaLaptop(),
-                            "null", "2022-11-17", 1);
+                            "No Data", "2022-11-17", 1);
                     gioHangDAO.insertGioHang(gioHang);
                 }
             });

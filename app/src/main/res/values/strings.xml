@@ -39,6 +39,7 @@
     <string name="account">Tài Khoản</string>
 
     <string-array name="gender_array">
+        <item>Chọn giới tính</item>
         <item>Nam</item>
         <item>Nữ</item>
         <item>Khác</item>
@@ -108,7 +109,6 @@
     <string name="laptop_asus">Laptop Asus</string>
     <string name="laptop_acer">Laptop Acer</string>
     <string name="laptop_msi">Laptop MSi</string>
-    <string name="s_l_ng">Số lượng: </string>
     <string name="luu_y_danh_gia">Chia sẻ cảm nhận của bạn về sản phẩm trong đơn hàng để nhận ưu đãi. Lưu ý: Nếu đánh giá nội dung không phù hợp, tài khoản sẽ bị xóa.</string>
     <string name="ch_t_l_ng_s_n_ph_m">Chất lượng sản phẩm:</string>
     <string name="ch_t_l_ng_s_n_ph_m_tuy_t_v_i">Chất lượng sản phẩm tuyệt vời</string>
@@ -161,4 +161,5 @@
     <string name="n_h_ng_b_n">Đơn hàng đã bán</string>
     <string name="mua_ngay">$ Mua ngay $</string>
     <string name="nh_gi_c_a_b_n">Đánh giá của bạn:</string>
+    <string name="v_i_n_t_fptpay">Ví điện tử FPTPay</string>
 </resources>

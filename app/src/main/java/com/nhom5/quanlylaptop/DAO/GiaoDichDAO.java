@@ -1,5 +1,6 @@
 package com.nhom5.quanlylaptop.DAO;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -43,8 +44,8 @@ public class GiaoDichDAO {
                 String title = c.getString(2);
                 String chiTiet = c.getString(3);
                 String soTien = c.getString(4);
-                String ngayTT = c.getString(5);
-                GiaoDich newGD = new GiaoDich(maGD, maVi, title, chiTiet, soTien, ngayTT);
+                @SuppressLint("Range") String ngayGD = changeType.longDateToString(c.getLong(c.getColumnIndex("ngayGD")));
+                GiaoDich newGD = new GiaoDich(maGD, maVi, title, chiTiet, soTien, ngayGD);
                 Log.d(TAG, "selectGiaoDich: new GiaoDich: " + newGD.toString());
 
                 listGD.add(newGD);
@@ -68,7 +69,7 @@ public class GiaoDichDAO {
         values.put("title", giaoDich.getTitle());
         values.put("chiTiet", giaoDich.getChiTiet());
         values.put("soTien", giaoDich.getSoTien());
-        values.put("ngayTT", giaoDich.getNgayTT());
+        values.put("ngayGD", changeType.stringToLongDate(giaoDich.getNgayGD()));
         Log.d(TAG, "insertGiaoDich: GiaoDich: " + giaoDich.toString());
         Log.d(TAG, "insertGiaoDich: Values: " + values);
 
@@ -90,7 +91,7 @@ public class GiaoDichDAO {
         values.put("title", giaoDich.getTitle());
         values.put("chiTiet", giaoDich.getChiTiet());
         values.put("soTien", giaoDich.getSoTien());
-        values.put("ngayTT", giaoDich.getNgayTT());
+        values.put("ngayGD", changeType.stringToLongDate(giaoDich.getNgayGD()));
         Log.d(TAG, "updateGiaoDich: GiaoDich: " + giaoDich.toString());
         Log.d(TAG, "updateGiaoDich: Values: " + values);
 

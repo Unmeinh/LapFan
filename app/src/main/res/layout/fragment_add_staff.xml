@@ -20,20 +20,41 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textView_TenNV"
-            style="@style/TextInputLayoutOutlinedBoxBrown"
-            app:startIconDrawable="@drawable/account_circle_icon"
-            app:startIconTint="#4E352F"
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/t_n_nh_n_vi_n"
-                tools:ignore="TouchTargetSizeCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInput_LastName"
+                style="@style/TextInputLayoutOutlinedBoxBrown"
+                android:layout_marginEnd="20dp"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/h"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInput_FirstName"
+                style="@style/TextInputLayoutOutlinedBoxBrown"
+                android:layout_width="0dp"
+                android:layout_weight="5"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/t_n"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInput_Email"

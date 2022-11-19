@@ -123,7 +123,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/onclick_Danh_Gia_San_Pham"
+            android:id="@+id/onclick_Vi_FPTPay"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -134,14 +134,14 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_margin="13dp"
-                android:src="@drawable/award_icon" />
+                android:src="@drawable/ewallet_icon" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_weight="7"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/nh_gi_s_n_ph_m"
+                android:text="@string/v_i_n_t_fptpay"
                 android:textColor="#4E352F"
                 android:textSize="22sp" />
 

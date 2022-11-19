@@ -6,7 +6,8 @@ import java.util.Arrays;
 
 public class KhachHang extends Binder {
     private String maKH;
-    private String hoTen;
+    private String hoKH;
+    private String tenKH;
     private String gioiTinh;
     private String email;
     private String matKhau;
@@ -15,9 +16,10 @@ public class KhachHang extends Binder {
     private String haveVi;
     private byte[] avatar;
 
-    public KhachHang(String maKH, String hoTen, String gioiTinh, String email, String matKhau, String queQuan, String phone, String haveVi, byte[] avatar) {
+    public KhachHang(String maKH, String hoKH, String tenKH, String gioiTinh, String email, String matKhau, String queQuan, String phone, String haveVi, byte[] avatar) {
         this.maKH = maKH;
-        this.hoTen = hoTen;
+        this.hoKH = hoKH;
+        this.tenKH = tenKH;
         this.gioiTinh = gioiTinh;
         this.email = email;
         this.matKhau = matKhau;
@@ -35,12 +37,20 @@ public class KhachHang extends Binder {
         this.maKH = maKH;
     }
 
-    public String getHoTen() {
-        return hoTen;
+    public String getHoKH() {
+        return hoKH;
     }
 
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
+    public void setHoKH(String hoKH) {
+        this.hoKH = hoKH;
+    }
+
+    public String getTenKH() {
+        return tenKH;
+    }
+
+    public void setTenKH(String tenKH) {
+        this.tenKH = tenKH;
     }
 
     public String getGioiTinh() {
@@ -103,7 +113,8 @@ public class KhachHang extends Binder {
     public String toString() {
         return "KhachHang{" +
                 "maKH = '" + maKH + '\'' +
-                ", hoTen = '" + hoTen + '\'' +
+                ", hoKH = '" + hoKH + '\'' +
+                ", tenKH = '" + tenKH + '\'' +
                 ", gioiTinh = '" + gioiTinh + '\'' +
                 ", email = '" + email + '\'' +
                 ", matKhau = '" + matKhau + '\'' +

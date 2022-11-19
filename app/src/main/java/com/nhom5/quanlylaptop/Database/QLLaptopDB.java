@@ -22,12 +22,12 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         Log.d(TAG, "onCreate: DB: " + DB_Name);
         // Bảng NhanVien
         String tableNhanVien = "CREATE TABLE TB_NhanVien( maNV VARCHAR(15) PRIMARY KEY not null, avatar BLOB," +
-                " hoTen TEXT not null, gioiTinh TEXT not null, email VARCHAR(50) UNIQUE not null, matKhau TEXT not null," +
+                " hoNV TEXT not null, tenNV TEXT not null, gioiTinh TEXT not null, email VARCHAR(50) UNIQUE not null, matKhau TEXT not null," +
                 " queQuan TEXT, phone TEXT)";
 
         // Bảng KhachHang
         String tableKhachHang = "CREATE TABLE TB_KhachHang( maKH VARCHAR(15) PRIMARY KEY not null, avatar BLOB," +
-                " hoTen TEXT not null, gioiTinh TEXT not null, email VARCHAR(50) UNIQUE not null, matKhau TEXT not null," +
+                " hoKH TEXT not null, tenKH TEXT not null, gioiTinh TEXT not null, email VARCHAR(50) UNIQUE not null, matKhau TEXT not null," +
                 " queQuan TEXT, phone TEXT, haveVi TEXT)";
 
         // Bảng HangLaptop
@@ -79,7 +79,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
                 " FOREIGN KEY(maKH) REFERENCES TB_KhachHang (maKH))";
 
         String tableGiaoDich = "CREATE TABLE TB_GiaoDich( maGD VARCHAR(15) PRIMARY KEY not null," +
-                " maVi VARCHAR(15) not null, title TEXT, chiTiet TEXT, soTien TEXT, ngayTT DATE," +
+                " maVi VARCHAR(15) not null, title TEXT, chiTiet TEXT, soTien TEXT, ngayGD DATE," +
                 " FOREIGN KEY(maVi) REFERENCES TB_ViTien (maVi))";
 
         //execSQL

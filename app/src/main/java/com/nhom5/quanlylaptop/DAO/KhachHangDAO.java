@@ -38,14 +38,15 @@ public class KhachHangDAO {
                 Log.d(TAG, "selectKhachHang: Cursor not last");
                 String maKH = c.getString(0);
                 byte[] avatar = c.getBlob(1);
-                String hoTen = c.getString(2);
-                String gioiTinh = c.getString(3);
-                String email = c.getString(4);
-                String matKhau = c.getString(5);
-                String queQuan = c.getString(6);
-                String phone = c.getString(7);
-                String haveVi = c.getString(8);
-                KhachHang newKH = new KhachHang(maKH, hoTen, gioiTinh, email, matKhau, queQuan, phone, haveVi, avatar);
+                String hoKH = c.getString(2);
+                String tenKH = c.getString(3);
+                String gioiTinh = c.getString(4);
+                String email = c.getString(5);
+                String matKhau = c.getString(6);
+                String queQuan = c.getString(7);
+                String phone = c.getString(8);
+                String haveVi = c.getString(9);
+                KhachHang newKH = new KhachHang(maKH, hoKH, tenKH, gioiTinh, email, matKhau, queQuan, phone, haveVi, avatar);
                 Log.d(TAG, "selectKhachHang: new KhachHang: " + newKH.toString());
 
                 listKH.add(newKH);
@@ -66,7 +67,8 @@ public class KhachHangDAO {
         ContentValues values = new ContentValues();
         values.put("maKH", khachHang.getMaKH());
         values.put("avatar", khachHang.getAvatar());
-        values.put("hoTen", khachHang.getHoTen());
+        values.put("hoKH", khachHang.getHoKH());
+        values.put("tenKH", khachHang.getTenKH());
         values.put("gioiTinh", khachHang.getGioiTinh());
         values.put("email", khachHang.getEmail());
         values.put("matKhau", khachHang.getMatKhau());
@@ -91,7 +93,8 @@ public class KhachHangDAO {
         ContentValues values = new ContentValues();
         values.put("maKH", khachHang.getMaKH());
         values.put("avatar", khachHang.getAvatar());
-        values.put("hoTen", khachHang.getHoTen());
+        values.put("hoKH", khachHang.getHoKH());
+        values.put("tenKH", khachHang.getTenKH());
         values.put("gioiTinh", khachHang.getGioiTinh());
         values.put("email", khachHang.getEmail());
         values.put("matKhau", khachHang.getMatKhau());

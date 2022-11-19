@@ -22,14 +22,14 @@ import com.nhom5.quanlylaptop.R;
 
 public class KH_Account_Fragment extends Fragment {
 
-    LinearLayout maVoucher, danhGiaSanPham, dhDaMua, nhomSanVou, hdsd, doiMatKhau, thietLapTaiKhoan;
+    LinearLayout maVoucher, dhDaMua, viDienTu, nhomSanVou, hdsd, doiMatKhau, thietLapTaiKhoan;
     AppCompatButton logOut;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kh_account, container, false);
         maVoucher = view.findViewById(R.id.onclick_Ma_Voucher);
-        danhGiaSanPham = view.findViewById(R.id.onclick_Danh_Gia_San_Pham);
+        viDienTu = view.findViewById(R.id.onclick_Vi_FPTPay);
         dhDaMua = view.findViewById(R.id.onclick_Don_Hang_Da_Mua);
         nhomSanVou = view.findViewById(R.id.onclick_Nhom_San_Voucher);
         hdsd = view.findViewById(R.id.onclick_Huong_Dan_Su_Dung);
@@ -37,8 +37,8 @@ public class KH_Account_Fragment extends Fragment {
         thietLapTaiKhoan = view.findViewById(R.id.onclick_Thiet_Lap_Tai_Khoan);
         logOut = view.findViewById(R.id.button_LogOut);
         clickMaVoucher();
-        clickDanhGiaSanPham();
         clickDonHangDaMua();
+        clickViDienTu();
         clickNhomSanVou();
         clickHuongDanSuDung();
         clickDoiMatKhau();
@@ -65,8 +65,8 @@ public class KH_Account_Fragment extends Fragment {
         });
     }
 
-    private void clickDanhGiaSanPham(){
-        danhGiaSanPham.setOnClickListener(new View.OnClickListener() {
+    private void clickDonHangDaMua(){
+        dhDaMua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), KH_DonHang_Activity.class));
@@ -74,11 +74,10 @@ public class KH_Account_Fragment extends Fragment {
         });
     }
 
-    private void clickDonHangDaMua(){
-        dhDaMua.setOnClickListener(new View.OnClickListener() {
+    private void clickViDienTu(){
+        viDienTu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
     }

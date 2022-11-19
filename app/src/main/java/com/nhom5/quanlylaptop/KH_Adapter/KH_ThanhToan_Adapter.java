@@ -106,7 +106,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
     public Laptop setRowGH(int pos, @NonNull KH_ThanhToan_Adapter.AuthorViewHolder author) {
         Log.d(TAG, "setRow: " + pos);
         GioHang gioHang = listGio.get(pos);
-        Laptop laptop = new Laptop("null", "null", "null", "null", "0", new byte[]{});
+        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", new byte[]{});
         Log.d(TAG, "setRow: GioHang: " + gioHang.toString());
 
         for (int i = 0; i < listLap.size(); i++) {

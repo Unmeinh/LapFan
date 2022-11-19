@@ -38,13 +38,14 @@ public class NhanVienDAO {
                 Log.d(TAG, "selectNhanVien: Cursor not last");
                 String maNV = c.getString(0);
                 byte[] avatar = c.getBlob(1);
-                String hoTen = c.getString(2);
-                String gioiTinh = c.getString(3);
-                String email = c.getString(4);
-                String matKhau = c.getString(5);
-                String queQuan = c.getString(6);
-                String phone = c.getString(7);
-                NhanVien newNV = new NhanVien(maNV, hoTen, gioiTinh, email, matKhau, queQuan, phone, avatar);
+                String hoNV = c.getString(2);
+                String tenNV = c.getString(3);
+                String gioiTinh = c.getString(4);
+                String email = c.getString(5);
+                String matKhau = c.getString(6);
+                String queQuan = c.getString(7);
+                String phone = c.getString(8);
+                NhanVien newNV = new NhanVien(maNV, hoNV, tenNV, gioiTinh, email, matKhau, queQuan, phone, avatar);
                 Log.d(TAG, "selectNhanVien: new NhanVien: " + newNV.toString());
 
                 listNV.add(newNV);
@@ -65,7 +66,8 @@ public class NhanVienDAO {
         ContentValues values = new ContentValues();
         values.put("maNV", nhanVien.getMaNV());
         values.put("avatar", nhanVien.getAvatar());
-        values.put("hoTen", nhanVien.getHoTen());
+        values.put("hoNV", nhanVien.getHoNV());
+        values.put("tenNV", nhanVien.getTenNV());
         values.put("gioiTinh", nhanVien.getGioiTinh());
         values.put("email", nhanVien.getEmail());
         values.put("matKhau", nhanVien.getMatKhau());
@@ -89,7 +91,8 @@ public class NhanVienDAO {
         ContentValues values = new ContentValues();
         values.put("maNV", nhanVien.getMaNV());
         values.put("avatar", nhanVien.getAvatar());
-        values.put("hoTen", nhanVien.getHoTen());
+        values.put("hoNV", nhanVien.getHoNV());
+        values.put("tenNV", nhanVien.getTenNV());
         values.put("gioiTinh", nhanVien.getGioiTinh());
         values.put("email", nhanVien.getEmail());
         values.put("matKhau", nhanVien.getMatKhau());

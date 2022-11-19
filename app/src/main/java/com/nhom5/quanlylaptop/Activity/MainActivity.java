@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
         TextView textView1 = findViewById(R.id.showMoney);
         ChangeType changeType = new ChangeType();
 
-        textView.setText(String.valueOf(changeType.stringMoneyToInt("13.990.000₫")));
-        textView1.setText(changeType.intMoneyToString(13990000));
+        textView.setText(changeType.fullNameToFirstName("Vũ Trọng Hoàng Linh"));
+        textView1.setText(changeType.fullNameToFirstName("Vũ Trọng Hoàng Anh"));
 
         startActivity(new Intent(MainActivity.this, PickRole_Activity.class));
     }

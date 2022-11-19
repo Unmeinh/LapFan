@@ -132,7 +132,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
     public Laptop setRow(int pos, @NonNull KH_GioHang_Adapter.AuthorViewHolder author) {
         Log.d(TAG, "setRow: " + pos);
         GioHang gioHang = listGio.get(pos);
-        Laptop laptop = new Laptop("null", "null", "null", "null", "0", new byte[]{});
+        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", new byte[]{});
         Log.d(TAG, "setRow: GioHang: " + gioHang.toString());
 
         for (int i = 0; i < listLap.size(); i++) {

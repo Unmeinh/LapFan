@@ -85,7 +85,7 @@
                                 android:layout_height="25dp"
                                 android:layout_marginTop="12dp"
                                 android:gravity="center"
-                                android:text="@string/s_l_ng"
+                                android:text="Số lượng: "
                                 android:textColor="@color/black"
                                 android:textSize="17sp"
                                 android:textStyle="bold" />

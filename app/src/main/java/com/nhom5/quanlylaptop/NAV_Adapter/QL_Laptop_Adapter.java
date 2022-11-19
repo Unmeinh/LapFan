@@ -81,7 +81,7 @@ public class QL_Laptop_Adapter  extends RecyclerView.Adapter<QL_Laptop_Adapter.A
     public void setRow(int pos, @NonNull AuthorViewHolder author) {
         Log.d(TAG, "setRow: " + pos);
         Laptop laptop = listLap.get(pos);
-        HangLaptop hangLaptop = new HangLaptop("null", "null", new byte[]{});
+        HangLaptop hangLaptop = new HangLaptop("No Data", "No Data", new byte[]{});
         Log.d(TAG, "setRow: Laptop: " + laptop.toString());
 
 
