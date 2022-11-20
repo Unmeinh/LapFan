@@ -27,13 +27,13 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:id="@+id/nap_tien"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="11dp"
                 android:orientation="vertical">
 
                 <ImageButton
+                    android:id="@+id/button_NapTien"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
@@ -51,6 +51,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/onclick_LK_NganHang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="11dp"

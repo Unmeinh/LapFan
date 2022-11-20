@@ -21,6 +21,7 @@ import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.FragmentKH.KH_GioHang_Fragment;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
@@ -32,12 +33,17 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
     ArrayList<Laptop> listLap;
     ArrayList<GioHang> listGio;
     GioHangDAO gioHangDAO;
+    KH_GioHang_Fragment kh_gioHang_fragment;
+    ChangeType changeType = new ChangeType();
+    TextView totalTV;
+    int total;
     String TAG = "KH_GioHang_Adapter_____";
 
-    public KH_GioHang_Adapter(ArrayList<Laptop> listLap, ArrayList<GioHang> listGio, Context context) {
+    public KH_GioHang_Adapter(ArrayList<Laptop> listLap, ArrayList<GioHang> listGio, Context context, KH_GioHang_Fragment kh_gioHang_fragment) {
         this.listLap = listLap;
         this.listGio = listGio;
         this.context = context;
+        this.kh_gioHang_fragment = kh_gioHang_fragment;
         gioHangDAO = new GioHangDAO(context);
     }
 
@@ -50,7 +56,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
 
     @Override
     public void onBindViewHolder(@NonNull KH_GioHang_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
-        Laptop laptop = setRow(pos, author);
+        Laptop laptop = setRow(pos, author, "none");
 
         author.giam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +68,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
                     GioHang gioHang = new GioHang(old.getMaGio(), old.getMaLaptop(), old.getMaKH(), old.getNgayThem(), soLuong);
                     gioHangDAO.updateGioHang(gioHang);
                     listGio = gioHangDAO.selectGioHang(null, null, null, null);
-                    setRow(pos, author);
+                    setRow(pos, author, "down");
                 } else {
                     Toast.makeText(context, "!!!Tối thiểu một sản phẩm trong giỏ hàng!!!", Toast.LENGTH_SHORT).show();
                 }
@@ -78,7 +84,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
                 GioHang gioHang = new GioHang(old.getMaGio(), old.getMaLaptop(), old.getMaKH(), old.getNgayThem(), soLuong);
                 gioHangDAO.updateGioHang(gioHang);
                 listGio = gioHangDAO.selectGioHang(null, null, null, null);
-                setRow(pos, author);
+                setRow(pos, author, "up");
             }
         });
 
@@ -129,7 +135,18 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
         }
     }
 
-    public Laptop setRow(int pos, @NonNull KH_GioHang_Adapter.AuthorViewHolder author) {
+    public String setTotal(int giaTien, String change){
+        if (change.equals("down")){
+            total = total - giaTien;
+        } else {
+            total = total + giaTien;
+        }
+        Log.d(TAG, "setTotal: total: " + total);
+        Log.d(TAG, "setTotal: total String: " + changeType.intMoneyToString(total));
+        return changeType.intMoneyToString(total);
+    }
+
+    public Laptop setRow(int pos, @NonNull KH_GioHang_Adapter.AuthorViewHolder author, String change) {
         Log.d(TAG, "setRow: " + pos);
         GioHang gioHang = listGio.get(pos);
         Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", new byte[]{});
@@ -142,15 +159,27 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
             }
         }
 
-        ChangeType changeType = new ChangeType();
         Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
         int giaTien = changeType.stringMoneyToInt(laptop.getGiaTien());
-        giaTien = giaTien * gioHang.getSoLuong();
+        int tongTien = giaTien * gioHang.getSoLuong();
 
         author.imgLaptop.setImageBitmap(anhLap);
         author.name.setText(laptop.getTenLaptop());
-        author.gia.setText(changeType.intMoneyToString(giaTien));
+        author.gia.setText(changeType.intMoneyToString(tongTien));
         author.soLuong.setText(String.valueOf(gioHang.getSoLuong()));
+
+        //Total
+        totalTV = kh_gioHang_fragment.getActivity().findViewById(R.id.textView_Total);
+        if (pos == 0){
+            totalTV.setText("0₫");
+        }
+
+        if (change.equals("none")){
+            totalTV.setText(setTotal(tongTien, change));
+        } else {
+            totalTV.setText(setTotal(giaTien, change));
+        }
+
         return laptop;
     }
 }

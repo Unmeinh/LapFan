@@ -2,98 +2,220 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#1A000000"
+    android:padding="10dp">
+
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
+
         <TextView
-            android:textSize="27sp"
-            android:text="Nhập số tiền(đ)"
-            android:layout_marginLeft="15dp"
-            android:textStyle="bold"
-            android:textColor="#0E0D0D"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/textView_HuyNapTien"
-            android:text="Hủy"
-            android:layout_marginLeft="100dp"
-            android:textSize="23sp"
-            android:textColor="#F0270C"
-            android:layout_width="wrap_content"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:text="Tài khoản ngân hàng"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
-
-    </LinearLayout>
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#ffff"
-            android:id="@+id/editText_soTienNap"
-            android:hint="Nhập số tiền VNĐ" />
-    </com.google.android.material.textfield.TextInputLayout>
-    <View
-        android:background="#B1AFAF"
-        android:layout_width="match_parent"
-        android:layout_height="6dp"/>
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/shape_round0"
+            android:orientation="vertical"
+            android:padding="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:background="#fff"
+                    android:src="@drawable/icon_mbbank" />
+
+                <TextView
+                    android:lines="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:text="Ngân Hàng MB Bank         "
+                    android:textColor="#0E0D0D"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/infinity_icon" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+                    android:gravity="center_vertical"
+                    android:text="VNĐ"
+                    android:textColor="@color/black"
+                    android:textSize="17sp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
     <LinearLayout
+        android:layout_marginTop="30dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textSize="17sp"
+            android:textColor="@color/black"
+            android:text="Đến"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_marginBottom="15dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginEnd="7dp"
+            android:background="@drawable/shape_button5"
+            android:backgroundTint="@color/white"
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginTop="5dp"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="#80000000"
+                    android:text="Ví tiền"
+                    android:textSize="11sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:text="Ví điện tử FPT Pay"
+                    android:textSize="17sp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#66000000"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textColor="#80000000"
+                    android:text="Số dư"
+                    android:textSize="11sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:gravity="center_vertical"
+                    android:text="20.000đ"
+                    android:textSize="17sp"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:background="@drawable/shape_round0"
+        android:padding="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="20dp">
+        android:orientation="vertical">
+
         <TextView
-            android:text="Số tiền nạp"
-            android:textSize="20dp"
-            android:textColor="#373737"
-            android:layout_width="wrap_content"
+            android:textColor="#80000000"
+            android:text="Số tiền"
+            android:textSize="11sp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_marginLeft="140dp"
-            android:text="0 VNĐ"
-            android:id="@+id/textView_soTienNap"
-            android:textSize="20dp"
-            android:textColor="#100F0F"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:gravity="center_vertical"
+                android:hint="Nhập số tiền..."
+                android:textColorHint="#B3000000"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_weight="8"
+                android:layout_height="match_parent"/>
+
+            <TextView
+                android:gravity="center"
+                android:text="VNĐ"
+                android:textSize="17sp"
+                android:textColor="@color/black"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_margin="20dp">
-        <TextView
-            android:text="Tổng thanh toán"
-            android:textSize="20dp"
-            android:textColor="#0E0E0E"
-            android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_marginLeft="80dp"
-            android:text="0 VNĐ"
-            android:id="@+id/textView_total"
-            android:textSize="20dp"
-            android:textStyle="bold"
-            android:textColor="#FB1A1A"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
+
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button_ThanhToan_Ngay"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center"
-        android:text="Thanh toán ngay"
-        android:textStyle="bold"
-        android:textColor="#fff"
-        android:backgroundTint="#EA2727"
-        android:layout_marginBottom="20dp"
-        android:layout_width="380dp"
+        android:id="@+id/button_Dialog"
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/shape_round0"
+        android:backgroundTint="@color/purple_500"
+        android:text="Hoàn thành"
+        android:textColor="@color/white"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
 </LinearLayout>

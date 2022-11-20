@@ -80,13 +80,6 @@ public class KH_GioHang_Fragment extends Fragment {
             }
         });
 
-        totalMoney.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
         return view;
     }
 
@@ -94,7 +87,7 @@ public class KH_GioHang_Fragment extends Fragment {
         Log.d(TAG, "setUpReView: true");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        kh_gioHang_adapter = new KH_GioHang_Adapter(listLap, listGio, getContext());
+        kh_gioHang_adapter = new KH_GioHang_Adapter(listLap, listGio, getContext(), KH_GioHang_Fragment.this);
         recyclerView.setAdapter(kh_gioHang_adapter);
     }
 }
