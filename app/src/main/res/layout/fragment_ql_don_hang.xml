@@ -48,4 +48,20 @@
         android:layout_marginTop="10dp"
         tools:listitem="@layout/cardview_nva_don_hang" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_AddDH"
+        android:layout_marginBottom="30dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_button6"
+        android:drawableStart="@drawable/add_icon"
+        android:drawableTint="@color/white"
+        android:padding="10dp"
+        android:text="  Thêm đơn hàng"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
 </RelativeLayout>

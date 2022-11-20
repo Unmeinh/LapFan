@@ -1,7 +1,6 @@
 package com.nhom5.quanlylaptop.FragmentQuanLy;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.nhom5.quanlylaptop.Activity.Laptop_Manager_Activity;
+import com.nhom5.quanlylaptop.ActivityNV_Admin.Laptop_Manager_Activity;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.UrlToBitmap;
 

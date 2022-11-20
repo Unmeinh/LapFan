@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.Laptop_Manager_Activity">
+    tools:context=".ActivityNV_Admin.Laptop_Manager_Activity">
 
     <include layout="@layout/toolbar_normal"/>
 

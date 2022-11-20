@@ -31,7 +31,7 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_danh_gia);
         useToolbar();
-        getInfoLaptop();
+        getInfoDonHang();
         setLaptopView();
     }
 
@@ -48,7 +48,7 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
         });
     }
 
-    private void getInfoLaptop() {
+    private void getInfoDonHang() {
         Intent intent = getIntent();
         if (intent != null) {
             try {

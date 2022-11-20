@@ -1,4 +1,4 @@
-package com.nhom5.quanlylaptop.Activity;
+package com.nhom5.quanlylaptop.ActivityNV_Admin;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;

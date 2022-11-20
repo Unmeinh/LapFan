@@ -125,13 +125,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-                    <EditText
-                        android:id="@+id/editText_ThanhPho"
-                        android:textColorHint="#BBA19A"
-                        android:backgroundTint="#BBA19A"
-                        android:hint="@string/nh_p_t_nh_th_nh_ph"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="50dp">
+
+                        <EditText
+                            android:textColorHint="#BBA19A"
+                            android:backgroundTint="#BBA19A"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                        <Spinner
+                            android:id="@+id/spinner_ThanhPho"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -151,13 +160,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-                    <EditText
-                        android:id="@+id/editText_QuanHuyen"
-                        android:textColorHint="#BBA19A"
-                        android:backgroundTint="#BBA19A"
-                        android:hint="@string/nh_p_qu_n_huy_n"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="50dp">
+
+                        <EditText
+                            android:textColorHint="#BBA19A"
+                            android:backgroundTint="#BBA19A"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                        <Spinner
+                            android:id="@+id/spinner_QuanHuyen"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -177,13 +195,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
-                    <EditText
-                        android:id="@+id/editText_PhuongXa"
-                        android:textColorHint="#BBA19A"
-                        android:backgroundTint="#BBA19A"
-                        android:hint="@string/nh_p_ph_ng_x"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="50dp">
+
+                        <EditText
+                            android:textColorHint="#BBA19A"
+                            android:backgroundTint="#BBA19A"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                        <Spinner
+                            android:id="@+id/spinner_PhuongXa"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"/>
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 

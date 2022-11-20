@@ -34,7 +34,7 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nv_danh_gia);
         useToolbar();
-        getInfoLaptop();
+        getInfoDonHang();
         setLaptopView();
     }
 
@@ -51,7 +51,7 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
         });
     }
 
-    private void getInfoLaptop() {
+    private void getInfoDonHang() {
         Intent intent = getIntent();
         if (intent != null) {
             try {

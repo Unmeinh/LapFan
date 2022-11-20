@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal">
+        <TextView
+            android:textSize="27sp"
+            android:text="Nhập số tiền(đ)"
+            android:layout_marginLeft="15dp"
+            android:textStyle="bold"
+            android:textColor="#0E0D0D"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/textView_HuyNapTien"
+            android:text="Hủy"
+            android:layout_marginLeft="100dp"
+            android:textSize="23sp"
+            android:textColor="#F0270C"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffff"
+            android:id="@+id/editText_soTienNap"
+            android:hint="Nhập số tiền VNĐ" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <View
+        android:background="#B1AFAF"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp">
+        <TextView
+            android:text="Số tiền nạp"
+            android:textSize="20dp"
+            android:textColor="#373737"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginLeft="140dp"
+            android:text="0 VNĐ"
+            android:id="@+id/textView_soTienNap"
+            android:textSize="20dp"
+            android:textColor="#100F0F"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_margin="20dp">
+        <TextView
+            android:text="Tổng thanh toán"
+            android:textSize="20dp"
+            android:textColor="#0E0E0E"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:layout_marginLeft="80dp"
+            android:text="0 VNĐ"
+            android:id="@+id/textView_total"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="#FB1A1A"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_ThanhToan_Ngay"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:text="Thanh toán ngay"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:backgroundTint="#EA2727"
+        android:layout_marginBottom="20dp"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

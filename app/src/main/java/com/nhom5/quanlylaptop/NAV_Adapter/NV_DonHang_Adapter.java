@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nhom5.quanlylaptop.Activity.ChiTiet_DonHang_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_DanhGia_Activity;
 import com.nhom5.quanlylaptop.ActivityNV_Admin.NV_DanhGia_Activity;
 import com.nhom5.quanlylaptop.Entity.DonHang;
@@ -59,6 +60,23 @@ public class NV_DonHang_Adapter extends RecyclerView.Adapter<NV_DonHang_Adapter.
                     bundle.putBinder("donhang", donHang);
                     Log.d(TAG, "onBindViewHolder: DonHang: " + donHang.toString());
                     intent.putExtras(bundle);
+                    context.startActivity(intent);
+                } else {
+                    Toast.makeText(context, "Load thông tin sản phẩm lỗi!\nXin vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        author.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (donHang != null) {
+                    Intent intent = new Intent(context, ChiTiet_DonHang_Activity.class);
+                    final Bundle bundle = new Bundle();
+                    bundle.putBinder("donhang", donHang);
+                    Log.d(TAG, "onBindViewHolder: DonHang: " + donHang.toString());
+                    intent.putExtras(bundle);
+                    intent.putExtra("typeUser", "NV");
                     context.startActivity(intent);
                 } else {
                     Toast.makeText(context, "Load thông tin sản phẩm lỗi!\nXin vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
