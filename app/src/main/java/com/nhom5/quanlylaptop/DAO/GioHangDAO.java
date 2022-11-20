@@ -78,8 +78,10 @@ public class GioHangDAO {
 
         long ketqua = db.insert("TB_GioHang", null, values);
         if (ketqua > 0) {
+            Toast.makeText(context, "Đã thêm vào giỏ hàng!", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "insertGioHang: Thêm thành công"); 
         } else {
+            Toast.makeText(context, "Lỗi thêm vào giỏ hàng!", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "insertGioHang: Thêm thất bại");  
         }
         db.close();

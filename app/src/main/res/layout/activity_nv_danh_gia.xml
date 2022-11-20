@@ -21,25 +21,25 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/layout_Review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#F44336"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp">
 
                 <ImageView
+                    android:id="@+id/imageView_Review"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:src="@drawable/close_icon"
                     app:tint="@color/white" />
 
                 <TextView
+                    android:id="@+id/textView_DetailReview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="20dp"
                     android:lineSpacingExtra="5dp"
-                    android:text="Khách hàng chưa đánh giá đơn hàng này!"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -139,27 +139,27 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/start_img" />
+                        android:src="@drawable/star_img" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/start_img" />
+                        android:src="@drawable/star_img" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/start_img" />
+                        android:src="@drawable/star_img" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/start_img" />
+                        android:src="@drawable/star_img" />
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/start_img" />
+                        android:src="@drawable/star_img" />
 
                 </LinearLayout>
 
@@ -216,8 +216,6 @@
                     </LinearLayout>
 
                 </LinearLayout>
-
-
 
             </LinearLayout>
 

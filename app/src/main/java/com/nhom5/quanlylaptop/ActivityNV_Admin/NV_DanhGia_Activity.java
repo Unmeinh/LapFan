@@ -6,11 +6,15 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
@@ -63,6 +67,25 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
         }
     }
 
+    private void setReview(String isRate){
+        LinearLayout layoutReview = findViewById(R.id.layout_Review);
+        TextView detailReview = findViewById(R.id.textView_DetailReview);
+        ImageView imageReview = findViewById(R.id.imageView_Review);
+        EditText reviewKH = findViewById(R.id.editText_DanhGia);
+
+        if (isRate.equals("true")){
+            detailReview.setText("Khách hàng đã đánh giá đơn hàng này!");
+            layoutReview.setBackgroundColor(Color.parseColor("#26AB9A"));
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.check_icon);
+            imageReview.setImageBitmap(bitmap);
+        } else {
+            detailReview.setText("Khách hàng chưa đánh giá đơn hàng này!");
+            layoutReview.setBackgroundColor(Color.parseColor("#F44336"));
+            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.crossed_icon);
+            imageReview.setImageBitmap(bitmap);
+        }
+    }
+
     private void setLaptopView() {
         ImageView imageLaptop = findViewById(R.id.imageView_Laptop);
         ImageView imageUser = findViewById(R.id.imageView_Avatar);
@@ -108,5 +131,7 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
         soLuong.setText(String.valueOf(donHang.getSoLuong()));
         nameKH.setText(khachHang.getHoKH() + " " + khachHang.getTenKH());
         email.setText(khachHang.getEmail());
+
+        setReview(donHang.getIsDanhGia());
     }
 }

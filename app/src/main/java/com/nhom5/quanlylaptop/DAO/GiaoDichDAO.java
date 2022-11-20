@@ -6,6 +6,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.Database.QLLaptopDB;
 import com.nhom5.quanlylaptop.Entity.DiaChi;
@@ -75,8 +76,10 @@ public class GiaoDichDAO {
 
         long ketqua = db.insert("TB_GiaoDich", null, values);
         if (ketqua > 0) {
+            Toast.makeText(context, "Giao dịch thành công!", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "insertGiaoDich: Thêm thành công");
         } else {
+            Toast.makeText(context, "Giao dịch thất bại!", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "insertGiaoDich: Thêm thất bại");
         }
         db.close();

@@ -85,10 +85,14 @@ public class ChangeType {
         for (int i = length; i >= 0; i--) {
             String iS = sMoney.substring(i, i + 1);
             int check = (length - i) % 3;
+            if (i == length){
+                money = iS + money;
+            } else {
             if (check == 0) {
                 money = iS + "." + money;
             } else {
                 money = iS + money;
+            }
             }
         }
         Log.d(TAG, "intMoneyToString: Money: " + money);
@@ -105,14 +109,14 @@ public class ChangeType {
             }
         }
 
-        if (index.size() > 0){
-            if (index.size() == 1){
+        if (index.size() > 0) {
+            if (index.size() == 1) {
                 int lastIndex = index.get(0);
                 firstName = name.substring(lastIndex);
             } else {
                 int lastIndex = index.get(index.size() - 1);
                 firstName = name.substring(lastIndex);
-                if (firstName.equals("Anh")){
+                if (firstName.equals("Anh")) {
                     lastIndex = index.get(index.size() - 2);
                     firstName = name.substring(lastIndex);
                 }

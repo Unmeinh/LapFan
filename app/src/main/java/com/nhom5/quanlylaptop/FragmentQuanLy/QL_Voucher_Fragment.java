@@ -57,7 +57,7 @@ public class QL_Voucher_Fragment extends Fragment {
         return view;
     }
 
-    public void setUpRecyclerView(Context context) {
+    private void setUpRecyclerView(Context context) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
         if (listVou == null) {

@@ -182,27 +182,27 @@
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/start_img" />
+                    android:src="@drawable/star_img" />
 
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/start_img" />
+                    android:src="@drawable/star_img" />
 
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/start_img" />
+                    android:src="@drawable/star_img" />
 
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/start_img" />
+                    android:src="@drawable/star_img" />
 
                 <ImageView
                     android:layout_width="15dp"
                     android:layout_height="15dp"
-                    android:src="@drawable/start_img" />
+                    android:src="@drawable/star_img" />
 
             </LinearLayout>
 
