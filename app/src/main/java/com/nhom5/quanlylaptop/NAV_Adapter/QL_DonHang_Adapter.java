@@ -33,7 +33,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
     ArrayList<Laptop> listLap;
     ArrayList<KhachHang> listKH;
     ArrayList<DonHang> listDon;
-    String TAG = "KH_DonHang_Adapter_____";
+    String TAG = "QL_DonHang_Adapter_____";
 
     public QL_DonHang_Adapter(ArrayList<Laptop> listLap, ArrayList<DonHang> listDon, ArrayList<KhachHang> listKH, Context context) {
         this.listLap = listLap;

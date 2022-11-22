@@ -19,6 +19,7 @@ import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_GioHang_Adapter;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_ThanhToan_Adapter;
+import com.nhom5.quanlylaptop.KH_Loader.KH_ThanhToan_Loader;
 import com.nhom5.quanlylaptop.R;
 
 import java.util.ArrayList;
@@ -45,31 +46,10 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
         getInput();
         doiDiaChi();
         useToolbar();
-        if (input.equals("giohang")){
-            setUpReViewGH();
-        } else {
-            setUpReViewMN();
-        }
-    }
 
-    private void setUpReViewGH() {
-        Log.d(TAG, "setUpReView: true");
-        laptopDAO = new LaptopDAO(context);
-        gioHangDAO = new GioHangDAO(context);
-        listLap = laptopDAO.selectLaptop(null, null, null, null);
-        listGio = gioHangDAO.selectGioHang(null, null, null, null);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, listGio, context);
-        recyclerView.setAdapter(kh_thanhToan_adapter);
-    }
-
-    private void setUpReViewMN() {
-        Log.d(TAG, "setUpReView: true");
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, context);
-        recyclerView.setAdapter(kh_thanhToan_adapter);
+        KH_ThanhToan_Loader kh_thanhToan_loader = new KH_ThanhToan_Loader(KH_ThanhToan_Activity.this, context,
+                listLap, input);
+        kh_thanhToan_loader.execute("");
     }
 
     private void doiDiaChi() {

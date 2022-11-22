@@ -18,6 +18,7 @@ import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_DonHang_Adapter;
 import com.nhom5.quanlylaptop.NAV_Adapter.NV_DonHang_Adapter;
+import com.nhom5.quanlylaptop.NVA_Loader.NV_DonHang_Loader;
 import com.nhom5.quanlylaptop.R;
 
 import java.util.ArrayList;
@@ -25,12 +26,6 @@ import java.util.ArrayList;
 public class NV_DonHang_Activity extends AppCompatActivity {
 
     Context context;
-    LaptopDAO laptopDAO;
-    DonHangDAO donHangDAO;
-    ArrayList<Laptop> listLap = new ArrayList<>();
-    ArrayList<DonHang> listDon = new ArrayList<>();
-    NV_DonHang_Adapter nv_donHang_adapter;
-    RecyclerView recyclerView;
     String TAG = "NV_DonHang_Activity_____";
 
     @Override
@@ -38,17 +33,9 @@ public class NV_DonHang_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nv_don_hang);
         context = this;
-        recyclerView = findViewById(R.id.recyclerView_NV_DonHang);
+        NV_DonHang_Loader nv_donHang_loader = new NV_DonHang_Loader(NV_DonHang_Activity.this, context);
+        nv_donHang_loader.execute("");
 
-        laptopDAO = new LaptopDAO(context);
-        donHangDAO = new DonHangDAO(context);
-        listLap = laptopDAO.selectLaptop(null, null, null, null);
-        listDon = donHangDAO.selectDonHang(null, null, null, null);
-        if (listDon != null){
-            if (listDon.size() > 0){
-                setUpReView();
-            }
-        }
         useToolbar();
     }
 
@@ -63,13 +50,5 @@ public class NV_DonHang_Activity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    private void setUpReView() {
-        Log.d(TAG, "setUpReView: true");
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        nv_donHang_adapter = new NV_DonHang_Adapter(listLap, listDon, context);
-        recyclerView.setAdapter(nv_donHang_adapter);
     }
 }

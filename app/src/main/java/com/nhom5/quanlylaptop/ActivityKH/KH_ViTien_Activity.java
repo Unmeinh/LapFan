@@ -24,6 +24,7 @@ import com.nhom5.quanlylaptop.Entity.GiaoDich;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.ViTien;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_GiaoDich_Adapter;
+import com.nhom5.quanlylaptop.KH_Loader.KH_GiaoDich_Loader;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Voucher_Adapter;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
@@ -32,12 +33,10 @@ import java.util.ArrayList;
 
 public class KH_ViTien_Activity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
     ArrayList<ViTien> listVi = new ArrayList<>();
-    ArrayList<GiaoDich> listGD = new ArrayList<>();
+    ArrayList<ViTien> listGD = new ArrayList<>();
     ViTienDAO viTienDAO;
     GiaoDichDAO giaoDichDAO;
-    KH_GiaoDich_Adapter kh_giaoDich_adapter;
     Context context = this;
     ChangeType changeType = new ChangeType();
 
@@ -45,23 +44,14 @@ public class KH_ViTien_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_vi_tien);
-        recyclerView = findViewById(R.id.recyclerView_GiaoDich);
         viTienDAO = new ViTienDAO(context);
         giaoDichDAO = new GiaoDichDAO(context);
-
         listVi = viTienDAO.selectViTien(null, null, null, null);
         listGD = giaoDichDAO.selectGiaoDich(null, null, null, null);
+
+        KH_GiaoDich_Loader kh_giaoDich_loader = new KH_GiaoDich_Loader(KH_ViTien_Activity.this, context);
+        kh_giaoDich_loader.execute("");
         useToolbar();
-
-        if (listGD != null){
-            if (listGD.size() > 0){
-                setUpRecyclerView(context);
-            } else {
-                addDemoGD();
-                setUpRecyclerView(context);
-            }
-        }
-
         clickNapTien();
     }
 
@@ -87,32 +77,6 @@ public class KH_ViTien_Activity extends AppCompatActivity {
         });
     }
 
-    private void addDemoGD(){
-        GiaoDich gd0 = new GiaoDich("GD0", "No Data", "Nạp tiền", "Nạp tiền vào ví FPT Pay",
-                changeType.intMoneyToString(100000), "2022-11-20");
-        giaoDichDAO.insertGiaoDich(gd0);
-
-        GiaoDich gd1 = new GiaoDich("GD1", "No Data", "Nạp tiền", "Nạp tiền vào ví FPT Pay",
-                changeType.intMoneyToString(1000000000), "2022-11-20");
-        giaoDichDAO.insertGiaoDich(gd1);
-
-        GiaoDich gd2 = new GiaoDich("GD2", "No Data", "Thanh toán đơn hàng", "Thanh toán đơn hàng Laptop...",
-                changeType.intMoneyToString(47900000), "2022-11-22");
-        giaoDichDAO.insertGiaoDich(gd2);
-
-        GiaoDich gd3 = new GiaoDich("GD3", "No Data", "Thanh toán đơn hàng", "Thanh toán đơn hàng Laptop...",
-                changeType.intMoneyToString(35500000), "2022-11-25");
-        giaoDichDAO.insertGiaoDich(gd3);
-
-        GiaoDich gd4 = new GiaoDich("GD4", "No Data", "Thanh toán đơn hàng", "Thanh toán đơn hàng Laptop Macbook",
-                changeType.intMoneyToString(25900000), "2022-11-27");
-        giaoDichDAO.insertGiaoDich(gd4);
-
-        GiaoDich gd5 = new GiaoDich("GD5", "No Data", "Nạp tiền", "Nạp tiền vào ví FPT Pay",
-                changeType.intMoneyToString(100000000), "2022-11-29");
-        giaoDichDAO.insertGiaoDich(gd5);
-    }
-
     private void useToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_ViTien));
         TextView soTien = findViewById(R.id.textView_SoTien);
@@ -131,10 +95,4 @@ public class KH_ViTien_Activity extends AppCompatActivity {
         });
     }
 
-    private void setUpRecyclerView(Context context) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        kh_giaoDich_adapter = new KH_GiaoDich_Adapter(listGD, context);
-        recyclerView.setAdapter(kh_giaoDich_adapter);
-    }
 }

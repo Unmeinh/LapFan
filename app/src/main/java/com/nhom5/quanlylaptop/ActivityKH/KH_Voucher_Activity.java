@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.DAO.VoucherDAO;
 import com.nhom5.quanlylaptop.Entity.Voucher;
+import com.nhom5.quanlylaptop.KH_Loader.KH_Voucher_Loader;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Voucher_Adapter;
 import com.nhom5.quanlylaptop.R;
 
@@ -25,21 +26,16 @@ import java.util.List;
 
 public class KH_Voucher_Activity extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    ArrayList<Voucher> listVou = new ArrayList<>();
-    VoucherDAO voucherDAO;
-    QL_Voucher_Adapter ql_voucher_adapter;
     String TAG = "KH_Voucher_Activity_____";
     Context context = this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_voucher);
-        recyclerView = findViewById(R.id.recyclerView_Voucher_KH);
-        voucherDAO = new VoucherDAO(context);
 
-        listVou = voucherDAO.selectVoucher(null, null, null, null);
-        setUpRecyclerView(context);
+        KH_Voucher_Loader kh_voucher_loader = new KH_Voucher_Loader(KH_Voucher_Activity.this, context);
+        kh_voucher_loader.execute("");
+
         useToolbar();
     }
 
@@ -56,10 +52,4 @@ public class KH_Voucher_Activity extends AppCompatActivity {
         });
     }
 
-    private void setUpRecyclerView(Context context) {
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        ql_voucher_adapter = new QL_Voucher_Adapter(listVou, context);
-        recyclerView.setAdapter(ql_voucher_adapter);
-    }
 }

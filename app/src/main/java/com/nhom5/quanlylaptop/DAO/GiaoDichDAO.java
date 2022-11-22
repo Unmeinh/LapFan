@@ -76,10 +76,8 @@ public class GiaoDichDAO {
 
         long ketqua = db.insert("TB_GiaoDich", null, values);
         if (ketqua > 0) {
-            Toast.makeText(context, "Giao dịch thành công!", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "insertGiaoDich: Thêm thành công");
         } else {
-            Toast.makeText(context, "Giao dịch thất bại!", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "insertGiaoDich: Thêm thất bại");
         }
         db.close();

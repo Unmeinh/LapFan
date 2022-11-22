@@ -7,7 +7,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.nhom5.quanlylaptop.FragmentKH.KH_GioHang_Fragment;
 import com.nhom5.quanlylaptop.FragmentKH.KH_Home_Fragment;
-import com.nhom5.quanlylaptop.FragmentKH.KH_Notifi_Fragment;
+import com.nhom5.quanlylaptop.FragmentKH.KH_ThongBao_Fragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.LaptopDellFragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.LaptopAsusFragment;
 import com.nhom5.quanlylaptop.FragmentLaptop.LaptopHPFragment;
@@ -32,7 +32,7 @@ public class KH_PagerAdapter_Drawer extends FragmentStatePagerAdapter {
                 frag = new KH_Home_Fragment();
                 break;
             case 1:
-                frag = new KH_Notifi_Fragment();
+                frag = new KH_ThongBao_Fragment();
                 break;
             case 2:
                 frag = new LaptopDellFragment();

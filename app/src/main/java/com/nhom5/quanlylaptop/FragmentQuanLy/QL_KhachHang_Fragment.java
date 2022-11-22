@@ -26,6 +26,7 @@ import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_DonHang_Adapter;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_KhachHang_Adapter;
+import com.nhom5.quanlylaptop.NVA_Loader.QL_KhachHang_Loader;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
@@ -39,9 +40,6 @@ public class QL_KhachHang_Fragment extends Fragment {
     AppCompatButton addKH;
     KhachHangDAO khachHangDAO;
     ArrayList<KhachHang> listKH = new ArrayList<>();
-    QL_KhachHang_Adapter ql_khachHang_adapter;
-    RecyclerView recyclerView;
-    TextView countKH;
     ChangeType changeType = new ChangeType();
     String TAG = "QL_KhachHang_Fragment_____";
 
@@ -50,30 +48,16 @@ public class QL_KhachHang_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ql_khach_hang, container, false);
         addKH = view.findViewById(R.id.button_AddKH);
-        recyclerView = view.findViewById(R.id.recyclerView_NVA_KhachHang);
-        countKH = view.findViewById(R.id.textView_Soluong);
 
         khachHangDAO = new KhachHangDAO(getContext());
-        setUpReView();
+        QL_KhachHang_Loader qlKhachHangLoader = new QL_KhachHang_Loader(QL_KhachHang_Fragment.this, getContext());
+        qlKhachHangLoader.execute("");
         openDialog();
         return view;
     }
 
-    private void setCountKH(){
-        countKH.setText(String.valueOf(listKH.size()));
-    }
-
-    private void setUpReView() {
-        Log.d(TAG, "setUpReView: true");
-        listKH = khachHangDAO.selectKhachHang(null, null, null, null);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        ql_khachHang_adapter = new QL_KhachHang_Adapter(listKH, getContext());
-        recyclerView.setAdapter(ql_khachHang_adapter);
-        setCountKH();
-    }
-
     private void openDialog() {
+        listKH = khachHangDAO.selectKhachHang(null, null, null, null);
         View view = getLayoutInflater().inflate(R.layout.dialog_add_edit_sth, null);
         TextView titleDialog = view.findViewById(R.id.textView_Title_Dialog);
         TextInputLayout textInput_LastName = view.findViewById(R.id.textInput_LastName);
@@ -108,7 +92,8 @@ public class QL_KhachHang_Fragment extends Fragment {
                         email, password, "No Data", sdt, "false", avatar);
                 khachHangDAO.insertKhachHang(khachHang);
                 dialog.cancel();
-                setUpReView();
+                QL_KhachHang_Loader qlKhachHangLoader = new QL_KhachHang_Loader(QL_KhachHang_Fragment.this, getContext());
+                qlKhachHangLoader.execute("");
             }
         });
     }

@@ -12,6 +12,8 @@ public class Laptop extends Binder {
     private String giaTien;
     private byte[] anhLaptop;
 
+    public Laptop(){}
+
     public Laptop(String maLaptop, String maHangLap, String tenLaptop, String thongSoKT, String giaTien, byte[] anhLaptop) {
         this.maLaptop = maLaptop;
         this.maHangLap = maHangLap;

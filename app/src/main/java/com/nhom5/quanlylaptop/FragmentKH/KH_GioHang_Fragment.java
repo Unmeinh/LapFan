@@ -24,6 +24,7 @@ import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_GioHang_Adapter;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_Laptop_Adapter;
+import com.nhom5.quanlylaptop.KH_Loader.KH_GioHang_Loader;
 import com.nhom5.quanlylaptop.R;
 
 import java.util.ArrayList;
@@ -33,13 +34,6 @@ public class KH_GioHang_Fragment extends Fragment {
     LinearLayout emptyGHLayout;
     RelativeLayout viewGHLayout;
     AppCompatButton buttonPayNow;
-    TextView totalMoney;
-    LaptopDAO laptopDAO;
-    GioHangDAO gioHangDAO;
-    ArrayList<Laptop> listLap = new ArrayList<>();
-    ArrayList<GioHang> listGio = new ArrayList<>();
-    KH_GioHang_Adapter kh_gioHang_adapter;
-    RecyclerView recyclerView;
     String TAG = "KH_GioHang_Fragment_____";
 
     @Override
@@ -49,27 +43,10 @@ public class KH_GioHang_Fragment extends Fragment {
         emptyGHLayout = view.findViewById(R.id.empty_GioHang);
         viewGHLayout = view.findViewById(R.id.view_Gio_Hang);
         buttonPayNow = view.findViewById(R.id.button_PayNow);
-        totalMoney = view.findViewById(R.id.textView_Total);
-        recyclerView = view.findViewById(R.id.recyclerView_GioHang);
 
-        laptopDAO = new LaptopDAO(getContext());
-        gioHangDAO = new GioHangDAO(getContext());
-        listLap = laptopDAO.selectLaptop(null, null, null, null);
-        listGio = gioHangDAO.selectGioHang(null, null, null, null);
-//        listGio = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{"LDell"}, null);
-
-        if (listGio != null){
-            if (listGio.size() == 0){
-                Log.d(TAG, "onCreateView: Giỏ Hàng null");
-                viewGHLayout.setVisibility(View.GONE);
-                emptyGHLayout.setVisibility(View.VISIBLE);
-            } else {
-                Log.d(TAG, "onCreateView: Giỏ Hàng not null: " + listGio.size());
-                emptyGHLayout.setVisibility(View.GONE);
-                viewGHLayout.setVisibility(View.VISIBLE);
-                setUpReView();
-            }
-        }
+        setLayout();
+        KH_GioHang_Loader kh_gioHang_loader = new KH_GioHang_Loader(KH_GioHang_Fragment.this, getContext(), view.findViewById(R.id.recyclerView_GioHang));
+        kh_gioHang_loader.execute("");
 
         buttonPayNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,11 +60,20 @@ public class KH_GioHang_Fragment extends Fragment {
         return view;
     }
 
-    private void setUpReView(){
-        Log.d(TAG, "setUpReView: true");
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        kh_gioHang_adapter = new KH_GioHang_Adapter(listLap, listGio, getContext(), KH_GioHang_Fragment.this);
-        recyclerView.setAdapter(kh_gioHang_adapter);
+    private void setLayout(){
+        GioHangDAO gioHangDAO = new GioHangDAO(getContext());
+        ArrayList<GioHang> listGio = gioHangDAO.selectGioHang(null, null, null, null);
+        if (listGio != null){
+            if (listGio.size() == 0){
+                Log.d(TAG, "onCreateView: Giỏ Hàng null");
+                viewGHLayout.setVisibility(View.GONE);
+                emptyGHLayout.setVisibility(View.VISIBLE);
+            } else {
+                Log.d(TAG, "onCreateView: Giỏ Hàng not null: " + listGio.size());
+                emptyGHLayout.setVisibility(View.GONE);
+                viewGHLayout.setVisibility(View.VISIBLE);
+            }
+        }
     }
+
 }

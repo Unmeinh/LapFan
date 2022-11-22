@@ -65,40 +65,10 @@ public class UrlToBitmap extends AsyncTask<String, Void, Bitmap[]> {
     @Override
     protected void onPostExecute(Bitmap[] listBitmap) {
         super.onPostExecute(listBitmap);
-        recyclerView = tab_laptop_fragment.getView().findViewById(R.id.recyclerView_Laptop);
-//        tab_laptop_fragment.setBitmap(listBitmap);
-        listHang = hangLaptopDAO.selectHangLaptop(null, null, null, null);
-        listLap = laptopDAO.selectLaptop(null, null, null, null);
-        setUpGridView(listBitmap);
-    }
-
-
-    public void setUpGridView(Bitmap[] bitmaps) {
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(context, 2);
-        recyclerView.setLayoutManager(mLayoutManager);
-        if (listLap == null) {
-            Log.d(TAG, "onCreateView: list null");
-            addDemoLaptop(bitmaps);
-            ql_laptop_adapter = new QL_Laptop_Adapter(listLap,listHang, context);
-            recyclerView.setAdapter(ql_laptop_adapter);
-        } else {
-            if (listLap.size() == 0) {
-                Log.d(TAG, "onCreateView: list not null");
-                Log.d(TAG, "onCreateView: list size = " + listLap.size());
-                addDemoLaptop(bitmaps);
-                ql_laptop_adapter = new QL_Laptop_Adapter(listLap,listHang, context);
-                recyclerView.setAdapter(ql_laptop_adapter);
-            } else {
-                Log.d(TAG, "onCreateView: list not null");
-                Log.d(TAG, "onCreateView: list size = " + listLap.size());
-                ql_laptop_adapter = new QL_Laptop_Adapter(listLap,listHang, context);
-                recyclerView.setAdapter(ql_laptop_adapter);
-            }
-        }
+        recyclerView = tab_laptop_fragment.getActivity().findViewById(R.id.recyclerView_Laptop);
     }
 
     public void addDemoLaptop(Bitmap[] bitmaps) {
-
         if (bitmaps != null){
             Bitmap bm1 = bitmaps[0];
             if (bm1 != null) {

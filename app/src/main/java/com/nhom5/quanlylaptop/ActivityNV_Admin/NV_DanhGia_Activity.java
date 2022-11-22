@@ -76,13 +76,12 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
         if (isRate.equals("true")){
             detailReview.setText("Khách hàng đã đánh giá đơn hàng này!");
             layoutReview.setBackgroundColor(Color.parseColor("#26AB9A"));
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.check_icon);
-            imageReview.setImageBitmap(bitmap);
-        } else {
+            imageReview.setImageResource(R.drawable.check_icon);
+        }
+        if (isRate.equals("false")){
             detailReview.setText("Khách hàng chưa đánh giá đơn hàng này!");
             layoutReview.setBackgroundColor(Color.parseColor("#F44336"));
-            Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.crossed_icon);
-            imageReview.setImageBitmap(bitmap);
+            imageReview.setImageResource(R.drawable.crossed_icon);
         }
     }
 

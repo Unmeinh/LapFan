@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.quanlylaptop.Entity.ThongBao;
-import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.R;
 
 import java.util.ArrayList;
@@ -31,7 +30,7 @@ public class KH_ThongBao_Adapter  extends RecyclerView.Adapter<KH_ThongBao_Adapt
     @NonNull
     @Override
     public KH_ThongBao_Adapter.AuthorViewHolder onCreateViewHolder(@NonNull ViewGroup vGroup, int i) {
-        View v = LayoutInflater.from(context).inflate(R.layout.cardview_kh_notifi, vGroup, false);
+        View v = LayoutInflater.from(context).inflate(R.layout.cardview_kh_thongbao, vGroup, false);
         return new KH_ThongBao_Adapter.AuthorViewHolder(v);
     }
 

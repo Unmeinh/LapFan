@@ -18,6 +18,7 @@ import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_Laptop_Adapter;
+import com.nhom5.quanlylaptop.KH_Loader.KH_Laptop_Loader;
 import com.nhom5.quanlylaptop.R;
 
 import java.util.ArrayList;
@@ -26,22 +27,12 @@ import java.util.List;
 
 public class LaptopAsusFragment extends Fragment {
 
-    LaptopDAO laptopDAO;
-    ArrayList<Laptop> listLap = new ArrayList<>();
-    KH_Laptop_Adapter kh_laptop_adapter;
-    RecyclerView recyclerView;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_laptop_asus, container, false);
-        recyclerView = view.findViewById(R.id.recyclerView_Laptop_Asus);
-        laptopDAO = new LaptopDAO(getContext());
-        listLap = laptopDAO.selectLaptop(null, "maHangLap=?", new String[]{"LAsus"}, null);
-        kh_laptop_adapter = new KH_Laptop_Adapter(listLap, getContext());
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(kh_laptop_adapter);
+        KH_Laptop_Loader kh_laptop_loader = new KH_Laptop_Loader(LaptopAsusFragment.this, getContext());
+        kh_laptop_loader.execute("LAsus");
         return view;
     }
 }

@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentKH.KH_Notifi_Fragment">
+    tools:context=".FragmentKH.KH_ThongBao_Fragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_Notifi"
+        android:id="@+id/recyclerView_ThongBao"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="10dp"
-        tools:listitem="@layout/cardview_kh_notifi" />
+        tools:listitem="@layout/cardview_kh_thongbao" />
 
 </FrameLayout>

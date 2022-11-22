@@ -1,58 +1,72 @@
-package com.nhom5.quanlylaptop.FragmentKH;
+package com.nhom5.quanlylaptop.KH_Loader;
 
-import android.os.Bundle;
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.SimpleAdapter;
-
-import com.nhom5.quanlylaptop.DAO.GioHangDAO;
-import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
 import com.nhom5.quanlylaptop.Entity.ThongBao;
-import com.nhom5.quanlylaptop.KH_Adapter.KH_GioHang_Adapter;
+import com.nhom5.quanlylaptop.FragmentKH.KH_ThongBao_Fragment;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_ThongBao_Adapter;
 import com.nhom5.quanlylaptop.R;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
-public class KH_Notifi_Fragment extends Fragment {
-
-    ArrayList<ThongBao> listTB = new ArrayList<>();
-    KH_ThongBao_Adapter kh_thongBao_adapter;
+public class KH_ThongBao_Loader extends AsyncTask<String, Void, ArrayList<ThongBao>> {
+    @SuppressLint("StaticFieldLeak")
+    KH_ThongBao_Fragment khThongBaoFragment;
+    @SuppressLint("StaticFieldLeak")
+    Context context;
     ThongBaoDAO thongBaoDAO;
-    RecyclerView recyclerView;
-    String TAG = "KH_GioHang_Fragment_____";
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_kh_notifi, container, false);
-        recyclerView = view.findViewById(R.id.recyclerView_Notifi);
+    String TAG = "NV_DonHang_Loader_____";
+    @SuppressLint("StaticFieldLeak")
+    RecyclerView reView;
 
-        thongBaoDAO = new ThongBaoDAO(getContext());
-        listTB = thongBaoDAO.selectThongBao(null, null, null, null);
-        addDemoTB();
-        return view;
+    public KH_ThongBao_Loader(KH_ThongBao_Fragment khThongBaoFragment, Context context, RecyclerView reView) {
+        this.khThongBaoFragment = khThongBaoFragment;
+        this.context = context;
+        this.reView = reView;
     }
 
-    private void addDemoTB(){
+    @Override
+    protected ArrayList<ThongBao> doInBackground(String... strings) {
+        thongBaoDAO = new ThongBaoDAO(context);
+
+        String maKH = strings[0];
+
+        ArrayList<ThongBao> listTB = thongBaoDAO.selectThongBao(null, null, null, null);
         if (listTB != null){
             if (listTB.size() == 0){
                 addDemoDataTB();
-                setUpReView();
-            } else {
-                setUpReView();
             }
         }
+
+        return thongBaoDAO.selectThongBao(null, null, null, null);
     }
+
+    @Override
+    protected void onPostExecute(ArrayList<ThongBao> listTB) {
+        super.onPostExecute(listTB);
+
+        if (khThongBaoFragment != null){
+//            reView = khThongBaoFragment.getActivity().findViewById(R.id.recyclerView_ThongBao);
+            setupReView(listTB, reView);
+        }
+    }
+
+    private void setupReView(ArrayList<ThongBao> listTB, RecyclerView recyclerView) {
+        Log.d(TAG, "setUpReView: true");
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        KH_ThongBao_Adapter kh_thongBao_adapter = new KH_ThongBao_Adapter(listTB, context);
+        recyclerView.setAdapter(kh_thongBao_adapter);
+    }
+
 
     private void addDemoDataTB(){
         ThongBao tb1 = new ThongBao("TB1", "No Data", "Chào mừng khách hàng",
@@ -99,14 +113,4 @@ public class KH_Notifi_Fragment extends Fragment {
                 "Bạn vừa đặt mua 1 chiếc Laptop MSI Creator Z16P B12UGST i7 12700H với giá 79.490.000₫","2022-11-18");
         thongBaoDAO.insertThongBao(tb11);
     }
-
-    private void setUpReView(){
-        Log.d(TAG, "setUpReView: true");
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
-        kh_thongBao_adapter = new KH_ThongBao_Adapter(listTB, getContext());
-        recyclerView.setAdapter(kh_thongBao_adapter);
-    }
-
-
 }

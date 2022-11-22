@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nhom5.quanlylaptop.ActivityNV_Admin.Laptop_Manager_Activity;
+import com.nhom5.quanlylaptop.NVA_Loader.QL_Laptop_Loader;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.UrlToBitmap;
 
@@ -19,6 +20,7 @@ public class Tab_Laptop_Fragment extends Fragment {
     FloatingActionButton themLaptop;
     String TAG = "Tab_Laptop_Fragment_____";
     UrlToBitmap urlToBitmap;
+    QL_Laptop_Loader QL_laptop_loader;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -38,6 +40,9 @@ public class Tab_Laptop_Fragment extends Fragment {
                 "https://cdn.tgdd.vn/Products/Images/44/260171/dell-gaming-g15-5515-r5-p105f004dgr-291121-114930-600x600.jpg"};
         urlToBitmap = new UrlToBitmap(Tab_Laptop_Fragment.this, getContext());
         urlToBitmap.execute(url);
+
+        QL_laptop_loader = new QL_Laptop_Loader(Tab_Laptop_Fragment.this, getContext());
+        QL_laptop_loader.execute("");
 
         themLaptop.setOnClickListener(new View.OnClickListener() {
             @Override
