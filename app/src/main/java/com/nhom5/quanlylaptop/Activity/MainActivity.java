@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,12 +18,19 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        TextView textView = findViewById(R.id.showText);
-        TextView textView1 = findViewById(R.id.showMoney);
-        ChangeType changeType = new ChangeType();
 
-        textView.setText(changeType.fullNameToFirstName("Vũ Trọng Hoàng Linh"));
-        textView1.setText(changeType.fullNameToFirstName("Vũ Trọng Hoàng Anh"));
+        RatingBar ratingGet = findViewById(R.id.ratingGet);
+        RatingBar ratingSet = findViewById(R.id.ratingSet);
+
+        ratingGet.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                ratingSet.setRating(rating);
+            }
+        });
+
+        ratingGet.setRating(0);
+        ratingSet.setRating(4.8F);
 
         startActivity(new Intent(MainActivity.this, PickRole_Activity.class));
     }

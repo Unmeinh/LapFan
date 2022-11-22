@@ -85,18 +85,44 @@ public class ChangeType {
         for (int i = length; i >= 0; i--) {
             String iS = sMoney.substring(i, i + 1);
             int check = (length - i) % 3;
-            if (i == length){
+            if (i == length) {
                 money = iS + money;
             } else {
-            if (check == 0) {
-                money = iS + "." + money;
-            } else {
-                money = iS + money;
-            }
+                if (check == 0) {
+                    money = iS + "." + money;
+                } else {
+                    money = iS + money;
+                }
             }
         }
         Log.d(TAG, "intMoneyToString: Money: " + money);
         return money;
+    }
+
+    public float getRatingFloat(float rating) {
+        if (rating > 0 && rating < 0.5F) {
+            return 0;
+        } else if (rating > 0.5F && rating < 1) {
+            return 0.5F;
+        } else if (rating > 1 && rating < 1.5F) {
+            return 1;
+        } else if (rating > 1.5F && rating < 2) {
+            return 1.5F;
+        } else if (rating > 2 && rating < 2.5F) {
+            return 2;
+        } else if (rating > 2.5F && rating < 3) {
+            return 2.5F;
+        } else if (rating > 3 && rating < 3.5F) {
+            return 3;
+        } else if (rating > 3.5F && rating < 4) {
+            return 3.5F;
+        } else if (rating > 4 && rating < 4.5F) {
+            return 4;
+        } else if (rating > 4.5F && rating < 5) {
+            return 4.5F;
+        }
+
+        return rating;
     }
 
     public String fullNameToFirstName(String name) {

@@ -37,6 +37,11 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#A19F9F</item>
+        <item name="colorControlActivated">#FFDF00</item>
+    </style>
+
     <style name="Theme.QuanLyLaptop.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.QuanLyLaptop.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
