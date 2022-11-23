@@ -1,6 +1,7 @@
 package com.nhom5.quanlylaptop.ActivityKH;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
@@ -9,6 +10,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,13 +28,16 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
     Context context = this;
     DonHang donHang = null;
     String TAG = "KH_DanhGia_Activity_____";
+    EditText reviewInput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_danh_gia);
+        reviewInput = findViewById(R.id.editText_DanhGia);
         useToolbar();
         getInfoDonHang();
         setLaptopView();
+        setReviewText();
     }
 
     private void useToolbar() {
@@ -84,5 +89,40 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
         name.setText(laptop.getTenLaptop());
         giaTien.setText(donHang.getThanhTien());
         soLuong.setText(String.valueOf(donHang.getSoLuong()));
+    }
+
+    private void setReviewText(){
+        AppCompatButton review1 = findViewById(R.id.button_Hint_DanhGia1);
+        AppCompatButton review2 = findViewById(R.id.button_Hint_DanhGia2);
+        AppCompatButton review3 = findViewById(R.id.button_Hint_DanhGia3);
+        AppCompatButton review4 = findViewById(R.id.button_Hint_DanhGia4);
+
+        review1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reviewInput.setText(R.string.ch_t_l_ng_s_n_ph_m_tuy_t_v_i);
+            }
+        });
+
+        review2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reviewInput.setText(R.string.r_t_ng_ti_n);
+            }
+        });
+
+        review3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reviewInput.setText(R.string.shop_ph_c_v_t_t);
+            }
+        });
+
+        review4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reviewInput.setText(R.string.th_i_gian_giao_h_ng_r_t_nhanh);
+            }
+        });
     }
 }

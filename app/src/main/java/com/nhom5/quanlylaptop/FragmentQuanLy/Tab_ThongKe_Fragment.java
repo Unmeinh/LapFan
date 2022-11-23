@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -32,7 +33,9 @@ public class Tab_ThongKe_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_thong_ke, container, false);
-        QL_ThongKe_Loader qlThongKeLoader = new QL_ThongKe_Loader(Tab_ThongKe_Fragment.this, getContext());
+        RecyclerView reView = view.findViewById(R.id.recyclerView_ThongKe);
+        LinearLayout linearLayout = view.findViewById(R.id.loadingView);
+        QL_ThongKe_Loader qlThongKeLoader = new QL_ThongKe_Loader(getContext(), reView, linearLayout);
         qlThongKeLoader.execute("");
         return view;
     }

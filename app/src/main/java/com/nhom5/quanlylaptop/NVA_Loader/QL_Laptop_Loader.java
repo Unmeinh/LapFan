@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.FragmentQuanLy.Tab_Laptop_Fragment;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Laptop_Adapter;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.AddData;
 
 import java.util.ArrayList;
 
@@ -24,24 +26,41 @@ import me.ibrahimsn.lib.CirclesLoadingView;
 
 public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>> {
     @SuppressLint("StaticFieldLeak")
-    Tab_Laptop_Fragment tabLaptopFragment = null;
-    @SuppressLint("StaticFieldLeak")
     Context context;
     String TAG = "LaptopLoader_____";
     LaptopDAO laptopDAO;
     ArrayList<HangLaptop> listHang = new ArrayList<>();
     HangLaptopDAO hangLaptopDAO;
+    @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
+    @SuppressLint("StaticFieldLeak")
+    LinearLayout loadingView;
+    @SuppressLint("StaticFieldLeak")
+    RelativeLayout relativeLayout;
 
-    public QL_Laptop_Loader(Tab_Laptop_Fragment tabLaptopFragment, Context context) {
-        this.tabLaptopFragment = tabLaptopFragment;
+    public QL_Laptop_Loader(Context context, RecyclerView reView, LinearLayout loadingView, RelativeLayout relativeLayout) {
         this.context = context;
+        this.reView = reView;
+        this.loadingView = loadingView;
+        this.relativeLayout = relativeLayout;
     }
 
     @Override
     protected ArrayList<Laptop> doInBackground(String... strings) {
         laptopDAO = new LaptopDAO(context);
         hangLaptopDAO = new HangLaptopDAO(context);
+        ArrayList<Laptop> list = laptopDAO.selectLaptop(null, null, null, "maHangLap");
+        if (list != null) {
+            if (list.size() == 0) {
+                AddData addData = new AddData(context);
+                addData.addDemoLaptopDell();
+                addData.addDemoLaptopHP();
+                addData.addDemoLaptopAcer();
+                addData.addDemoLaptopAsus();
+                addData.addDemoLaptopMsi();
+                addData.addDemoLaptopMac();
+            }
+        }
 
         return laptopDAO.selectLaptop(null, null, null, "maHangLap");
     }
@@ -50,12 +69,9 @@ public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>>
     protected void onPostExecute(ArrayList<Laptop> listLap) {
         super.onPostExecute(listLap);
 
-        if (tabLaptopFragment != null){
-            CirclesLoadingView loadingView = tabLaptopFragment.getActivity().findViewById(R.id.loadingView);
-            RelativeLayout relativeLayout = tabLaptopFragment.getActivity().findViewById(R.id.layout_Laptop);
+        if (loadingView != null && relativeLayout != null && reView != null) {
             loadingView.setVisibility(View.GONE);
             relativeLayout.setVisibility(View.VISIBLE);
-            reView = tabLaptopFragment.getActivity().findViewById(R.id.recyclerView_Laptop);
             setupReView(listLap, reView);
         }
     }

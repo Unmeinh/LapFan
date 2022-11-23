@@ -5,15 +5,17 @@ import android.os.Binder;
 public class DiaChi extends Binder {
     private String maDC;
     private String maKH;
+    private String tenNguoiNhan;
     private String SDT;
     private String diaChi;
     private String thanhPho;
     private String quanHuyen;
     private String xaPhuong;
 
-    public DiaChi(String maDC, String maKH, String SDT, String diaChi, String thanhPho, String quanHuyen, String xaPhuong) {
+    public DiaChi(String maDC, String maKH, String tenNguoiNhan, String SDT, String diaChi, String thanhPho, String quanHuyen, String xaPhuong) {
         this.maDC = maDC;
         this.maKH = maKH;
+        this.tenNguoiNhan = tenNguoiNhan;
         this.SDT = SDT;
         this.diaChi = diaChi;
         this.thanhPho = thanhPho;
@@ -35,6 +37,14 @@ public class DiaChi extends Binder {
 
     public void setMaKH(String maKH) {
         this.maKH = maKH;
+    }
+
+    public String getTenNguoiNhan() {
+        return tenNguoiNhan;
+    }
+
+    public void setTenNguoiNhan(String tenNguoiNhan) {
+        this.tenNguoiNhan = tenNguoiNhan;
     }
 
     public String getSDT() {
@@ -82,6 +92,7 @@ public class DiaChi extends Binder {
         return "DiaChi{" +
                 "maDC = '" + maDC + '\'' +
                 ", maKH = '" + maKH + '\'' +
+                ", tenNguoiNhan = '" + tenNguoiNhan + '\'' +
                 ", SDT = '" + SDT + '\'' +
                 ", diaChi = '" + diaChi + '\'' +
                 ", thanhPho = '" + thanhPho + '\'' +

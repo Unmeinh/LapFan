@@ -20,15 +20,15 @@ import java.util.ArrayList;
 
 public class QL_HangLaptop_Loader extends AsyncTask<String, Void, ArrayList<HangLaptop>> {
     @SuppressLint("StaticFieldLeak")
-    Tab_HangLaptop_Fragment tabHangLaptopFragment;
+    GridView gridView;
     @SuppressLint("StaticFieldLeak")
     Context context;
     String TAG = "LaptopLoader_____";
     HangLaptopDAO hangLaptopDAO;
     ChangeType changeType = new ChangeType();
 
-    public QL_HangLaptop_Loader(Tab_HangLaptop_Fragment tabHangLaptopFragment, Context context) {
-        this.tabHangLaptopFragment = tabHangLaptopFragment;
+    public QL_HangLaptop_Loader(Context context, GridView gridView) {
+        this.gridView = gridView;
         this.context = context;
     }
 
@@ -56,8 +56,7 @@ public class QL_HangLaptop_Loader extends AsyncTask<String, Void, ArrayList<Hang
     protected void onPostExecute(ArrayList<HangLaptop> listHang) {
         super.onPostExecute(listHang);
 
-        if (tabHangLaptopFragment != null){
-            GridView gridView = tabHangLaptopFragment.getActivity().findViewById(R.id.gridView_hangLaptop);
+        if (gridView != null){
             setupReView(listHang, gridView);
         }
     }

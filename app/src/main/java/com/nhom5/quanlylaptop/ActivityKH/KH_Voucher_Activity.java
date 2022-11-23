@@ -33,7 +33,7 @@ public class KH_Voucher_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_voucher);
 
-        KH_Voucher_Loader kh_voucher_loader = new KH_Voucher_Loader(KH_Voucher_Activity.this, context);
+        KH_Voucher_Loader kh_voucher_loader = new KH_Voucher_Loader(context, findViewById(R.id.recyclerView_KH_Voucher));
         kh_voucher_loader.execute("");
 
         useToolbar();

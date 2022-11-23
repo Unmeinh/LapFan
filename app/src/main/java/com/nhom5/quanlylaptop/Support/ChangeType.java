@@ -1,9 +1,12 @@
 package com.nhom5.quanlylaptop.Support;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+
+import com.bumptech.glide.Glide;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -125,32 +128,35 @@ public class ChangeType {
         return rating;
     }
 
-    public String fullNameToFirstName(String name) {
-        String firstName = "";
-        List<Integer> index = new ArrayList<>();
-        for (int i = 0; i < name.length(); i++) {
-            String getString = name.substring(i, i + 1);
-            if (getString.equals(" ")) {
-                index.add(i);
+    public Bitmap urlToBitmap(Context context, String imageUrl) {
+        Bitmap bitmap = null;
+        try {
+            bitmap = Glide
+                    .with(context)
+                    .asBitmap()
+                    .load(imageUrl)
+                    .submit()
+                    .get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmap;
+    }
+
+    public int voucherToInt(String voucher){
+        int iVou = 0;
+        String afterCheck = "";
+        String check = "[0-9]";
+        for (int i = 0; i < voucher.length(); i++) {
+            String checkS = voucher.substring(i, i + 1);
+            if (checkS.matches(check)) {
+                afterCheck += checkS;
             }
         }
-
-        if (index.size() > 0) {
-            if (index.size() == 1) {
-                int lastIndex = index.get(0);
-                firstName = name.substring(lastIndex);
-            } else {
-                int lastIndex = index.get(index.size() - 1);
-                firstName = name.substring(lastIndex);
-                if (firstName.equals("Anh")) {
-                    lastIndex = index.get(index.size() - 2);
-                    firstName = name.substring(lastIndex);
-                }
-            }
-        } else {
-            firstName = name;
+        if (afterCheck.length() > 0) {
+            iVou = Integer.parseInt(afterCheck);
         }
-
-        return firstName;
+        Log.d(TAG, "voucherToInt: iVou: " + iVou);
+        return iVou/100;
     }
 }

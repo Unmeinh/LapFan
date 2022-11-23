@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,8 +26,6 @@ import java.util.ArrayList;
 
 public class KH_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang>> {
     @SuppressLint("StaticFieldLeak")
-    KH_DonHang_Activity khDonHangActivity;
-    @SuppressLint("StaticFieldLeak")
     Context context;
     String TAG = "NV_DonHang_Loader_____";
     LaptopDAO laptopDAO;
@@ -32,10 +33,13 @@ public class KH_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
     ArrayList<Laptop> listLap = new ArrayList<>();
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
+    @SuppressLint("StaticFieldLeak")
+    LinearLayout loadingView;
 
-    public KH_DonHang_Loader(KH_DonHang_Activity khDonHangActivity, Context context) {
-        this.khDonHangActivity = khDonHangActivity;
+    public KH_DonHang_Loader(Context context, RecyclerView reView, LinearLayout loadingView) {
         this.context = context;
+        this.reView = reView;
+        this.loadingView = loadingView;
     }
 
     @Override
@@ -46,15 +50,15 @@ public class KH_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
         String maKH = "";
         listLap = laptopDAO.selectLaptop(null, null, null, null);
 
-        return donHangDAO.selectDonHang(null, null, null, null);
+        return donHangDAO.selectDonHang(null, null, null, "ngayMua");
     }
 
     @Override
     protected void onPostExecute(ArrayList<DonHang> listDon) {
         super.onPostExecute(listDon);
 
-        if (khDonHangActivity != null){
-            reView = khDonHangActivity.findViewById(R.id.recyclerView_KH_DonHang);
+        if (loadingView != null && reView != null){
+            loadingView.setVisibility(View.GONE);
             setupReView(listDon, reView);
         }
     }

@@ -32,14 +32,14 @@
         android:id="@+id/laptopFrag"
         android:name="com.nhom5.quanlylaptop.FragmentQuanLy.Tab_Laptop_Fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:layout="@layout/fragment_tab_laptop" />
 
     <fragment
         android:id="@+id/hangLaptopFrag"
         android:name="com.nhom5.quanlylaptop.FragmentQuanLy.Tab_HangLaptop_Fragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         tools:layout="@layout/fragment_tab_hang_laptop" />
 
 </LinearLayout>

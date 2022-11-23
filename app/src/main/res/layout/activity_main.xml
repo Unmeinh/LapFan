@@ -7,45 +7,21 @@
     android:orientation="vertical"
     tools:context=".Activity.MainActivity">
 
-    <LinearLayout
+    <com.smarteist.autoimageslider.SliderView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp">
-
-        <TextView
-            android:layout_marginEnd="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ch_t_l_ng_s_n_ph_m"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
-
-        <RatingBar
-            android:id="@+id/ratingGet"
-            android:layout_width="245dp"
-            android:layout_height="40dp"
-            android:max="5"
-            android:scaleX="0.5"
-            android:scaleY="0.5"
-            android:stepSize="0.5"
-            android:theme="@style/RatingBar"
-            android:transformPivotX="0dp" />
-
-    </LinearLayout>
-
-    <RatingBar
-        android:layout_margin="20dp"
-        android:transformPivotX="0dp"
-        android:transformPivotY="0dp"
-        style="?android:attr/ratingBarStyleSmall"
-        android:theme="@style/RatingBar"
-        android:id="@+id/ratingSet"
-        android:scaleX="1.1"
-        android:scaleY="1.1"
-        android:stepSize="0.5"
-        android:max="5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        app:sliderAnimationDuration="600"
+        app:sliderAutoCycleDirection="back_and_forth"
+        app:sliderAutoCycleEnabled="true"
+        app:sliderIndicatorAnimationDuration="600"
+        app:sliderIndicatorGravity="center_horizontal|bottom"
+        app:sliderIndicatorMargin="15dp"
+        app:sliderIndicatorOrientation="horizontal"
+        app:sliderIndicatorPadding="3dp"
+        app:sliderIndicatorRadius="2dp"
+        app:sliderIndicatorSelectedColor="#5A5A5A"
+        app:sliderIndicatorUnselectedColor="#FFF"
+        app:sliderScrollTimeInSec="2"
+        app:sliderStartAutoCycle="true"/>
 
 </LinearLayout>

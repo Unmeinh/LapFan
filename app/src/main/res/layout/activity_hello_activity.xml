@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelloWorld.HelloActivity">
+
+    <TextView
+        android:id="@+id/textView_Skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:padding="16dp"
+        android:text="Bỏ qua"
+        android:textColor="@color/black"
+        android:textSize="18sp" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/layout_button"
+        android:layout_below="@+id/textView_Skip" />
+
+    <LinearLayout
+        android:id="@+id/layout_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <me.relex.circleindicator.CircleIndicator
+            android:id="@+id/circleIndicator"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            app:ci_drawable="@drawable/background_circel_red" />
+
+        <Button
+            android:id="@+id/button_Next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="#D2422F"
+            android:text="Tiếp theo"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

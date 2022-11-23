@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,20 +24,20 @@ import java.util.ArrayList;
 
 public class NV_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang>> {
     @SuppressLint("StaticFieldLeak")
-    NV_DonHang_Activity nvDonHangActivity;
-    @SuppressLint("StaticFieldLeak")
     Context context;
     String TAG = "NV_DonHang_Loader_____";
     LaptopDAO laptopDAO;
     DonHangDAO donHangDAO;
     ArrayList<Laptop> listLap = new ArrayList<>();
-    ArrayList<DonHang> listDon = new ArrayList<>();
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
+    @SuppressLint("StaticFieldLeak")
+    LinearLayout loadingView;
 
-    public NV_DonHang_Loader(NV_DonHang_Activity nvDonHangActivity, Context context) {
-        this.nvDonHangActivity = nvDonHangActivity;
+    public NV_DonHang_Loader(Context context, RecyclerView reView, LinearLayout loadingView) {
         this.context = context;
+        this.reView = reView;
+        this.loadingView = loadingView;
     }
 
     @Override
@@ -42,18 +45,18 @@ public class NV_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
 
         laptopDAO = new LaptopDAO(context);
         donHangDAO = new DonHangDAO(context);
+        String maNV = strings[0];
         listLap = laptopDAO.selectLaptop(null, null, null, null);
-        listDon = donHangDAO.selectDonHang(null, null, null, null);
 
-        return listDon;
+        return donHangDAO.selectDonHang(null, null, null, "ngayMua");
     }
 
     @Override
     protected void onPostExecute(ArrayList<DonHang> listDon) {
         super.onPostExecute(listDon);
 
-        if (nvDonHangActivity != null){
-            reView = nvDonHangActivity.findViewById(R.id.recyclerView_NV_DonHang);
+        if (loadingView != null  && reView != null){
+            loadingView.setVisibility(View.GONE);
             setupReView(listDon, reView);
         }
     }

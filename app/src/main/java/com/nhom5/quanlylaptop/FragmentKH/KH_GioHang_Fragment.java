@@ -33,7 +33,9 @@ public class KH_GioHang_Fragment extends Fragment {
 
     LinearLayout emptyGHLayout;
     RelativeLayout viewGHLayout;
+    LinearLayout loadingLayout;
     AppCompatButton buttonPayNow;
+    RecyclerView recyclerView;
     String TAG = "KH_GioHang_Fragment_____";
 
     @Override
@@ -42,10 +44,12 @@ public class KH_GioHang_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_kh_gio_hang, container, false);
         emptyGHLayout = view.findViewById(R.id.empty_GioHang);
         viewGHLayout = view.findViewById(R.id.view_Gio_Hang);
+        loadingLayout = view.findViewById(R.id.loadingView);
+        recyclerView = view.findViewById(R.id.recyclerView_GioHang);
         buttonPayNow = view.findViewById(R.id.button_PayNow);
 
         setLayout();
-        KH_GioHang_Loader kh_gioHang_loader = new KH_GioHang_Loader(KH_GioHang_Fragment.this, getContext(), view.findViewById(R.id.recyclerView_GioHang));
+        KH_GioHang_Loader kh_gioHang_loader = new KH_GioHang_Loader(KH_GioHang_Fragment.this, getContext(), recyclerView, loadingLayout, viewGHLayout);
         kh_gioHang_loader.execute("");
 
         buttonPayNow.setOnClickListener(new View.OnClickListener() {
@@ -67,11 +71,13 @@ public class KH_GioHang_Fragment extends Fragment {
             if (listGio.size() == 0){
                 Log.d(TAG, "onCreateView: Giỏ Hàng null");
                 viewGHLayout.setVisibility(View.GONE);
+                loadingLayout.setVisibility(View.GONE);
                 emptyGHLayout.setVisibility(View.VISIBLE);
             } else {
                 Log.d(TAG, "onCreateView: Giỏ Hàng not null: " + listGio.size());
                 emptyGHLayout.setVisibility(View.GONE);
-                viewGHLayout.setVisibility(View.VISIBLE);
+                loadingLayout.setVisibility(View.VISIBLE);
+                viewGHLayout.setVisibility(View.GONE);
             }
         }
     }

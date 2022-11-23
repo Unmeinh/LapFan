@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
@@ -27,13 +29,17 @@ public class NV_DonHang_Activity extends AppCompatActivity {
 
     Context context;
     String TAG = "NV_DonHang_Activity_____";
+    RecyclerView recyclerView;
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nv_don_hang);
         context = this;
-        NV_DonHang_Loader nv_donHang_loader = new NV_DonHang_Loader(NV_DonHang_Activity.this, context);
+        recyclerView = findViewById(R.id.recyclerView_NV_DonHang);
+        linearLayout = findViewById(R.id.loadingView);
+        NV_DonHang_Loader nv_donHang_loader = new NV_DonHang_Loader(context, recyclerView, linearLayout);
         nv_donHang_loader.execute("");
 
         useToolbar();

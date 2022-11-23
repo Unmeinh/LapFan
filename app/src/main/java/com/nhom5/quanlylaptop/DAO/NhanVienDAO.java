@@ -45,7 +45,12 @@ public class NhanVienDAO {
                 String matKhau = c.getString(6);
                 String queQuan = c.getString(7);
                 String phone = c.getString(8);
-                String doanhSo = c.getString(9);
+                int doanhSo = 0;
+                try {
+                    doanhSo = Integer.parseInt(c.getString(9));
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
                 int soSP = 0;
                 try {
                     soSP = Integer.parseInt(c.getString(10));

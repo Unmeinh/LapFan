@@ -49,7 +49,7 @@ public class KH_ViTien_Activity extends AppCompatActivity {
         listVi = viTienDAO.selectViTien(null, null, null, null);
         listGD = giaoDichDAO.selectGiaoDich(null, null, null, null);
 
-        KH_GiaoDich_Loader kh_giaoDich_loader = new KH_GiaoDich_Loader(KH_ViTien_Activity.this, context);
+        KH_GiaoDich_Loader kh_giaoDich_loader = new KH_GiaoDich_Loader(context, findViewById(R.id.recyclerView_GiaoDich));
         kh_giaoDich_loader.execute("");
         useToolbar();
         clickNapTien();

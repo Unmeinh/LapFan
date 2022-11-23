@@ -14,7 +14,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -42,15 +44,23 @@ public class QL_KhachHang_Fragment extends Fragment {
     ArrayList<KhachHang> listKH = new ArrayList<>();
     ChangeType changeType = new ChangeType();
     String TAG = "QL_KhachHang_Fragment_____";
+    TextView countKH;
+    RecyclerView recyclerView;
+    RelativeLayout relativeLayout;
+    LinearLayout linearLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ql_khach_hang, container, false);
         addKH = view.findViewById(R.id.button_AddKH);
+        countKH = view.findViewById(R.id.textView_Soluong);
+        recyclerView = view.findViewById(R.id.recyclerView_NVA_KhachHang);
+        relativeLayout = view.findViewById(R.id.layoutView);
+        linearLayout = view.findViewById(R.id.loadingView);
 
         khachHangDAO = new KhachHangDAO(getContext());
-        QL_KhachHang_Loader qlKhachHangLoader = new QL_KhachHang_Loader(QL_KhachHang_Fragment.this, getContext());
+        QL_KhachHang_Loader qlKhachHangLoader = new QL_KhachHang_Loader(getContext(), recyclerView, countKH, linearLayout, relativeLayout);
         qlKhachHangLoader.execute("");
         openDialog();
         return view;
@@ -92,7 +102,7 @@ public class QL_KhachHang_Fragment extends Fragment {
                         email, password, "No Data", sdt, "false", avatar);
                 khachHangDAO.insertKhachHang(khachHang);
                 dialog.cancel();
-                QL_KhachHang_Loader qlKhachHangLoader = new QL_KhachHang_Loader(QL_KhachHang_Fragment.this, getContext());
+                QL_KhachHang_Loader qlKhachHangLoader = new QL_KhachHang_Loader(getContext(), recyclerView, countKH, linearLayout, relativeLayout);
                 qlKhachHangLoader.execute("");
             }
         });

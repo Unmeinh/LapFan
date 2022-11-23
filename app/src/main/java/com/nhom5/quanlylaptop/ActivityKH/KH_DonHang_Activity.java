@@ -12,7 +12,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -35,14 +37,18 @@ public class KH_DonHang_Activity extends AppCompatActivity {
 
     Context context;
     String TAG = "KH_DonHang_Activity_____";
+    RecyclerView recyclerView;
+    LinearLayout linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_don_hang);
         context = this;
+        linearLayout = findViewById(R.id.loadingView);
+        recyclerView = findViewById(R.id.recyclerView_KH_DonHang);
 
-        KH_DonHang_Loader kh_donHang_loader = new KH_DonHang_Loader(KH_DonHang_Activity.this, context);
+        KH_DonHang_Loader kh_donHang_loader = new KH_DonHang_Loader(context, recyclerView, linearLayout);
         kh_donHang_loader.execute("");
 
         useToolbar();

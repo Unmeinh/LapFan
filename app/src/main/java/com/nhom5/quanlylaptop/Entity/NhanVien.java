@@ -13,11 +13,11 @@ public class NhanVien extends Binder {
     private String matKhau;
     private String queQuan;
     private String phone;
-    private String doanhSo;
+    private int doanhSo;
     private int soSP;
     private byte[] avatar;
 
-    public NhanVien(String maNV, String hoNV, String tenNV, String gioiTinh, String email, String matKhau, String queQuan, String phone, String doanhSo, int soSP, byte[] avatar) {
+    public NhanVien(String maNV, String hoNV, String tenNV, String gioiTinh, String email, String matKhau, String queQuan, String phone, int doanhSo, int soSP, byte[] avatar) {
         this.maNV = maNV;
         this.hoNV = hoNV;
         this.tenNV = tenNV;
@@ -95,11 +95,11 @@ public class NhanVien extends Binder {
         this.phone = phone;
     }
 
-    public String getDoanhSo() {
+    public int getDoanhSo() {
         return doanhSo;
     }
 
-    public void setDoanhSo(String doanhSo) {
+    public void setDoanhSo(int doanhSo) {
         this.doanhSo = doanhSo;
     }
 

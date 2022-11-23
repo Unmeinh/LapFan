@@ -19,7 +19,7 @@ public class Tab_HangLaptop_Fragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_tab_hang_laptop, container, false);
 
-        QL_HangLaptop_Loader QL_hangLaptop_loader = new QL_HangLaptop_Loader(Tab_HangLaptop_Fragment.this, getContext());
+        QL_HangLaptop_Loader QL_hangLaptop_loader = new QL_HangLaptop_Loader(getContext(), view.findViewById(R.id.gridView_hangLaptop));
         QL_hangLaptop_loader.execute("");
 
         return view;

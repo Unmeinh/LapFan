@@ -2,22 +2,21 @@ package com.nhom5.quanlylaptop.ActivityKH;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
-import com.nhom5.quanlylaptop.KH_Adapter.KH_GioHang_Adapter;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_ThanhToan_Adapter;
 import com.nhom5.quanlylaptop.KH_Loader.KH_ThanhToan_Loader;
 import com.nhom5.quanlylaptop.R;
@@ -27,13 +26,11 @@ import java.util.ArrayList;
 public class KH_ThanhToan_Activity extends AppCompatActivity {
 
     TextView changeAddress;
-    LaptopDAO laptopDAO;
-    GioHangDAO gioHangDAO;
     ArrayList<Laptop> listLap = new ArrayList<>();
-    ArrayList<GioHang> listGio = new ArrayList<>();
-    KH_ThanhToan_Adapter kh_thanhToan_adapter;
     RecyclerView recyclerView;
-    String TAG = "KH_GioHang_Fragment_____", input = "";
+    RelativeLayout relativeLayout;
+    LinearLayout linearLayout;
+    String TAG = "KH_ThanhToan_Activity_____", input = "";
     Context context = this;
 
     @Override
@@ -42,13 +39,14 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_kh_thanh_toan);
         changeAddress = findViewById(R.id.textView_Change_Address);
         recyclerView = findViewById(R.id.recyclerView_DonHang);
+        relativeLayout = findViewById(R.id.layoutView);
+        linearLayout = findViewById(R.id.loadingView);
 
         getInput();
         doiDiaChi();
         useToolbar();
 
-        KH_ThanhToan_Loader kh_thanhToan_loader = new KH_ThanhToan_Loader(KH_ThanhToan_Activity.this, context,
-                listLap, input);
+        KH_ThanhToan_Loader kh_thanhToan_loader = new KH_ThanhToan_Loader(context, listLap, input, recyclerView, linearLayout, relativeLayout);
         kh_thanhToan_loader.execute("");
     }
 

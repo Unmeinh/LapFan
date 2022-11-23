@@ -79,7 +79,7 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
         Bitmap avatar = changeType.byteToBitmap(nhanVien.getAvatar());
 
         author.avatar.setImageBitmap(avatar);
-        author.name.setText(nhanVien.getTenNV());
+        author.name.setText(nhanVien.getHoNV() + " " + nhanVien.getTenNV());
         author.gender.setText(nhanVien.getGioiTinh());
         author.phone.setText(nhanVien.getPhone());
         return nhanVien;

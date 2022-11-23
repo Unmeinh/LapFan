@@ -22,45 +22,15 @@ import java.util.ArrayList;
 
 public class KH_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>> {
     @SuppressLint("StaticFieldLeak")
-    LaptopDellFragment laptopDellFragment = null;
-    LaptopHPFragment laptopHPFragment = null;
-    LaptopAcerFragment laptopAcerFragment = null;
-    LaptopAsusFragment laptopAsusFragment = null;
-    LaptopMsiFragment laptopMsiFragment = null;
-    MacBookFragment macBookFragment = null;
-    @SuppressLint("StaticFieldLeak")
     Context context;
     String TAG = "LaptopLoader_____";
     LaptopDAO laptopDAO;
+    @SuppressLint("StaticFieldLeak")
+    RecyclerView reView;
 
-    public KH_Laptop_Loader(LaptopDellFragment laptopDellFragment, Context context) {
-        this.laptopDellFragment = laptopDellFragment;
+    public KH_Laptop_Loader(Context context, RecyclerView reView) {
         this.context = context;
-    }
-
-    public KH_Laptop_Loader(LaptopHPFragment laptopHPFragment, Context context) {
-        this.laptopHPFragment = laptopHPFragment;
-        this.context = context;
-    }
-
-    public KH_Laptop_Loader(LaptopAcerFragment laptopAcerFragment, Context context) {
-        this.laptopAcerFragment = laptopAcerFragment;
-        this.context = context;
-    }
-
-    public KH_Laptop_Loader(LaptopAsusFragment laptopAsusFragment, Context context) {
-        this.laptopAsusFragment = laptopAsusFragment;
-        this.context = context;
-    }
-
-    public KH_Laptop_Loader(LaptopMsiFragment laptopMsiFragment, Context context) {
-        this.laptopMsiFragment = laptopMsiFragment;
-        this.context = context;
-    }
-
-    public KH_Laptop_Loader(MacBookFragment macBookFragment, Context context) {
-        this.macBookFragment = macBookFragment;
-        this.context = context;
+        this.reView = reView;
     }
 
     @Override
@@ -77,24 +47,8 @@ public class KH_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>>
         super.onPostExecute(listLap);
         laptopDAO = new LaptopDAO(context);
 
-        if (macBookFragment != null){
-            RecyclerView reViewMac = macBookFragment.getActivity().findViewById(R.id.recyclerView_Macbook);
-            setupReView(listLap, reViewMac);
-        } else if (laptopHPFragment != null){
-            RecyclerView reViewHP = laptopHPFragment.getActivity().findViewById(R.id.recyclerView_Laptop_HP);
-            setupReView(listLap, reViewHP);
-        } else if (laptopAcerFragment != null){
-            RecyclerView reViewAcer = laptopAcerFragment.getActivity().findViewById(R.id.recyclerView_Laptop_Acer);
-            setupReView(listLap, reViewAcer);
-        } else if (laptopAsusFragment != null){
-            RecyclerView reViewAsus = laptopAsusFragment.getActivity().findViewById(R.id.recyclerView_Laptop_Asus);
-            setupReView(listLap, reViewAsus);
-        } else if (laptopMsiFragment != null){
-            RecyclerView reViewMsi = laptopMsiFragment.getActivity().findViewById(R.id.recyclerView_Laptop_Msi);
-            setupReView(listLap, reViewMsi);
-        } else if (laptopDellFragment != null){
-            RecyclerView reViewDell = laptopDellFragment.getActivity().findViewById(R.id.recyclerView_Laptop_Dell);
-            setupReView(listLap, reViewDell);
+        if (reView != null){
+            setupReView(listLap, reView);
         }
 
     }

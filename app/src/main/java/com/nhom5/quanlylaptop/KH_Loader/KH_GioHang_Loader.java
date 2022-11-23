@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,11 +37,17 @@ public class KH_GioHang_Loader extends AsyncTask<String, Void, ArrayList<GioHang
     ArrayList<Laptop> listLap = new ArrayList<>();
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
+    @SuppressLint("StaticFieldLeak")
+    LinearLayout loadingView;
+    @SuppressLint("StaticFieldLeak")
+    RelativeLayout relativeLayout;
 
-    public KH_GioHang_Loader(KH_GioHang_Fragment khGioHangFragment, Context context, RecyclerView reView) {
+    public KH_GioHang_Loader(KH_GioHang_Fragment khGioHangFragment, Context context, RecyclerView reView, LinearLayout loadingView, RelativeLayout relativeLayout) {
         this.khGioHangFragment = khGioHangFragment;
         this.context = context;
         this.reView = reView;
+        this.loadingView = loadingView;
+        this.relativeLayout = relativeLayout;
     }
 
     @Override
@@ -54,7 +63,9 @@ public class KH_GioHang_Loader extends AsyncTask<String, Void, ArrayList<GioHang
     protected void onPostExecute(ArrayList<GioHang> listGio) {
         super.onPostExecute(listGio);
 
-        if (khGioHangFragment != null){
+        if (loadingView != null && relativeLayout != null && reView != null){
+            loadingView.setVisibility(View.GONE);
+            relativeLayout.setVisibility(View.VISIBLE);
             setupReView(listGio, reView);
         }
     }
@@ -66,6 +77,5 @@ public class KH_GioHang_Loader extends AsyncTask<String, Void, ArrayList<GioHang
         KH_GioHang_Adapter kh_gioHang_adapter = new KH_GioHang_Adapter(listLap, listGio, context, khGioHangFragment);
         recyclerView.setAdapter(kh_gioHang_adapter);
     }
-
 
 }

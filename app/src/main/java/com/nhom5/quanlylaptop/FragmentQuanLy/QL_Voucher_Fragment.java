@@ -39,16 +39,18 @@ public class QL_Voucher_Fragment extends Fragment {
     ArrayList<Voucher> listVou = new ArrayList<>();
     VoucherDAO voucherDAO;
     String TAG = "QL_Voucher_Fragment_____";
+    RecyclerView reView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ql_voucher, container, false);
         addVoucher = view.findViewById(R.id.button_Add_Voucher);
+        reView = view.findViewById(R.id.recyclerView_NVA_Voucher);
         voucherDAO = new VoucherDAO(getContext());
 
         listVou = voucherDAO.selectVoucher(null, null, null, null);
-        QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(QL_Voucher_Fragment.this, getContext());
+        QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(getContext(), reView);
         ql_voucher_loader.execute("");
 
         openDialog();
@@ -80,7 +82,7 @@ public class QL_Voucher_Fragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(QL_Voucher_Fragment.this, getContext());
+                QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(getContext(), reView);
                 ql_voucher_loader.execute("");
             }
         });

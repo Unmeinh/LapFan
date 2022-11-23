@@ -37,7 +37,7 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
     @NonNull
     @Override
     public QL_KhachHang_Adapter.AuthorViewHolder onCreateViewHolder(@NonNull ViewGroup vGroup, int i) {
-        View v = LayoutInflater.from(context).inflate(R.layout.cardview_nva_user, vGroup , false);
+        View v = LayoutInflater.from(context).inflate(R.layout.cardview_nva_user, vGroup, false);
         return new QL_KhachHang_Adapter.AuthorViewHolder(v);
     }
 
@@ -58,9 +58,10 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
         return listKH.size();
     }
 
-    public static class AuthorViewHolder extends RecyclerView.ViewHolder{
+    public static class AuthorViewHolder extends RecyclerView.ViewHolder {
         ImageView avatar;
         TextView name, gender, phone;
+
         public AuthorViewHolder(@NonNull View itemView) {
             super(itemView);
             avatar = itemView.findViewById(R.id.imageView_Avatar);
@@ -79,7 +80,7 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
         Bitmap avatar = changeType.byteToBitmap(khachHang.getAvatar());
 
         author.avatar.setImageBitmap(avatar);
-        author.name.setText(khachHang.getTenKH());
+        author.name.setText(khachHang.getHoKH() + " " + khachHang.getTenKH());
         author.gender.setText(khachHang.getGioiTinh());
         author.phone.setText(khachHang.getPhone());
         return khachHang;

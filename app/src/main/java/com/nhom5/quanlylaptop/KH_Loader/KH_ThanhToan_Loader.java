@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -25,8 +28,6 @@ import java.util.ArrayList;
 
 public class KH_ThanhToan_Loader extends AsyncTask<String, Void, ArrayList<GioHang>> {
     @SuppressLint("StaticFieldLeak")
-    KH_ThanhToan_Activity khThanhToanActivity;
-    @SuppressLint("StaticFieldLeak")
     Context context;
     String TAG = "KH_ThanhToan_Loader_____";
     GioHangDAO gioHangDAO;
@@ -34,13 +35,19 @@ public class KH_ThanhToan_Loader extends AsyncTask<String, Void, ArrayList<GioHa
     ArrayList<Laptop> listLap;
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
+    @SuppressLint("StaticFieldLeak")
+    LinearLayout loadingView;
+    @SuppressLint("StaticFieldLeak")
+    RelativeLayout relativeLayout;
     String type;
 
-    public KH_ThanhToan_Loader(KH_ThanhToan_Activity khThanhToanActivity, Context context, ArrayList<Laptop> listLap, String type) {
-        this.khThanhToanActivity = khThanhToanActivity;
+    public KH_ThanhToan_Loader(Context context, ArrayList<Laptop> listLap, String type, RecyclerView reView, LinearLayout loadingView, RelativeLayout relativeLayout) {
         this.context = context;
         this.listLap = listLap;
         this.type = type;
+        this.reView = reView;
+        this.loadingView = loadingView;
+        this.relativeLayout = relativeLayout;
     }
 
     @Override
@@ -60,8 +67,9 @@ public class KH_ThanhToan_Loader extends AsyncTask<String, Void, ArrayList<GioHa
     protected void onPostExecute(ArrayList<GioHang> listGio) {
         super.onPostExecute(listGio);
 
-        if (khThanhToanActivity != null){
-            reView = khThanhToanActivity.findViewById(R.id.recyclerView_DonHang);
+        if (loadingView != null && relativeLayout != null && reView != null){
+            loadingView.setVisibility(View.GONE);
+            relativeLayout.setVisibility(View.VISIBLE);
             if (type.equals("giohang")){
                 setupReViewGH(listGio, reView);
             } else {

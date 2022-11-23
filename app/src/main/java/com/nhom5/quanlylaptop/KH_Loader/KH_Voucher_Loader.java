@@ -21,32 +21,29 @@ import java.util.ArrayList;
 
 public class KH_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher>> {
     @SuppressLint("StaticFieldLeak")
-    KH_Voucher_Activity khVoucherActivity;
-    @SuppressLint("StaticFieldLeak")
     Context context;
     String TAG = "KH_Voucher_Loader_____";
     VoucherDAO voucherDAO;
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
 
-    public KH_Voucher_Loader(KH_Voucher_Activity khVoucherActivity, Context context) {
-        this.khVoucherActivity = khVoucherActivity;
+    public KH_Voucher_Loader(Context context, RecyclerView reView) {
         this.context = context;
+        this.reView = reView;
     }
 
     @Override
     protected ArrayList<Voucher> doInBackground(String... strings) {
         voucherDAO = new VoucherDAO(context);
 
-        return voucherDAO.selectVoucher(null, null, null, null);
+        return voucherDAO.selectVoucher(null, null, null, "ngayBD");
     }
 
     @Override
     protected void onPostExecute(ArrayList<Voucher> listVou) {
         super.onPostExecute(listVou);
 
-        if (khVoucherActivity != null){
-            reView = khVoucherActivity.findViewById(R.id.recyclerView_Voucher_KH);
+        if (reView != null){
             setupReView(listVou, reView);
         }
     }

@@ -25,7 +25,7 @@
         android:background="@color/black" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView_Voucher_KH"
+        android:id="@+id/recyclerView_KH_Voucher"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="18dp"

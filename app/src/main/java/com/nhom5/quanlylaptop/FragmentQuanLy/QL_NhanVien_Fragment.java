@@ -10,7 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -29,12 +31,20 @@ import java.util.List;
 public class QL_NhanVien_Fragment extends Fragment {
 
     String TAG = "QL_NhanVien_Fragment_____";
+    RecyclerView reView;
+    TextView countNV;
+    RelativeLayout relativeLayout;
+    LinearLayout linearLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ql_nhan_vien, container, false);
-        QL_NhanVien_Loader ql_nhanVien_loader = new QL_NhanVien_Loader(QL_NhanVien_Fragment.this, getContext());
+        countNV = view.findViewById(R.id.textView_Soluong);
+        reView = view.findViewById(R.id.recyclerView_NVA_NhanVien);
+        linearLayout = view.findViewById(R.id.loadingView);
+        relativeLayout = view.findViewById(R.id.layoutView);
+        QL_NhanVien_Loader ql_nhanVien_loader = new QL_NhanVien_Loader(getContext(), reView, countNV, linearLayout, relativeLayout);
         ql_nhanVien_loader.execute("");
         return view;
     }

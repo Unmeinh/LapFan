@@ -23,7 +23,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         // Bảng NhanVien
         String tableNhanVien = "CREATE TABLE TB_NhanVien( maNV VARCHAR(15) PRIMARY KEY not null, avatar BLOB," +
                 " hoNV TEXT not null, tenNV TEXT not null, gioiTinh TEXT not null, email VARCHAR(50) UNIQUE not null, matKhau TEXT not null," +
-                " queQuan TEXT, phone TEXT, doanhSo TEXT, soSP INT)";
+                " queQuan TEXT, phone TEXT, doanhSo INT, soSP INT)";
 
         // Bảng KhachHang
         String tableKhachHang = "CREATE TABLE TB_KhachHang( maKH VARCHAR(15) PRIMARY KEY not null, avatar BLOB," +
@@ -70,7 +70,8 @@ public class QLLaptopDB extends SQLiteOpenHelper {
 
         // Bảng DiaChi
         String tableDiaChi = "CREATE TABLE TB_DiaChi( maDC VARCHAR(15) PRIMARY KEY not null," +
-                " maKH VARCHAR(15) not null, phone TEXT not null, diaChi TEXT, thanhPho TEXT, quanHuyen TEXT, phuongXa TEXT," +
+                " maKH VARCHAR(15) not null, tenNguoiNhan TEXT not null, phone TEXT not null," +
+                " diaChi TEXT, thanhPho TEXT, quanHuyen TEXT, phuongXa TEXT," +
                 " FOREIGN KEY(maKH) REFERENCES TB_KhachHang (maKH))";
 
         // Bảng DiaChi
@@ -89,12 +90,12 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         db.execSQL(tableVoucher);
         db.execSQL(tableLaptop);
         db.execSQL(tableLaptopRate);
-        db.execSQL(tableDonHang);
         db.execSQL(tableGioHang);
         db.execSQL(tableThongBao);
         db.execSQL(tableDiaChi);
         db.execSQL(tableViTien);
         db.execSQL(tableGiaoDich);
+        db.execSQL(tableDonHang);
     }
 
     @Override

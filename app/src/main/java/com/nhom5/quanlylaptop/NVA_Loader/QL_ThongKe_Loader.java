@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -20,18 +22,19 @@ import java.util.ArrayList;
 
 public class QL_ThongKe_Loader extends AsyncTask<String, Void, ArrayList<NhanVien>> {
     @SuppressLint("StaticFieldLeak")
-    Tab_ThongKe_Fragment tabThongKeFragment;
-    @SuppressLint("StaticFieldLeak")
     Context context;
     String TAG = "QL_ThongKe_Loader_____";
     NhanVienDAO nhanVienDAO;
     ArrayList<NhanVien> listNV = new ArrayList<>();
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
+    @SuppressLint("StaticFieldLeak")
+    LinearLayout loadingView;
 
-    public QL_ThongKe_Loader(Tab_ThongKe_Fragment tabThongKeFragment, Context context) {
-        this.tabThongKeFragment = tabThongKeFragment;
+    public QL_ThongKe_Loader(Context context, RecyclerView reView, LinearLayout loadingView) {
         this.context = context;
+        this.reView = reView;
+        this.loadingView = loadingView;
     }
 
     @Override
@@ -49,8 +52,8 @@ public class QL_ThongKe_Loader extends AsyncTask<String, Void, ArrayList<NhanVie
     protected void onPostExecute(ArrayList<NhanVien> listNV) {
         super.onPostExecute(listNV);
 
-        if (tabThongKeFragment != null){
-            reView = tabThongKeFragment.getActivity().findViewById(R.id.recyclerView_ThongKe);
+        if (loadingView != null && reView != null){
+            loadingView.setVisibility(View.GONE);
             setupReView(listNV, reView);
         }
     }

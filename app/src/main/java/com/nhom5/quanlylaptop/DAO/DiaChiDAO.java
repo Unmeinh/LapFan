@@ -41,12 +41,13 @@ public class DiaChiDAO {
                 Log.d(TAG, "selectDiaChi: Cursor not last");
                 String maDC = c.getString(0);
                 String maKH = c.getString(1);
-                String SDT = c.getString(2);
-                String diaChi = c.getString(3);
-                String thanhPho = c.getString(4);
-                String quanHuyen = c.getString(5);
-                String xaPhuong = c.getString(6);
-                DiaChi newDC = new DiaChi(maDC, maKH, SDT, diaChi, thanhPho, quanHuyen, xaPhuong);
+                String tenNguoiNhan = c.getString(2);
+                String SDT = c.getString(3);
+                String diaChi = c.getString(4);
+                String thanhPho = c.getString(5);
+                String quanHuyen = c.getString(6);
+                String xaPhuong = c.getString(7);
+                DiaChi newDC = new DiaChi(maDC, maKH, tenNguoiNhan, SDT, diaChi, thanhPho, quanHuyen, xaPhuong);
                 Log.d(TAG, "selectDiaChi: new DiaChi: " + newDC.toString());
 
                 listDC.add(newDC);
@@ -67,11 +68,12 @@ public class DiaChiDAO {
         ContentValues values = new ContentValues();
         values.put("maDC", diaChi.getMaDC());
         values.put("maKH", diaChi.getMaKH());
-        values.put("SDT", diaChi.getSDT());
+        values.put("tenNguoiNhan", diaChi.getTenNguoiNhan());
+        values.put("phone", diaChi.getSDT());
         values.put("diaChi", diaChi.getDiaChi());
         values.put("thanhPho", diaChi.getThanhPho());
         values.put("quanHuyen", diaChi.getQuanHuyen());
-        values.put("xaPhuong", diaChi.getXaPhuong());
+        values.put("phuongXa", diaChi.getXaPhuong());
         Log.d(TAG, "insertDiaChi: DiaChi: " + diaChi.toString());
         Log.d(TAG, "insertDiaChi: Values: " + values);
 
@@ -90,11 +92,12 @@ public class DiaChiDAO {
         ContentValues values = new ContentValues();
         values.put("maDC", diaChi.getMaDC());
         values.put("maKH", diaChi.getMaKH());
-        values.put("SDT", diaChi.getSDT());
+        values.put("tenNguoiNhan", diaChi.getTenNguoiNhan());
+        values.put("phone", diaChi.getSDT());
         values.put("diaChi", diaChi.getDiaChi());
         values.put("thanhPho", diaChi.getThanhPho());
         values.put("quanHuyen", diaChi.getQuanHuyen());
-        values.put("xaPhuong", diaChi.getXaPhuong());
+        values.put("phuongXa", diaChi.getXaPhuong());
         Log.d(TAG, "updateDiaChi: DiaChi: " + diaChi.toString());
         Log.d(TAG, "updateDiaChi: Values: " + values);
 

@@ -17,8 +17,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nhom5.quanlylaptop.DAO.DiaChiDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
+import com.nhom5.quanlylaptop.Entity.DiaChi;
 import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;

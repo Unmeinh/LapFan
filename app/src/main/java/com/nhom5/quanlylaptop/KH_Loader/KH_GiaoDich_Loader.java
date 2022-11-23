@@ -26,8 +26,6 @@ import java.util.ArrayList;
 
 public class KH_GiaoDich_Loader extends AsyncTask<String, Void, ArrayList<GiaoDich>> {
     @SuppressLint("StaticFieldLeak")
-    KH_ViTien_Activity khViTienActivity;
-    @SuppressLint("StaticFieldLeak")
     Context context;
     String TAG = "NV_DonHang_Loader_____";
     GiaoDichDAO giaoDichDAO;
@@ -35,9 +33,9 @@ public class KH_GiaoDich_Loader extends AsyncTask<String, Void, ArrayList<GiaoDi
     RecyclerView reView;
     ChangeType changeType = new ChangeType();
 
-    public KH_GiaoDich_Loader(KH_ViTien_Activity khViTienActivity, Context context) {
-        this.khViTienActivity = khViTienActivity;
+    public KH_GiaoDich_Loader(Context context, RecyclerView reView) {
         this.context = context;
+        this.reView = reView;
     }
 
     @Override
@@ -53,15 +51,14 @@ public class KH_GiaoDich_Loader extends AsyncTask<String, Void, ArrayList<GiaoDi
             }
         }
 
-        return giaoDichDAO.selectGiaoDich(null, null, null, null);
+        return giaoDichDAO.selectGiaoDich(null, null, null, "ngayGD");
     }
 
     @Override
     protected void onPostExecute(ArrayList<GiaoDich> listGD) {
         super.onPostExecute(listGD);
 
-        if (khViTienActivity != null){
-            reView = khViTienActivity.findViewById(R.id.recyclerView_GiaoDich);
+        if (reView != null){
             setupReView(listGD, reView);
         }
     }
@@ -75,29 +72,26 @@ public class KH_GiaoDich_Loader extends AsyncTask<String, Void, ArrayList<GiaoDi
     }
 
     private void addDemoGD(){
-        GiaoDich gd0 = new GiaoDich("GD0", "No Data", "Nạp tiền", "Nạp tiền vào ví FPT Pay",
-                changeType.intMoneyToString(100000), "2022-11-20");
+        GiaoDich gd0 = new GiaoDich("GD0", "VI00", "Nạp tiền", "Nạp tiền vào ví FPT Pay",
+                changeType.intMoneyToString(100000), "2022-11-30");
         giaoDichDAO.insertGiaoDich(gd0);
 
-        GiaoDich gd1 = new GiaoDich("GD1", "No Data", "Nạp tiền", "Nạp tiền vào ví FPT Pay",
+        GiaoDich gd1 = new GiaoDich("GD1", "VI01", "Nạp tiền", "Nạp tiền vào ví FPT Pay",
                 changeType.intMoneyToString(1000000000), "2022-11-20");
         giaoDichDAO.insertGiaoDich(gd1);
 
-        GiaoDich gd2 = new GiaoDich("GD2", "No Data", "Thanh toán đơn hàng", "Thanh toán đơn hàng Laptop...",
+        GiaoDich gd2 = new GiaoDich("GD2", "VI02", "Thanh toán đơn hàng", "Thanh toán đơn hàng Laptop Apple MacBook Air M1 2020 16GB",
                 changeType.intMoneyToString(47900000), "2022-11-22");
         giaoDichDAO.insertGiaoDich(gd2);
 
-        GiaoDich gd3 = new GiaoDich("GD3", "No Data", "Thanh toán đơn hàng", "Thanh toán đơn hàng Laptop...",
+        GiaoDich gd3 = new GiaoDich("GD3", "VI03", "Thanh toán đơn hàng", "Thanh toán đơn hàng Laptop Apple MacBook Pro 16 M1 Pro 2021 10 core-CPU",
                 changeType.intMoneyToString(35500000), "2022-11-25");
         giaoDichDAO.insertGiaoDich(gd3);
 
-        GiaoDich gd4 = new GiaoDich("GD4", "No Data", "Thanh toán đơn hàng", "Thanh toán đơn hàng Laptop Macbook",
+        GiaoDich gd4 = new GiaoDich("GD4", "VI04", "Thanh toán đơn hàng", "Thanh toán đơn hàng Laptop Asus Gaming ROG Flow Z13 GZ301Z i7 12700H",
                 changeType.intMoneyToString(25900000), "2022-11-27");
         giaoDichDAO.insertGiaoDich(gd4);
 
-        GiaoDich gd5 = new GiaoDich("GD5", "No Data", "Nạp tiền", "Nạp tiền vào ví FPT Pay",
-                changeType.intMoneyToString(100000000), "2022-11-29");
-        giaoDichDAO.insertGiaoDich(gd5);
     }
 
 }

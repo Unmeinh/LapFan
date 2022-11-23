@@ -12,8 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.ActivityNV_Admin.DonHang_Manager_Activity;
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
@@ -35,14 +38,22 @@ public class QL_DonHang_Fragment extends Fragment {
 
     String TAG = "KH_DonHang_Activity_____";
     AppCompatButton addDHButton;
+    RecyclerView recyclerView;
+    TextView count;
+    RelativeLayout relativeLayout;
+    LinearLayout linearLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_ql_don_hang, container, false);
         addDHButton = view.findViewById(R.id.button_AddDH);
+        recyclerView = view.findViewById(R.id.recyclerView_NVA_DonHang);
+        count = view.findViewById(R.id.textView_Soluong);
+        relativeLayout = view.findViewById(R.id.layoutView);
+        linearLayout = view.findViewById(R.id.loadingView);
 
-        QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(QL_DonHang_Fragment.this, getContext());
+        QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(getContext(), recyclerView, count, linearLayout, relativeLayout);
         ql_donHang_loader.execute("");
 
         addDonHang();

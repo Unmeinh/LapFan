@@ -100,6 +100,9 @@ public class Info_Laptop_Activity extends AppCompatActivity {
             if (laptop.getThongSoKT().equals("RAM 16GB")) {
                 tsktLaptop.setText(R.string.tskt_ram_16g);
             }
+            if (laptop.getThongSoKT().equals("RAM 32GB")) {
+                tsktLaptop.setText(R.string.tskt_ram_32g);
+            }
         }
     }
 
