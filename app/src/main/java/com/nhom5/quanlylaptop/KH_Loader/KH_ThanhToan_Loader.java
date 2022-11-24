@@ -39,15 +39,17 @@ public class KH_ThanhToan_Loader extends AsyncTask<String, Void, ArrayList<GioHa
     LinearLayout loadingView;
     @SuppressLint("StaticFieldLeak")
     RelativeLayout relativeLayout;
-    String type;
+    String type, onWhat;
 
-    public KH_ThanhToan_Loader(Context context, ArrayList<Laptop> listLap, String type, RecyclerView reView, LinearLayout loadingView, RelativeLayout relativeLayout) {
+    public KH_ThanhToan_Loader(Context context, ArrayList<Laptop> listLap, String type, RecyclerView reView,
+                               LinearLayout loadingView, RelativeLayout relativeLayout, String onWhat) {
         this.context = context;
         this.listLap = listLap;
         this.type = type;
         this.reView = reView;
         this.loadingView = loadingView;
         this.relativeLayout = relativeLayout;
+        this.onWhat = onWhat;
     }
 
     @Override
@@ -82,15 +84,25 @@ public class KH_ThanhToan_Loader extends AsyncTask<String, Void, ArrayList<GioHa
         Log.d(TAG, "setUpReView: true");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
-        KH_ThanhToan_Adapter kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, listGio, context);
-        recyclerView.setAdapter(kh_thanhToan_adapter);
+        if (onWhat.equals("onCreate")){
+            KH_ThanhToan_Adapter kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, listGio, context, "onCreate");
+            recyclerView.setAdapter(kh_thanhToan_adapter);
+        } else {
+            KH_ThanhToan_Adapter kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, listGio, context, "onResume");
+            recyclerView.setAdapter(kh_thanhToan_adapter);
+        }
     }
 
     private void setUpReViewMN(RecyclerView recyclerView) {
         Log.d(TAG, "setUpReView: true");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
-        KH_ThanhToan_Adapter kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, context);
-        recyclerView.setAdapter(kh_thanhToan_adapter);
+        if (onWhat.equals("onCreate")){
+            KH_ThanhToan_Adapter kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, context, "onCreate");
+            recyclerView.setAdapter(kh_thanhToan_adapter);
+        } else {
+            KH_ThanhToan_Adapter kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, context, "onResume");
+            recyclerView.setAdapter(kh_thanhToan_adapter);
+        }
     }
 }

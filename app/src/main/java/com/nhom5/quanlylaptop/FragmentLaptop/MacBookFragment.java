@@ -24,6 +24,10 @@ import com.nhom5.quanlylaptop.KH_Adapter.KH_Laptop_Adapter;
 import com.nhom5.quanlylaptop.KH_Loader.KH_Laptop_Loader;
 import com.nhom5.quanlylaptop.PagerAdapter.Photo_Adapter;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.SliderAdapter;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,23 +37,19 @@ import me.relex.circleindicator.CircleIndicator;
 
 public class MacBookFragment extends Fragment {
 
-    ViewPager viewPager;
-    CircleIndicator circleIndicator;
     List<Photo> list = new ArrayList<>();
-    Photo_Adapter photoAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_mac_book, container, false);
-        viewPager = view.findViewById(R.id.viewPager);
-        circleIndicator = view.findViewById(R.id.circleIndicator);
+        SliderView sliderView = view.findViewById(R.id.sliderView);
 
-        list = getListPhoto();
-        photoAdapter = new Photo_Adapter(requireContext(), list);
-        viewPager.setAdapter(photoAdapter);
-
-        circleIndicator.setViewPager(viewPager);
-        photoAdapter.registerDataSetObserver(circleIndicator.getDataSetObserver());
+        list = setListPhoto();
+        SliderAdapter sliderAdapter = new SliderAdapter(list);
+        sliderView.setSliderAdapter(sliderAdapter);
+        sliderView.setIndicatorAnimation(IndicatorAnimationType.THIN_WORM);
+        sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
+        sliderView.startAutoCycle();
 
         KH_Laptop_Loader kh_laptop_loader = new KH_Laptop_Loader(getContext(), view.findViewById(R.id.recyclerView_Macbook));
         kh_laptop_loader.execute("LMac");
@@ -57,7 +57,7 @@ public class MacBookFragment extends Fragment {
         return view;
     }
 
-    private List<Photo> getListPhoto() {
+    private List<Photo> setListPhoto() {
         list.add(new Photo(R.drawable.img_macbook));
         list.add(new Photo(R.drawable.mb1));
         list.add(new Photo(R.drawable.mb2));

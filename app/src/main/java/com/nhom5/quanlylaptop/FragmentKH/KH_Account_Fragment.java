@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.Activity.Account_Manager_Activity;
+import com.nhom5.quanlylaptop.Activity.Webview_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_DonHang_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_ViTien_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
@@ -89,7 +90,10 @@ public class KH_Account_Fragment extends Fragment {
         nhomSanVou.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getContext(), Webview_Activity.class);
+                intent.putExtra("titleWeb", "Nhóm săn Voucher");
+                intent.putExtra("urlWeb", "https://www.facebook.com/groups/2367026526778031");
+                startActivity(intent);
             }
         });
     }

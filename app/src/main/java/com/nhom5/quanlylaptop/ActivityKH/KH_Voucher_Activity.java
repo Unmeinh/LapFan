@@ -19,6 +19,7 @@ import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.KH_Loader.KH_Voucher_Loader;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Voucher_Adapter;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.AddData;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,6 +48,8 @@ public class KH_Voucher_Activity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AddData addData = new AddData(context);
+                addData.setNullDataVou();
                 finish();
             }
         });

@@ -62,12 +62,24 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <TextView
-                        android:textStyle="bold"
-                        android:textColor="@color/black"
-                        android:text="@string/th_ng_tin_n_h_ng"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="20dp">
+
+                        <ImageView
+                            android:src="@drawable/don_hang_icon"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"/>
+
+                        <TextView
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:text="@string/th_ng_tin_n_h_ng"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         tools:listitem="@layout/cardview_kh_thanhtoan"
@@ -85,19 +97,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="75dp">
 
-                    <TextView
-                        android:textStyle="bold"
+                    <LinearLayout
                         android:id="@+id/tv_dcnh"
-                        android:textColor="@color/black"
-                        android:text="@string/a_ch_nh_n_h_ng"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="20dp">
+
+                        <ImageView
+                            android:src="@drawable/icon_location"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"/>
+
+                        <TextView
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:text="@string/a_ch_nh_n_h_ng"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/textView_DiaChi"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="3dp"
-                        android:text="Khách Hàng - 0123456789 \n Hà Nội - Việt Nam"
                         android:textColor="#4E352F"
                         android:layout_below="@id/tv_dcnh"
                         android:layout_alignParentBottom="true"
@@ -121,13 +144,25 @@
                     android:layout_width="match_parent"
                     android:layout_height="75dp">
 
-                    <TextView
-                        android:textStyle="bold"
+                    <LinearLayout
                         android:id="@+id/tv_httt"
-                        android:textColor="@color/black"
-                        android:text="@string/h_nh_th_c_thanh_to_n"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="20dp">
+
+                        <ImageView
+                            android:src="@drawable/payment_icon"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"/>
+
+                        <TextView
+                            android:layout_marginStart="10dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:text="@string/h_nh_th_c_thanh_to_n"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/textView_HinhThucTT"
@@ -142,42 +177,6 @@
 
                     <TextView
                         android:id="@+id/textView_Change_HTTT"
-                        android:layout_alignParentEnd="true"
-                        android:textColor="#3852B0"
-                        android:text="@string/thay_i"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:padding="7dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="75dp">
-
-                    <TextView
-                        android:textStyle="bold"
-                        android:id="@+id/tv_vou"
-                        android:textColor="@color/black"
-                        android:text="@string/voucher"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/textView_Voucher"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="3dp"
-                        android:text="HALOW2022 \n Sale off 20%"
-                        android:textColor="#4E352F"
-                        android:layout_below="@id/tv_vou"
-                        android:layout_alignParentBottom="true"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/textView_Change_Voucher"
                         android:layout_alignParentEnd="true"
                         android:textColor="#3852B0"
                         android:text="@string/thay_i"
@@ -304,7 +303,7 @@
                     <TextView
                         android:textColor="@color/black"
                         android:layout_marginStart="10dp"
-                        android:text="Nhấn “đặt hàng” đồng nghĩa với việc bạn đồng ý tuân thủ  theo điều khoản FPT shop "
+                        android:text="Nhấn “Đặt hàng” đồng nghĩa với việc bạn đồng ý tuân thủ  theo điều khoản FPT shop "
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 

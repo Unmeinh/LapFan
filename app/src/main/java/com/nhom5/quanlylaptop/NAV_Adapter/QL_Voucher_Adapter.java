@@ -50,21 +50,23 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
     }
 
     public static class AuthorViewHolder extends RecyclerView.ViewHolder {
-        TextView name, date, ma;
+        TextView name, date, ma, sale;
 
         public AuthorViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.textView_TenVoucher);
             date = itemView.findViewById(R.id.textView_Date_Voucher);
             ma = itemView.findViewById(R.id.textView_MaVoucher);
+            sale = itemView.findViewById(R.id.textView_GiamGia);
         }
     }
 
     public void setRow(int pos, @NonNull QL_Voucher_Adapter.AuthorViewHolder author) {
         Log.d(TAG, "setRow: " + pos);
         Voucher voucher = listVou.get(pos);
-        author.ma.setText("Mã Voucher\n" + voucher.getTenVoucher());
-        author.name.setText("Giảm giá\n" + voucher.getGiamGia());
+        author.ma.setText(voucher.getMaVoucher());
+        author.sale.setText("Giảm giá\n" + voucher.getGiamGia());
+        author.name.setText(voucher.getTenVoucher());
         if (voucher.getNgayBD().equals(voucher.getNgayKT())) {
             author.date.setText("Duy nhất trong\n" + voucher.getNgayBD());
         } else {

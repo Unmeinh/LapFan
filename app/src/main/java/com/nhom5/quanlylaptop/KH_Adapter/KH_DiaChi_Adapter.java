@@ -1,7 +1,10 @@
 package com.nhom5.quanlylaptop.KH_Adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,7 +47,20 @@ public class KH_DiaChi_Adapter extends RecyclerView.Adapter<KH_DiaChi_Adapter.Au
         author.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, diaChi.toString(), Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPreferences = context.getSharedPreferences("diaChi_thanhToan", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                String tenkh = diaChi.getTenNguoiNhan();
+                String sdt = diaChi.getSDT();
+                String tp = diaChi.getThanhPho();
+                String qh = diaChi.getQuanHuyen();
+                String px = diaChi.getXaPhuong();
+
+                editor.putString("tenKH", tenkh);
+                editor.putString("sdt", sdt);
+                editor.putString("tp", tp);
+                editor.putString("qh", qh);
+                editor.putString("px", px);
+                editor.commit();
             }
         });
     }

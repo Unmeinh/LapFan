@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.Activity.Account_Manager_Activity;
+import com.nhom5.quanlylaptop.Activity.Webview_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_DonHang_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
 import com.nhom5.quanlylaptop.ActivityNV_Admin.NV_DonHang_Activity;
@@ -59,7 +60,10 @@ public class NV_Account_Fragment extends Fragment {
         cdnv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getContext(), Webview_Activity.class);
+                intent.putExtra("titleWeb", "Cộng đồng nhân viên");
+                intent.putExtra("urlWeb", "https://www.facebook.com/groups/500323005383352");
+                startActivity(intent);
             }
         });
     }
@@ -68,7 +72,10 @@ public class NV_Account_Fragment extends Fragment {
         meoBH.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(getContext(), Webview_Activity.class);
+                intent.putExtra("titleWeb", "Mẹo bán hàng");
+                intent.putExtra("urlWeb", "https://www.youtube.com/watch?v=DR0K1LYZ5FQ");
+                startActivity(intent);
             }
         });
     }

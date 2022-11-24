@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.AddData;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.util.ArrayList;
@@ -54,6 +56,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
     }
 
     private void buyNowLaptop(){
+        AddData addData = new AddData(context);
         buyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +67,8 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                     Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
                     intent.putExtras(bundle);
                     intent.putExtra("input", "muangay");
+                    addData.setNullDataDC();
+                    addData.setNullDataVou();
                     context.startActivity(intent);
                 } else {
                     Toast.makeText(context, "Load thông tin sản phẩm lỗi!\nXin vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
@@ -128,4 +133,5 @@ public class Info_Laptop_Activity extends AppCompatActivity {
             }
         });
     }
+
 }

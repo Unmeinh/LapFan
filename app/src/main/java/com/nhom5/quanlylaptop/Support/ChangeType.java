@@ -143,7 +143,7 @@ public class ChangeType {
         return bitmap;
     }
 
-    public int voucherToInt(String voucher){
+    public int voucherToInt(String voucher) {
         int iVou = 0;
         String afterCheck = "";
         String check = "[0-9]";
@@ -157,6 +157,10 @@ public class ChangeType {
             iVou = Integer.parseInt(afterCheck);
         }
         Log.d(TAG, "voucherToInt: iVou: " + iVou);
-        return iVou/100;
+        return iVou;
+    }
+
+    public String deleteSpaceText(String user) {
+        return user.replaceAll("\\s\\s+", " ").trim();
     }
 }

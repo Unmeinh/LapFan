@@ -1,8 +1,11 @@
 package com.nhom5.quanlylaptop.KH_Adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +26,7 @@ import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.FragmentKH.KH_GioHang_Fragment;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.AddData;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.util.ArrayList;
@@ -57,6 +61,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
     @Override
     public void onBindViewHolder(@NonNull KH_GioHang_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         Laptop laptop = setRow(pos, author, "none");
+        AddData addData = new AddData(context);
 
         author.giam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,6 +110,8 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
                     bundle.putBinder("laptop", laptop);
                     Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
                     intent.putExtras(bundle);
+                    addData.setNullDataDC();
+                    addData.setNullDataVou();
                     context.startActivity(intent);
                 } else {
                     Toast.makeText(context, "Load thông tin sản phẩm lỗi!\nXin vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
@@ -182,4 +189,5 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
 
         return laptop;
     }
+
 }

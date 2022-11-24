@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -20,6 +21,7 @@ import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_ThanhToan_Adapter;
 import com.nhom5.quanlylaptop.KH_Loader.KH_ThanhToan_Loader;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.AddData;
 
 import java.util.ArrayList;
 
@@ -45,8 +47,17 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
         getInput();
         doiDiaChi();
         useToolbar();
+        getSetDiaChi();
 
-        KH_ThanhToan_Loader kh_thanhToan_loader = new KH_ThanhToan_Loader(context, listLap, input, recyclerView, linearLayout, relativeLayout);
+        KH_ThanhToan_Loader kh_thanhToan_loader = new KH_ThanhToan_Loader(context, listLap, input, recyclerView, linearLayout, relativeLayout, "onCreate");
+        kh_thanhToan_loader.execute("");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getSetDiaChi();
+        KH_ThanhToan_Loader kh_thanhToan_loader = new KH_ThanhToan_Loader(context, listLap, input, recyclerView, linearLayout, relativeLayout, "onResume");
         kh_thanhToan_loader.execute("");
     }
 
@@ -75,7 +86,7 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
         try {
             input = intent.getStringExtra("input");
             if (input != null) {
-                if (input.equals("muangay")){
+                if (input.equals("muangay")) {
                     ArrayList<Laptop> list = new ArrayList<>();
                     list.add((Laptop) intent.getExtras().getBinder("laptop"));
                     listLap = list;
@@ -85,4 +96,22 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+    private void getSetDiaChi() {
+        SharedPreferences pref = getSharedPreferences("diaChi_thanhToan", MODE_PRIVATE);
+        if (pref == null) {
+            return;
+        }
+        String tenkh = pref.getString("tenKH", "");
+        String sdt = pref.getString("sdt", "");
+        String tp = pref.getString("tp", "");
+        String qh = pref.getString("qh", "");
+        String px = pref.getString("px", "");
+
+        TextView textView = findViewById(R.id.textView_DiaChi);
+        textView.setText(tenkh + " - " + sdt + "\n " + tp + " - " + qh + " - " + px);
+
+    }
+
 }

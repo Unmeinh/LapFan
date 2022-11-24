@@ -5,6 +5,7 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.PagerAdapter.Hello_PagerAdapter;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import me.relex.circleindicator.CircleIndicator;
 
@@ -23,6 +25,7 @@ public class HelloActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private LinearLayout layoutbottom;
     private CircleIndicator circleIndicator;
+    String TAG = "HelloActivity_____";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

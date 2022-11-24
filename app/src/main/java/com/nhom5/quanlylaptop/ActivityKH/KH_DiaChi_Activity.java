@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.KH_Loader.KH_DiaChi_Loader;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.AddData;
 
 public class KH_DiaChi_Activity extends AppCompatActivity {
 
@@ -35,6 +36,8 @@ public class KH_DiaChi_Activity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AddData addData = new AddData(context);
+                addData.setNullDataDC();
                 finish();
             }
         });
