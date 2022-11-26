@@ -3,29 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="15dp"
+    android:background="#D2422F"
     tools:context=".HelloWorld.Hello_Fragment1">
 
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="170sp"
-        android:gravity="center"
-        android:text="Mua laptop dễ dàng và tiện lợi"
-        android:textColor="@color/black"
-        android:textSize="15sp"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="300sp"
-        android:src="@drawable/hello_image_1" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
+            android:gravity="center"
+            android:text="Quản lý dữ liệu của bạn"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="FPT Shop sẽ giúp bạn mua hàng một cách \n tiện lợi và nhanh chóng."
-        android:textColor="@color/black" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="300sp"
+            android:src="@drawable/manage_image" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="17sp"
+            android:lineSpacingExtra="5dp"
+            android:text="LAPFAN giúp bạn quản lý chi tiết\ndữ liệu trên mọi lĩnh vực"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -31,7 +31,7 @@ public class VoucherDAO {
         ArrayList<Voucher> listVou = new ArrayList<>();
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
-        Cursor c = db.query("TB_Voucher", columns, selection, selectionArgs, null, null, orderBy);
+        Cursor c = db.query("Voucher", columns, selection, selectionArgs, null, null, orderBy);
         Log.d(TAG, "selectVoucher: Cursor: " + c.toString());
 
         if (c.getCount() > 0) {
@@ -71,7 +71,7 @@ public class VoucherDAO {
         Log.d(TAG, "insertVoucher: Voucher: " + voucher.toString());
         Log.d(TAG, "insertVoucher: Values: " + values);
 
-        long ketqua = db.insert("TB_Voucher", null, values);
+        long ketqua = db.insert("Voucher", null, values);
         if (ketqua > 0) {
             Log.d(TAG, "insertVoucher: Thêm thành công"); 
         } else {
@@ -92,7 +92,7 @@ public class VoucherDAO {
         Log.d(TAG, "updateVoucher: Voucher: " + voucher.toString());
         Log.d(TAG, "updateVoucher: Values: " + values);
 
-        long ketqua = db.update("TB_Voucher", values, "maVoucher=?", new String[]{String.valueOf(voucher.getMaVoucher())});
+        long ketqua = db.update("Voucher", values, "maVoucher=?", new String[]{String.valueOf(voucher.getMaVoucher())});
         if (ketqua > 0) {
             Log.d(TAG, "updateVoucher: Sửa thành công"); 
         } else {
@@ -106,7 +106,7 @@ public class VoucherDAO {
         db = qlLaptopDB.getWritableDatabase();
         Log.d(TAG, "deleteVoucher: Voucher: " + voucher.toString());
 
-        long ketqua = db.delete("TB_Voucher", "maVoucher=?", new String[]{String.valueOf(voucher.getMaVoucher())});
+        long ketqua = db.delete("Voucher", "maVoucher=?", new String[]{String.valueOf(voucher.getMaVoucher())});
         if (ketqua > 0) {
             Log.d(TAG, "deleteVoucher: Xóa thành công"); 
         } else {

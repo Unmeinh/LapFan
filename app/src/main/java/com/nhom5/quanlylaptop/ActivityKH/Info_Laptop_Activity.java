@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
+import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.AddData;
@@ -66,9 +67,9 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                     bundle.putBinder("laptop", laptop);
                     Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
                     intent.putExtras(bundle);
-                    intent.putExtra("input", "muangay");
-                    addData.setNullDataDC();
-                    addData.setNullDataVou();
+                    intent.putExtra("input", "MuaNgay");
+                    IdData.getInstance().setIdDC("");
+                    IdData.getInstance().setIdVou("");
                     context.startActivity(intent);
                 } else {
                     Toast.makeText(context, "Load thông tin sản phẩm lỗi!\nXin vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
@@ -84,7 +85,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     GioHang gioHang = new GioHang("GH" + listGio.size(), laptop.getMaLaptop(),
-                            "No Data", "2022-11-17", 1);
+                            "No Data", "2022-11-17", "No Data", 1);
                     gioHangDAO.insertGioHang(gioHang);
                 }
             });

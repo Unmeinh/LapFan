@@ -130,7 +130,7 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_home).setCheckable(true);
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_home).setChecked(true);
                 }
-                if (id == R.id.item_navi_drawer_nv_fptShop) {
+                if (id == R.id.item_navi_drawer_nv_noti) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 1 - fptshop");
                     NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
@@ -139,8 +139,8 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     itemNaviDr = 1;
                     useToolbar("FPT Shop", 0);
                     bottomNavigationView.setVisibility(View.VISIBLE);
-                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_fpt).setCheckable(true);
-                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_fpt).setChecked(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_noti).setCheckable(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_noti).setChecked(true);
                 }
                 if (id == R.id.item_navi_drawer_nv_Laptop) {
                     item.setCheckable(true);
@@ -227,7 +227,7 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     useToolbar("", 0);
                     getSupportActionBar().show();
                 }
-                if (i == R.id.item_navi_bottom_nv_fpt) {
+                if (i == R.id.item_navi_bottom_nv_noti) {
                     NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(1);

@@ -28,7 +28,7 @@ public class NhanVienDAO {
         ArrayList<NhanVien> listNV = new ArrayList<>();
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
-        Cursor c = db.query("TB_NhanVien", columns, selection, selectionArgs, null, null, orderBy);
+        Cursor c = db.query("NhanVien", columns, selection, selectionArgs, null, null, orderBy);
         Log.d(TAG, "selectNhanVien: Cursor: " + c.toString());
 
         if (c.getCount() > 0) {
@@ -90,7 +90,7 @@ public class NhanVienDAO {
         Log.d(TAG, "insertNhanVien: NhanVien: " + nhanVien.toString());
         Log.d(TAG, "insertNhanVien: Values: " + values);
 
-        long ketqua = db.insert("TB_NhanVien", null, values);
+        long ketqua = db.insert("NhanVien", null, values);
         if (ketqua > 0) {
             Log.d(TAG, "insertNhanVien: Thêm thành công"); 
         } else {
@@ -117,7 +117,7 @@ public class NhanVienDAO {
         Log.d(TAG, "insertNhanVien: NhanVien: " + nhanVien.toString());
         Log.d(TAG, "insertNhanVien: Values: " + values);
 
-        long ketqua = db.update("TB_NhanVien", values, "maNV=?", new String[]{String.valueOf(nhanVien.getMaNV())});
+        long ketqua = db.update("NhanVien", values, "maNV=?", new String[]{String.valueOf(nhanVien.getMaNV())});
         if (ketqua > 0) {
             Log.d(TAG, "updateVoucher: Sửa thành công"); 
         } else {
@@ -131,7 +131,7 @@ public class NhanVienDAO {
         db = qlLaptopDB.getWritableDatabase();
         Log.d(TAG, "deleteNhanVien: NhanVien: " + nhanVien.toString());
 
-        long ketqua = db.delete("TB_NhanVien", "maNV=?", new String[]{String.valueOf(nhanVien.getMaNV())});
+        long ketqua = db.delete("NhanVien", "maNV=?", new String[]{String.valueOf(nhanVien.getMaNV())});
         if (ketqua > 0) {
             Log.d(TAG, "deleteNhanVien: Xóa thành công"); 
         } else {

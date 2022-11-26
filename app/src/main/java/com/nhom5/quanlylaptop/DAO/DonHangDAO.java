@@ -31,7 +31,7 @@ public class DonHangDAO {
         ArrayList<DonHang> listDH = new ArrayList<>();
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
-        Cursor c = db.query("TB_DonHang", columns, selection, selectionArgs, null, null, orderBy);
+        Cursor c = db.query("DonHang", columns, selection, selectionArgs, null, null, orderBy);
         Log.d(TAG, "selectDonHang: Cursor: " + c.toString());
 
         if (c.getCount() > 0) {
@@ -90,7 +90,7 @@ public class DonHangDAO {
         Log.d(TAG, "insertDonHang: DonHang: " + donHang.toString());
         Log.d(TAG, "insertDonHang: Values: " + values);
 
-        long ketqua = db.insert("TB_DonHang", null, values);
+        long ketqua = db.insert("DonHang", null, values);
         if (ketqua > 0) {
             Log.d(TAG, "insertDonHang: Thêm thành công");
         } else {
@@ -118,7 +118,7 @@ public class DonHangDAO {
         Log.d(TAG, "updateDonHang: DonHang: " + donHang.toString());
         Log.d(TAG, "updateDonHang: Values: " + values);
 
-        long ketqua = db.update("TB_DonHang", values, "maDH=?", new String[]{String.valueOf(donHang.getMaDH())});
+        long ketqua = db.update("DonHang", values, "maDH=?", new String[]{String.valueOf(donHang.getMaDH())});
         if (ketqua > 0) {
             Log.d(TAG, "updateDonHang: Sửa thành công");
         } else {
@@ -132,7 +132,7 @@ public class DonHangDAO {
         db = qlLaptopDB.getWritableDatabase();
         Log.d(TAG, "deleteDonHang: DonHang: " + donHang.toString());
 
-        long ketqua = db.delete("TB_DonHang", "maDH=?", new String[]{String.valueOf(donHang.getMaDH())});
+        long ketqua = db.delete("DonHang", "maDH=?", new String[]{String.valueOf(donHang.getMaDH())});
         if (ketqua > 0) {
             Log.d(TAG, "deleteDonHang: Xóa thành công");
         } else {

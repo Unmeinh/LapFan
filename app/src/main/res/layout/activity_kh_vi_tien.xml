@@ -68,7 +68,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Liên kết ngân hàng"
+                    android:text="Đổi ngân hàng"
                     android:textColor="#0E0D0D"
                     android:textSize="20sp"
                     android:textStyle="bold" />
@@ -99,7 +99,8 @@
                 android:src="@drawable/icon_banker" />
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="8"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/t_i_kho_n_ng_n_h_ng"
@@ -108,9 +109,11 @@
                 android:textStyle="bold" />
 
             <ImageView
-                android:src="@drawable/drop_down_icon"
-                android:layout_width="40dp"
-                android:layout_height="match_parent"/>
+                android:layout_margin="10dp"
+                android:src="@drawable/change_circle_icon"
+                android:layout_width="30dp"
+                android:layout_height="match_parent"
+                app:tint="#BF000000" />
 
         </LinearLayout>
 
@@ -120,14 +123,15 @@
             android:layout_marginStart="35dp"
             android:orientation="horizontal">
 
-            <ImageButton
-                android:layout_width="wrap_content"
+            <ImageView
+                android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:background="#fff"
-                android:src="@drawable/icon_mbbank" />
+                android:src="@drawable/bank_mb" />
 
             <TextView
-                android:layout_width="300dp"
+                android:layout_marginStart="10dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="MB Bank"

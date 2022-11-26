@@ -14,6 +14,7 @@ import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
+import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.NhanVien;
 import com.nhom5.quanlylaptop.R;
@@ -60,52 +61,6 @@ public class AddData {
                 }
             }
         }
-    }
-
-    public void setNullDataDC() {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("diaChi_thanhToan", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("tenKH", "");
-        editor.putString("sdt", "");
-        editor.putString("tp", "");
-        editor.putString("qh", "");
-        editor.putString("px", "");
-        editor.commit();
-    }
-
-    public void setNullDataVou() {
-        SharedPreferences sharedPreferences = context.getSharedPreferences("voucher_thanhToan", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("maVou", "");
-        editor.putString("giamGia", "");
-        editor.commit();
-    }
-
-    public String[] getSetVoucher(TextView textView, int giaTien) {
-        Log.d(TAG, "getSetVoucher: giaTien " + giaTien);
-        String maVou = "";
-        String sale = "";
-        SharedPreferences pref = context.getSharedPreferences("voucher_thanhToan", MODE_PRIVATE);
-        if (pref != null) {
-            Log.d(TAG, "getSetVoucher: pref not null");
-            maVou = pref.getString("maVou", "");
-            String giamGia = pref.getString("giamGia", "");
-            Log.d(TAG, "getSetVoucher: sale: " + giamGia);
-            if (!giamGia.equals("")) {
-                int money = giaTien * changeType.voucherToInt(giamGia) / 100;
-                Log.d(TAG, "getSetVoucher: giamGia: " + changeType.voucherToInt(giamGia));
-                Log.d(TAG, "getSetVoucher: giamTien: " + money);
-
-                textView.setText("-" + changeType.intMoneyToString(money));
-                sale = changeType.intMoneyToString(money);
-                textView.setTextColor(Color.parseColor("#FF5722"));
-            } else {
-                textView.setText(R.string.thay_i_m);
-                sale = changeType.intMoneyToString(0);
-            }
-        }
-
-        return new String[]{maVou, sale};
     }
 
     public void addDemoLaptopDell() {

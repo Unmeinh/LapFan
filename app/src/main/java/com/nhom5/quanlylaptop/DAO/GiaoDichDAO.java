@@ -32,7 +32,7 @@ public class GiaoDichDAO {
         ArrayList<GiaoDich> listGD = new ArrayList<>();
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
-        Cursor c = db.query("TB_GiaoDich", columns, selection, selectionArgs, null, null, orderBy);
+        Cursor c = db.query("GiaoDich", columns, selection, selectionArgs, null, null, orderBy);
         Log.d(TAG, "selectGiaoDich: Cursor: " + c.toString());
 
         if (c.getCount() > 0) {
@@ -74,7 +74,7 @@ public class GiaoDichDAO {
         Log.d(TAG, "insertGiaoDich: GiaoDich: " + giaoDich.toString());
         Log.d(TAG, "insertGiaoDich: Values: " + values);
 
-        long ketqua = db.insert("TB_GiaoDich", null, values);
+        long ketqua = db.insert("GiaoDich", null, values);
         if (ketqua > 0) {
             Log.d(TAG, "insertGiaoDich: Thêm thành công");
         } else {
@@ -96,7 +96,7 @@ public class GiaoDichDAO {
         Log.d(TAG, "updateGiaoDich: GiaoDich: " + giaoDich.toString());
         Log.d(TAG, "updateGiaoDich: Values: " + values);
 
-        long ketqua = db.update("TB_GiaoDich", values, "maGD=?", new String[]{String.valueOf(giaoDich.getMaGD())});
+        long ketqua = db.update("GiaoDich", values, "maGD=?", new String[]{String.valueOf(giaoDich.getMaGD())});
         if (ketqua > 0) {
             Log.d(TAG, "updateGiaoDich: Sửa thành công");
         } else {
@@ -110,7 +110,7 @@ public class GiaoDichDAO {
         db = qlLaptopDB.getWritableDatabase();
         Log.d(TAG, "deleteGiaoDich: GiaoDich: " + giaoDich.toString());
 
-        long ketqua = db.delete("TB_GiaoDich", "maGD=?", new String[]{String.valueOf(giaoDich.getMaGD())});
+        long ketqua = db.delete("GiaoDich", "maGD=?", new String[]{String.valueOf(giaoDich.getMaGD())});
         if (ketqua > 0) {
             Log.d(TAG, "deleteGiaoDich: Xóa thành công");
         } else {

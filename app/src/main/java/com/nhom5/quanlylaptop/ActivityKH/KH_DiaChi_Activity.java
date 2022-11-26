@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -31,15 +33,14 @@ public class KH_DiaChi_Activity extends AppCompatActivity {
     private void useToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Normal));
         TextView titleToolbar = findViewById(R.id.textView_Title_Toolbar);
-        titleToolbar.setText("Danh sách Voucher");
+        titleToolbar.setText("Danh sách Địa chỉ");
         ImageButton back = findViewById(R.id.imageButton_Back_Toolbar);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddData addData = new AddData(context);
-                addData.setNullDataDC();
                 finish();
             }
         });
     }
+
 }

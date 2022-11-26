@@ -3,13 +3,14 @@ package com.nhom5.quanlylaptop.FragmentKH;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.nhom5.quanlylaptop.KH_Loader.KH_ThongBao_Loader;
+import com.nhom5.quanlylaptop.KH_Loader.All_ThongBao_Loader;
 import com.nhom5.quanlylaptop.R;
 
 public class KH_ThongBao_Fragment extends Fragment {
@@ -19,10 +20,12 @@ public class KH_ThongBao_Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kh_thongbao, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView_ThongBao);
+        LinearLayout linearLayout = view.findViewById(R.id.loadingView);
 
-        KH_ThongBao_Loader kh_thongBao_loader = new KH_ThongBao_Loader(getContext(),
-                view.findViewById(R.id.recyclerView_ThongBao), view.findViewById(R.id.loadingView));
-        kh_thongBao_loader.execute("");
+        All_ThongBao_Loader all_thongBao_loader = new All_ThongBao_Loader(getContext(),
+                recyclerView, linearLayout, "kh");
+        all_thongBao_loader.execute("");
 
         return view;
     }

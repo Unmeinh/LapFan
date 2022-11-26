@@ -27,7 +27,6 @@ public class KH_DiaChi_Loader extends AsyncTask<String, Void, ArrayList<DiaChi>>
     DiaChiDAO diaChiDAO;
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
-
     public KH_DiaChi_Loader(Context context, RecyclerView reView) {
         this.context = context;
         this.reView = reView;
@@ -66,11 +65,11 @@ public class KH_DiaChi_Loader extends AsyncTask<String, Void, ArrayList<DiaChi>>
 
     private void addDemoDiaChi() {
         DiaChi dc1 = new DiaChi("DC0", "KH0", "Donald Trump", "014061946"
-                , "số nhà 1601", "Hoa Kì", "Washington", "Đại lộ Pennsylvania NW");
+                , "Số nhà 1601", "Hoa Kì", "Washington", "Đại lộ Pennsylvania NW");
         diaChiDAO.insertDiaChi(dc1);
 
         DiaChi dc2 = new DiaChi("DC1", "KH0", "Barack Obama", "004081961"
-                , "số nhà 1600", "Hoa Kì", "Washington", "Đại lộ Pennsylvania NW");
+                , "Số nhà 1600", "Hoa Kì", "Washington", "Đại lộ Pennsylvania NW");
         diaChiDAO.insertDiaChi(dc2);
 
         DiaChi dc3 = new DiaChi("DC2", "KH1", "Vladimir Putin", "007101952"

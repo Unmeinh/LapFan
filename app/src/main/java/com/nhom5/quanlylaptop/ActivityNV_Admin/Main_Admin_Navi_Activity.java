@@ -130,7 +130,7 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_home).setCheckable(true);
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_home).setChecked(true);
                 }
-                if (id == R.id.item_navi_drawer_admin_fptShop) {
+                if (id == R.id.item_navi_drawer_admin_noti) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 1 - fptshop");
                     Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
@@ -139,8 +139,8 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                     itemNaviDr = 1;
                     useToolbar("FPT Shop", 0);
                     bottomNavigationView.setVisibility(View.VISIBLE);
-                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_fptShop).setCheckable(true);
-                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_fptShop).setChecked(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_noti).setCheckable(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_noti).setChecked(true);
                 }
                 if (id == R.id.item_navi_drawer_admin_Laptop) {
                     item.setCheckable(true);
@@ -236,7 +236,7 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                     itemNaviDr = 0;
                     useToolbar("", 0);
                 }
-                if (i == R.id.item_navi_bottom_admin_fptShop) {
+                if (i == R.id.item_navi_bottom_admin_noti) {
                     Admin_PagerAdapter_Bottom adapter = new Admin_PagerAdapter_Bottom(getSupportFragmentManager());
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(1);

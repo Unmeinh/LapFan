@@ -3,17 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:padding="15dp"
+    android:background="#D2422F"
     android:orientation="vertical"
     tools:context=".HelloWorld.Hello_Fragment3">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="170sp"
+        android:layout_marginTop="50sp"
         android:gravity="center"
         android:text="Nhiều hình thức thanh toán"
-        android:textColor="@color/black"
-        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -22,9 +25,11 @@
         android:src="@drawable/hello_image_3" />
 
     <TextView
+        android:textSize="20sp"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="FPT shop liên kết với nhiều ngân hàng \n giúp khách hàng thanh toán nhanh chóng \n được giảm giá"
-        android:textColor="@color/black" />
+        android:text="Ứng dụng có nhiều hình thức\nthanh toán giúp khách hàng\nđặt hàng nhanh chóng." />
+
 </LinearLayout>

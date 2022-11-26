@@ -222,7 +222,7 @@
                         <TextView
                             android:textColor="#4E352F"
                             android:text="@string/t_ng_ti_n_h_ng"
-                            android:layout_weight="7"
+                            android:layout_weight="5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
 
@@ -231,7 +231,7 @@
                             android:textColor="#4E352F"
                             android:gravity="end"
                             android:text="30.000đ"
-                            android:layout_weight="3"
+                            android:layout_weight="5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
 
@@ -245,16 +245,16 @@
                         <TextView
                             android:textColor="#4E352F"
                             android:text="@string/voucher_gi_m_gi"
-                            android:layout_weight="7"
+                            android:layout_weight="5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
 
                         <TextView
-                            android:id="@+id/textView_GiamGia"
+                            android:id="@+id/textView_TienGiamGia"
                             android:textColor="#4E352F"
                             android:gravity="end"
                             android:text="0.000đ"
-                            android:layout_weight="3"
+                            android:layout_weight="5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
 
@@ -269,7 +269,7 @@
                             android:textColor="@color/black"
                             android:textSize="19sp"
                             android:text="@string/t_ng_thanh_to_n"
-                            android:layout_weight="7"
+                            android:layout_weight="5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
 
@@ -279,7 +279,7 @@
                             android:textSize="19sp"
                             android:gravity="end"
                             android:text="30.000đ"
-                            android:layout_weight="3"
+                            android:layout_weight="5"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
 

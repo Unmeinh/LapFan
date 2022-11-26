@@ -28,7 +28,7 @@ public class KhachHangDAO {
         ArrayList<KhachHang> listKH = new ArrayList<>();
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
-        Cursor c = db.query("TB_KhachHang", columns, selection, selectionArgs, null, null, orderBy);
+        Cursor c = db.query("KhachHang", columns, selection, selectionArgs, null, null, orderBy);
         Log.d(TAG, "selectKhachHang: Cursor: " + c.toString());
 
         if (c.getCount() > 0) {
@@ -78,7 +78,7 @@ public class KhachHangDAO {
         Log.d(TAG, "insertKhachHang: KhachHang: " + khachHang.toString());
         Log.d(TAG, "insertKhachHang: Values: " + values);
 
-        long ketqua = db.insert("TB_KhachHang", null, values);
+        long ketqua = db.insert("KhachHang", null, values);
         if (ketqua > 0) {
             Log.d(TAG, "insertKhachHang: Thêm thành công"); 
         } else {
@@ -104,7 +104,7 @@ public class KhachHangDAO {
         Log.d(TAG, "updateKhachHang: KhachHang: " + khachHang.toString());
         Log.d(TAG, "updateKhachHang: Values: " + values);
 
-        long ketqua = db.update("TB_KhachHang", values, "maKH=?", new String[]{String.valueOf(khachHang.getMaKH())});
+        long ketqua = db.update("KhachHang", values, "maKH=?", new String[]{String.valueOf(khachHang.getMaKH())});
         if (ketqua > 0) {
             Log.d(TAG, "updateKhachHang: Sửa thành công"); 
         } else {
@@ -118,7 +118,7 @@ public class KhachHangDAO {
         db = qlLaptopDB.getWritableDatabase();
         Log.d(TAG, "deleteKhachHang: KhachHang: " + khachHang.toString());
 
-        long ketqua = db.delete("TB_KhachHang", "maKH=?", new String[]{String.valueOf(khachHang.getMaKH())});
+        long ketqua = db.delete("KhachHang", "maKH=?", new String[]{String.valueOf(khachHang.getMaKH())});
         if (ketqua > 0) {
             Log.d(TAG, "deleteKhachHang: Xóa thành công"); 
         } else {

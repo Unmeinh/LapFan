@@ -34,19 +34,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <ImageButton
-                    android:layout_width="wrap_content"
+                <ImageView
+                    android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:background="#fff"
-                    android:src="@drawable/icon_mbbank" />
+                    android:src="@drawable/bank_mb" />
 
                 <TextView
-                    android:lines="1"
-                    android:layout_width="match_parent"
+                    android:layout_width="210dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="10dp"
-                    android:text="Ngân Hàng MB Bank         "
+                    android:text="Ngân Hàng MB Bank"
                     android:textColor="#0E0D0D"
                     android:textSize="20sp" />
 
@@ -123,7 +121,7 @@
                     android:text="Ví điện tử FPT Pay"
                     android:textSize="17sp"
                     android:textColor="@color/black"
-                    android:layout_width="match_parent"
+                    android:layout_width="210dp"
                     android:layout_height="match_parent"/>
 
             </LinearLayout>
@@ -152,7 +150,7 @@
                     android:text="20.000đ"
                     android:textSize="17sp"
                     android:textColor="@color/black"
-                    android:layout_width="match_parent"
+                    android:layout_width="210dp"
                     android:layout_height="match_parent"/>
 
             </LinearLayout>

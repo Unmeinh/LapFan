@@ -25,8 +25,6 @@ public class Hello_PagerAdapter extends FragmentStatePagerAdapter {
                 return new Hello_Fragment2();
             case 2:
                 return new Hello_Fragment3();
-            case 3:
-                return new Hello_Fragment4();
             default:
                 return new Hello_Fragment1();
         }
@@ -34,6 +32,6 @@ public class Hello_PagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 3;
     }
 }

@@ -20,6 +20,8 @@ import com.nhom5.quanlylaptop.Activity.Webview_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_DonHang_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_ViTien_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
+import com.nhom5.quanlylaptop.CreateWallet.TaoVi_Activity;
+import com.nhom5.quanlylaptop.Entity.Bank;
 import com.nhom5.quanlylaptop.R;
 
 public class KH_Account_Fragment extends Fragment {
@@ -62,7 +64,9 @@ public class KH_Account_Fragment extends Fragment {
         maVoucher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), KH_Voucher_Activity.class));
+                Intent intent = new Intent(getContext(), KH_Voucher_Activity.class);
+                intent.putExtra("openFrom", "Account");
+                startActivity(intent);
             }
         });
     }
@@ -80,7 +84,8 @@ public class KH_Account_Fragment extends Fragment {
         viDienTu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), KH_ViTien_Activity.class);
+                Intent intent = new Intent(getContext(), TaoVi_Activity.class);
+                Bank.getInstance().setSelected("");
                 startActivity(intent);
             }
         });

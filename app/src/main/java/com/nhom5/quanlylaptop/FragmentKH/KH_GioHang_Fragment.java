@@ -21,11 +21,13 @@ import com.nhom5.quanlylaptop.ActivityKH.KH_ThanhToan_Activity;
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
+import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_GioHang_Adapter;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_Laptop_Adapter;
 import com.nhom5.quanlylaptop.KH_Loader.KH_GioHang_Loader;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.AddData;
 
 import java.util.ArrayList;
 
@@ -56,7 +58,9 @@ public class KH_GioHang_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), KH_ThanhToan_Activity.class);
-                intent.putExtra("input", "giohang");
+                intent.putExtra("input", "GioHang");
+                IdData.getInstance().setIdDC("");
+                IdData.getInstance().setIdVou("");
                 startActivity(intent);
             }
         });

@@ -31,7 +31,7 @@ public class DiaChiDAO {
         ArrayList<DiaChi> listDC = new ArrayList<>();
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
-        Cursor c = db.query("TB_DiaChi", columns, selection, selectionArgs, null, null, orderBy);
+        Cursor c = db.query("DiaChi", columns, selection, selectionArgs, null, null, orderBy);
         Log.d(TAG, "selectDiaChi: Cursor: " + c.toString());
 
         if (c.getCount() > 0) {
@@ -77,7 +77,7 @@ public class DiaChiDAO {
         Log.d(TAG, "insertDiaChi: DiaChi: " + diaChi.toString());
         Log.d(TAG, "insertDiaChi: Values: " + values);
 
-        long ketqua = db.insert("TB_DiaChi", null, values);
+        long ketqua = db.insert("DiaChi", null, values);
         if (ketqua > 0) {
             Log.d(TAG, "insertDiaChi: Thêm thành công");
         } else {
@@ -101,7 +101,7 @@ public class DiaChiDAO {
         Log.d(TAG, "updateDiaChi: DiaChi: " + diaChi.toString());
         Log.d(TAG, "updateDiaChi: Values: " + values);
 
-        long ketqua = db.update("TB_DiaChi", values, "maDC=?", new String[]{String.valueOf(diaChi.getMaDC())});
+        long ketqua = db.update("DiaChi", values, "maDC=?", new String[]{String.valueOf(diaChi.getMaDC())});
         if (ketqua > 0) {
             Log.d(TAG, "updateDonHang: Sửa thành công");
         } else {
@@ -115,7 +115,7 @@ public class DiaChiDAO {
         db = qlLaptopDB.getWritableDatabase();
         Log.d(TAG, "deleteDiaChi: DiaChi: " + diaChi.toString());
 
-        long ketqua = db.delete("TB_DiaChi", "maDC=?", new String[]{String.valueOf(diaChi.getMaDC())});
+        long ketqua = db.delete("DiaChi", "maDC=?", new String[]{String.valueOf(diaChi.getMaDC())});
         if (ketqua > 0) {
             Log.d(TAG, "deleteDiaChi: Xóa thành công");
         } else {

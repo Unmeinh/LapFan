@@ -55,7 +55,7 @@ public class KH_ViTien_Activity extends AppCompatActivity {
         clickNapTien();
     }
 
-    private void clickNapTien(){
+    private void clickNapTien() {
         ImageButton napTien = findViewById(R.id.button_NapTien);
         View view = getLayoutInflater().inflate(R.layout.dialog_naptien, null);
         AppCompatButton button = view.findViewById(R.id.button_Dialog);
@@ -80,8 +80,8 @@ public class KH_ViTien_Activity extends AppCompatActivity {
     private void useToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_ViTien));
         TextView soTien = findViewById(R.id.textView_SoTien);
-        if (listVi != null){
-            if (listVi.size() > 0){
+        if (listVi != null) {
+            if (listVi.size() > 0) {
                 ViTien viTien = listVi.get(0);
                 soTien.setText(viTien.getSoTien());
             }

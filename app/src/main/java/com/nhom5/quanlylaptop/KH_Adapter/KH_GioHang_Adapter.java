@@ -61,7 +61,6 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
     @Override
     public void onBindViewHolder(@NonNull KH_GioHang_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         Laptop laptop = setRow(pos, author, "none");
-        AddData addData = new AddData(context);
 
         author.giam.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +69,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
                 int soLuong = old.getSoLuong();
                 if (soLuong > 1) {
                     soLuong--;
-                    GioHang gioHang = new GioHang(old.getMaGio(), old.getMaLaptop(), old.getMaKH(), old.getNgayThem(), soLuong);
+                    GioHang gioHang = new GioHang(old.getMaGio(), old.getMaLaptop(), old.getMaKH(), old.getNgayThem(), "false", soLuong);
                     gioHangDAO.updateGioHang(gioHang);
                     listGio = gioHangDAO.selectGioHang(null, null, null, null);
                     setRow(pos, author, "down");
@@ -86,7 +85,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
                 GioHang old = listGio.get(pos);
                 int soLuong = old.getSoLuong();
                 soLuong++;
-                GioHang gioHang = new GioHang(old.getMaGio(), old.getMaLaptop(), old.getMaKH(), old.getNgayThem(), soLuong);
+                GioHang gioHang = new GioHang(old.getMaGio(), old.getMaLaptop(), old.getMaKH(), old.getNgayThem(), "false", soLuong);
                 gioHangDAO.updateGioHang(gioHang);
                 listGio = gioHangDAO.selectGioHang(null, null, null, null);
                 setRow(pos, author, "up");
@@ -110,8 +109,6 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
                     bundle.putBinder("laptop", laptop);
                     Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
                     intent.putExtras(bundle);
-                    addData.setNullDataDC();
-                    addData.setNullDataVou();
                     context.startActivity(intent);
                 } else {
                     Toast.makeText(context, "Load thông tin sản phẩm lỗi!\nXin vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();

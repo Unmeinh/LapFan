@@ -28,7 +28,7 @@ public class LaptopDAO {
         ArrayList<Laptop> listLap = new ArrayList<>();
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
-        Cursor c = db.query("TB_Laptop", columns, selection, selectionArgs, null, null, orderBy);
+        Cursor c = db.query("Laptop", columns, selection, selectionArgs, null, null, orderBy);
         Log.d(TAG, "selectLaptop: Cursor: " + c.toString());
 
         if (c.getCount() > 0) {
@@ -70,7 +70,7 @@ public class LaptopDAO {
         Log.d(TAG, "insertLaptop: Laptop: " + laptop.toString());
         Log.d(TAG, "insertLaptop: Values: " + values);
 
-        long ketqua = db.insert("TB_Laptop", null, values);
+        long ketqua = db.insert("Laptop", null, values);
         if (ketqua > 0) {
             Log.d(TAG, "insertLaptop: Thêm thành công");
         } else {
@@ -92,7 +92,7 @@ public class LaptopDAO {
         Log.d(TAG, "updateLaptop: Laptop: " + laptop.toString());
         Log.d(TAG, "updateLaptop: Values: " + values);
 
-        long ketqua = db.update("TB_Laptop", values, "maLaptop=?", new String[]{String.valueOf(laptop.getMaLaptop())});
+        long ketqua = db.update("Laptop", values, "maLaptop=?", new String[]{String.valueOf(laptop.getMaLaptop())});
         if (ketqua > 0) {
             Log.d(TAG, "updateLaptop: Sửa thành công");
         } else {
@@ -106,7 +106,7 @@ public class LaptopDAO {
         db = qlLaptopDB.getWritableDatabase();
         Log.d(TAG, "deleteLaptop: Laptop: " + laptop.toString());
 
-        long ketqua = db.delete("TB_Laptop", "maLaptop=?", new String[]{String.valueOf(laptop.getMaLaptop())});
+        long ketqua = db.delete("Laptop", "maLaptop=?", new String[]{String.valueOf(laptop.getMaLaptop())});
         if (ketqua > 0) {
             Log.d(TAG, "deleteLaptop: Xóa thành công");
         } else {

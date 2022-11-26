@@ -30,7 +30,7 @@ public class HangLaptopDAO {
         ArrayList<HangLaptop> listHLP = new ArrayList<>();
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
-        Cursor c = db.query("TB_HangLaptop", columns, selection, selectionArgs, null, null, orderBy);
+        Cursor c = db.query("HangLaptop", columns, selection, selectionArgs, null, null, orderBy);
         Log.d(TAG, "selectHangLaptop: Cursor: " + c.toString());
 
         if (c.getCount() > 0) {
@@ -66,7 +66,7 @@ public class HangLaptopDAO {
         Log.d(TAG, "insertHangLaptop: HangLaptop: " + hangLaptop.toString());
         Log.d(TAG, "insertHangLaptop: Values: " + values);
 
-        long ketqua = db.insert("TB_HangLaptop", null, values);
+        long ketqua = db.insert("HangLaptop", null, values);
         if (ketqua > 0) {
             Log.d(TAG, "insertHangLaptop: Thêm thành công"); 
         } else {
@@ -85,7 +85,7 @@ public class HangLaptopDAO {
         Log.d(TAG, "updateHangLaptop: HangLaptop: " + hangLaptop.toString());
         Log.d(TAG, "updateHangLaptop: Values: " + values);
 
-        long ketqua = db.update("TB_HangLaptop", values, "maHangLap=?", new String[]{String.valueOf(hangLaptop.getMaHangLap())});
+        long ketqua = db.update("HangLaptop", values, "maHangLap=?", new String[]{String.valueOf(hangLaptop.getMaHangLap())});
         if (ketqua > 0) {
             Log.d(TAG, "updateHangLaptop: Sửa thành công"); 
         } else {
@@ -99,7 +99,7 @@ public class HangLaptopDAO {
         db = qlLaptopDB.getWritableDatabase();
         Log.d(TAG, "deleteHangLaptop: HangLaptop: " + hangLaptop.toString());
 
-        long ketqua = db.delete("TB_HangLaptop", "maHangLap=?", new String[]{String.valueOf(hangLaptop.getMaHangLap())});
+        long ketqua = db.delete("HangLaptop", "maHangLap=?", new String[]{String.valueOf(hangLaptop.getMaHangLap())});
         if (ketqua > 0) {
             Log.d(TAG, "deleteHangLaptop: Xóa thành công"); 
         } else {

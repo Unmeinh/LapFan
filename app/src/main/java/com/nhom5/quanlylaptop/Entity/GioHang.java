@@ -7,14 +7,20 @@ public class GioHang extends Binder {
     private String maLaptop;
     private String maKH;
     private String ngayThem;
+    private String maVou;
     private int soLuong;
 
-    public GioHang(String maGio, String maLaptop, String maKH, String ngayThem, int soLuong) {
+    public GioHang(String maGio) {
+        this.maGio = maGio;
+    }
+
+    public GioHang(String maGio, String maLaptop, String maKH, String ngayThem, String maVou, int soLuong) {
         this.maGio = maGio;
         this.maLaptop = maLaptop;
         this.maKH = maKH;
         this.ngayThem = ngayThem;
         this.soLuong = soLuong;
+        this.maVou = maVou;
     }
 
     public String getMaGio() {
@@ -49,6 +55,14 @@ public class GioHang extends Binder {
         this.soLuong = soLuong;
     }
 
+    public String getMaVou() {
+        return maVou;
+    }
+
+    public void setmaVou(String maVou) {
+        this.maVou = maVou;
+    }
+
     public String getNgayThem() {
         return ngayThem;
     }
@@ -64,6 +78,7 @@ public class GioHang extends Binder {
                 ", maLaptop = '" + maLaptop + '\'' +
                 ", maKH = '" + maKH + '\'' +
                 ", ngayThem = '" + ngayThem + '\'' +
+                ", maVou = '" + maVou + '\'' +
                 ", soLuong = '" + soLuong + '\'' +
                 '}';
     }

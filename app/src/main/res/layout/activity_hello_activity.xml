@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#D2422F"
     tools:context=".HelloWorld.HelloActivity">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_alignParentEnd="true"
         android:padding="16dp"
         android:text="Bỏ qua"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="18sp" />
 
     <androidx.viewpager.widget.ViewPager
@@ -42,9 +43,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:backgroundTint="#D2422F"
+            android:backgroundTint="#FFFFFF"
             android:text="Tiếp theo"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textStyle="bold" />
     </LinearLayout>
 

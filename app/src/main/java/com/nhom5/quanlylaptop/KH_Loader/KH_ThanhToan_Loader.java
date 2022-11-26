@@ -32,37 +32,49 @@ public class KH_ThanhToan_Loader extends AsyncTask<String, Void, ArrayList<GioHa
     String TAG = "KH_ThanhToan_Loader_____";
     GioHangDAO gioHangDAO;
     LaptopDAO laptopDAO;
-    ArrayList<Laptop> listLap;
+    VoucherDAO voucherDAO;
+    ArrayList<Laptop> listLap = new ArrayList<>();
+    ArrayList<Voucher> listVou = new ArrayList<>();
+    ArrayList<GioHang> listGio = new ArrayList<>();
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
     @SuppressLint("StaticFieldLeak")
     LinearLayout loadingView;
     @SuppressLint("StaticFieldLeak")
     RelativeLayout relativeLayout;
-    String type, onWhat;
+    Laptop laptop;
+    @SuppressLint("StaticFieldLeak")
+    KH_ThanhToan_Activity khThanhToanActivity;
 
-    public KH_ThanhToan_Loader(Context context, ArrayList<Laptop> listLap, String type, RecyclerView reView,
-                               LinearLayout loadingView, RelativeLayout relativeLayout, String onWhat) {
+    public KH_ThanhToan_Loader(Context context, Laptop laptop, RecyclerView reView,
+                               LinearLayout loadingView, RelativeLayout relativeLayout,
+                               KH_ThanhToan_Activity khThanhToanActivity) {
         this.context = context;
-        this.listLap = listLap;
-        this.type = type;
+        this.laptop = laptop;
         this.reView = reView;
         this.loadingView = loadingView;
         this.relativeLayout = relativeLayout;
-        this.onWhat = onWhat;
+        this.khThanhToanActivity = khThanhToanActivity;
     }
 
     @Override
     protected ArrayList<GioHang> doInBackground(String... strings) {
         gioHangDAO = new GioHangDAO(context);
         laptopDAO = new LaptopDAO(context);
+        voucherDAO = new VoucherDAO(context);
         String maKH = strings[0];
 
-        if (type.equals("giohang")){
+        if (laptop == null){
             listLap = laptopDAO.selectLaptop(null, null, null, null);
+            listGio =  gioHangDAO.selectGioHang(null, null, null, null);
+            listVou = voucherDAO.selectVoucher(null, null, null, null);
+        } else {
+            listLap.add(laptop);
+            listGio.add(new GioHang("No Data", laptop.getMaLaptop(), "No Data", "No Data",
+                    "Null", 1));
+            listVou = voucherDAO.selectVoucher(null, null, null, null);
         }
-
-        return gioHangDAO.selectGioHang(null, null, null, null);
+        return listGio;
     }
 
     @Override
@@ -72,37 +84,16 @@ public class KH_ThanhToan_Loader extends AsyncTask<String, Void, ArrayList<GioHa
         if (loadingView != null && relativeLayout != null && reView != null){
             loadingView.setVisibility(View.GONE);
             relativeLayout.setVisibility(View.VISIBLE);
-            if (type.equals("giohang")){
-                setupReViewGH(listGio, reView);
-            } else {
-                setUpReViewMN(reView);
-            }
+            setupReView(listGio, reView);
         }
     }
 
-    private void setupReViewGH(ArrayList<GioHang> listGio, RecyclerView recyclerView) {
+    private void setupReView(ArrayList<GioHang> listGio, RecyclerView recyclerView) {
         Log.d(TAG, "setUpReView: true");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
-        if (onWhat.equals("onCreate")){
-            KH_ThanhToan_Adapter kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, listGio, context, "onCreate");
-            recyclerView.setAdapter(kh_thanhToan_adapter);
-        } else {
-            KH_ThanhToan_Adapter kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, listGio, context, "onResume");
-            recyclerView.setAdapter(kh_thanhToan_adapter);
-        }
+        KH_ThanhToan_Adapter kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, listGio, listVou, context, khThanhToanActivity);
+        recyclerView.setAdapter(kh_thanhToan_adapter);
     }
 
-    private void setUpReViewMN(RecyclerView recyclerView) {
-        Log.d(TAG, "setUpReView: true");
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        if (onWhat.equals("onCreate")){
-            KH_ThanhToan_Adapter kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, context, "onCreate");
-            recyclerView.setAdapter(kh_thanhToan_adapter);
-        } else {
-            KH_ThanhToan_Adapter kh_thanhToan_adapter = new KH_ThanhToan_Adapter(listLap, context, "onResume");
-            recyclerView.setAdapter(kh_thanhToan_adapter);
-        }
-    }
 }

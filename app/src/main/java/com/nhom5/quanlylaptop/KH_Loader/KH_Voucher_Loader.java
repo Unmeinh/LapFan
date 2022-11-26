@@ -10,7 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
+import com.nhom5.quanlylaptop.DAO.GioHangDAO;
+import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.VoucherDAO;
+import com.nhom5.quanlylaptop.Entity.GioHang;
+import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.FragmentQuanLy.QL_Voucher_Fragment;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_Voucher_Adapter;
@@ -24,17 +28,35 @@ public class KH_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
     Context context;
     String TAG = "KH_Voucher_Loader_____";
     VoucherDAO voucherDAO;
+    GioHangDAO gioHangDAO;
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
+    GioHang gioHang;
+    String openFrom;
+    int pos;
 
-    public KH_Voucher_Loader(Context context, RecyclerView reView) {
+    public KH_Voucher_Loader(Context context, RecyclerView reView, String openFrom, int pos) {
         this.context = context;
         this.reView = reView;
+        this.openFrom = openFrom;
+        this.pos = pos;
     }
 
     @Override
     protected ArrayList<Voucher> doInBackground(String... strings) {
         voucherDAO = new VoucherDAO(context);
+
+        if (openFrom.equals("ThanhToan")){
+            if (pos != -1){
+                gioHangDAO = new GioHangDAO(context);
+                ArrayList<GioHang> list = gioHangDAO.selectGioHang(null, null, null, null);
+                gioHang = list.get(pos);
+            } else {
+                gioHang = new GioHang("Null");
+            }
+        } else {
+            gioHang = null;
+        }
 
         return voucherDAO.selectVoucher(null, null, null, "ngayBD");
     }
@@ -52,9 +74,8 @@ public class KH_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
         Log.d(TAG, "setUpReView: true");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
-        KH_Voucher_Adapter kh_voucher_adapter = new KH_Voucher_Adapter(listVou, context);
+        KH_Voucher_Adapter kh_voucher_adapter = new KH_Voucher_Adapter(listVou, context, gioHang);
         recyclerView.setAdapter(kh_voucher_adapter);
     }
-
 
 }

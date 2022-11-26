@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,15 +30,36 @@ public class KH_Voucher_Activity extends AppCompatActivity {
 
     String TAG = "KH_Voucher_Activity_____";
     Context context = this;
+    String openFrom;
+    RecyclerView recyclerView;
+    int pos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_voucher);
+        recyclerView = findViewById(R.id.recyclerView_KH_Voucher);
 
-        KH_Voucher_Loader kh_voucher_loader = new KH_Voucher_Loader(context, findViewById(R.id.recyclerView_KH_Voucher));
+        getData();
+        KH_Voucher_Loader kh_voucher_loader = new KH_Voucher_Loader(context, recyclerView, openFrom, pos);
         kh_voucher_loader.execute("");
 
         useToolbar();
+    }
+
+    private void getData(){
+        Intent intent = getIntent();
+        try {
+            openFrom = intent.getStringExtra("openFrom");
+            if (openFrom != null){
+                if (openFrom.equals("ThanhToan")){
+                    pos = intent.getIntExtra("posLap", -1);
+                } else {
+                    pos = -1;
+                }
+            }
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     private void useToolbar() {
@@ -48,8 +70,6 @@ public class KH_Voucher_Activity extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AddData addData = new AddData(context);
-                addData.setNullDataVou();
                 finish();
             }
         });

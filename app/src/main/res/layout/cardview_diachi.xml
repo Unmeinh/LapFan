@@ -10,6 +10,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/item_DiaChi"
             android:background="@drawable/shape_square"
             android:padding="5dp"
             android:orientation="horizontal"

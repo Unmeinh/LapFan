@@ -1,9 +1,13 @@
 package com.nhom5.quanlylaptop.KH_Adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,9 +22,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
+import com.nhom5.quanlylaptop.ActivityKH.KH_ThanhToan_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
+import com.nhom5.quanlylaptop.DAO.DiaChiDAO;
+import com.nhom5.quanlylaptop.DAO.VoucherDAO;
+import com.nhom5.quanlylaptop.Entity.DiaChi;
 import com.nhom5.quanlylaptop.Entity.GioHang;
+import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.AddData;
 import com.nhom5.quanlylaptop.Support.ChangeType;
@@ -35,25 +45,21 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
     Context context;
     ArrayList<Laptop> listLap;
     ArrayList<GioHang> listGio;
-    String kieuTT;
+    ArrayList<Voucher> listVou;
     String TAG = "KH_Laptop_Adapter_____";
     ChangeType changeType = new ChangeType();
-    int giaTien;
-    String onWhat;
+    KH_ThanhToan_Activity khThanhToanActivity;
+    TextView tongTienHang_View, voucherGiamGia_View, tongThanhToan_View, total_View;
+    int giaTien, tongTienHang, tienGiamGia;
+    String maVou;
 
-    public KH_ThanhToan_Adapter(ArrayList<Laptop> listLap, Context context, String onWhat) {
-        this.listLap = listLap;
-        this.context = context;
-        this.kieuTT = "MuaNgay";
-        this.onWhat = onWhat;
-    }
-
-    public KH_ThanhToan_Adapter(ArrayList<Laptop> listLap, ArrayList<GioHang> listGio, Context context, String onWhat) {
+    public KH_ThanhToan_Adapter(ArrayList<Laptop> listLap, ArrayList<GioHang> listGio, ArrayList<Voucher> listVou,
+                                Context context, KH_ThanhToan_Activity khThanhToanActivity) {
         this.context = context;
         this.listLap = listLap;
         this.listGio = listGio;
-        this.kieuTT = "MuaGioHang";
-        this.onWhat = onWhat;
+        this.listVou = listVou;
+        this.khThanhToanActivity = khThanhToanActivity;
     }
 
     @NonNull
@@ -65,19 +71,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
 
     @Override
     public void onBindViewHolder(@NonNull KH_ThanhToan_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
-        if (onWhat.equals("onCreate")){
-            if (kieuTT.equals("MuaNgay")) {
-                setRowLP(pos, author);
-            } else {
-                setRowGH(pos, author);
-            }
-        } else {
-            if (kieuTT.equals("MuaNgay")) {
-                setDataLP(pos, author, giaTien);
-            } else {
-                setDataGH(pos, author, giaTien);
-            }
-        }
+        setRowGH(pos, author);
 
         author.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,11 +93,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
 
     @Override
     public int getItemCount() {
-        if (kieuTT.equals("MuaNgay")) {
-            return 1;
-        } else {
-            return listGio.size();
-        }
+        return listGio.size();
     }
 
     public static class AuthorViewHolder extends RecyclerView.ViewHolder {
@@ -128,13 +118,23 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
     public Laptop setRowGH(int pos, @NonNull KH_ThanhToan_Adapter.AuthorViewHolder author) {
         Log.d(TAG, "setRow: " + pos);
         GioHang gioHang = listGio.get(pos);
-        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", new byte[]{});
         Log.d(TAG, "setRow: GioHang: " + gioHang.toString());
+
+        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", new byte[]{});
 
         for (int i = 0; i < listLap.size(); i++) {
             Laptop getLap = listLap.get(i);
             if (gioHang.getMaLaptop().equals(getLap.getMaLaptop())) {
                 laptop = getLap;
+            }
+        }
+
+        Voucher voucher = null;
+
+        for (int i = 0; i < listVou.size(); i++) {
+            Voucher getVou = listVou.get(i);
+            if (gioHang.getMaVou().equals(getVou.getMaVoucher())) {
+                voucher = getVou;
             }
         }
 
@@ -151,107 +151,93 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
         author.soLuong.setText(String.valueOf(gioHang.getSoLuong()));
         author.total.setText(changeType.intMoneyToString(giaTien));
         author.countSP.setText("Tổng số tiền: (" + gioHang.getSoLuong() + " sản phẩm)");
+
+        if (voucher != null) {
+            int sale = changeType.voucherToInt(voucher.getGiamGia());
+            int giamTien = (((giaTien / 2) / 1000) * sale / 100) * 2000;
+            int totalDh = giaTien - giamTien;
+
+            author.sale.setText("-" + changeType.intMoneyToString(giamTien));
+            author.sale.setTextColor(Color.parseColor("#FF5722"));
+            author.total.setText(changeType.intMoneyToString(totalDh));
+            setThanhToan(pos, giaTien, giamTien);
+        } else {
+            String[] two = getVoucher(author.sale, giaTien);
+            maVou = two[0];
+            int giamTien = changeType.stringMoneyToInt(two[1]);
+            int tongTien = giaTien - changeType.stringMoneyToInt(two[1]);
+            author.total.setText(changeType.intMoneyToString(tongTien));
+            setThanhToan(pos, giaTien, giamTien);
+        }
+
         author.clickVoucher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, KH_Voucher_Activity.class);
+                intent.putExtra("openFrom", "ThanhToan");
+                if (!gioHang.getMaGio().equals("No Data")) {
+                    intent.putExtra("posLap", pos);
+                    IdData.getInstance().setIdVou(gioHang.getMaVou());
+                } else {
+                    intent.putExtra("posLap", -1);
+                    IdData.getInstance().setIdVou(maVou);
+                }
                 context.startActivity(intent);
             }
         });
+
         return laptop;
     }
 
-    public void setRowLP(int pos, @NonNull KH_ThanhToan_Adapter.AuthorViewHolder author) {
-        Log.d(TAG, "setRow: " + pos);
-        Laptop laptop = listLap.get(pos);
-        Log.d(TAG, "setRow: Laptop: " + laptop.toString());
+    private void setThanhToan(int pos, int tienHang, int giamTien) {
+        tongTienHang_View = khThanhToanActivity.findViewById(R.id.textView_TienHang);
+        voucherGiamGia_View = khThanhToanActivity.findViewById(R.id.textView_TienGiamGia);
+        tongThanhToan_View = khThanhToanActivity.findViewById(R.id.textView_Total);
+        total_View = khThanhToanActivity.findViewById(R.id.textView_Total2);
 
-        ChangeType changeType = new ChangeType();
-        Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
-        Date currentTime = Calendar.getInstance().getTime();
-        String date = new SimpleDateFormat("dd/MM/yyyy").format(currentTime);
-
-        author.date.setText(date);
-        author.imgLaptop.setImageBitmap(anhLap);
-        author.name.setText(laptop.getTenLaptop());
-        author.gia.setText(laptop.getGiaTien());
-        author.soLuong.setText("1");
-        author.total.setText(laptop.getGiaTien());
-        author.countSP.setText("Tổng số tiền: (1 sản phẩm)");
-        author.clickVoucher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, KH_Voucher_Activity.class);
-                context.startActivity(intent);
-            }
-        });
-    }
-
-    private void setDataGH(int pos, @NonNull KH_ThanhToan_Adapter.AuthorViewHolder author, int giaTien){
-        Log.d(TAG, "setRow: " + pos);
-        GioHang gioHang = listGio.get(pos);
-        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", new byte[]{});
-        Log.d(TAG, "setRow: GioHang: " + gioHang.toString());
-
-        for (int i = 0; i < listLap.size(); i++) {
-            Laptop getLap = listLap.get(i);
-            if (gioHang.getMaLaptop().equals(getLap.getMaLaptop())) {
-                laptop = getLap;
-            }
+        if (pos == 0) {
+            tongTienHang_View.setText("0₫");
+            voucherGiamGia_View.setText("0₫");
+            tongThanhToan_View.setText("0₫");
+            total_View.setText("0₫");
         }
 
-        Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
-        giaTien = changeType.stringMoneyToInt(laptop.getGiaTien());
-        giaTien = giaTien * gioHang.getSoLuong();
-        Date currentTime = Calendar.getInstance().getTime();
-        String date = new SimpleDateFormat("dd/MM/yyyy").format(currentTime);
+        tongTienHang += tienHang;
+        tienGiamGia += giamTien;
+        int tien = tongTienHang - tienGiamGia;
 
-        author.date.setText(date);
-        author.imgLaptop.setImageBitmap(anhLap);
-        author.name.setText(laptop.getTenLaptop());
-        author.gia.setText(changeType.intMoneyToString(giaTien));
-        author.soLuong.setText(String.valueOf(gioHang.getSoLuong()));
-        author.total.setText(changeType.intMoneyToString(giaTien));
-        author.countSP.setText("Tổng số tiền: (" + gioHang.getSoLuong() + " sản phẩm)");
-        author.clickVoucher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, KH_Voucher_Activity.class);
-                context.startActivity(intent);
-            }
-        });
-        AddData addData = new AddData(context);
-        String[] two = addData.getSetVoucher(author.sale, giaTien);
-        author.total.setText(changeType.intMoneyToString(giaTien - changeType.stringMoneyToInt(two[1])));
+        tongTienHang_View.setText(changeType.intMoneyToString(tongTienHang));
+        voucherGiamGia_View.setText("-" + changeType.intMoneyToString(tienGiamGia));
+        tongThanhToan_View.setText(changeType.intMoneyToString(tien));
+        total_View.setText(changeType.intMoneyToString(tien));
     }
 
-    public void setDataLP(int pos, @NonNull KH_ThanhToan_Adapter.AuthorViewHolder author, int giaTien){
-        Log.d(TAG, "setRow: " + pos);
-        Laptop laptop = listLap.get(pos);
-        Log.d(TAG, "setRow: Laptop: " + laptop.toString());
+    private String[] getVoucher(TextView textView, int giaTien) {
+        String maVou = IdData.getInstance().getIdVou();
+        String after;
+        VoucherDAO voucherDAO = new VoucherDAO(context);
+        ArrayList<Voucher> list = voucherDAO.selectVoucher(null, "maVoucher=?", new String[]{maVou}, null);
 
-        ChangeType changeType = new ChangeType();
-        Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
-        Date currentTime = Calendar.getInstance().getTime();
-        String date = new SimpleDateFormat("dd/MM/yyyy").format(currentTime);
+        if (list.size() > 0) {
+            Voucher voucher = list.get(0);
+            String giamGia = voucher.getGiamGia();
+            if (!giamGia.equals("")) {
+                int sale = changeType.voucherToInt(giamGia);
+                int giamTien = (((giaTien / 2) / 1000) * sale / 100) * 2000;
 
-        author.date.setText(date);
-        author.imgLaptop.setImageBitmap(anhLap);
-        author.name.setText(laptop.getTenLaptop());
-        author.gia.setText(laptop.getGiaTien());
-        author.soLuong.setText("1");
-        author.total.setText(laptop.getGiaTien());
-        author.countSP.setText("Tổng số tiền: (1 sản phẩm)");
-        author.clickVoucher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, KH_Voucher_Activity.class);
-                context.startActivity(intent);
+                textView.setText("-" + changeType.intMoneyToString(giamTien));
+                after = changeType.intMoneyToString(giamTien);
+                textView.setTextColor(Color.parseColor("#FF5722"));
+            } else {
+                textView.setText(R.string.thay_i_m);
+                after = changeType.intMoneyToString(0);
             }
-        });
-        AddData addData = new AddData(context);
-        String[] two = addData.getSetVoucher(author.sale, giaTien);
-        author.total.setText(changeType.intMoneyToString(giaTien - changeType.stringMoneyToInt(two[1])));
+        } else {
+            textView.setText(R.string.thay_i_m);
+            after = changeType.intMoneyToString(0);
+        }
+
+        return new String[]{maVou, after};
     }
 
 }

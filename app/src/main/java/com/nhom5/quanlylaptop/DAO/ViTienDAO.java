@@ -31,7 +31,7 @@ public class ViTienDAO {
         ArrayList<ViTien> listVi = new ArrayList<>();
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
-        Cursor c = db.query("TB_ViTien", columns, selection, selectionArgs, null, null, orderBy);
+        Cursor c = db.query("ViTien", columns, selection, selectionArgs, null, null, orderBy);
         Log.d(TAG, "selectViTien: Cursor: " + c.toString());
 
         if (c.getCount() > 0) {
@@ -69,7 +69,7 @@ public class ViTienDAO {
         Log.d(TAG, "insertViTien: ViTien: " + viTien.toString());
         Log.d(TAG, "insertViTien: Values: " + values);
 
-        long ketqua = db.insert("TB_ViTien", null, values);
+        long ketqua = db.insert("ViTien", null, values);
         if (ketqua > 0) {
             Log.d(TAG, "insertViTien: Thêm thành công");
         } else {
@@ -89,7 +89,7 @@ public class ViTienDAO {
         Log.d(TAG, "updateViTien: ViTien: " + viTien.toString());
         Log.d(TAG, "updateViTien: Values: " + values);
 
-        long ketqua = db.update("TB_ViTien", values, "maVi=?", new String[]{String.valueOf(viTien.getMaVi())});
+        long ketqua = db.update("ViTien", values, "maVi=?", new String[]{String.valueOf(viTien.getMaVi())});
         if (ketqua > 0) {
             Log.d(TAG, "updateViTien: Sửa thành công");
         } else {
@@ -103,7 +103,7 @@ public class ViTienDAO {
         db = qlLaptopDB.getWritableDatabase();
         Log.d(TAG, "deleteViTien: ViTien: " + viTien.toString());
 
-        long ketqua = db.delete("TB_ViTien", "maVi=?", new String[]{String.valueOf(viTien.getMaVi())});
+        long ketqua = db.delete("ViTien", "maVi=?", new String[]{String.valueOf(viTien.getMaVi())});
         if (ketqua > 0) {
             Log.d(TAG, "deleteViTien: Xóa thành công");
         } else {

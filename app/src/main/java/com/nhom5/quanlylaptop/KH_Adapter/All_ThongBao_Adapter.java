@@ -16,26 +16,26 @@ import com.nhom5.quanlylaptop.R;
 
 import java.util.ArrayList;
 
-public class KH_ThongBao_Adapter  extends RecyclerView.Adapter<KH_ThongBao_Adapter.AuthorViewHolder> {
+public class All_ThongBao_Adapter extends RecyclerView.Adapter<All_ThongBao_Adapter.AuthorViewHolder> {
 
     Context context;
     ArrayList<ThongBao> listTB;
     String TAG = "KH_ThongBao_Adapter_____";
 
-    public KH_ThongBao_Adapter(ArrayList<ThongBao> listTB, Context context) {
+    public All_ThongBao_Adapter(ArrayList<ThongBao> listTB, Context context) {
         this.listTB = listTB;
         this.context = context;
     }
 
     @NonNull
     @Override
-    public KH_ThongBao_Adapter.AuthorViewHolder onCreateViewHolder(@NonNull ViewGroup vGroup, int i) {
-        View v = LayoutInflater.from(context).inflate(R.layout.cardview_kh_thongbao, vGroup, false);
-        return new KH_ThongBao_Adapter.AuthorViewHolder(v);
+    public All_ThongBao_Adapter.AuthorViewHolder onCreateViewHolder(@NonNull ViewGroup vGroup, int i) {
+        View v = LayoutInflater.from(context).inflate(R.layout.cardview_thongbao, vGroup, false);
+        return new All_ThongBao_Adapter.AuthorViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull KH_ThongBao_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
+    public void onBindViewHolder(@NonNull All_ThongBao_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         setRow(pos, author);
     }
 
@@ -55,7 +55,7 @@ public class KH_ThongBao_Adapter  extends RecyclerView.Adapter<KH_ThongBao_Adapt
         }
     }
 
-    public void setRow(int pos, @NonNull KH_ThongBao_Adapter.AuthorViewHolder author) {
+    public void setRow(int pos, @NonNull All_ThongBao_Adapter.AuthorViewHolder author) {
         Log.d(TAG, "setRow: " + pos);
         ThongBao thongBao = listTB.get(pos);
         author.title.setText(thongBao.getTitle());

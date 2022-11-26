@@ -31,7 +31,7 @@ public class GioHangDAO {
         ArrayList<GioHang> listGio = new ArrayList<>();
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
-        Cursor c = db.query("TB_GioHang", columns, selection, selectionArgs, null, null, orderBy);
+        Cursor c = db.query("GioHang", columns, selection, selectionArgs, null, null, orderBy);
         Log.d(TAG, "selectGioHang: Cursor: " + c.toString());
 
         if (c.getCount() > 0) {
@@ -49,7 +49,8 @@ public class GioHangDAO {
                     e.printStackTrace();
                 }
                 @SuppressLint("Range") String ngayThem = changeType.longDateToString(c.getLong(c.getColumnIndex("ngayThem")));
-                GioHang newGio = new GioHang(maGio, maLaptop, maKH, ngayThem, soLuong);
+                String maVou = c.getString(5);
+                GioHang newGio = new GioHang(maGio, maLaptop, maKH, ngayThem, maVou, soLuong);
                 Log.d(TAG, "selectGioHang: new GioHang: " + newGio.toString());
 
                 listGio.add(newGio);
@@ -71,12 +72,13 @@ public class GioHangDAO {
         values.put("maGio", gioHang.getMaGio());
         values.put("maLaptop", gioHang.getMaLaptop());
         values.put("maKH", gioHang.getMaKH());
+        values.put("maVou", gioHang.getMaVou());
         values.put("soLuong", gioHang.getSoLuong());
         values.put("ngayThem", changeType.stringToLongDate(gioHang.getNgayThem()));
         Log.d(TAG, "insertGioHang: GioHang: " + gioHang.toString());
         Log.d(TAG, "insertGioHang: Values: " + values);
 
-        long ketqua = db.insert("TB_GioHang", null, values);
+        long ketqua = db.insert("GioHang", null, values);
         if (ketqua > 0) {
             Toast.makeText(context, "Đã thêm vào giỏ hàng!", Toast.LENGTH_SHORT).show();
             Log.d(TAG, "insertGioHang: Thêm thành công"); 
@@ -94,12 +96,13 @@ public class GioHangDAO {
         values.put("maGio", gioHang.getMaGio());
         values.put("maLaptop", gioHang.getMaLaptop());
         values.put("maKH", gioHang.getMaKH());
+        values.put("maVou", gioHang.getMaVou());
         values.put("soLuong", gioHang.getSoLuong());
         values.put("ngayThem", gioHang.getNgayThem());
         Log.d(TAG, "updateGioHang: GioHang: " + gioHang.toString());
         Log.d(TAG, "updateGioHang: Values: " + values);
 
-        long ketqua = db.update("TB_GioHang", values, "maGio=?", new String[]{String.valueOf(gioHang.getMaGio())});
+        long ketqua = db.update("GioHang", values, "maGio=?", new String[]{String.valueOf(gioHang.getMaGio())});
         if (ketqua > 0) {
             Log.d(TAG, "updateGioHang: Sửa thành công"); 
         } else {
@@ -113,7 +116,7 @@ public class GioHangDAO {
         db = qlLaptopDB.getWritableDatabase();
         Log.d(TAG, "deleteGioHang: GioHang: " + gioHang.toString());
 
-        long ketqua = db.delete("TB_GioHang", "maGio=?", new String[]{String.valueOf(gioHang.getMaGio())});
+        long ketqua = db.delete("GioHang", "maGio=?", new String[]{String.valueOf(gioHang.getMaGio())});
         if (ketqua > 0) {
             Log.d(TAG, "deleteGioHang: Xóa thành công"); 
         } else {

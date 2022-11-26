@@ -55,6 +55,13 @@ public class KH_GioHang_Loader extends AsyncTask<String, Void, ArrayList<GioHang
         laptopDAO = new LaptopDAO(context);
         gioHangDAO = new GioHangDAO(context);
         listLap = laptopDAO.selectLaptop(null, null, null, null);
+        ArrayList<GioHang> list = gioHangDAO.selectGioHang(null, null, null, null);
+        for (int i = 0; i < list.size(); i++){
+            GioHang gioHang = list.get(i);
+            GioHang resetGH = new GioHang(gioHang.getMaGio(), gioHang.getMaLaptop(), gioHang.getMaKH(),
+                    gioHang.getNgayThem(), "Null", gioHang.getSoLuong());
+            gioHangDAO.updateGioHang(resetGH);
+        }
 
         return gioHangDAO.selectGioHang(null, null, null, null);
     }

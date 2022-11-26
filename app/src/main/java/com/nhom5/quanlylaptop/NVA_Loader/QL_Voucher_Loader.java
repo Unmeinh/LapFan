@@ -81,10 +81,10 @@ public class QL_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
         Voucher vou3 = new Voucher("NOEL2512", "Siêu sale giáng sinh", "25%", "2022-12-25", "2022-12-25");
         voucherDAO.insertVoucher(vou3);
 
-        Voucher vou4 = new Voucher("LUNAR0101", "Năm mới sale mạnh", "30%", "2022-01-01", "2022-01-01");
+        Voucher vou4 = new Voucher("LUNAR0101", "Năm mới sale mạnh", "30%", "2023-01-01", "2023-01-01");
         voucherDAO.insertVoucher(vou4);
 
-        Voucher vou5 = new Voucher("JANUA1501", "Sale nhẹ đón tết", "10%", "2022-01-15", "2023-02-01");
+        Voucher vou5 = new Voucher("JANUA1501", "Sale nhẹ đón tết", "10%", "2023-01-15", "2023-02-01");
         voucherDAO.insertVoucher(vou5);
 
         Voucher vou6 = new Voucher("FEBRUA0202", "Siêu sale mùng 2 tháng 2", "20%", "2023-02-02", "2023-03-03");

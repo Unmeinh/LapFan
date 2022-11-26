@@ -9,11 +9,17 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nhom5.quanlylaptop.DAO.GioHangDAO;
+import com.nhom5.quanlylaptop.Entity.GioHang;
+import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Voucher_Adapter;
 import com.nhom5.quanlylaptop.R;
@@ -24,11 +30,16 @@ public class KH_Voucher_Adapter extends RecyclerView.Adapter<KH_Voucher_Adapter.
 
     Context context;
     ArrayList<Voucher> listVou;
+    GioHangDAO gioHangDAO;
     String TAG = "KH_Voucher_Adapter_____";
+    GioHang gioHang;
+    int selectedPos = -1;
 
-    public KH_Voucher_Adapter(ArrayList<Voucher> listVou, Context context) {
+    public KH_Voucher_Adapter(ArrayList<Voucher> listVou, Context context, GioHang gioHang) {
         this.listVou = listVou;
         this.context = context;
+        this.gioHang = gioHang;
+        gioHangDAO = new GioHangDAO(context);
     }
 
     @NonNull
@@ -40,19 +51,36 @@ public class KH_Voucher_Adapter extends RecyclerView.Adapter<KH_Voucher_Adapter.
 
     @Override
     public void onBindViewHolder(@NonNull KH_Voucher_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
-        Voucher voucher = setRow(pos, author);
+        String maVou = IdData.getInstance().getIdVou();
+        Voucher voucher = setRow(pos, author, maVou);
+
+        if (pos == selectedPos){
+            author.buttonUse.setVisibility(View.GONE);
+            author.radioButton.setVisibility(View.VISIBLE);
+        } else {
+            author.buttonUse.setVisibility(View.VISIBLE);
+            author.radioButton.setVisibility(View.GONE);
+        }
 
         author.buttonUse.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
-                SharedPreferences sharedPreferences = context.getSharedPreferences("voucher_thanhToan", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                String maVou = voucher.getMaVoucher();
-                String giamGia = voucher.getGiamGia();
-
-                editor.putString("maVou", maVou);
-                editor.putString("giamGia", giamGia);
-                editor.commit();
+                if (gioHang != null){
+                    selectedPos = pos;
+                    if (!gioHang.getMaGio().equals("Null")){
+                        GioHang update = new GioHang(gioHang.getMaGio(), gioHang.getMaLaptop(), gioHang.getMaKH(), gioHang.getNgayThem(),
+                                voucher.getMaVoucher(), gioHang.getSoLuong());
+                        gioHangDAO.updateGioHang(update);
+                    } else {
+                        IdData.getInstance().setIdVou(voucher.getMaVoucher());
+                    }
+                    setRow(pos, author, voucher.getMaVoucher());
+                    notifyDataSetChanged();
+                } else {
+                    selectedPos = -1;
+                    Toast.makeText(context, "Hãy đặt mua sản phẩm để sử dụng Voucher này nhé!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -63,7 +91,9 @@ public class KH_Voucher_Adapter extends RecyclerView.Adapter<KH_Voucher_Adapter.
     }
 
     public static class AuthorViewHolder extends RecyclerView.ViewHolder {
-        TextView name, date, ma, sale, buttonUse;
+        TextView name, date, ma, sale;
+        Button buttonUse;
+        RadioButton radioButton;
 
         public AuthorViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,12 +102,20 @@ public class KH_Voucher_Adapter extends RecyclerView.Adapter<KH_Voucher_Adapter.
             ma = itemView.findViewById(R.id.textView_MaVoucher);
             sale = itemView.findViewById(R.id.textView_GiamGia);
             buttonUse = itemView.findViewById(R.id.button_Use_Voucher);
+            radioButton = itemView.findViewById(R.id.radioButton_Checked);
         }
     }
 
-    public Voucher setRow(int pos, @NonNull KH_Voucher_Adapter.AuthorViewHolder author) {
+    public Voucher setRow(int pos, @NonNull KH_Voucher_Adapter.AuthorViewHolder author, String maVou) {
         Log.d(TAG, "setRow: " + pos);
         Voucher voucher = listVou.get(pos);
+
+        if (maVou != null){
+            if (maVou.equals(voucher.getMaVoucher())){
+                selectedPos = pos;
+            }
+        }
+
         author.ma.setText(voucher.getMaVoucher());
         author.sale.setText("Giảm giá\n" + voucher.getGiamGia());
         author.name.setText(voucher.getTenVoucher());
