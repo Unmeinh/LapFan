@@ -2,7 +2,9 @@ package com.nhom5.quanlylaptop.NAV_Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.HangLaptopDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.HangLaptop;
@@ -24,7 +27,7 @@ import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.util.ArrayList;
 
-public class QL_Laptop_Adapter  extends RecyclerView.Adapter<QL_Laptop_Adapter.AuthorViewHolder> {
+public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.AuthorViewHolder> {
 
     Context context;
     ArrayList<HangLaptop> listHang;
@@ -42,7 +45,7 @@ public class QL_Laptop_Adapter  extends RecyclerView.Adapter<QL_Laptop_Adapter.A
     @NonNull
     @Override
     public AuthorViewHolder onCreateViewHolder(@NonNull ViewGroup vGroup, int i) {
-        View v = LayoutInflater.from(context).inflate(R.layout.cardview_nva_laptop, vGroup , false);
+        View v = LayoutInflater.from(context).inflate(R.layout.cardview_nva_laptop, vGroup, false);
         return new AuthorViewHolder(v);
     }
 
@@ -56,6 +59,24 @@ public class QL_Laptop_Adapter  extends RecyclerView.Adapter<QL_Laptop_Adapter.A
                 Toast.makeText(context, "Delete", Toast.LENGTH_SHORT).show();
             }
         });
+
+        author.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Info_Laptop_Activity.class);
+                Laptop laptop = listLap.get(pos);
+                if (laptop != null) {
+                    final Bundle bundle = new Bundle();
+                    bundle.putBinder("laptop", laptop);
+                    Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
+                    intent.putExtras(bundle);
+                    intent.putExtra("openFrom", "other");
+                    context.startActivity(intent);
+                } else {
+                    Toast.makeText(context, "Load thông tin sản phẩm lỗi!\nXin vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     @Override
@@ -63,10 +84,11 @@ public class QL_Laptop_Adapter  extends RecyclerView.Adapter<QL_Laptop_Adapter.A
         return listLap.size();
     }
 
-    public static class AuthorViewHolder extends RecyclerView.ViewHolder{
+    public static class AuthorViewHolder extends RecyclerView.ViewHolder {
         ImageView imgLaptop, imgHang;
-        TextView name, gia, soLuong;
+        TextView name, gia, soLuong, daBan;
         ImageButton delete;
+
         public AuthorViewHolder(@NonNull View itemView) {
             super(itemView);
             imgLaptop = itemView.findViewById(R.id.imageView_Laptop);
@@ -75,6 +97,7 @@ public class QL_Laptop_Adapter  extends RecyclerView.Adapter<QL_Laptop_Adapter.A
             gia = itemView.findViewById(R.id.textView_GiaTien);
             soLuong = itemView.findViewById(R.id.textView_Soluong);
             delete = itemView.findViewById(R.id.imageButton_Delete);
+            daBan = itemView.findViewById(R.id.textView_SoSP_DaBan);
         }
     }
 
@@ -87,7 +110,7 @@ public class QL_Laptop_Adapter  extends RecyclerView.Adapter<QL_Laptop_Adapter.A
 
         for (int i = 0; i < listHang.size(); i++) {
             HangLaptop getHang = listHang.get(i);
-            if (laptop.getMaHangLap().equals(getHang.getMaHangLap())){
+            if (laptop.getMaHangLap().equals(getHang.getMaHangLap())) {
                 hangLaptop = getHang;
             }
         }
@@ -99,7 +122,8 @@ public class QL_Laptop_Adapter  extends RecyclerView.Adapter<QL_Laptop_Adapter.A
         author.imgLaptop.setImageBitmap(anhLap);
         author.imgHang.setImageBitmap(anhHang);
         author.name.setText(laptop.getTenLaptop());
-        author.gia.setText(laptop.getGiaTien());
-        author.soLuong.setText("19");
+        author.gia.setText("Giá tiền: " + laptop.getGiaTien());
+//        author.soLuong.setText(laptop.getSoLuong());
+//        author.daBan.setText(laptop.getDaBan());
     }
 }

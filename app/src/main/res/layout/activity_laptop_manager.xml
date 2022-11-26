@@ -134,6 +134,23 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInput_SoLuong"
+                    android:layout_marginTop="30dp"
+                    style="@style/TextInputLayoutOutlinedBoxBrown"
+                    android:layout_width="match_parent"
+                    android:layout_height="65dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:inputType="number"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:hint="@string/s_l_ng_nh_p"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </com.google.android.material.textfield.TextInputLayout>
+
                 <LinearLayout
                     android:gravity="center_horizontal"
                     android:layout_marginTop="40dp"

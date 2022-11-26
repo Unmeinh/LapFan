@@ -70,7 +70,7 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
         TextView name = findViewById(R.id.textView_TenLaptop);
         TextView soLuong = findViewById(R.id.textView_Soluong);
         TextView giaTien = findViewById(R.id.textView_GiaTien);
-        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", new byte[]{});
+        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", 0, 0, new byte[]{});
         Log.d(TAG, "setRow: DonHang: " + donHang.toString());
         LaptopDAO laptopDAO = new LaptopDAO(context);
         ArrayList<Laptop> listLap = laptopDAO.selectLaptop(null, null, null, null);

@@ -108,7 +108,7 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
     public DonHang setRow(int pos, @NonNull KH_DonHang_Adapter.AuthorViewHolder author) {
         Log.d(TAG, "setRow: " + pos);
         DonHang donHang = listDon.get(pos);
-        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", new byte[]{});
+        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", 0, 0, new byte[]{});
         Log.d(TAG, "setRow: DonHang: " + donHang.toString());
 
         for (int i = 0; i < listLap.size(); i++) {

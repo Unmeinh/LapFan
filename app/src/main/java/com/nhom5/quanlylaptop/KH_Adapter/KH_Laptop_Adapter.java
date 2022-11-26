@@ -55,6 +55,7 @@ public class KH_Laptop_Adapter extends RecyclerView.Adapter<KH_Laptop_Adapter.Au
                     bundle.putBinder("laptop", laptop);
                     Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
                     intent.putExtras(bundle);
+                    intent.putExtra("openFrom", "viewer");
                     context.startActivity(intent);
                 } else {
                     Toast.makeText(context, "Load thông tin sản phẩm lỗi!\nXin vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();

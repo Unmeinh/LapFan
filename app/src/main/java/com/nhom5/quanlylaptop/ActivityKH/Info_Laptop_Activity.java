@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,8 @@ public class Info_Laptop_Activity extends AppCompatActivity {
     AppCompatButton buyNow, themVaoGio;
     GioHangDAO gioHangDAO;
     ArrayList<GioHang> listGio = new ArrayList<>();
+    String openFrom;
+    LinearLayout layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         giaLaptop = findViewById(R.id.textView_GiaTien);
         tsktLaptop = findViewById(R.id.textView_TSKT);
         buyNow = findViewById(R.id.button_Mua);
+        layout = findViewById(R.id.layoutViewer);
         themVaoGio = findViewById(R.id.button_Add_To_GioHang);
         gioHangDAO = new GioHangDAO(context);
 
@@ -54,23 +58,34 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         setInfoLaptop();
         addToCart();
         buyNowLaptop();
+
+        if (openFrom != null){
+            if (openFrom.equals("viewer")){
+                layout.setVisibility(View.VISIBLE);
+            } else {
+                layout.setVisibility(View.GONE);
+            }
+        }
     }
 
     private void buyNowLaptop(){
-        AddData addData = new AddData(context);
         buyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (laptop != null) {
-                    Intent intent = new Intent(context, KH_ThanhToan_Activity.class);
-                    final Bundle bundle = new Bundle();
-                    bundle.putBinder("laptop", laptop);
-                    Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
-                    intent.putExtras(bundle);
-                    intent.putExtra("input", "MuaNgay");
-                    IdData.getInstance().setIdDC("");
-                    IdData.getInstance().setIdVou("");
-                    context.startActivity(intent);
+                    if (laptop.getSoLuong() != 0){
+                        Intent intent = new Intent(context, KH_ThanhToan_Activity.class);
+                        final Bundle bundle = new Bundle();
+                        bundle.putBinder("laptop", laptop);
+                        Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
+                        intent.putExtras(bundle);
+                        intent.putExtra("input", "MuaNgay");
+                        IdData.getInstance().setIdDC("");
+                        IdData.getInstance().setIdVou("");
+                        context.startActivity(intent);
+                    } else {
+                        Toast.makeText(context, "Sản phẩm đang hết hàng!\nXin vui lòng đợi chúng tôi nhập sản phẩm!", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
                     Toast.makeText(context, "Load thông tin sản phẩm lỗi!\nXin vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
                 }
@@ -84,9 +99,13 @@ public class Info_Laptop_Activity extends AppCompatActivity {
             themVaoGio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    GioHang gioHang = new GioHang("GH" + listGio.size(), laptop.getMaLaptop(),
-                            "No Data", "2022-11-17", "No Data", 1);
-                    gioHangDAO.insertGioHang(gioHang);
+                    if (laptop.getSoLuong() != 0){
+                        GioHang gioHang = new GioHang("GH" + listGio.size(), laptop.getMaLaptop(),
+                                "No Data", "2022-11-17", "No Data", 1);
+                        gioHangDAO.insertGioHang(gioHang);
+                    } else {
+                        Toast.makeText(context, "Sản phẩm đang hết hàng!\nXin vui lòng đợi chúng tôi nhập sản phẩm!", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }
@@ -117,6 +136,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         if (intent != null) {
             try {
                 laptop = (Laptop) intent.getExtras().getBinder("laptop");
+                openFrom = intent.getStringExtra("openFrom");
                 Log.d(TAG, "getInfoLaptop: laptop: " + laptop.toString());
             } catch (Exception e) {
                 e.printStackTrace();

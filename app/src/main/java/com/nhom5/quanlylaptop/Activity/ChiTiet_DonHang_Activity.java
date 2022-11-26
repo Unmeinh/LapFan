@@ -121,7 +121,7 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
         TextView date = findViewById(R.id.textView_Date);
         Button hoanThanh = findViewById(R.id.button_HoanThanh);
 
-        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", new byte[]{});
+        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", 0, 0, new byte[]{});
         Log.d(TAG, "setRow: DonHang: " + donHang.toString());
         LaptopDAO laptopDAO = new LaptopDAO(context);
         ArrayList<Laptop> listLap = laptopDAO.selectLaptop(null, null, null, null);

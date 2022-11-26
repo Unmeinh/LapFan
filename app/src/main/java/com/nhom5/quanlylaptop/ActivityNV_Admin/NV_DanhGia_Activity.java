@@ -94,7 +94,7 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
         TextView nameKH = findViewById(R.id.textView_TenUser);
         TextView email = findViewById(R.id.textView_Email);
 
-        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", new byte[]{});
+        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", 0, 0, new byte[]{});
         Log.d(TAG, "setRow: DonHang: " + donHang.toString());
         LaptopDAO laptopDAO = new LaptopDAO(context);
         ArrayList<Laptop> listLap = laptopDAO.selectLaptop(null, null, null, null);

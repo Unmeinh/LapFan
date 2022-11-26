@@ -35,8 +35,17 @@
                 android:textColor="#422D29"
                 android:textSize="11sp" />
 
+
+            <TextView
+                android:gravity="center"
+                android:id="@+id/textView_GiaTien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#F20C0C"
+                android:textSize="13sp" />
+
             <LinearLayout
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginEnd="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
@@ -44,9 +53,9 @@
 
                 <ImageView
                     android:layout_gravity="center"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:src="@drawable/sold_icon" />
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/storage_icon" />
 
                 <LinearLayout
                     android:paddingTop="5dp"
@@ -59,14 +68,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Đã bán: "
-                        android:textColor="#F20C0C" />
+                        android:text="Trong kho: "
+                        android:textColor="#000000" />
 
                     <TextView
                         android:id="@+id/textView_Soluong"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="#F20C0C" />
+                        android:textColor="#000000" />
 
 
                 </LinearLayout>
@@ -74,25 +83,56 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="15dp"
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp">
 
-                <TextView
-                    android:id="@+id/textView_GiaTien"
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_weight="9"
-                    android:layout_height="wrap_content"
-                    android:textColor="#F20C0C"
-                    android:textSize="18sp" />
+                    android:layout_weight="8"
+                    android:layout_height="32dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/sold_icon" />
+
+                    <LinearLayout
+                        android:paddingTop="5dp"
+                        android:layout_width="match_parent"
+                        android:gravity="center_vertical"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Đã bán: "
+                            android:textColor="#F20C0C" />
+
+                        <TextView
+                            android:text="10"
+                            android:id="@+id/textView_SoSP_DaBan"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#F20C0C" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <ImageButton
                     android:id="@+id/imageButton_Delete"
                     android:src="@drawable/garbage_can_icon"
                     android:background="@color/white"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="match_parent"/>
 
             </LinearLayout>
 

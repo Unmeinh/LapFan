@@ -42,7 +42,19 @@ public class LaptopDAO {
                 String tenLaptop = c.getString(3);
                 String thongSoKT = c.getString(4);
                 String giaTien = c.getString(5);
-                Laptop newLap = new Laptop(maLaptop, maHangLap, tenLaptop, thongSoKT, giaTien, anhLaptop);
+                int soLuong = 0;
+                try {
+                    soLuong = Integer.parseInt(c.getString(6));
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                int daBan = 0;
+                try {
+                    daBan = Integer.parseInt(c.getString(7));
+                } catch (Exception e){
+                    e.printStackTrace();
+                }
+                Laptop newLap = new Laptop(maLaptop, maHangLap, tenLaptop, thongSoKT, giaTien, soLuong, daBan, anhLaptop);
                 Log.d(TAG, "selectLaptop: new Laptop: " + newLap.toString());
 
                 listLap.add(newLap);
@@ -67,6 +79,8 @@ public class LaptopDAO {
         values.put("tenLaptop", laptop.getTenLaptop());
         values.put("thongSoKT", laptop.getThongSoKT());
         values.put("giaTien", laptop.getGiaTien());
+        values.put("soLuong", laptop.getSoLuong());
+        values.put("daBan", laptop.getDaBan());
         Log.d(TAG, "insertLaptop: Laptop: " + laptop.toString());
         Log.d(TAG, "insertLaptop: Values: " + values);
 
@@ -89,6 +103,8 @@ public class LaptopDAO {
         values.put("tenLaptop", laptop.getTenLaptop());
         values.put("thongSoKT", laptop.getThongSoKT());
         values.put("giaTien", laptop.getGiaTien());
+        values.put("soLuong", laptop.getSoLuong());
+        values.put("daBan", laptop.getDaBan());
         Log.d(TAG, "updateLaptop: Laptop: " + laptop.toString());
         Log.d(TAG, "updateLaptop: Values: " + values);
 
