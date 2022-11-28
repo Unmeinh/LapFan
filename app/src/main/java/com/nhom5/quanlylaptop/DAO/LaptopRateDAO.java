@@ -37,7 +37,7 @@ public class LaptopRateDAO {
             c.moveToFirst();
             while (!c.isAfterLast()) {
                 Log.d(TAG, "selectLaptopRate: Cursor not last");
-                String maRate = c.getString(0);
+                String maRate = c.getString(0)+"";
                 String maLaptop = c.getString(1);
                 String danhGia = c.getString(2);
                 float rating = 0;
@@ -65,7 +65,6 @@ public class LaptopRateDAO {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("maRate", laptopRate.getMaRate());
         values.put("maLaptop", laptopRate.getMaLaptop());
         values.put("danhGia", laptopRate.getDanhGia());
         values.put("rating", String.valueOf(laptopRate.getRating()));

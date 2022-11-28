@@ -36,7 +36,7 @@ public class NhanVienDAO {
             c.moveToFirst();
             while (!c.isAfterLast()) {
                 Log.d(TAG, "selectNhanVien: Cursor not last");
-                String maNV = c.getString(0);
+                String maNV = c.getString(0)+"";
                 byte[] avatar = c.getBlob(1);
                 String hoNV = c.getString(2);
                 String tenNV = c.getString(3);
@@ -72,11 +72,10 @@ public class NhanVienDAO {
         return listNV;
     }
 
-    public void insertNhanVien(NhanVien nhanVien) {
+    public int insertNhanVien(NhanVien nhanVien) {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("maNV", nhanVien.getMaNV());
         values.put("avatar", nhanVien.getAvatar());
         values.put("hoNV", nhanVien.getHoNV());
         values.put("tenNV", nhanVien.getTenNV());
@@ -91,15 +90,17 @@ public class NhanVienDAO {
         Log.d(TAG, "insertNhanVien: Values: " + values);
 
         long ketqua = db.insert("NhanVien", null, values);
-        if (ketqua > 0) {
-            Log.d(TAG, "insertNhanVien: Thêm thành công"); 
-        } else {
-            Log.d(TAG, "insertNhanVien: Thêm thất bại");  
-        }
         db.close();
+        if (ketqua > 0) {
+            Log.d(TAG, "insertNhanVien: Thêm thành công");
+            return 1;
+        } else {
+            Log.d(TAG, "insertNhanVien: Thêm thất bại");
+            return -1;
+        }
     }
 
-    public void updateNhanVien(NhanVien nhanVien) {
+    public int updateNhanVien(NhanVien nhanVien) {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -118,12 +119,14 @@ public class NhanVienDAO {
         Log.d(TAG, "insertNhanVien: Values: " + values);
 
         long ketqua = db.update("NhanVien", values, "maNV=?", new String[]{String.valueOf(nhanVien.getMaNV())});
-        if (ketqua > 0) {
-            Log.d(TAG, "updateVoucher: Sửa thành công"); 
-        } else {
-            Log.d(TAG, "updateVoucher: Sửa thất bại");  
-        }
         db.close();
+        if (ketqua > 0) {
+            Log.d(TAG, "updateVoucher: Sửa thành công");
+            return 1;
+        } else {
+            Log.d(TAG, "updateVoucher: Sửa thất bại");
+            return -1;
+        }
     }
 
     public void deleteNhanVien(NhanVien nhanVien){

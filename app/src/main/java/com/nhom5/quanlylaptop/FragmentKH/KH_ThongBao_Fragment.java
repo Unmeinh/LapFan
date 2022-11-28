@@ -1,5 +1,8 @@
 package com.nhom5.quanlylaptop.FragmentKH;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,24 +13,47 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.KH_Loader.All_ThongBao_Loader;
 import com.nhom5.quanlylaptop.R;
+
+import java.util.ArrayList;
 
 public class KH_ThongBao_Fragment extends Fragment {
 
     String TAG = "KH_GioHang_Fragment_____";
+    KhachHang khachHang;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kh_thongbao, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_ThongBao);
         LinearLayout linearLayout = view.findViewById(R.id.loadingView);
+        LinearLayout emptyLayout = view.findViewById(R.id.empty_ThongBao);
 
-        All_ThongBao_Loader all_thongBao_loader = new All_ThongBao_Loader(getContext(),
-                recyclerView, linearLayout, "kh");
-        all_thongBao_loader.execute("");
+        getUser();
+        if (khachHang != null){
+            All_ThongBao_Loader all_thongBao_loader = new All_ThongBao_Loader(getContext(),
+                    recyclerView, linearLayout, emptyLayout, "kh");
+            all_thongBao_loader.execute(khachHang.getMaKH());
+        }
 
         return view;
+    }
+
+    private void getUser(){
+        SharedPreferences pref = getContext().getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            khachHang = null;
+        } else {
+            String user = pref.getString("who", "");
+            KhachHangDAO khachHangDAO = new KhachHangDAO(getContext());
+            ArrayList<KhachHang> list = khachHangDAO.selectKhachHang(null, "maKH=?", new String[]{user}, null);
+            if (list.size() > 0){
+                khachHang = list.get(0);
+            }
+        }
     }
 
 }

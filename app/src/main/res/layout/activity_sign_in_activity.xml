@@ -8,11 +8,11 @@
     tools:context=".Activity.SignIn_Activity">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="25dp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:gravity="center">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -22,9 +22,9 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/shape_sign_in"
         android:orientation="vertical">
 
@@ -68,7 +68,7 @@
                         android:layout_height="match_parent"
                         android:background="#FFEFE0"
                         android:hint="@string/emailhint"
-                        android:textColor="#D2422F"
+                        android:textColor="#3F51B5"
                         android:textSize="19sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -76,7 +76,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/textInput_Password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
@@ -96,8 +95,10 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInput_Password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        app:errorIconDrawable="@null"
                         app:passwordToggleEnabled="true"
                         app:startIconDrawable="@drawable/password_icon"
                         app:startIconTint="#4E352F">
@@ -108,7 +109,7 @@
                             android:background="#FFEFE0"
                             android:hint="@string/passwordhint"
                             android:inputType="textPassword"
-                            android:textColor="#D2422F"
+                            android:textColor="#3F51B5"
                             android:textSize="19sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -130,59 +131,60 @@
 
             <CheckBox
                 android:id="@+id/checkBox_Remember_Me"
-                android:layout_marginTop="5dp"
-                android:textColor="#4E352F"
-                android:textSize="17sp"
-                android:text="@string/remember_me"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/remember_me"
+                android:textColor="#4E352F"
+                android:textSize="17sp" />
 
         </LinearLayout>
 
         <LinearLayout
-            android:gravity="center"
-            android:orientation="vertical"
-            android:layout_marginTop="35dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_Login"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:paddingStart="75dp"
-                android:paddingEnd="75dp"
-                android:textSize="25sp"
-                android:textColor="#4E352F"
-                android:text="@string/log_in"
-                android:background="@drawable/shape_button1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@drawable/shape_button1"
+                android:paddingStart="75dp"
+                android:paddingTop="15dp"
+                android:paddingEnd="75dp"
+                android:paddingBottom="15dp"
+                android:text="@string/log_in"
+                android:textColor="#4E352F"
+                android:textSize="25sp" />
 
             <LinearLayout
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:layout_marginTop="25dp"
-                android:layout_marginBottom="25dp"
+                android:id="@+id/layout_Sign_Up"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="25dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:textColor="#4E352F"
-                    android:textSize="17sp"
-                    android:text="@string/don_t_have_account_yet"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="@string/don_t_have_account_yet"
+                    android:textColor="#4E352F"
+                    android:textSize="17sp" />
 
                 <TextView
                     android:id="@+id/go_to_SignUpAct"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="5dp"
-                    android:textStyle="bold"
+                    android:text="@string/sign_up"
                     android:textColor="#4E352F"
                     android:textSize="20sp"
-                    android:text="@string/sign_up"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:textStyle="bold" />
 
             </LinearLayout>
 

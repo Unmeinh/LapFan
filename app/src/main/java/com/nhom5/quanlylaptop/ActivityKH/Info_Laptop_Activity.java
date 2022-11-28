@@ -17,8 +17,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.IdData;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.AddData;
@@ -32,13 +34,14 @@ public class Info_Laptop_Activity extends AppCompatActivity {
     Laptop laptop = null;
     String TAG = "Info_Laptop_Activity_____";
     ImageView imageLaptop;
-    TextView tenLaptop, giaLaptop, tsktLaptop;
+    TextView tenLaptop, giaLaptop, tsktLaptop, soLuong;
     ChangeType changeType = new ChangeType();
     AppCompatButton buyNow, themVaoGio;
     GioHangDAO gioHangDAO;
     ArrayList<GioHang> listGio = new ArrayList<>();
     String openFrom;
     LinearLayout layout;
+    KhachHang khachHang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +51,21 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         tenLaptop = findViewById(R.id.textView_TenLaptop);
         giaLaptop = findViewById(R.id.textView_GiaTien);
         tsktLaptop = findViewById(R.id.textView_TSKT);
+        soLuong = findViewById(R.id.textView_Soluong);
         buyNow = findViewById(R.id.button_Mua);
         layout = findViewById(R.id.layoutViewer);
         themVaoGio = findViewById(R.id.button_Add_To_GioHang);
         gioHangDAO = new GioHangDAO(context);
 
+        getUser();
         useToolbar();
         getInfoLaptop();
         setInfoLaptop();
         addToCart();
         buyNowLaptop();
 
-        if (openFrom != null){
-            if (openFrom.equals("viewer")){
+        if (openFrom != null) {
+            if (openFrom.equals("viewer")) {
                 layout.setVisibility(View.VISIBLE);
             } else {
                 layout.setVisibility(View.GONE);
@@ -68,12 +73,12 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         }
     }
 
-    private void buyNowLaptop(){
+    private void buyNowLaptop() {
         buyNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (laptop != null) {
-                    if (laptop.getSoLuong() != 0){
+                    if (laptop.getSoLuong() != 0) {
                         Intent intent = new Intent(context, KH_ThanhToan_Activity.class);
                         final Bundle bundle = new Bundle();
                         bundle.putBinder("laptop", laptop);
@@ -93,15 +98,29 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         });
     }
 
+    private void getUser(){
+        SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            khachHang = null;
+        } else {
+            String user = pref.getString("who", "");
+            KhachHangDAO khachHangDAO = new KhachHangDAO(context);
+            ArrayList<KhachHang> list = khachHangDAO.selectKhachHang(null, "maKH=?", new String[]{user}, null);
+            if (list.size() > 0){
+                khachHang = list.get(0);
+            }
+        }
+    }
+
     private void addToCart() {
         listGio = gioHangDAO.selectGioHang(null, null, null, null);
         if (listGio != null) {
             themVaoGio.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (laptop.getSoLuong() != 0){
+                    if (laptop.getSoLuong() != 0) {
                         GioHang gioHang = new GioHang("GH" + listGio.size(), laptop.getMaLaptop(),
-                                "No Data", "2022-11-17", "No Data", 1);
+                                khachHang.getMaKH(), "2022-11-17", "No Data", 1);
                         gioHangDAO.insertGioHang(gioHang);
                     } else {
                         Toast.makeText(context, "Sản phẩm đang hết hàng!\nXin vui lòng đợi chúng tôi nhập sản phẩm!", Toast.LENGTH_SHORT).show();
@@ -128,6 +147,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
             if (laptop.getThongSoKT().equals("RAM 32GB")) {
                 tsktLaptop.setText(R.string.tskt_ram_32g);
             }
+            soLuong.setText("Số lượng còn lại: " + laptop.getSoLuong() + " sản phẩm");
         }
     }
 

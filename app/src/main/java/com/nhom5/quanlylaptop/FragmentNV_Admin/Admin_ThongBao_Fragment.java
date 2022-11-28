@@ -21,10 +21,11 @@ public class Admin_ThongBao_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_admin_thongbao, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_ThongBao);
         LinearLayout linearLayout = view.findViewById(R.id.loadingView);
+        LinearLayout emptyLayout = view.findViewById(R.id.empty_ThongBao);
 
         All_ThongBao_Loader all_thongBao_loader = new All_ThongBao_Loader(getContext(),
-                recyclerView, linearLayout, "ad");
-        all_thongBao_loader.execute("");
+                recyclerView, linearLayout, emptyLayout, "ad");
+        all_thongBao_loader.execute("Admin");
 
         return view;
     }

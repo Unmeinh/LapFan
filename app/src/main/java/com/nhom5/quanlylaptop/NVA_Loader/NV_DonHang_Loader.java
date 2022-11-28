@@ -48,7 +48,7 @@ public class NV_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
         String maNV = strings[0];
         listLap = laptopDAO.selectLaptop(null, null, null, null);
 
-        return donHangDAO.selectDonHang(null, null, null, "ngayMua");
+        return donHangDAO.selectDonHang(null, "maNV=?", new String[]{maNV}, "ngayMua");
     }
 
     @Override

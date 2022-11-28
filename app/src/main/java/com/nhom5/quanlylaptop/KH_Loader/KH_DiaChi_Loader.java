@@ -64,23 +64,23 @@ public class KH_DiaChi_Loader extends AsyncTask<String, Void, ArrayList<DiaChi>>
     }
 
     private void addDemoDiaChi() {
-        DiaChi dc1 = new DiaChi("DC0", "KH0", "Donald Trump", "014061946"
+        DiaChi dc1 = new DiaChi("DC0", "0", "Donald Trump", "014061946"
                 , "Số nhà 1601", "Hoa Kì", "Washington", "Đại lộ Pennsylvania NW");
         diaChiDAO.insertDiaChi(dc1);
 
-        DiaChi dc2 = new DiaChi("DC1", "KH0", "Barack Obama", "004081961"
+        DiaChi dc2 = new DiaChi("DC1", "0", "Barack Obama", "004081961"
                 , "Số nhà 1600", "Hoa Kì", "Washington", "Đại lộ Pennsylvania NW");
         diaChiDAO.insertDiaChi(dc2);
 
-        DiaChi dc3 = new DiaChi("DC2", "KH1", "Vladimir Putin", "007101952"
+        DiaChi dc3 = new DiaChi("DC2", "1", "Vladimir Putin", "007101952"
                 , "Dinh thự Novo-Ogaryevo", "Nga", "Moscow", "Phía tây");
         diaChiDAO.insertDiaChi(dc3);
 
-        DiaChi dc4 = new DiaChi("DC3", "KH2", "Donald Trump", "014041944"
+        DiaChi dc4 = new DiaChi("DC3", "2", "Donald Trump", "014041944"
                 , "Số 5 phố Thiền Quang", "Hà Nội", "Hai Bà Trưng", "Nguyễn Du");
         diaChiDAO.insertDiaChi(dc4);
 
-        DiaChi dc5 = new DiaChi("DC4", "KH2", "Nguyễn Xuân Phúc", "020071954"
+        DiaChi dc5 = new DiaChi("DC4", "2", "Nguyễn Xuân Phúc", "020071954"
                 , "Nhà công vụ số 11", "Hà Nội", "Ba Đình", "Chùa Một Cột");
         diaChiDAO.insertDiaChi(dc5);
     }

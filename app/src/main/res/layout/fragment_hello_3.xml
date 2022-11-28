@@ -14,22 +14,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50sp"
         android:gravity="center"
-        android:text="Nhiều hình thức thanh toán"
+        android:text="Thống kê chi tiết"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="300sp"
-        android:src="@drawable/hello_image_3" />
+        android:src="@drawable/thongke_image" />
 
     <TextView
+        android:padding="15dp"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Ứng dụng có nhiều hình thức\nthanh toán giúp khách hàng\nđặt hàng nhanh chóng." />
+        android:text="LAPFAN tự động tính toán khoản thu - chi và thống kê doanh số bán hàng nhân viên theo từng tháng." />
 
 </LinearLayout>

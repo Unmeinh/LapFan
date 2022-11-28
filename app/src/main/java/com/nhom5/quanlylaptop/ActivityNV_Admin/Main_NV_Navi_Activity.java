@@ -1,6 +1,7 @@
 package com.nhom5.quanlylaptop.ActivityNV_Admin;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -8,6 +9,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -22,9 +25,16 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
+import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
+import com.nhom5.quanlylaptop.Entity.NhanVien;
 import com.nhom5.quanlylaptop.PagerAdapter.NV_PagerAdapter_Bottom;
 import com.nhom5.quanlylaptop.PagerAdapter.NV_PagerAdapter_Drawer;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.ChangeType;
+
+import java.util.ArrayList;
 
 public class Main_NV_Navi_Activity extends AppCompatActivity {
 
@@ -35,6 +45,8 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     int itemNaviDr, count;
     Context context = this;
+    NhanVien nhanVien;
+    ChangeType changeType = new ChangeType();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +56,16 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewP);
         naviView = findViewById(R.id.naviView);
         drawerLayout = findViewById(R.id.drawerLayout);
+
+        getUser();
         useToolbar("", 0);
         setViewNaviBottom();
         setViewNaviDrawer();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void useToolbar(String title, int type) {
@@ -65,6 +84,20 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
         });
     }
 
+    private void getUser(){
+        SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            nhanVien = null;
+        } else {
+            String user = pref.getString("who", "");
+            NhanVienDAO nhanVienDAO = new NhanVienDAO(context);
+            ArrayList<NhanVien> list = nhanVienDAO.selectNhanVien(null, "maNV=?", new String[]{user}, null);
+            if (list.size() > 0){
+                nhanVien = list.get(0);
+            }
+        }
+    }
+
     private void layoutAccount(String title) {
         LinearLayout layoutAcc = findViewById(R.id.layout_Account);
         LinearLayout layoutSearch = findViewById(R.id.layout_Search);
@@ -74,7 +107,9 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
         layoutAcc.setVisibility(View.VISIBLE);
         layoutSearch.setVisibility(View.GONE);
         titleView.setText(title);
-        imageView.setImageResource(R.drawable.ryan_reynolds);
+        if (nhanVien != null){
+            imageView.setImageBitmap(changeType.byteToBitmap(nhanVien.getAvatar()));
+        }
     }
 
     private void layoutSearch(String title) {

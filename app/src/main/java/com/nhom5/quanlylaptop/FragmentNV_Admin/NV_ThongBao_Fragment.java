@@ -1,5 +1,8 @@
 package com.nhom5.quanlylaptop.FragmentNV_Admin;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,10 +13,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
+import com.nhom5.quanlylaptop.Entity.NhanVien;
 import com.nhom5.quanlylaptop.KH_Loader.All_ThongBao_Loader;
 import com.nhom5.quanlylaptop.R;
 
+import java.util.ArrayList;
+
 public class NV_ThongBao_Fragment extends Fragment {
+
+    NhanVien nhanVien;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -21,11 +31,28 @@ public class NV_ThongBao_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_nv_thongbao, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView_ThongBao);
         LinearLayout linearLayout = view.findViewById(R.id.loadingView);
+        LinearLayout emptyLayout = view.findViewById(R.id.empty_ThongBao);
 
-        All_ThongBao_Loader all_thongBao_loader = new All_ThongBao_Loader(getContext(),
-                recyclerView, linearLayout, "nv");
-        all_thongBao_loader.execute("");
-
+        getUser();
+        if (nhanVien != null) {
+            All_ThongBao_Loader all_thongBao_loader = new All_ThongBao_Loader(getContext(),
+                    recyclerView, linearLayout, emptyLayout, "nv");
+            all_thongBao_loader.execute(nhanVien.getMaNV());
+        }
         return view;
+    }
+
+    private void getUser() {
+        SharedPreferences pref = getContext().getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            nhanVien = null;
+        } else {
+            String user = pref.getString("who", "");
+            NhanVienDAO nhanVienDAO = new NhanVienDAO(getContext());
+            ArrayList<NhanVien> list = nhanVienDAO.selectNhanVien(null, "maNV=?", new String[]{user}, null);
+            if (list.size() > 0){
+                nhanVien = list.get(0);
+            }
+        }
     }
 }

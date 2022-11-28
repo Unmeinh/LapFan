@@ -39,7 +39,7 @@ public class DiaChiDAO {
             c.moveToFirst();
             while (!c.isAfterLast()) {
                 Log.d(TAG, "selectDiaChi: Cursor not last");
-                String maDC = c.getString(0);
+                String maDC = c.getString(0)+"";
                 String maKH = c.getString(1);
                 String tenNguoiNhan = c.getString(2);
                 String SDT = c.getString(3);
@@ -66,7 +66,6 @@ public class DiaChiDAO {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("maDC", diaChi.getMaDC());
         values.put("maKH", diaChi.getMaKH());
         values.put("tenNguoiNhan", diaChi.getTenNguoiNhan());
         values.put("phone", diaChi.getSDT());

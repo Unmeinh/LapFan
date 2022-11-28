@@ -88,27 +88,27 @@ public class QL_NhanVien_Loader extends AsyncTask<String, Void, ArrayList<NhanVi
     private void addDemoNV(){
         ChangeType changeType = new ChangeType();
 
-        NhanVien nv0 = new NhanVien("NV0", "Leonardo", "DiCaprio", "Nam", "leo@gmail.com",
+        NhanVien nv0 = new NhanVien("0", "Leonardo", "DiCaprio", "Nam", "leo@gmail.com",
                 "leonardo", "Hoa Kỳ", "011111974", 0, 0,
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.leonardo_dicaprio))));
         nhanVienDAO.insertNhanVien(nv0);
 
-        NhanVien nv1 = new NhanVien("NV1", "Hoàng", "Thái Vũ", "Nam", "vu@gmail.com",
+        NhanVien nv1 = new NhanVien("1", "Hoàng", "Thái Vũ", "Nam", "vu@gmail.com",
                 "vu1995", "Việt Nam", "003101995", 0, 0,
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.vu))));
         nhanVienDAO.insertNhanVien(nv1);
 
-        NhanVien nv2 = new NhanVien("NV2", "Nguyễn", "Đức Cường", "Nam", "den@gmail.com",
+        NhanVien nv2 = new NhanVien("2", "Nguyễn", "Đức Cường", "Nam", "den@gmail.com",
                 "denvau", "Việt Nam", "013051989", 0, 0,
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.den_vau))));
         nhanVienDAO.insertNhanVien(nv2);
 
-        NhanVien nv3 = new NhanVien("NV3", "Martin", "Garrix", "Nam", "martin@gmail.com",
+        NhanVien nv3 = new NhanVien("3", "Martin", "Garrix", "Nam", "martin@gmail.com",
                 "martingarrix", "Hà Lan", "014051996", 0, 0,
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.martin_garrix))));
         nhanVienDAO.insertNhanVien(nv3);
 
-        NhanVien nv4 = new NhanVien("NV4", "Nguyễn", "Công Lý", "Nam", "congly@gmail.com",
+        NhanVien nv4 = new NhanVien("4", "Nguyễn", "Công Lý", "Nam", "congly@gmail.com",
                 "congly", "Việt Nam", "016101973", 0, 0,
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.cong_ly))));
         nhanVienDAO.insertNhanVien(nv4);

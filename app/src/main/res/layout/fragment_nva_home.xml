@@ -32,6 +32,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/change_Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -49,11 +50,10 @@
                 <TextView
                     android:id="@+id/textView_Date"
                     android:layout_marginStart="5dp"
-                    android:layout_width="match_parent"
+                    android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:textColor="#000000"
-                    android:text="@string/th_ng_n_y"
                     android:textSize="13sp"
                     android:textStyle="bold"/>
 
@@ -85,7 +85,6 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2.000.000.000 VNĐ"
                         android:textColor="#FF0000"
                         android:textSize="19sp" />
 
@@ -176,92 +175,123 @@
                     android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/textView_Title"
                         android:textColor="@color/black"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/s_n_ph_m_b_n_ch_y"
                         android:textSize="20sp" />
 
-                    <LinearLayout
+                    <ScrollView
                         android:layout_marginTop="10dp"
-                        android:orientation="horizontal"
+                        android:scrollbars="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <Button
-                            android:id="@+id/button_Theo_DoanhThu"
-                            android:layout_marginBottom="5dp"
-                            android:layout_width="150dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/shape_button3"
-                            android:text="@string/theo_doanh_thu"
-                            android:textColor="#D2422F"
-                            android:textSize="11sp"/>
+                        <LinearLayout
+                            android:paddingBottom="5dp"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
 
-                        <Button
-                            android:id="@+id/button_Theo_SoLuong"
-                            android:layout_marginBottom="5dp"
-                            android:layout_marginStart="20dp"
-                            android:layout_width="150dp"
-                            android:layout_height="50dp"
-                            android:background="@drawable/shape_button3"
-                            android:text="@string/theo_s_l_ng"
-                            android:textColor="@color/black"
-                            android:textSize="11sp" />
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/button_Theo_DoanhThu"
+                                android:layout_marginBottom="5dp"
+                                android:layout_width="150dp"
+                                android:layout_height="60dp"
+                                android:backgroundTint="#fff"
+                                android:background="@drawable/shape_button3"
+                                android:text="@string/theo_doanh_thu"
+                                android:textColor="#D2422F"
+                                android:textSize="11sp"/>
 
-                    </LinearLayout>
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/button_Theo_ThapTien"
+                                android:layout_width="150dp"
+                                android:layout_height="60dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginBottom="5dp"
+                                android:backgroundTint="#fff"
+                                android:background="@drawable/shape_button3"
+                                android:text="@string/theo_s_l_ng_nth_p_ti_n_nh_t"
+                                android:textColor="@color/black"
+                                android:textSize="11sp" />
+
+                            <androidx.appcompat.widget.AppCompatButton
+                                android:id="@+id/button_Theo_CaoTien"
+                                android:layout_marginBottom="5dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_width="150dp"
+                                android:layout_height="60dp"
+                                android:backgroundTint="#fff"
+                                android:background="@drawable/shape_button3"
+                                android:text="@string/theo_s_l_ng_ncao_ti_n_nh_t"
+                                android:textColor="@color/black"
+                                android:textSize="11sp" />
+
+                        </LinearLayout>
+
+                    </ScrollView>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
+                    android:backgroundTint="@color/white"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/shape_item">
 
-                    <ImageView
-                        android:id="@+id/imageView_Laptop"
-                        android:layout_margin="5dp"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/laptopdemo" />
-
-                    <View
-                        android:background="@color/black"
-                        android:layout_width="1dp"
-                        android:layout_height="match_parent"/>
-
-                    <RelativeLayout
-                        android:layout_marginStart="5dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="vertical"
+                    <LinearLayout
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="@drawable/shape_item">
 
-                        <TextView
-                            android:id="@+id/textView_TenLaptop"
-                            android:layout_above="@id/textView_GiaTien_Laptop"
-                            android:layout_alignParentTop="true"
-                            android:textColor="@color/black"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Laptop Dell Gaming G15"
-                            android:textSize="20sp"/>
+                        <ImageView
+                            android:id="@+id/imageView_Laptop"
+                            android:layout_margin="5dp"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/laptopdemo" />
 
-                        <TextView
-                            android:id="@+id/textView_GiaTien_Laptop"
-                            android:layout_alignParentBottom="true"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="#D2422F"
-                            android:text="Giá tiền: 21.990.000 VNĐ"
-                            android:textSize="18sp"/>
+                        <View
+                            android:background="@color/black"
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"/>
 
-                    </RelativeLayout>
+                        <RelativeLayout
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                                android:id="@+id/textView_TenLaptop"
+                                android:layout_above="@id/textView_GiaTien_Laptop"
+                                android:layout_alignParentTop="true"
+                                android:textColor="@color/black"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Laptop Dell Gaming G15"
+                                android:textSize="20sp"/>
+
+                            <TextView
+                                android:id="@+id/textView_GiaTien_Laptop"
+                                android:layout_alignParentBottom="true"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="#D2422F"
+                                android:text="Giá tiền: 21.990.000 VNĐ"
+                                android:textSize="18sp"/>
+
+                        </RelativeLayout>
+                    </LinearLayout>
+
                 </LinearLayout>
 
             </LinearLayout>

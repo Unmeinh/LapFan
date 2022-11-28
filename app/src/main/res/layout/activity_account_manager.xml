@@ -96,6 +96,10 @@
             android:layout_height="65dp">
 
             <com.google.android.material.textfield.TextInputLayout
+                app:errorIconDrawable="@null"
+                app:errorEnabled="true"
+                app:errorContentDescription="Lỗi đăng nhập"
+                android:id="@+id/textInput_GioiTinh"
                 style="@style/TextInputLayoutOutlinedBoxViolet"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">

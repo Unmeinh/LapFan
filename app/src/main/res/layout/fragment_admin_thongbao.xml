@@ -35,6 +35,28 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/empty_ThongBao"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_marginBottom="20dp"
+            android:textColor="@color/teal_700"
+            android:textSize="22sp"
+            android:text="Bạn không có thông báo nào"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:src="@drawable/empty_notification"
+            android:layout_width="200dp"
+            android:layout_height="250dp"/>
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView_ThongBao"
         android:layout_width="match_parent"

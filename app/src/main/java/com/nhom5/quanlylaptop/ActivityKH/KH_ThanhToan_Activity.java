@@ -1,10 +1,12 @@
 package com.nhom5.quanlylaptop.ActivityKH;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.DAO.DiaChiDAO;
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
@@ -31,7 +34,7 @@ import java.util.ArrayList;
 
 public class KH_ThanhToan_Activity extends AppCompatActivity {
 
-    TextView changeAddress;
+    TextView changeAddress, changeHTTT, textViewHinhThucTT;
     Laptop laptop;
     RecyclerView recyclerView;
     RelativeLayout relativeLayout;
@@ -39,18 +42,22 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
     String TAG = "KH_ThanhToan_Activity_____", input = "";
     Context context = this;
     String maDC;
+    int pos = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_thanh_toan);
         changeAddress = findViewById(R.id.textView_Change_Address);
+        changeHTTT = findViewById(R.id.textView_Change_HTTT);
+        textViewHinhThucTT = findViewById(R.id.textView_HinhThucTT);
         recyclerView = findViewById(R.id.recyclerView_DonHang);
         relativeLayout = findViewById(R.id.layoutView);
         linearLayout = findViewById(R.id.loadingView);
 
         getInput();
         doiDiaChi();
+        doiHTTT();
         useToolbar();
         getSetDiaChi();
 
@@ -73,6 +80,36 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
                 Intent intent = new Intent(context, KH_DiaChi_Activity.class);
                 IdData.getInstance().setIdDC(maDC);
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void doiHTTT() {
+        changeHTTT.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(KH_ThanhToan_Activity.this);
+                builder.setIcon(R.drawable.icon_deal);
+                builder.setTitle("Chọn hình thức thanh toán");
+                builder.setCancelable(true);
+                final String[] arrHTTT = getResources().getStringArray(R.array.httt_array);
+                builder.setSingleChoiceItems(arrHTTT, pos, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if (i == 0) {
+                            pos = 0;
+                            Toast.makeText(context, "Đã thay đổi hình thức thanh toán", Toast.LENGTH_SHORT).show();
+                            textViewHinhThucTT.setText(arrHTTT[i]);
+                        } else {
+                            pos = 1;
+                            Toast.makeText(context, "Đã thay đổi hình thức thanh toán", Toast.LENGTH_SHORT).show();
+                            textViewHinhThucTT.setText(arrHTTT[i]);
+                        }
+                    }
+                });
+
+                builder.show();
+
             }
         });
     }

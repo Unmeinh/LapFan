@@ -40,7 +40,7 @@ public class GiaoDichDAO {
             c.moveToFirst();
             while (!c.isAfterLast()) {
                 Log.d(TAG, "selectGiaoDich: Cursor not last");
-                String maGD = c.getString(0);
+                String maGD = c.getString(0)+"";
                 String maVi = c.getString(1);
                 String title = c.getString(2);
                 String chiTiet = c.getString(3);
@@ -65,7 +65,6 @@ public class GiaoDichDAO {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("maGD", giaoDich.getMaGD());
         values.put("maVi", giaoDich.getMaVi());
         values.put("title", giaoDich.getTitle());
         values.put("chiTiet", giaoDich.getChiTiet());

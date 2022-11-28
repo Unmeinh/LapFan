@@ -20,7 +20,7 @@
             android:gravity="center"
             android:text="Quản lý dữ liệu của bạn"
             android:textColor="@color/white"
-            android:textSize="20sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
         <ImageView
@@ -29,12 +29,13 @@
             android:src="@drawable/manage_image" />
 
         <TextView
+            android:padding="15dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="17sp"
+            android:textSize="20sp"
             android:lineSpacingExtra="5dp"
-            android:text="LAPFAN giúp bạn quản lý chi tiết\ndữ liệu trên mọi lĩnh vực"
+            android:text="LAPFAN giúp bạn quản lý chi tiết\ndữ liệu trên mọi lĩnh vực."
             android:textColor="@color/white" />
 
     </LinearLayout>

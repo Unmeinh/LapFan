@@ -8,17 +8,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.DAO.GiaoDichDAO;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.ViTienDAO;
 import com.nhom5.quanlylaptop.Entity.GiaoDich;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
@@ -39,6 +42,7 @@ public class KH_ViTien_Activity extends AppCompatActivity {
     GiaoDichDAO giaoDichDAO;
     Context context = this;
     ChangeType changeType = new ChangeType();
+    ViTien viTien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,17 +50,33 @@ public class KH_ViTien_Activity extends AppCompatActivity {
         setContentView(R.layout.activity_kh_vi_tien);
         viTienDAO = new ViTienDAO(context);
         giaoDichDAO = new GiaoDichDAO(context);
-        listVi = viTienDAO.selectViTien(null, null, null, null);
         listGD = giaoDichDAO.selectGiaoDich(null, null, null, null);
 
-        KH_GiaoDich_Loader kh_giaoDich_loader = new KH_GiaoDich_Loader(context, findViewById(R.id.recyclerView_GiaoDich));
-        kh_giaoDich_loader.execute("");
+        getUser();
+        if (viTien != null) {
+            KH_GiaoDich_Loader kh_giaoDich_loader = new KH_GiaoDich_Loader(context, findViewById(R.id.recyclerView_GiaoDich));
+            kh_giaoDich_loader.execute(viTien.getMaVi());
+        }
+
         useToolbar();
         clickNapTien();
     }
 
+    private void getUser() {
+        SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            viTien = null;
+        } else {
+            String user = pref.getString("who", "");
+            listVi = viTienDAO.selectViTien(null, "maKH=?", new String[]{user}, null);
+            if (listVi.size() > 0) {
+                viTien = listVi.get(0);
+            }
+        }
+    }
+
     private void clickNapTien() {
-        ImageButton napTien = findViewById(R.id.button_NapTien);
+        LinearLayout napTien = findViewById(R.id.onclick_NapTien);
         View view = getLayoutInflater().inflate(R.layout.dialog_naptien, null);
         AppCompatButton button = view.findViewById(R.id.button_Dialog);
 
@@ -80,11 +100,8 @@ public class KH_ViTien_Activity extends AppCompatActivity {
     private void useToolbar() {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_ViTien));
         TextView soTien = findViewById(R.id.textView_SoTien);
-        if (listVi != null) {
-            if (listVi.size() > 0) {
-                ViTien viTien = listVi.get(0);
-                soTien.setText(viTien.getSoTien());
-            }
+        if (viTien != null) {
+            soTien.setText("Số dư: " + viTien.getSoTien());
         }
         ImageButton back = findViewById(R.id.imageButton_Back_Toolbar);
         back.setOnClickListener(new View.OnClickListener() {

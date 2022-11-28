@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import com.nhom5.quanlylaptop.HelloWorld.Hello_Fragment1;
 import com.nhom5.quanlylaptop.HelloWorld.Hello_Fragment2;
 import com.nhom5.quanlylaptop.HelloWorld.Hello_Fragment3;
-import com.nhom5.quanlylaptop.HelloWorld.Hello_Fragment4;
 
 public class Hello_PagerAdapter extends FragmentStatePagerAdapter {
     public Hello_PagerAdapter(@NonNull FragmentManager fm, int behavior) {

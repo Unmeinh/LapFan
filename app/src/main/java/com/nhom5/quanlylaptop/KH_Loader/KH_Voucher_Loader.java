@@ -20,8 +20,13 @@ import com.nhom5.quanlylaptop.FragmentQuanLy.QL_Voucher_Fragment;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_Voucher_Adapter;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Voucher_Adapter;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.ChangeType;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class KH_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher>> {
     @SuppressLint("StaticFieldLeak")
@@ -33,6 +38,7 @@ public class KH_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
     RecyclerView reView;
     GioHang gioHang;
     String openFrom;
+    ChangeType changeType = new ChangeType();
     int pos;
 
     public KH_Voucher_Loader(Context context, RecyclerView reView, String openFrom, int pos) {
@@ -46,10 +52,11 @@ public class KH_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
     protected ArrayList<Voucher> doInBackground(String... strings) {
         voucherDAO = new VoucherDAO(context);
 
+        String maKH = strings[0];
         if (openFrom.equals("ThanhToan")){
             if (pos != -1){
                 gioHangDAO = new GioHangDAO(context);
-                ArrayList<GioHang> list = gioHangDAO.selectGioHang(null, null, null, null);
+                ArrayList<GioHang> list = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null);
                 gioHang = list.get(pos);
             } else {
                 gioHang = new GioHang("Null");
@@ -58,14 +65,20 @@ public class KH_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
             gioHang = null;
         }
 
-        return voucherDAO.selectVoucher(null, null, null, "ngayBD");
+        String dateS = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
+        try {
+            return voucherDAO.selectVoucher(null, "ngayKT>?", new String[]{String.valueOf(new SimpleDateFormat("yyyy-MM-dd").parse(dateS).getTime())}, "ngayBD");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
     protected void onPostExecute(ArrayList<Voucher> listVou) {
         super.onPostExecute(listVou);
 
-        if (reView != null){
+        if (reView != null && listVou != null){
             setupReView(listVou, reView);
         }
     }

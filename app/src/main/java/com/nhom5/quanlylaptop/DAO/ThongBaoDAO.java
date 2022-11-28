@@ -48,7 +48,7 @@ public class ThongBaoDAO {
             c.moveToFirst();
             while (!c.isAfterLast()) {
                 Log.d(TAG, "selectThongBao: Cursor not last");
-                String maTB = c.getString(0);
+                String maTB = c.getString(0)+"";
                 String id = c.getString(1);
                 String title = c.getString(2);
                 String chiTiet = c.getString(3);
@@ -72,7 +72,6 @@ public class ThongBaoDAO {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("maTB", thongBao.getMaTB());
         if (table != null){
             if (table.equals("kh")){
                 values.put("maKH", thongBao.getId());

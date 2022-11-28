@@ -16,7 +16,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
@@ -31,6 +33,7 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
 
     Context context = this;
     DonHang donHang = null;
+    Laptop laptop;
     String TAG = "NV_DanhGia_Activity_____";
 
     @Override
@@ -93,8 +96,9 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
         TextView giaTien = findViewById(R.id.textView_GiaTien);
         TextView nameKH = findViewById(R.id.textView_TenUser);
         TextView email = findViewById(R.id.textView_Email);
+        LinearLayout onclickLaptop = findViewById(R.id.onclick_Laptop);
 
-        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", 0, 0, new byte[]{});
+        laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", 0, 0, new byte[]{});
         Log.d(TAG, "setRow: DonHang: " + donHang.toString());
         LaptopDAO laptopDAO = new LaptopDAO(context);
         ArrayList<Laptop> listLap = laptopDAO.selectLaptop(null, null, null, null);
@@ -132,5 +136,22 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
         email.setText(khachHang.getEmail());
 
         setReview(donHang.getIsDanhGia());
+
+        onclickLaptop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Info_Laptop_Activity.class);
+                if (laptop != null) {
+                    final Bundle bundle = new Bundle();
+                    bundle.putBinder("laptop", laptop);
+                    Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
+                    intent.putExtras(bundle);
+                    intent.putExtra("openFrom", "other");
+                    context.startActivity(intent);
+                } else {
+                    Toast.makeText(context, "Load thông tin sản phẩm lỗi!\nXin vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

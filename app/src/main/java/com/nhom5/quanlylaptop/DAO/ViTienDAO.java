@@ -39,7 +39,7 @@ public class ViTienDAO {
             c.moveToFirst();
             while (!c.isAfterLast()) {
                 Log.d(TAG, "selectViTien: Cursor not last");
-                String maVi = c.getString(0);
+                String maVi = c.getString(0)+"";
                 String maKH = c.getString(1);
                 String soTien = c.getString(2);
                 String nganHang = c.getString(3);

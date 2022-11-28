@@ -72,7 +72,7 @@ public class QL_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
     }
 
     private void addDemoVoucher() {
-        Voucher vou1 = new Voucher("NOVEM1611", "Sale bất ngờ tháng 11", "20%", "2022-11-11", "2022-12-12");
+        Voucher vou1 = new Voucher("NOVEM1611", "Sale bất ngờ tháng 11", "20%", "2022-11-11", "2022-11-20");
         voucherDAO.insertVoucher(vou1);
 
         Voucher vou2 = new Voucher("DECEM1212", "Sale 12 tháng 12", "12%", "2022-12-12", "2022-12-12");

@@ -123,7 +123,7 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
         author.imgHang.setImageBitmap(anhHang);
         author.name.setText(laptop.getTenLaptop());
         author.gia.setText("Giá tiền: " + laptop.getGiaTien());
-//        author.soLuong.setText(laptop.getSoLuong());
-//        author.daBan.setText(laptop.getDaBan());
+        author.soLuong.setText(String.valueOf(laptop.getSoLuong()));
+        author.daBan.setText(String.valueOf(laptop.getDaBan()));
     }
 }

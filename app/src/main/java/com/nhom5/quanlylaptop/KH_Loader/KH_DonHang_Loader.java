@@ -47,10 +47,10 @@ public class KH_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
 
         laptopDAO = new LaptopDAO(context);
         donHangDAO = new DonHangDAO(context);
-        String maKH = "";
+        String maKH = strings[0];
         listLap = laptopDAO.selectLaptop(null, null, null, null);
 
-        return donHangDAO.selectDonHang(null, null, null, "ngayMua");
+        return donHangDAO.selectDonHang(null, "maKH=?", new String[]{maKH}, "ngayMua");
     }
 
     @Override

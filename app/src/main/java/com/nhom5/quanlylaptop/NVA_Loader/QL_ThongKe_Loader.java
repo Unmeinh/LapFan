@@ -30,11 +30,13 @@ public class QL_ThongKe_Loader extends AsyncTask<String, Void, ArrayList<NhanVie
     RecyclerView reView;
     @SuppressLint("StaticFieldLeak")
     LinearLayout loadingView;
+    String[] getDate;
 
-    public QL_ThongKe_Loader(Context context, RecyclerView reView, LinearLayout loadingView) {
+    public QL_ThongKe_Loader(Context context, RecyclerView reView, LinearLayout loadingView, String[] getDate) {
         this.context = context;
         this.reView = reView;
         this.loadingView = loadingView;
+        this.getDate = getDate;
     }
 
     @Override
@@ -42,7 +44,7 @@ public class QL_ThongKe_Loader extends AsyncTask<String, Void, ArrayList<NhanVie
         AddData data = new AddData(context);
         nhanVienDAO = new NhanVienDAO(context);
         listNV = nhanVienDAO.selectNhanVien(null, null, null, null);
-        data.addDataDoanhSo(listNV);
+        data.addDataDoanhSo(listNV, getDate);
 
         listNV.clear();
         return nhanVienDAO.selectNhanVien(null, null, null, "doanhSo DESC");

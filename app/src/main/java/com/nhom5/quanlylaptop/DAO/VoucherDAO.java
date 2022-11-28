@@ -39,7 +39,7 @@ public class VoucherDAO {
             c.moveToFirst();
             while (!c.isAfterLast()) {
                 Log.d(TAG, "selectVoucher: Cursor not last");
-                String maVoucher = c.getString(0);
+                String maVoucher = c.getString(0)+"";
                 String tenVoucher = c.getString(1);
                 String giamGia = c.getString(2);
                 @SuppressLint("Range") String ngayBD = changeType.longDateToString(c.getLong(c.getColumnIndex("ngayBD")));
@@ -63,7 +63,6 @@ public class VoucherDAO {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("maVoucher", voucher.getMaVoucher());
         values.put("tenVoucher", voucher.getTenVoucher());
         values.put("giamGia", voucher.getGiamGia());
         values.put("ngayBD", changeType.stringToLongDate(voucher.getNgayBD()));

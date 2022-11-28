@@ -1,7 +1,10 @@
 package com.nhom5.quanlylaptop.KH_Loader;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -13,9 +16,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.VoucherDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.FragmentKH.KH_GioHang_Fragment;
@@ -54,8 +59,10 @@ public class KH_GioHang_Loader extends AsyncTask<String, Void, ArrayList<GioHang
     protected ArrayList<GioHang> doInBackground(String... strings) {
         laptopDAO = new LaptopDAO(context);
         gioHangDAO = new GioHangDAO(context);
+        String maKH = strings[0];
+
         listLap = laptopDAO.selectLaptop(null, null, null, null);
-        ArrayList<GioHang> list = gioHangDAO.selectGioHang(null, null, null, null);
+        ArrayList<GioHang> list = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null);
         for (int i = 0; i < list.size(); i++){
             GioHang gioHang = list.get(i);
             GioHang resetGH = new GioHang(gioHang.getMaGio(), gioHang.getMaLaptop(), gioHang.getMaKH(),
@@ -63,7 +70,7 @@ public class KH_GioHang_Loader extends AsyncTask<String, Void, ArrayList<GioHang
             gioHangDAO.updateGioHang(resetGH);
         }
 
-        return gioHangDAO.selectGioHang(null, null, null, null);
+        return gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null);
     }
 
     @Override
@@ -84,5 +91,4 @@ public class KH_GioHang_Loader extends AsyncTask<String, Void, ArrayList<GioHang
         KH_GioHang_Adapter kh_gioHang_adapter = new KH_GioHang_Adapter(listLap, listGio, context, khGioHangFragment);
         recyclerView.setAdapter(kh_gioHang_adapter);
     }
-
 }

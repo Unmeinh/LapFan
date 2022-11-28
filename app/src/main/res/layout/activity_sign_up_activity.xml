@@ -68,7 +68,7 @@
                         android:layout_height="match_parent"
                         android:background="#FFEFE0"
                         android:hint="@string/emailhint"
-                        android:textColor="#D2422F"
+                        android:textColor="#3F51B5"
                         android:textSize="19sp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -96,6 +96,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInput_Password"
+                        app:errorIconDrawable="@null"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:passwordToggleEnabled="true"
@@ -108,7 +109,7 @@
                             android:background="#FFEFE0"
                             android:hint="@string/passwordhint"
                             android:inputType="textPassword"
-                            android:textColor="#D2422F"
+                            android:textColor="#3F51B5"
                             android:textSize="19sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>
@@ -138,6 +139,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInput_Confirm_Password"
+                        app:errorIconDrawable="@null"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:passwordToggleEnabled="true"
@@ -150,7 +152,7 @@
                             android:background="#FFEFE0"
                             android:hint="@string/confirm_password_hint"
                             android:inputType="textPassword"
-                            android:textColor="#D2422F"
+                            android:textColor="#3F51B5"
                             android:textSize="19sp" />
 
                     </com.google.android.material.textfield.TextInputLayout>

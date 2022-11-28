@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    String checkFT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +39,27 @@ public class MainActivity extends AppCompatActivity {
         Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.alpha);
         linearLayout.startAnimation(animation);
 
+        checkFirstTime();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(MainActivity.this, HelloActivity.class));
+                if (checkFT.equals("true")){
+                    startActivity(new Intent(MainActivity.this, PickRole_Activity.class));
+                } else {
+                    startActivity(new Intent(MainActivity.this, HelloActivity.class));
+                }
                 finish();
             }
         }, 3000);
+    }
+
+    private void checkFirstTime() {
+        SharedPreferences pref = getSharedPreferences("Check_FirstTime", MODE_PRIVATE);
+        if (pref == null) {
+            checkFT = "false";
+        } else {
+            checkFT = pref.getString("check", "");
+        }
     }
 }

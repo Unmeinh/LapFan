@@ -60,6 +60,11 @@
         <item>RAM 16GB</item>
     </string-array>
 
+    <string-array name="httt_array">
+        <item>Thanh toán khi nhận hàng</item>
+        <item>Thanh toán qua Ví FPTPay</item>
+    </string-array>
+
     <string name="a_ch_nh_n_h_ng">Địa chỉ nhận hàng</string>
     <string name="thay_i">Thay đổi</string>
     <string name="h_nh_th_c_thanh_to_n">Hình thức thanh toán</string>
@@ -178,4 +183,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="thay_i_m">Thay đổi mã</string>
     <string name="s_l_ng_nh_p">Số lượng nhập</string>
+    <string name="theo_s_l_ng_ncao_ti_n_nh_t">Lớn tiền nhất</string>
+    <string name="theo_s_l_ng_nth_p_ti_n_nh_t">Thấp tiền nhất</string>
+    <string name="bi_u_doanh_thu">Biểu đồ thống kê</string>
 </resources>

@@ -36,7 +36,7 @@ public class LaptopDAO {
             c.moveToFirst();
             while (!c.isAfterLast()) {
                 Log.d(TAG, "selectLaptop: Cursor not last");
-                String maLaptop = c.getString(0);
+                String maLaptop = c.getString(0)+"";
                 String maHangLap = c.getString(1);
                 byte[] anhLaptop = c.getBlob(2);
                 String tenLaptop = c.getString(3);
@@ -73,7 +73,6 @@ public class LaptopDAO {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("maLaptop", laptop.getMaLaptop());
         values.put("maHangLap", laptop.getMaHangLap());
         values.put("anhLaptop", laptop.getAnhLaptop());
         values.put("tenLaptop", laptop.getTenLaptop());

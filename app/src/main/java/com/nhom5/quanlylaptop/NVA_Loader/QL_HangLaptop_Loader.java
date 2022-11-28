@@ -6,7 +6,9 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.DAO.HangLaptopDAO;
@@ -26,10 +28,12 @@ public class QL_HangLaptop_Loader extends AsyncTask<String, Void, ArrayList<Hang
     String TAG = "LaptopLoader_____";
     HangLaptopDAO hangLaptopDAO;
     ChangeType changeType = new ChangeType();
+    LinearLayout linearLayout;
 
-    public QL_HangLaptop_Loader(Context context, GridView gridView) {
+    public QL_HangLaptop_Loader(Context context, GridView gridView, LinearLayout linearLayout) {
         this.gridView = gridView;
         this.context = context;
+        this.linearLayout = linearLayout;
     }
 
     @Override
@@ -56,7 +60,8 @@ public class QL_HangLaptop_Loader extends AsyncTask<String, Void, ArrayList<Hang
     protected void onPostExecute(ArrayList<HangLaptop> listHang) {
         super.onPostExecute(listHang);
 
-        if (gridView != null){
+        if (linearLayout != null && gridView != null){
+            linearLayout.setVisibility(View.GONE);
             setupReView(listHang, gridView);
         }
     }

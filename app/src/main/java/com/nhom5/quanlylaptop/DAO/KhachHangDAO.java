@@ -36,7 +36,7 @@ public class KhachHangDAO {
             c.moveToFirst();
             while (!c.isAfterLast()) {
                 Log.d(TAG, "selectKhachHang: Cursor not last");
-                String maKH = c.getString(0);
+                String maKH = c.getString(0)+"";
                 byte[] avatar = c.getBlob(1);
                 String hoKH = c.getString(2);
                 String tenKH = c.getString(3);
@@ -61,11 +61,10 @@ public class KhachHangDAO {
         return listKH;
     }
 
-    public void insertKhachHang(KhachHang khachHang) {
+    public int insertKhachHang(KhachHang khachHang) {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("maKH", khachHang.getMaKH());
         values.put("avatar", khachHang.getAvatar());
         values.put("hoKH", khachHang.getHoKH());
         values.put("tenKH", khachHang.getTenKH());
@@ -79,15 +78,17 @@ public class KhachHangDAO {
         Log.d(TAG, "insertKhachHang: Values: " + values);
 
         long ketqua = db.insert("KhachHang", null, values);
-        if (ketqua > 0) {
-            Log.d(TAG, "insertKhachHang: Thêm thành công"); 
-        } else {
-            Log.d(TAG, "insertKhachHang: Thêm thất bại");  
-        }
         db.close();
+        if (ketqua > 0) {
+            Log.d(TAG, "insertKhachHang: Thêm thành công");
+            return 1;
+        } else {
+            Log.d(TAG, "insertKhachHang: Thêm thất bại");
+            return -1;
+        }
     }
 
-    public void updateKhachHang(KhachHang khachHang) {
+    public int updateKhachHang(KhachHang khachHang) {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -105,12 +106,14 @@ public class KhachHangDAO {
         Log.d(TAG, "updateKhachHang: Values: " + values);
 
         long ketqua = db.update("KhachHang", values, "maKH=?", new String[]{String.valueOf(khachHang.getMaKH())});
-        if (ketqua > 0) {
-            Log.d(TAG, "updateKhachHang: Sửa thành công"); 
-        } else {
-            Log.d(TAG, "updateKhachHang: Sửa thất bại");  
-        }
         db.close();
+        if (ketqua > 0) {
+            Log.d(TAG, "updateKhachHang: Sửa thành công");
+            return 1;
+        } else {
+            Log.d(TAG, "updateKhachHang: Sửa thất bại");
+            return -1;
+        }
     }
 
     public void deleteKhachHang(KhachHang khachHang){

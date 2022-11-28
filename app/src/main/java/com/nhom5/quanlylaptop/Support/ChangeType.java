@@ -81,7 +81,7 @@ public class ChangeType {
         return money;
     }
 
-    public String intMoneyToString(int iMoney) {
+    public String stringMoneyToString(String iMoney) {
         String money = "₫";
         String sMoney = String.valueOf(iMoney);
         int length = sMoney.length() - 1;
@@ -98,8 +98,38 @@ public class ChangeType {
                 }
             }
         }
-        Log.d(TAG, "intMoneyToString: Money: " + money);
+        Log.d(TAG, "stringMoneyToString: Money: " + money);
         return money;
+    }
+
+    public String[] intDateToStringDate(int m, int y) {
+        String dateStart, dateEnd;
+        if (m < 10) {
+            if (m == 9) {
+                dateStart = y + "-09-01";
+                dateEnd = y + "-10-01";
+            } else {
+                dateStart = y + "-0" + m + "-01";
+                dateEnd = y + "-0" + (m + 1) + "-01";
+            }
+        } else {
+            if (m == 12) {
+                dateStart = y + "-12-01";
+                dateEnd = (y + 1) + "-01-01";
+            } else {
+                dateStart = y + "-" + m + "-01";
+                dateEnd = y + "-" + (m + 1) + "-01";
+            }
+        }
+        Log.d(TAG, "getDatePicker: hope: dateStart " + dateStart);
+        Log.d(TAG, "getDatePicker: hope: dateEnd " + dateEnd);
+        try {
+            return new String[]{String.valueOf(new SimpleDateFormat("yyyy-MM-dd").parse(dateStart).getTime())
+                    , String.valueOf(new SimpleDateFormat("yyyy-MM-dd").parse(dateEnd).getTime())};
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public float getRatingFloat(float rating) {

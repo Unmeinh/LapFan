@@ -16,6 +16,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/change_Time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
@@ -79,15 +80,27 @@
                     android:layout_alignParentEnd="true"
                     android:layout_width="150dp"
                     android:layout_height="match_parent"
-                    android:src="@drawable/doanhthu_home_img" />
+                    android:src="@drawable/thongke_laptop_image" />
 
             </RelativeLayout>
 
+            <TextView
+                android:layout_marginTop="40dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="22sp"
+                android:text="@string/bi_u_doanh_thu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+<!--            Biểu đồ theo tháng-->
+
             <com.github.mikephil.charting.charts.PieChart
+                android:layout_marginTop="15dp"
                 android:id="@+id/pieChart"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:layout_marginTop="40dp"
+                android:paddingBottom="20dp"
                 tools:ignore="MissingClass" />
 
         </LinearLayout>

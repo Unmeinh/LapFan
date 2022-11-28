@@ -39,7 +39,7 @@ public class DonHangDAO {
             c.moveToFirst();
             while (!c.isAfterLast()) {
                 Log.d(TAG, "selectDonHang: Cursor not last");
-                String maDH = c.getString(0);
+                String maDH = c.getString(0)+"";
                 String maNV = c.getString(1);
                 String maKH = c.getString(2);
                 String maLaptop = c.getString(3);
@@ -75,7 +75,6 @@ public class DonHangDAO {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("maDH", donHang.getMaDH());
         values.put("maNV", donHang.getMaNV());
         values.put("maKH", donHang.getMaKH());
         values.put("maLaptop", donHang.getMaLaptop());

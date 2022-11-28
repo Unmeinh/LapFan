@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,9 +21,11 @@ import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.GioHang;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_DonHang_Adapter;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_GioHang_Adapter;
@@ -39,6 +42,7 @@ public class KH_DonHang_Activity extends AppCompatActivity {
     String TAG = "KH_DonHang_Activity_____";
     RecyclerView recyclerView;
     LinearLayout linearLayout;
+    KhachHang khachHang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +52,26 @@ public class KH_DonHang_Activity extends AppCompatActivity {
         linearLayout = findViewById(R.id.loadingView);
         recyclerView = findViewById(R.id.recyclerView_KH_DonHang);
 
-        KH_DonHang_Loader kh_donHang_loader = new KH_DonHang_Loader(context, recyclerView, linearLayout);
-        kh_donHang_loader.execute("");
-
+        getUser();
+        if (khachHang != null) {
+            KH_DonHang_Loader kh_donHang_loader = new KH_DonHang_Loader(context, recyclerView, linearLayout);
+            kh_donHang_loader.execute(khachHang.getMaKH());
+        }
         useToolbar();
+    }
+
+    private void getUser(){
+        SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            khachHang = null;
+        } else {
+            String user = pref.getString("who", "");
+            KhachHangDAO khachHangDAO = new KhachHangDAO(context);
+            ArrayList<KhachHang> list = khachHangDAO.selectKhachHang(null, "maKH=?", new String[]{user}, null);
+            if (list.size() > 0){
+                khachHang = list.get(0);
+            }
+        }
     }
 
     private void useToolbar() {

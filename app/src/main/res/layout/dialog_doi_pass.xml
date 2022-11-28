@@ -24,6 +24,7 @@
             android:textSize="24sp" />
 
         <Button
+            android:backgroundTint="@color/white"
             android:id="@+id/button_Cancel_Dialog"
             android:layout_alignParentEnd="true"
             android:textStyle="bold"

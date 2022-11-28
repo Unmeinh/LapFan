@@ -147,8 +147,8 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
             total = total + giaTien;
         }
         Log.d(TAG, "setTotal: total: " + total);
-        Log.d(TAG, "setTotal: total String: " + changeType.intMoneyToString(total));
-        return changeType.intMoneyToString(total);
+        Log.d(TAG, "setTotal: total String: " + changeType.stringMoneyToString(total+""));
+        return changeType.stringMoneyToString(total+"");
     }
 
     public Laptop setRow(int pos, @NonNull KH_GioHang_Adapter.AuthorViewHolder author, String change) {
@@ -170,7 +170,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
 
         author.imgLaptop.setImageBitmap(anhLap);
         author.name.setText(laptop.getTenLaptop());
-        author.gia.setText(changeType.intMoneyToString(tongTien));
+        author.gia.setText(changeType.stringMoneyToString(tongTien+""));
         author.soLuong.setText(String.valueOf(gioHang.getSoLuong()));
 
         //Total

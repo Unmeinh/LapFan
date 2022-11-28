@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="210dp">
 
         <include
             layout="@layout/toolbar_vi_tien"
@@ -27,49 +27,56 @@
             android:orientation="horizontal">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:id="@+id/onclick_NapTien"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
+                android:background="@drawable/shape_round"
                 android:layout_margin="11dp"
+                android:gravity="center"
                 android:orientation="vertical">
 
-                <ImageButton
-                    android:id="@+id/button_NapTien"
+                <ImageView
+                    android:padding="2dp"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:background="#fff"
                     android:src="@drawable/icon_naptien"
-                    app:tint="@color/black" />
+                    app:tint="#3BC096" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/n_p_ti_n"
-                    android:textColor="#0E0D0D"
+                    android:layout_margin="5dp"
+                    android:textColor="#3BC096"
                     android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/onclick_LK_NganHang"
-                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:id="@+id/onclick_ThanhToan"
+                android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:layout_margin="11dp"
+                android:background="@drawable/shape_round"
                 android:orientation="vertical">
 
-                <ImageButton
+                <ImageView
+                    android:background="#fff"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
-                    android:background="#fff"
-                    android:src="@drawable/icon_lk_nganhang"
-                    app:tint="@color/black" />
+                    android:src="@drawable/pay_icon"
+                    app:tint="#3BC096" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Đổi ngân hàng"
-                    android:textColor="#0E0D0D"
+                    android:layout_margin="5dp"
+                    android:text="Thanh toán"
+                    android:textColor="#3BC096"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -78,69 +85,6 @@
         </LinearLayout>
 
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:orientation="horizontal">
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_margin="10dp"
-                android:background="#fff"
-                android:src="@drawable/icon_banker" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="8"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/t_i_kho_n_ng_n_h_ng"
-                android:textColor="#0E0D0D"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:layout_margin="10dp"
-                android:src="@drawable/change_circle_icon"
-                android:layout_width="30dp"
-                android:layout_height="match_parent"
-                app:tint="#BF000000" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:background="#fff"
-                android:src="@drawable/bank_mb" />
-
-            <TextView
-                android:layout_marginStart="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="MB Bank"
-                android:textColor="#0E0D0D"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-    </LinearLayout>
 
     <View
         android:layout_width="match_parent"

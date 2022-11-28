@@ -13,7 +13,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
@@ -29,6 +31,7 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
     DonHang donHang = null;
     String TAG = "KH_DanhGia_Activity_____";
     EditText reviewInput;
+    Laptop laptop;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +73,8 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
         TextView name = findViewById(R.id.textView_TenLaptop);
         TextView soLuong = findViewById(R.id.textView_Soluong);
         TextView giaTien = findViewById(R.id.textView_GiaTien);
-        Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", 0, 0, new byte[]{});
+        LinearLayout onclickLaptop = findViewById(R.id.onclick_Laptop);
+        laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", 0, 0, new byte[]{});
         Log.d(TAG, "setRow: DonHang: " + donHang.toString());
         LaptopDAO laptopDAO = new LaptopDAO(context);
         ArrayList<Laptop> listLap = laptopDAO.selectLaptop(null, null, null, null);
@@ -89,6 +93,23 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
         name.setText(laptop.getTenLaptop());
         giaTien.setText(donHang.getThanhTien());
         soLuong.setText(String.valueOf(donHang.getSoLuong()));
+
+        onclickLaptop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Info_Laptop_Activity.class);
+                if (laptop != null) {
+                    final Bundle bundle = new Bundle();
+                    bundle.putBinder("laptop", laptop);
+                    Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
+                    intent.putExtras(bundle);
+                    intent.putExtra("openFrom", "other");
+                    context.startActivity(intent);
+                } else {
+                    Toast.makeText(context, "Load thông tin sản phẩm lỗi!\nXin vui lòng thử lại sau!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void setReviewText(){

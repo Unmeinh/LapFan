@@ -22,6 +22,7 @@
             android:gravity="center">
 
             <TextView
+                android:visibility="gone"
                 android:layout_marginTop="5dp"
                 android:id="@+id/textView_MaVoucher"
                 android:layout_width="match_parent"

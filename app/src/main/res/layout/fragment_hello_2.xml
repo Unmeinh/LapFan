@@ -14,9 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50sp"
         android:gravity="center"
-        android:text="Tích hợp mua bán hàng"
+        android:text="Tích hợp mua - bán hàng"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="22sp"
         android:textStyle="bold" />
 
     <ImageView
@@ -25,11 +25,12 @@
         android:src="@drawable/shopping_image" />
 
     <TextView
+        android:padding="15dp"
         android:textSize="20sp"
         android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Ứng dụng tích hợp giúp đặt hàng\nvà bán hàng online hay ofline\nmột cách tiện lợi và dễ dàng." />
+        android:text="LAPFAN tích hợp giúp đặt hàng\nvà bán hàng online hay ofline\nmột cách tiện lợi và dễ dàng." />
 
 </LinearLayout>

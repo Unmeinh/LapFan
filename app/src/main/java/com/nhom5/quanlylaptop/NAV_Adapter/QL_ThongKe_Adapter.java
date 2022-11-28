@@ -81,7 +81,7 @@ public class QL_ThongKe_Adapter extends RecyclerView.Adapter<QL_ThongKe_Adapter.
 
         author.stt.setText(String.valueOf(pos + 1));
         author.name.setText(nhanVien.getHoNV() + " " + nhanVien.getTenNV());
-        author.total.setText(changeType.intMoneyToString(nhanVien.getDoanhSo()));
+        author.total.setText(changeType.stringMoneyToString(nhanVien.getDoanhSo()+""));
         author.phone.setText(nhanVien.getPhone());
         author.soLuong.setText("Số sp đã bán: " + nhanVien.getSoSP());
         return nhanVien;

@@ -1,6 +1,7 @@
 package com.nhom5.quanlylaptop.ActivityKH;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -8,6 +9,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -20,9 +23,14 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.PagerAdapter.KH_PagerAdapter_Bottom;
 import com.nhom5.quanlylaptop.PagerAdapter.KH_PagerAdapter_Drawer;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.ChangeType;
+
+import java.util.ArrayList;
 
 public class Main_KH_Navi_Activity extends AppCompatActivity {
 
@@ -33,6 +41,8 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     int itemNaviDr;
     Context context = this;
+    KhachHang khachHang;
+    ChangeType changeType = new ChangeType();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +51,16 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewP);
         naviView = findViewById(R.id.naviView);
         drawerLayout = findViewById(R.id.drawerLayout);
+
+        getUser();
         useToolbar("");
         setViewNaviBottom();
         setViewNaviDrawer();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void useToolbar(String title) {
@@ -52,13 +69,29 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.imageView_Avatar);
         TextView titleView = findViewById(R.id.textView_Title_Toolbar_Acc);
         titleView.setText(title);
-        imageView.setImageResource(R.drawable.hugh_jackman);
+        if (khachHang != null){
+            imageView.setImageBitmap(changeType.byteToBitmap(khachHang.getAvatar()));
+        }
         open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 drawerLayout.openDrawer(Gravity.LEFT);
             }
         });
+    }
+
+    private void getUser(){
+        SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            khachHang = null;
+        } else {
+            String user = pref.getString("who", "");
+            KhachHangDAO khachHangDAO = new KhachHangDAO(context);
+            ArrayList<KhachHang> list = khachHangDAO.selectKhachHang(null, "maKH=?", new String[]{user}, null);
+            if (list.size() > 0){
+                khachHang = list.get(0);
+            }
+        }
     }
 
     private void setViewNaviDrawer() {

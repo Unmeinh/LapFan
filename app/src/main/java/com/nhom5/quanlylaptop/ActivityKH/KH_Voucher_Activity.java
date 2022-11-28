@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +16,9 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.VoucherDAO;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.KH_Loader.KH_Voucher_Loader;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Voucher_Adapter;
@@ -33,17 +36,34 @@ public class KH_Voucher_Activity extends AppCompatActivity {
     String openFrom;
     RecyclerView recyclerView;
     int pos;
+    KhachHang khachHang;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_voucher);
         recyclerView = findViewById(R.id.recyclerView_KH_Voucher);
 
+        getUser();
         getData();
-        KH_Voucher_Loader kh_voucher_loader = new KH_Voucher_Loader(context, recyclerView, openFrom, pos);
-        kh_voucher_loader.execute("");
-
+        if (khachHang != null) {
+            KH_Voucher_Loader kh_voucher_loader = new KH_Voucher_Loader(context, recyclerView, openFrom, pos);
+            kh_voucher_loader.execute(khachHang.getMaKH());
+        }
         useToolbar();
+    }
+
+    private void getUser(){
+        SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            khachHang = null;
+        } else {
+            String user = pref.getString("who", "");
+            KhachHangDAO khachHangDAO = new KhachHangDAO(context);
+            ArrayList<KhachHang> list = khachHangDAO.selectKhachHang(null, "maKH=?", new String[]{user}, null);
+            if (list.size() > 0){
+                khachHang = list.get(0);
+            }
+        }
     }
 
     private void getData(){

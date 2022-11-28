@@ -1,6 +1,9 @@
 package com.nhom5.quanlylaptop.FragmentKH;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -19,9 +22,11 @@ import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.ActivityKH.KH_ThanhToan_Activity;
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.IdData;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_GioHang_Adapter;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_Laptop_Adapter;
@@ -39,6 +44,7 @@ public class KH_GioHang_Fragment extends Fragment {
     AppCompatButton buttonPayNow;
     RecyclerView recyclerView;
     String TAG = "KH_GioHang_Fragment_____";
+    KhachHang khachHang;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,9 +56,12 @@ public class KH_GioHang_Fragment extends Fragment {
         recyclerView = view.findViewById(R.id.recyclerView_GioHang);
         buttonPayNow = view.findViewById(R.id.button_PayNow);
 
-        setLayout();
-        KH_GioHang_Loader kh_gioHang_loader = new KH_GioHang_Loader(KH_GioHang_Fragment.this, getContext(), recyclerView, loadingLayout, viewGHLayout);
-        kh_gioHang_loader.execute("");
+        getUser();
+        if (khachHang != null){
+            setLayout();
+            KH_GioHang_Loader kh_gioHang_loader = new KH_GioHang_Loader(KH_GioHang_Fragment.this, getContext(), recyclerView, loadingLayout, viewGHLayout);
+            kh_gioHang_loader.execute(khachHang.getMaKH());
+        }
 
         buttonPayNow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,7 +79,7 @@ public class KH_GioHang_Fragment extends Fragment {
 
     private void setLayout(){
         GioHangDAO gioHangDAO = new GioHangDAO(getContext());
-        ArrayList<GioHang> listGio = gioHangDAO.selectGioHang(null, null, null, null);
+        ArrayList<GioHang> listGio = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{khachHang.getMaKH()}, null);
         if (listGio != null){
             if (listGio.size() == 0){
                 Log.d(TAG, "onCreateView: Giỏ Hàng null");
@@ -86,4 +95,17 @@ public class KH_GioHang_Fragment extends Fragment {
         }
     }
 
+    private void getUser(){
+        SharedPreferences pref = getContext().getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            khachHang = null;
+        } else {
+            String user = pref.getString("who", "");
+            KhachHangDAO khachHangDAO = new KhachHangDAO(getContext());
+            ArrayList<KhachHang> list = khachHangDAO.selectKhachHang(null, "maKH=?", new String[]{user}, null);
+            if (list.size() > 0){
+                khachHang = list.get(0);
+            }
+        }
+    }
 }

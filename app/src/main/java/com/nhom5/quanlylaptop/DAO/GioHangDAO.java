@@ -39,7 +39,7 @@ public class GioHangDAO {
             c.moveToFirst();
             while (!c.isAfterLast()) {
                 Log.d(TAG, "selectGioHang: Cursor not last");
-                String maGio = c.getString(0);
+                String maGio = c.getString(0)+"";
                 String maLaptop = c.getString(1);
                 String maKH = c.getString(2);
                 int soLuong = 0;
@@ -69,7 +69,6 @@ public class GioHangDAO {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put("maGio", gioHang.getMaGio());
         values.put("maLaptop", gioHang.getMaLaptop());
         values.put("maKH", gioHang.getMaKH());
         values.put("maVou", gioHang.getMaVou());
