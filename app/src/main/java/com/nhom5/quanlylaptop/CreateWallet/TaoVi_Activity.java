@@ -15,14 +15,19 @@ import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.ActivityKH.KH_ViTien_Activity;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
+import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
 import com.nhom5.quanlylaptop.DAO.ViTienDAO;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
+import com.nhom5.quanlylaptop.Entity.ThongBao;
 import com.nhom5.quanlylaptop.Entity.ViTien;
 import com.nhom5.quanlylaptop.PagerAdapter.TaoVi_PagerAdapter;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class TaoVi_Activity extends AppCompatActivity {
 
@@ -100,7 +105,15 @@ public class TaoVi_Activity extends AppCompatActivity {
                                 khachHang.getMatKhau(), khachHang.getQueQuan(), khachHang.getPhone(),
                                 "true", khachHang.getAvatar()));
                         viTienDAO.insertViTien(new ViTien(khachHang.getMaKH(), khachHang.getMaKH(),
-                                changeType.stringMoneyToString("0"), "null"));
+                                changeType.stringToStringMoney("0"), "null"));
+
+                        Date currentTime = Calendar.getInstance().getTime();
+                        String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
+                        ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
+                        ThongBao thongBao = new ThongBao("TB", khachHang.getMaKH(), "Thiết lập tài khoản",
+                                "Bạn đã thành công liên kết ví.\nMong Ví điện tử FPT Pay sẽ hỗ trợ thật tốt cho bạn khi thanh toán.!", date);
+                        thongBaoDAO.insertThongBao(thongBao, "kh");
+                        finish();
                     }
                     startActivity(intent);
                     finish();

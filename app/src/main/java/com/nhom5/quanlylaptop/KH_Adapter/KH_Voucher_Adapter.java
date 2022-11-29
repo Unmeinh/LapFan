@@ -116,7 +116,6 @@ public class KH_Voucher_Adapter extends RecyclerView.Adapter<KH_Voucher_Adapter.
             }
         }
 
-        author.ma.setText(voucher.getMaVoucher());
         author.sale.setText("Giảm giá\n" + voucher.getGiamGia());
         author.name.setText(voucher.getTenVoucher());
         if (voucher.getNgayBD().equals(voucher.getNgayKT())) {

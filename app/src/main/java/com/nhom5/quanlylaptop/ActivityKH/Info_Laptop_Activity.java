@@ -18,15 +18,20 @@ import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
+import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.Entity.ThongBao;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.AddData;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Info_Laptop_Activity extends AppCompatActivity {
 
@@ -122,6 +127,14 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                         GioHang gioHang = new GioHang("GH" + listGio.size(), laptop.getMaLaptop(),
                                 khachHang.getMaKH(), "2022-11-17", "No Data", 1);
                         gioHangDAO.insertGioHang(gioHang);
+
+                        Date currentTime = Calendar.getInstance().getTime();
+                        String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
+                        ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
+                        ThongBao thongBao = new ThongBao("TB", khachHang.getMaKH(), "Quản lý giỏ hàng",
+                                "Bạn đã thêm Laptop " + laptop.getTenLaptop() + " với giá " + laptop.getGiaTien() + " vào giỏ hàng.", date);
+                        thongBaoDAO.insertThongBao(thongBao, "kh");
+                        finish();
                     } else {
                         Toast.makeText(context, "Sản phẩm đang hết hàng!\nXin vui lòng đợi chúng tôi nhập sản phẩm!", Toast.LENGTH_SHORT).show();
                     }

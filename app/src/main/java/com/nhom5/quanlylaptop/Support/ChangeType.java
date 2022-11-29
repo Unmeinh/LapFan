@@ -81,7 +81,7 @@ public class ChangeType {
         return money;
     }
 
-    public String stringMoneyToString(String iMoney) {
+    public String stringToStringMoney(String iMoney) {
         String money = "₫";
         String sMoney = String.valueOf(iMoney);
         int length = sMoney.length() - 1;
@@ -98,7 +98,7 @@ public class ChangeType {
                 }
             }
         }
-        Log.d(TAG, "stringMoneyToString: Money: " + money);
+        Log.d(TAG, "stringToStringMoney: Money: " + money);
         return money;
     }
 

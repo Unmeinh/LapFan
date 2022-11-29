@@ -48,8 +48,8 @@ public class SignIn_Activity extends AppCompatActivity {
         tilPass = findViewById(R.id.textInput_Password);
         checkBox = findViewById(R.id.checkBox_Remember_Me);
 
-        getRememberMe();
         getDataIntent();
+        getRememberMe();
         loginTime();
         goToSignUp();
 
@@ -77,6 +77,7 @@ public class SignIn_Activity extends AppCompatActivity {
                             editor.commit();
                         }
                         startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(context, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
                     }
@@ -89,6 +90,7 @@ public class SignIn_Activity extends AppCompatActivity {
                         setRememberMe("nv", email, pass, checkBox.isChecked());
                         Intent intent = new Intent(context, Main_NV_Navi_Activity.class);
                         startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(context, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
                     }
@@ -101,6 +103,7 @@ public class SignIn_Activity extends AppCompatActivity {
                         setRememberMe("kh", email, pass, checkBox.isChecked());
                         Intent intent = new Intent(context, Main_KH_Navi_Activity.class);
                         startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(context, "Đăng nhập thất bại!", Toast.LENGTH_SHORT).show();
                     }
@@ -129,17 +132,19 @@ public class SignIn_Activity extends AppCompatActivity {
         if (preferences != null) {
             String role = preferences.getString("Role_RM", "");
             if (role != null) {
-                if (role.equals("nv")) {
+                Log.d(TAG, "getRememberMe: role: " + role);
+                Log.d(TAG, "getRememberMe: roleUser: " + roleUser);
+                if (role.equals("nv") && roleUser.equals("nhanVien")) {
                     tilEmail.getEditText().setText(preferences.getString("Email_RM", ""));
                     tilPass.getEditText().setText(preferences.getString("Pass_RM", ""));
                     checkBox.setChecked(true);
                 }
-                if (role.equals("kh")) {
+                if (role.equals("kh") && roleUser.equals("khachHang")) {
                     tilEmail.getEditText().setText(preferences.getString("Email_RM", ""));
                     tilPass.getEditText().setText(preferences.getString("Pass_RM", ""));
                     checkBox.setChecked(true);
                 }
-                if (role.equals("admin")) {
+                if (role.equals("admin") && roleUser.equals("admin")) {
                     tilEmail.getEditText().setText(preferences.getString("Email_RM", ""));
                     tilPass.getEditText().setText(preferences.getString("Pass_RM", ""));
                     checkBox.setChecked(true);

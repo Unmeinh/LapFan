@@ -154,7 +154,7 @@
     <string name="gi_ti_n">Giá tiền</string>
     <string name="th_i_gian_k_t_th_c">Thời gian kết thúc</string>
     <string name="th_i_gian_b_t_u">Thời gian bắt đầu</string>
-    <string name="u_i">Ưu đãi</string>
+    <string name="u_i">Ưu đãi %</string>
     <string name="t_n_voucher">Tên Voucher</string>
     <string name="m_voucher">Mã Voucher</string>
     <string name="t_n_kh_ch_h_ng">Tên khách hàng</string>

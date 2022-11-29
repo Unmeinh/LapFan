@@ -140,7 +140,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
         }
 
         Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
-        giaTien = changeType.stringMoneyToInt(laptop.getGiaTien());
+        giaTien = changeType.stringMoneyToInt(laptop.getGiaTien()) / 1000;
         giaTien = giaTien * gioHang.getSoLuong();
         Date currentTime = Calendar.getInstance().getTime();
         String date = new SimpleDateFormat("dd/MM/yyyy").format(currentTime);
@@ -148,26 +148,26 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
         author.date.setText(date);
         author.imgLaptop.setImageBitmap(anhLap);
         author.name.setText(laptop.getTenLaptop());
-        author.gia.setText(changeType.stringMoneyToString(giaTien + ""));
+        author.gia.setText(changeType.stringToStringMoney(giaTien + "000"));
         author.soLuong.setText(String.valueOf(gioHang.getSoLuong()));
-        author.total.setText(changeType.stringMoneyToString(giaTien + ""));
+        author.total.setText(changeType.stringToStringMoney(giaTien + "000"));
         author.countSP.setText("Tổng số tiền: (" + gioHang.getSoLuong() + " sản phẩm)");
 
         if (voucher != null) {
             int sale = changeType.voucherToInt(voucher.getGiamGia());
-            int giamTien = ((giaTien / 1000) * sale / 100);
+            int giamTien = (giaTien * sale) / 100;
             int totalDh = giaTien - giamTien;
 
-            author.sale.setText("-" + changeType.stringMoneyToString(giamTien + "000"));
+            author.sale.setText("-" + changeType.stringToStringMoney(giamTien + "000"));
             author.sale.setTextColor(Color.parseColor("#FF5722"));
-            author.total.setText(changeType.stringMoneyToString(totalDh + ""));
+            author.total.setText(changeType.stringToStringMoney(totalDh + ""));
             setThanhToan(pos, giaTien, giamTien);
         } else {
             String[] two = getVoucher(author.sale, giaTien);
             maVou = two[0];
             int giamTien = changeType.stringMoneyToInt(two[1]);
             int tongTien = giaTien - changeType.stringMoneyToInt(two[1]);
-            author.total.setText(changeType.stringMoneyToString(tongTien + ""));
+            author.total.setText(changeType.stringToStringMoney(tongTien + ""));
             setThanhToan(pos, giaTien, giamTien);
         }
 
@@ -207,10 +207,10 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
         tienGiamGia += giamTien;
         int tien = tongTienHang - tienGiamGia;
 
-        tongTienHang_View.setText(changeType.stringMoneyToString(tongTienHang + ""));
-        voucherGiamGia_View.setText("-" + changeType.stringMoneyToString(tienGiamGia + ""));
-        tongThanhToan_View.setText(changeType.stringMoneyToString(tien + ""));
-        total_View.setText(changeType.stringMoneyToString(tien + ""));
+        tongTienHang_View.setText(changeType.stringToStringMoney(tongTienHang + "000"));
+        voucherGiamGia_View.setText("-" + changeType.stringToStringMoney(tienGiamGia + "000"));
+        tongThanhToan_View.setText(changeType.stringToStringMoney(tien + "000"));
+        total_View.setText(changeType.stringToStringMoney(tien + "000"));
     }
 
     private String[] getVoucher(TextView textView, int giaTien) {
@@ -224,18 +224,18 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
             String giamGia = voucher.getGiamGia();
             if (!giamGia.equals("")) {
                 int sale = changeType.voucherToInt(giamGia);
-                int giamTien = ((giaTien / 1000) * sale / 100);
+                int giamTien = (giaTien * sale) / 100;
 
-                textView.setText("-" + changeType.stringMoneyToString(giamTien + "000"));
-                after = changeType.stringMoneyToString(giamTien + "000");
+                textView.setText("-" + changeType.stringToStringMoney(giamTien + "000"));
+                after = changeType.stringToStringMoney(giamTien + "000");
                 textView.setTextColor(Color.parseColor("#FF5722"));
             } else {
                 textView.setText(R.string.thay_i_m);
-                after = changeType.stringMoneyToString("0");
+                after = changeType.stringToStringMoney("0");
             }
         } else {
             textView.setText(R.string.thay_i_m);
-            after = changeType.stringMoneyToString("0");
+            after = changeType.stringToStringMoney("0");
         }
 
         return new String[]{maVou, after};

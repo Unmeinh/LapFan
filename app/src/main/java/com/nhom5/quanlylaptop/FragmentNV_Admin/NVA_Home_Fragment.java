@@ -91,12 +91,12 @@ public class NVA_Home_Fragment extends Fragment {
                 Log.d(TAG, "setDoanhThu: hope");
                 if (listDon.size() > 0) {
                     int doanhThu = addData.tinhTongKhoanThu(listDon) * 1000;
-                    textView_GiaTien.setText(changeType.stringMoneyToString(doanhThu+""));
+                    textView_GiaTien.setText(changeType.stringToStringMoney(doanhThu+""));
                 } else {
-                    textView_GiaTien.setText(changeType.stringMoneyToString("0"));
+                    textView_GiaTien.setText(changeType.stringToStringMoney("0"));
                 }
             } else {
-                textView_GiaTien.setText(changeType.stringMoneyToString("0"));
+                textView_GiaTien.setText(changeType.stringToStringMoney("0"));
             }
         }
     }

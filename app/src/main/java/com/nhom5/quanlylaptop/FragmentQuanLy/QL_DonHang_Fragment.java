@@ -5,34 +5,18 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.nhom5.quanlylaptop.ActivityNV_Admin.DonHang_Manager_Activity;
-import com.nhom5.quanlylaptop.DAO.DonHangDAO;
-import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
-import com.nhom5.quanlylaptop.DAO.LaptopDAO;
-import com.nhom5.quanlylaptop.Entity.DonHang;
-import com.nhom5.quanlylaptop.Entity.KhachHang;
-import com.nhom5.quanlylaptop.Entity.Laptop;
-import com.nhom5.quanlylaptop.KH_Adapter.KH_DonHang_Adapter;
-import com.nhom5.quanlylaptop.NAV_Adapter.QL_DonHang_Adapter;
+import com.nhom5.quanlylaptop.Activity.DonHang_Manager_Activity;
 import com.nhom5.quanlylaptop.NVA_Loader.QL_DonHang_Loader;
 import com.nhom5.quanlylaptop.R;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class QL_DonHang_Fragment extends Fragment {
 

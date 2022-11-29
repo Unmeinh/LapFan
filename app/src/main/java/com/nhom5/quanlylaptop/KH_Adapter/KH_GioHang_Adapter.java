@@ -22,14 +22,21 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
+import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.Entity.ThongBao;
 import com.nhom5.quanlylaptop.FragmentKH.KH_GioHang_Fragment;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.AddData;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.AuthorViewHolder> {
 
@@ -41,6 +48,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
     ChangeType changeType = new ChangeType();
     TextView totalTV;
     int total;
+    String maKH;
     String TAG = "KH_GioHang_Adapter_____";
 
     public KH_GioHang_Adapter(ArrayList<Laptop> listLap, ArrayList<GioHang> listGio, Context context, KH_GioHang_Fragment kh_gioHang_fragment) {
@@ -49,6 +57,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
         this.context = context;
         this.kh_gioHang_fragment = kh_gioHang_fragment;
         gioHangDAO = new GioHangDAO(context);
+        getUser();
     }
 
     @NonNull
@@ -65,14 +74,17 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
         author.giam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GioHang old = listGio.get(pos);
-                int soLuong = old.getSoLuong();
+                GioHang gioHang = listGio.get(pos);
+                int soLuong = gioHang.getSoLuong();
                 if (soLuong > 1) {
                     soLuong--;
-                    GioHang gioHang = new GioHang(old.getMaGio(), old.getMaLaptop(), old.getMaKH(), old.getNgayThem(), "false", soLuong);
+                    gioHang.setmaVou("false");
+                    gioHang.setSoLuong(soLuong);
                     gioHangDAO.updateGioHang(gioHang);
-                    listGio = gioHangDAO.selectGioHang(null, null, null, null);
-                    setRow(pos, author, "down");
+                    if (maKH != null){
+                        listGio = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null);
+                        setRow(pos, author, "down");
+                    }
                 } else {
                     Toast.makeText(context, "!!!Tối thiểu một sản phẩm trong giỏ hàng!!!", Toast.LENGTH_SHORT).show();
                 }
@@ -82,21 +94,40 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
         author.tang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GioHang old = listGio.get(pos);
-                int soLuong = old.getSoLuong();
+                GioHang gioHang = listGio.get(pos);
+                int soLuong = gioHang.getSoLuong();
                 soLuong++;
-                GioHang gioHang = new GioHang(old.getMaGio(), old.getMaLaptop(), old.getMaKH(), old.getNgayThem(), "false", soLuong);
+                gioHang.setmaVou("false");
+                gioHang.setSoLuong(soLuong);
                 gioHangDAO.updateGioHang(gioHang);
-                listGio = gioHangDAO.selectGioHang(null, null, null, null);
-                setRow(pos, author, "up");
+                if (maKH != null){
+                    listGio = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null);
+                    setRow(pos, author, "up");
+                }
             }
         });
 
         author.delete.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 GioHang gio = listGio.get(pos);
                 gioHangDAO.deleteGioHang(gio);
+
+                listGio.clear();
+                if (maKH != null){
+                    listGio.addAll(gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null));
+                    Date currentTime = Calendar.getInstance().getTime();
+                    String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
+                    ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
+                    ThongBao thongBao = new ThongBao("TB", maKH, "Quản lý giỏ hàng",
+                            "Bạn đã xóa Laptop " + laptop.getTenLaptop() + " khỏi giỏ hàng.", date);
+                    thongBaoDAO.insertThongBao(thongBao, "kh");
+                    if (listGio.size() == 0){
+                        totalTV.setText(changeType.stringToStringMoney("0"));
+                    }
+                }
+                notifyDataSetChanged();
             }
         });
 
@@ -140,15 +171,24 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
         }
     }
 
-    public String setTotal(int giaTien, String change){
-        if (change.equals("down")){
+    private void getUser() {
+        SharedPreferences pref = context.getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            maKH = null;
+        } else {
+            maKH = pref.getString("who", "");
+        }
+    }
+
+    public String setTotal(int giaTien, String change) {
+        if (change.equals("down")) {
             total = total - giaTien;
         } else {
             total = total + giaTien;
         }
         Log.d(TAG, "setTotal: total: " + total);
-        Log.d(TAG, "setTotal: total String: " + changeType.stringMoneyToString(total+""));
-        return changeType.stringMoneyToString(total+"");
+        Log.d(TAG, "setTotal: total String: " + changeType.stringToStringMoney(total + ""));
+        return changeType.stringToStringMoney(total + "");
     }
 
     public Laptop setRow(int pos, @NonNull KH_GioHang_Adapter.AuthorViewHolder author, String change) {
@@ -170,16 +210,16 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
 
         author.imgLaptop.setImageBitmap(anhLap);
         author.name.setText(laptop.getTenLaptop());
-        author.gia.setText(changeType.stringMoneyToString(tongTien+""));
+        author.gia.setText(changeType.stringToStringMoney(tongTien + ""));
         author.soLuong.setText(String.valueOf(gioHang.getSoLuong()));
 
         //Total
         totalTV = kh_gioHang_fragment.getActivity().findViewById(R.id.textView_Total);
-        if (pos == 0){
+        if (pos == 0) {
             totalTV.setText("0₫");
         }
 
-        if (change.equals("none")){
+        if (change.equals("none")) {
             totalTV.setText(setTotal(tongTien, change));
         } else {
             totalTV.setText(setTotal(giaTien, change));

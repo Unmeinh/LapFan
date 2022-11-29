@@ -127,7 +127,6 @@
                         android:layout_height="wrap_content"
                         android:background="#FFEFE0"
                         android:textColor="#000000"
-                        android:text="10 đơn hàng"
                         android:textSize="15sp"/>
 
                 </LinearLayout>
@@ -143,7 +142,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="10"
                         android:textStyle="bold"
                         android:textColor="#3852B0"
                         android:textSize="22sp" />
@@ -244,7 +242,7 @@
                     android:background="@drawable/shape_item">
 
                     <LinearLayout
-                        android:paddingStart="10dp"
+                        android:paddingStart="5dp"
                         android:paddingEnd="10dp"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -254,8 +252,7 @@
                             android:id="@+id/imageView_Laptop"
                             android:layout_margin="5dp"
                             android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:src="@drawable/laptopdemo" />
+                            android:layout_height="100dp"/>
 
                         <View
                             android:background="@color/black"
@@ -277,7 +274,6 @@
                                 android:textColor="@color/black"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Laptop Dell Gaming G15"
                                 android:textSize="20sp"/>
 
                             <TextView
@@ -286,7 +282,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textColor="#D2422F"
-                                android:text="Giá tiền: 21.990.000 VNĐ"
                                 android:textSize="18sp"/>
 
                         </RelativeLayout>

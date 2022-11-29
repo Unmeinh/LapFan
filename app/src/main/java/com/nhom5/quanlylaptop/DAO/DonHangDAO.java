@@ -71,7 +71,7 @@ public class DonHangDAO {
         return listDH;
     }
 
-    public void insertDonHang(DonHang donHang) {
+    public int insertDonHang(DonHang donHang) {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -90,12 +90,14 @@ public class DonHangDAO {
         Log.d(TAG, "insertDonHang: Values: " + values);
 
         long ketqua = db.insert("DonHang", null, values);
+        db.close();
         if (ketqua > 0) {
             Log.d(TAG, "insertDonHang: Thêm thành công");
+            return 1;
         } else {
             Log.d(TAG, "insertDonHang: Thêm thất bại");
+            return -1;
         }
-        db.close();
     }
 
     public void updateDonHang(DonHang donHang) {

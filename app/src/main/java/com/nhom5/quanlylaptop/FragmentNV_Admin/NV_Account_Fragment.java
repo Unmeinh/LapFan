@@ -34,14 +34,17 @@ import android.widget.Toast;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.Activity.Account_Manager_Activity;
+import com.nhom5.quanlylaptop.Activity.PickRole_Activity;
 import com.nhom5.quanlylaptop.Activity.Webview_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_DonHang_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
 import com.nhom5.quanlylaptop.ActivityNV_Admin.NV_DonHang_Activity;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
+import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.NhanVien;
+import com.nhom5.quanlylaptop.Entity.ThongBao;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
@@ -51,6 +54,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 public class NV_Account_Fragment extends Fragment {
@@ -82,6 +86,7 @@ public class NV_Account_Fragment extends Fragment {
         ten = view.findViewById(R.id.textView_HoTen);
         sdt = view.findViewById(R.id.textView_SDT);
         email = view.findViewById(R.id.textView_Email);
+        logOut = view.findViewById(R.id.button_LogOut);
 
         getUser();
         setInfoUser();
@@ -92,6 +97,13 @@ public class NV_Account_Fragment extends Fragment {
         clickDoiMatKhau();
         clickThietLapTaiKhoan();
         thayAvt();
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
 
         return view;
     }
@@ -200,6 +212,12 @@ public class NV_Account_Fragment extends Fragment {
                     if (check == 1){
                         clearDialogChangePass(view, dialog);
                         Toast.makeText(getContext(), "Thay đổi mật khẩu thành công!", Toast.LENGTH_SHORT).show();
+                        Date currentTime = Calendar.getInstance().getTime();
+                        String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
+                        ThongBaoDAO thongBaoDAO = new ThongBaoDAO(getContext());
+                        ThongBao thongBao = new ThongBao("TB", nhanVien.getMaNV(), "Thiết lập tài khoản",
+                                "Bạn đã thay đổi mật khẩu.\nĐừng quên mật khẩu mới nhé!", date);
+                        thongBaoDAO.insertThongBao(thongBao, "nv");
                     } else {
                         clearDialogChangePass(view, dialog);
                         Toast.makeText(getContext(), "Thay đổi mật khẩu thất bại!", Toast.LENGTH_SHORT).show();
@@ -336,21 +354,38 @@ public class NV_Account_Fragment extends Fragment {
                     e.printStackTrace();
                 }
                 Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
+                if (bitmap != null) {
+                    NhanVienDAO nhanVienDAO = new NhanVienDAO(getContext());
+                    nhanVienDAO.updateNhanVien(new NhanVien(nhanVien.getMaNV(), nhanVien.getHoNV(),
+                            nhanVien.getTenNV(), nhanVien.getGioiTinh(), nhanVien.getEmail(), nhanVien.getMatKhau(),
+                            nhanVien.getQueQuan(), nhanVien.getPhone(), nhanVien.getDoanhSo(), nhanVien.getSoSP(),
+                            changeType.checkByteInput(changeType.bitmapToByte(bitmap))));
+
+                    Date currentTime = Calendar.getInstance().getTime();
+                    String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
+                    ThongBaoDAO thongBaoDAO = new ThongBaoDAO(getContext());
+                    ThongBao thongBao = new ThongBao("TB", nhanVien.getMaNV(), "Thiết lập tài khoản",
+                            "Bạn đã thay đổi ảnh đại diện.\nKhi nào chán thì đổi ảnh mới nhé!", date);
+                    thongBaoDAO.insertThongBao(thongBao, "nv");
+                }
+            }
+        }
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
+            if (bitmap != null){
                 NhanVienDAO nhanVienDAO = new NhanVienDAO(getContext());
                 nhanVienDAO.updateNhanVien(new NhanVien(nhanVien.getMaNV(), nhanVien.getHoNV(),
                         nhanVien.getTenNV(), nhanVien.getGioiTinh(), nhanVien.getEmail(), nhanVien.getMatKhau(),
                         nhanVien.getQueQuan(), nhanVien.getPhone(), nhanVien.getDoanhSo(), nhanVien.getSoSP(),
                         changeType.checkByteInput(changeType.bitmapToByte(bitmap))));
+
+                Date currentTime = Calendar.getInstance().getTime();
+                String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
+                ThongBaoDAO thongBaoDAO = new ThongBaoDAO(getContext());
+                ThongBao thongBao = new ThongBao("TB", nhanVien.getMaNV(), "Thiết lập tài khoản",
+                        "Bạn đã thay đổi ảnh đại diện.\nKhi nào chán thì đổi ảnh mới nhé!", date);
+                thongBaoDAO.insertThongBao(thongBao, "nv");
             }
-        }
-        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
-            imageView.setImageBitmap(bitmap);
-            NhanVienDAO nhanVienDAO = new NhanVienDAO(getContext());
-            nhanVienDAO.updateNhanVien(new NhanVien(nhanVien.getMaNV(), nhanVien.getHoNV(),
-                    nhanVien.getTenNV(), nhanVien.getGioiTinh(), nhanVien.getEmail(), nhanVien.getMatKhau(),
-                    nhanVien.getQueQuan(), nhanVien.getPhone(), nhanVien.getDoanhSo(), nhanVien.getSoSP(),
-                    changeType.checkByteInput(changeType.bitmapToByte(bitmap))));
         }
     }
 

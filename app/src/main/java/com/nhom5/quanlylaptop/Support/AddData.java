@@ -48,7 +48,8 @@ public class AddData {
                     if (listDon != null) {
                         if (listDon.size() > 0) {
                             for (DonHang donHang : listDon) {
-                                doanhSo += changeType.stringMoneyToInt(donHang.getThanhTien());
+                                int giaTien = changeType.stringMoneyToInt(donHang.getThanhTien()) / 1000;
+                                doanhSo += giaTien;
                             }
                             cout = listDon.size();
                         }

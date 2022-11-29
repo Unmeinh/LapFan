@@ -21,12 +21,17 @@ import android.widget.TextView;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
+import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.NhanVien;
+import com.nhom5.quanlylaptop.Entity.ThongBao;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.PropertyPermission;
 
 public class Account_Manager_Activity extends AppCompatActivity {
@@ -84,6 +89,12 @@ public class Account_Manager_Activity extends AppCompatActivity {
                                 khachHang.getMatKhau(), queQuan, sdt, khachHang.getHaveVi(), khachHang.getAvatar());
                         KhachHangDAO khachHangDAO = new KhachHangDAO(context);
                         khachHangDAO.updateKhachHang(newKH);
+                        Date currentTime = Calendar.getInstance().getTime();
+                        String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
+                        ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
+                        ThongBao thongBao = new ThongBao("TB", khachHang.getMaKH(), "Thiết lập tài khoản",
+                                "Bạn đã thay đổi thông tin cá nhân.\nThông tin mới đã được cập nhật!", date);
+                        thongBaoDAO.insertThongBao(thongBao, "kh");
                         finish();
                     }
                     if (role.equals("nv")) {
@@ -98,6 +109,12 @@ public class Account_Manager_Activity extends AppCompatActivity {
                                 , queQuan, sdt, nhanVien.getDoanhSo(), nhanVien.getSoSP(), nhanVien.getAvatar());
                         NhanVienDAO nhanVienDAO = new NhanVienDAO(context);
                         nhanVienDAO.updateNhanVien(newNV);
+                        Date currentTime = Calendar.getInstance().getTime();
+                        String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
+                        ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
+                        ThongBao thongBao = new ThongBao("TB", nhanVien.getMaNV(), "Thiết lập tài khoản",
+                                "Bạn đã thay đổi thông tin cá nhân.\nThông tin mới đã được cập nhật!", date);
+                        thongBaoDAO.insertThongBao(thongBao, "nv");
                         finish();
                     }
                 }

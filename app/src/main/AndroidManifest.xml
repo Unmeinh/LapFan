@@ -67,7 +67,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ActivityNV_Admin.DonHang_Manager_Activity"
+            android:name=".Activity.DonHang_Manager_Activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -116,7 +116,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ActivityKH.DiaChi_Manager_Activity"
+            android:name=".Activity.DiaChi_Manager_Activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

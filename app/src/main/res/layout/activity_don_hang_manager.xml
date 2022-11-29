@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityNV_Admin.DonHang_Manager_Activity">
+    tools:context=".Activity.DonHang_Manager_Activity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -31,6 +31,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:focusable="false"
                     android:hint="Ngày tạo đơn*"
                     android:textColor="@color/black" />
 
@@ -42,13 +44,16 @@
                 style="@style/TextInputLayoutOutlinedBoxBrown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
                 app:startIconDrawable="@drawable/user_icon"
                 app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mã nhân viên*"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Nhân viên*"
                     android:textColor="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -60,13 +65,16 @@
                 style="@style/TextInputLayoutOutlinedBoxBrown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
                 app:startIconDrawable="@drawable/user_icon"
                 app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mã khách hàng*"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Khách hàng*"
                     android:textColor="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -88,23 +96,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInput_SDT"
-                android:layout_marginTop="15dp"
-                style="@style/TextInputLayoutOutlinedBoxBrown"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:startIconDrawable="@drawable/old_phone_icon"
-                app:startIconTint="@color/black">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Số điện thoại khách hàng*"
-                    android:textColor="@color/black" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
             <LinearLayout
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal"
@@ -118,13 +109,16 @@
                     android:layout_width="0dp"
                     android:layout_weight="7"
                     android:layout_height="wrap_content"
+                    android:clickable="true"
                     app:startIconDrawable="@drawable/icon_laptop"
                     app:startIconTint="@color/black">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Mã Laptop*"
+                        android:clickable="true"
+                        android:focusable="false"
+                        android:hint="Laptop*"
                         android:textColor="@color/black" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -137,6 +131,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
+                        android:inputType="number"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Số lượng*"
@@ -151,13 +146,16 @@
                 style="@style/TextInputLayoutOutlinedBoxBrown"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
                 app:startIconDrawable="@drawable/voucher_icon2"
                 app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mã Voucher*"
+                    android:clickable="true"
+                    android:focusable="false"
+                    android:hint="Voucher*"
                     android:textColor="@color/black" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -172,6 +170,7 @@
                 app:startIconTint="@color/black">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/th_nh_ti_n"

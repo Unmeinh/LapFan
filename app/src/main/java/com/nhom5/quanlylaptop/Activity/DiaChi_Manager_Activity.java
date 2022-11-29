@@ -1,4 +1,4 @@
-package com.nhom5.quanlylaptop.ActivityKH;
+package com.nhom5.quanlylaptop.Activity;
 
 import android.content.Context;
 import android.os.Bundle;

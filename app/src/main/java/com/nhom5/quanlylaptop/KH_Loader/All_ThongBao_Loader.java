@@ -41,28 +41,13 @@ public class All_ThongBao_Loader extends AsyncTask<String, Void, ArrayList<Thong
         thongBaoDAO = new ThongBaoDAO(context);
 
         String id = strings[0];
-        ArrayList<ThongBao> listTB;
 
         if (table.equals("kh")) {
-            listTB = thongBaoDAO.selectThongBao(null, "maKH=?", new String[]{id}, null, table);
+            return thongBaoDAO.selectThongBao(null, "maKH=?", new String[]{id}, "ngayTB", table);
         } else if (table.equals("nv")) {
-            listTB = thongBaoDAO.selectThongBao(null, "maNV=?", new String[]{id}, null, table);
+            return thongBaoDAO.selectThongBao(null, "maNV=?", new String[]{id}, "ngayTB", table);
         } else {
-            listTB = thongBaoDAO.selectThongBao(null, "admin=Admin", null, null, table);
-        }
-
-        if (listTB != null) {
-            if (listTB.size() == 0) {
-                addDemoDataTB();
-            }
-        }
-
-        if (table.equals("kh")) {
-            return thongBaoDAO.selectThongBao(null, "maKH=?", new String[]{id}, null, table);
-        } else if (table.equals("nv")) {
-            return thongBaoDAO.selectThongBao(null, "maNV=?", new String[]{id}, null, table);
-        } else {
-            return thongBaoDAO.selectThongBao(null, "admin=Admin", null, null, table);
+            return thongBaoDAO.selectThongBao(null, "admin=Admin", null, "ngayTB", table);
         }
     }
 
@@ -89,52 +74,4 @@ public class All_ThongBao_Loader extends AsyncTask<String, Void, ArrayList<Thong
         recyclerView.setAdapter(all_thongBao_adapter);
     }
 
-
-    private void addDemoDataTB() {
-        ChangeType changeType = new ChangeType();
-        ThongBao tb0 = new ThongBao("TB0", "KH0", "Chào mừng khách hàng",
-                "Mong rằng bạn sẽ có những trải nghiệm tuyệt vời với ứng dụng FPT shop", "2022-11-05");
-        thongBaoDAO.insertThongBao(tb0, "kh");
-
-        ThongBao tb1 = new ThongBao("TB1", "KH0", "Cảm ơn khách hàng",
-                "Bạn vừa đặt mua 1 chiếc Laptop MSI Creator Z16P B12UGST i7 12700H với giá 79.490.000₫", "2022-11-10");
-        thongBaoDAO.insertThongBao(tb1, "kh");
-
-        ThongBao tb2 = new ThongBao("TB2", "KH0", "Cảm ơn khách hàng",
-                "Bạn vừa đặt mua 1 chiếc Laptop Apple MacBook Air M1 2020 16GB với giá 33.490.000₫", "2022-11-15");
-        thongBaoDAO.insertThongBao(tb2, "kh");
-
-        ThongBao tb3 = new ThongBao("TB3", "0", "Chào mừng nhân viên",
-                "Mong rằng bạn sẽ có những trải nghiệm tuyệt vời với ứng dụng FPT shop", "2022-11-15");
-        thongBaoDAO.insertThongBao(tb3, "nv");
-
-        ThongBao tb4 = new ThongBao("TB4", "0", "Đơn hàng mới đặt",
-                "Khách hàng Nguyễn Xuân Bắc muốn đặt mua 1 chiếc Laptop Apple MacBook Pro 16 M1 Max 2021 10 core-CPU với giá 85.990.000₫", "2022-12-12");
-        thongBaoDAO.insertThongBao(tb4, "nv");
-
-        ThongBao tb5 = new ThongBao("TB5", "0", "Thiết lập tài khoản",
-                "Bạn vừa đổi mật khẩu", "2022-12-20");
-        thongBaoDAO.insertThongBao(tb5, "nv");
-
-        ThongBao tb6 = new ThongBao("TB6", "0", "Thiết lập tài khoản",
-                "Bạn vừa thay đổi thông tin cá nhân", "2023-01-01");
-        thongBaoDAO.insertThongBao(tb6, "nv");
-
-        ThongBao tb7 = new ThongBao("TB7", "Admin", "Chào mừng quản lý",
-                "Mong rằng bạn sẽ có những trải nghiệm tuyệt vời với ứng dụng FPT shop", "2022-12-05");
-        thongBaoDAO.insertThongBao(tb7, "ad");
-
-        ThongBao tb8 = new ThongBao("TB8", "Admin", "Quản lý nhân viên",
-                "Bạn vừa thêm nhân viên Nguyễn Công Lý với mã nhân viên NV4", "2023-01-25");
-        thongBaoDAO.insertThongBao(tb8, "ad");
-
-        ThongBao tb9 = new ThongBao("TB9", "Admin", "Quản lý đơn hàng",
-                "Bạn vừa thêm đơn hàng mã DH3 với giá " + changeType.stringMoneyToString("58942400"), "2023-02-03");
-        thongBaoDAO.insertThongBao(tb9, "ad");
-
-        ThongBao tb10 = new ThongBao("TB10", "Admin", "Xác nhận đơn hàng",
-                "Nhân viên Nguyễn Công Lý vừa xác nhận đơn hàng DH4", "2023-02-12");
-        thongBaoDAO.insertThongBao(tb10, "ad");
-
-    }
 }

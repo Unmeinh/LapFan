@@ -102,8 +102,8 @@ public class Tab_DoanhThu_Fragment extends Fragment implements OnChartValueSelec
         khoanChiPer = khoanChiPer / (khoanChi + khoanThu);
         Log.d("TAG", "addDataSet: thu per " + khoanThuPer);
         Log.d("TAG", "addDataSet: chi per " + khoanChiPer);
-        String khoanThuString = changeType.stringMoneyToString(khoanThu + "000");
-        String khoanChiString = changeType.stringMoneyToString(khoanChi + "000");
+        String khoanThuString = changeType.stringToStringMoney(khoanThu + "000");
+        String khoanChiString = changeType.stringToStringMoney(khoanChi + "000");
 
 
         float[] yData = {khoanThuPer, khoanChiPer};
@@ -153,12 +153,12 @@ public class Tab_DoanhThu_Fragment extends Fragment implements OnChartValueSelec
             if (listDon != null) {
                 if (listDon.size() > 0) {
                     int doanhThu = addData.tinhTongKhoanThu(listDon) * 1000;
-                    textView_GiaTien.setText(changeType.stringMoneyToString(doanhThu + ""));
+                    textView_GiaTien.setText(changeType.stringToStringMoney(doanhThu + ""));
                 } else {
-                    textView_GiaTien.setText(changeType.stringMoneyToString("0"));
+                    textView_GiaTien.setText(changeType.stringToStringMoney("0"));
                 }
             } else {
-                textView_GiaTien.setText(changeType.stringMoneyToString("0"));
+                textView_GiaTien.setText(changeType.stringToStringMoney("0"));
             }
         }
     }

@@ -73,23 +73,23 @@ public class KH_GiaoDich_Loader extends AsyncTask<String, Void, ArrayList<GiaoDi
 
     private void addDemoGD(){
         GiaoDich gd0 = new GiaoDich("GD0", "VI0", "Nạp tiền", "Nạp tiền vào ví FPT Pay",
-                changeType.stringMoneyToString("100000"), "2022-11-30");
+                changeType.stringToStringMoney("100000"), "2022-11-30");
         giaoDichDAO.insertGiaoDich(gd0);
 
         GiaoDich gd1 = new GiaoDich("GD1", "VI1", "Nạp tiền", "Nạp tiền vào ví FPT Pay",
-                changeType.stringMoneyToString("1000000000"), "2022-11-20");
+                changeType.stringToStringMoney("1000000000"), "2022-11-20");
         giaoDichDAO.insertGiaoDich(gd1);
 
         GiaoDich gd2 = new GiaoDich("GD2", "VI2", "Thanh toán đơn hàng", "Thanh toán đơn hàng Laptop Apple MacBook Air M1 2020 16GB",
-                changeType.stringMoneyToString("47900000"), "2022-11-22");
+                changeType.stringToStringMoney("47900000"), "2022-11-22");
         giaoDichDAO.insertGiaoDich(gd2);
 
         GiaoDich gd3 = new GiaoDich("GD3", "VI3", "Thanh toán đơn hàng", "Thanh toán đơn hàng Laptop Apple MacBook Pro 16 M1 Pro 2021 10 core-CPU",
-                changeType.stringMoneyToString("35500000"), "2022-11-25");
+                changeType.stringToStringMoney("35500000"), "2022-11-25");
         giaoDichDAO.insertGiaoDich(gd3);
 
         GiaoDich gd4 = new GiaoDich("GD4", "VI4", "Thanh toán đơn hàng", "Thanh toán đơn hàng Laptop Asus Gaming ROG Flow Z13 GZ301Z i7 12700H",
-                changeType.stringMoneyToString("25900000"), "2022-11-27");
+                changeType.stringToStringMoney("25900000"), "2022-11-27");
         giaoDichDAO.insertGiaoDich(gd4);
 
     }

@@ -60,7 +60,6 @@ public class QL_Voucher_Fragment extends Fragment {
     private void openDialog() {
         View view = getLayoutInflater().inflate(R.layout.dialog_add_edit_voucher, null);
         TextView titleDialog = view.findViewById(R.id.textView_Title_Dialog);
-        TextInputLayout textInput_ID = view.findViewById(R.id.textInput_ID);
         TextInputLayout textInput_Name = view.findViewById(R.id.textInput_Name);
         TextInputLayout textInput_GiamGia = view.findViewById(R.id.textInput_GiamGia);
         TextInputLayout textInput_NSX = view.findViewById(R.id.textInput_NSX);
