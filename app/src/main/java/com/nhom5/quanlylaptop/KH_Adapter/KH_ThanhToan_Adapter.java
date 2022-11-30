@@ -188,7 +188,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
 
                 if (laptop != null && voucher != null && khachHang != null) {
                     DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
-                            voucher.getMaVoucher(), "No Data", diaChi, getData.getNowDateSQL(), httt, "Đang chờ",
+                            voucher.getMaVoucher(), "No Data", diaChi, getData.getNowDateSQL(), httt, "Đang chờ xác nhận",
                             "false", changeType.stringToStringMoney(giaTien + "000"), gio.getSoLuong());
                     DonHangDAO donHangDAO = new DonHangDAO(context);
                     int check = donHangDAO.insertDonHang(donHang);
@@ -207,7 +207,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
 
                 if (laptop != null && khachHang != null) {
                     DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
-                            "Null", "No Data", diaChi, getData.getNowDateSQL(), httt, "Đang chờ",
+                            "Null", "No Data", diaChi, getData.getNowDateSQL(), httt, "Đang chờ xác nhận",
                             "false", changeType.stringToStringMoney(giaTien + "000"), gio.getSoLuong());
                     DonHangDAO donHangDAO = new DonHangDAO(context);
                     int check = donHangDAO.insertDonHang(donHang);

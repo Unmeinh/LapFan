@@ -147,8 +147,8 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
             author.imgTrangThai.setColorFilter(Color.parseColor("#4CAF50"));
             author.trangThai.setText("Đơn hàng giao thành công");
             author.trangThai.setTextColor(Color.parseColor("#C93852B0"));
-        } else if (donHang.getTrangThai().equals("Đang chờ")) {
-            author.tienDo.setText("Đang chờ");
+        } else if (donHang.getTrangThai().equals("Đang chờ xác nhận")) {
+            author.tienDo.setText("Đang chờ xác nhận");
             author.imgTrangThai.setImageResource(R.drawable.crossed_icon);
             author.imgTrangThai.setColorFilter(Color.parseColor("#FF9800"));
             author.trangThai.setText("Đơn hàng đang chờ xác nhận");
@@ -210,7 +210,7 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
                 }
             });
         }
-        if (donHang.getTrangThai().equals("Đang chờ")) {
+        if (donHang.getTrangThai().equals("Đang chờ xác nhận")) {
             author.danhGia.setText("Chờ xác nhận");
             author.danhGia.setEnabled(false);
         }
