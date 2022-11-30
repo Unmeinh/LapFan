@@ -17,8 +17,9 @@
 
             <TextView
                 android:id="@+id/textView_TenUser"
-                android:layout_marginStart="37dp"
-                android:textSize="35sp"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="10dp"
+                android:textSize="30sp"
                 android:textColor="@color/white"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -59,8 +60,9 @@
                     android:id="@+id/textView_Title"
                     android:layout_marginTop="25dp"
                     android:layout_marginStart="30dp"
-                    android:textSize="33sp"
-                    android:text="NEW IN NOVEMBER"
+                    android:layout_marginEnd="30dp"
+                    android:textSize="28sp"
+                    android:text="Laptop mua nhiều nhất"
                     android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
@@ -104,7 +106,7 @@
                         android:paddingEnd="75dp"
                         android:textSize="25sp"
                         android:textColor="#4E352F"
-                        android:text="BUY NOW"
+                        android:text="MUA NGAY"
                         android:background="@drawable/shape_button1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

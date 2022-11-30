@@ -111,7 +111,7 @@ public class TaoVi_Activity extends AppCompatActivity {
                         String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
                         ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
                         ThongBao thongBao = new ThongBao("TB", khachHang.getMaKH(), "Thiết lập tài khoản",
-                                "Bạn đã thành công liên kết ví.\nMong Ví điện tử FPT Pay sẽ hỗ trợ thật tốt cho bạn khi thanh toán.!", date);
+                                " Bạn đã thành công liên kết ví.\n Mong Ví điện tử FPT Pay sẽ hỗ trợ thật tốt cho bạn khi thanh toán.!", date);
                         thongBaoDAO.insertThongBao(thongBao, "kh");
                         finish();
                     }

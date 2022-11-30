@@ -32,6 +32,7 @@ public class SignUp_Acitivity extends AppCompatActivity {
     KhachHangDAO khachHangDAO;
     NhanVienDAO nhanVienDAO;
     ChangeType changeType = new ChangeType();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,28 +54,15 @@ public class SignUp_Acitivity extends AppCompatActivity {
                 String email = changeType.deleteSpaceText(tilEmail.getEditText().getText().toString());
                 String password = changeType.deleteSpaceText(tilPass.getEditText().getText().toString());
                 String confirm = changeType.deleteSpaceText(tilConfirmPass.getEditText().getText().toString());
-                if (checkInput(email, password, confirm) == 1){
-                    if (roleUser.equals("nhanVien")){
-                        NhanVien newNV = new NhanVien("", "No Data", "No Data", "No Data",
-                                email, password, "No Data", "No Data", 0, 0,
-                                changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(getResources(), R.drawable.image_avatar))));
-                        int insert = nhanVienDAO.insertNhanVien(newNV);
-                        if (insert == -1){
-                            Toast.makeText(context, "Đăng ký thất bại!\nEmail đã có người sử dụng!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(context, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                    if (roleUser.equals("khachHang")){
-                        KhachHang newKH = new KhachHang("", "No Data", "No Data", "No Data",
-                                email, password, "No Data", "No Data", "false",
-                                changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(getResources(), R.drawable.image_avatar))));
-                        int insert = khachHangDAO.insertKhachHang(newKH);
-                        if (insert == -1){
-                            Toast.makeText(context, "Đăng ký thất bại!\nEmail đã có người sử dụng!", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(context, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
-                        }
+                if (checkInput(email, password, confirm) == 1) {
+                    KhachHang newKH = new KhachHang("", "No Data", "No Data", "No Data",
+                            email, password, "No Data", "No Data", "false",
+                            changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(getResources(), R.drawable.image_avatar))));
+                    int insert = khachHangDAO.insertKhachHang(newKH);
+                    if (insert == -1) {
+                        Toast.makeText(context, "Đăng ký thất bại!\nEmail đã có người sử dụng!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(context, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }

@@ -35,7 +35,7 @@ public class Vi_Fragment3 extends Fragment {
         getUser();
         if (khachHang != null) {
             ava.setImageBitmap(changeType.byteToBitmap(khachHang.getAvatar()));
-            ten.setText(khachHang.getHoKH() + " " + khachHang.getTenKH());
+            ten.setText(changeType.fullNameKhachHang(khachHang));
         }
         return view;
     }

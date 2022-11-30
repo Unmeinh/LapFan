@@ -45,7 +45,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
                 " FOREIGN KEY(maHangLap) REFERENCES HangLaptop (maHangLap))";
 
         // Bảng LaptopRate
-        String tableLaptopRate = "CREATE TABLE LaptopRate( maRate INTEGER PRIMARY KEY AUTOINCREMENT," +
+        String tableLaptopRate = "CREATE TABLE LaptopRate( maRate INTEGER PRIMARY KEY not null," +
                 " maLaptop INT not null, danhGia TEXT, rating FLOAT," +
                 " FOREIGN KEY(maLaptop) REFERENCES Laptop (maLaptop))";
 
@@ -53,7 +53,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         String tableDonHang = "CREATE TABLE DonHang( maDH INTEGER PRIMARY KEY not null, maNV INT not null," +
                 " maKH INT not null, maLaptop INT not null, maVoucher INT not null," +
                 " maRate INT not null, soLuong INT not null, diaChi TEXT, ngayMua DATE not null," +
-                " loaiThanhToan TEXT, isDanhGia TEXT, thanhTien TEXT not null," +
+                " loaiThanhToan TEXT, trangThai TEXT, isDanhGia TEXT, thanhTien TEXT not null," +
                 " FOREIGN KEY(maNV) REFERENCES NhanVien (maNV), FOREIGN KEY(maKH) REFERENCES KhachHang (maKH)," +
                 " FOREIGN KEY(maLaptop) REFERENCES Laptop (maLaptop), FOREIGN KEY(maVoucher) REFERENCES Voucher (maVoucher)," +
                 " FOREIGN KEY(maRate) REFERENCES LaptopRate (maRate))";
@@ -84,7 +84,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
                 " FOREIGN KEY(maKH) REFERENCES KhachHang (maKH))";
 
         // Bảng DiaChi
-        String tableViTien = "CREATE TABLE ViTien( maVi INTEGER PRIMARY KEY AUTOINCREMENT," +
+        String tableViTien = "CREATE TABLE ViTien( maVi INTEGER PRIMARY KEY not null," +
                 " maKH INT not null, soTien TEXT not null, nganHang TEXT," +
                 " FOREIGN KEY(maKH) REFERENCES KhachHang (maKH))";
 

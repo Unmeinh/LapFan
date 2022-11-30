@@ -3,10 +3,10 @@ package com.nhom5.quanlylaptop.NVA_Loader;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,14 +15,10 @@ import com.nhom5.quanlylaptop.DAO.HangLaptopDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.HangLaptop;
 import com.nhom5.quanlylaptop.Entity.Laptop;
-import com.nhom5.quanlylaptop.FragmentQuanLy.Tab_Laptop_Fragment;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Laptop_Adapter;
-import com.nhom5.quanlylaptop.R;
-import com.nhom5.quanlylaptop.Support.AddData;
+import com.nhom5.quanlylaptop.Support.GetData;
 
 import java.util.ArrayList;
-
-import me.ibrahimsn.lib.CirclesLoadingView;
 
 public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>> {
     @SuppressLint("StaticFieldLeak")
@@ -52,13 +48,13 @@ public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>>
         ArrayList<Laptop> list = laptopDAO.selectLaptop(null, null, null, "maHangLap");
         if (list != null) {
             if (list.size() == 0) {
-                AddData addData = new AddData(context);
-                addData.addDemoLaptopDell();
-                addData.addDemoLaptopHP();
-                addData.addDemoLaptopAcer();
-                addData.addDemoLaptopAsus();
-                addData.addDemoLaptopMsi();
-                addData.addDemoLaptopMac();
+                GetData getData = new GetData(context);
+                getData.addDemoLaptopDell();
+                getData.addDemoLaptopHP();
+                getData.addDemoLaptopAcer();
+                getData.addDemoLaptopAsus();
+                getData.addDemoLaptopMsi();
+                getData.addDemoLaptopMac();
             }
         }
 
@@ -69,11 +65,17 @@ public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>>
     protected void onPostExecute(ArrayList<Laptop> listLap) {
         super.onPostExecute(listLap);
 
-        if (loadingView != null && relativeLayout != null && reView != null) {
-            loadingView.setVisibility(View.GONE);
-            relativeLayout.setVisibility(View.VISIBLE);
-            setupReView(listLap, reView);
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (loadingView != null && relativeLayout != null && reView != null) {
+                    loadingView.setVisibility(View.GONE);
+                    relativeLayout.setVisibility(View.VISIBLE);
+                    setupReView(listLap, reView);
+                }
+            }
+        }, 1000);
     }
 
     private void setupReView(ArrayList<Laptop> listLap, RecyclerView recyclerView) {

@@ -93,7 +93,7 @@ public class Account_Manager_Activity extends AppCompatActivity {
                         String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
                         ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
                         ThongBao thongBao = new ThongBao("TB", khachHang.getMaKH(), "Thiết lập tài khoản",
-                                "Bạn đã thay đổi thông tin cá nhân.\nThông tin mới đã được cập nhật!", date);
+                                " Bạn đã thay đổi thông tin cá nhân.\n Thông tin mới đã được cập nhật!", date);
                         thongBaoDAO.insertThongBao(thongBao, "kh");
                         finish();
                     }
@@ -113,7 +113,7 @@ public class Account_Manager_Activity extends AppCompatActivity {
                         String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
                         ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
                         ThongBao thongBao = new ThongBao("TB", nhanVien.getMaNV(), "Thiết lập tài khoản",
-                                "Bạn đã thay đổi thông tin cá nhân.\nThông tin mới đã được cập nhật!", date);
+                                " Bạn đã thay đổi thông tin cá nhân.\n Thông tin mới đã được cập nhật!", date);
                         thongBaoDAO.insertThongBao(thongBao, "nv");
                         finish();
                     }

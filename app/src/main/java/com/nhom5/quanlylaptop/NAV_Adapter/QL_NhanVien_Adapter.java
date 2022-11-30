@@ -38,11 +38,13 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
     ArrayList<NhanVien> listNV;
     NhanVienDAO nhanVienDAO;
     String TAG = "QL_NhanVien_Adapter_____";
+    TextView countNV;
 
-    public QL_NhanVien_Adapter(ArrayList<NhanVien> listNV, Context context) {
+    public QL_NhanVien_Adapter(ArrayList<NhanVien> listNV, Context context, TextView countNV) {
         this.listNV = listNV;
         this.context = context;
         nhanVienDAO = new NhanVienDAO(context);
+        this.countNV = countNV;
     }
 
     @NonNull
@@ -55,6 +57,10 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
     @Override
     public void onBindViewHolder(@NonNull QL_NhanVien_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         NhanVien nhanVien = setRow(pos, author);
+        if (countNV != null){
+            countNV.setText(String.valueOf(listNV.size()));
+        }
+
 
         author.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,7 +137,7 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
         Bitmap avatar = changeType.byteToBitmap(nhanVien.getAvatar());
 
         author.avatar.setImageBitmap(avatar);
-        author.name.setText(nhanVien.getHoNV() + " " + nhanVien.getTenNV());
+        author.name.setText(changeType.fullNameNhanVien(nhanVien));
         author.gender.setText(nhanVien.getGioiTinh());
         author.phone.setText(nhanVien.getPhone());
         return nhanVien;

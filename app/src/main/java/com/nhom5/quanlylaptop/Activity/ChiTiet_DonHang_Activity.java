@@ -153,7 +153,7 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
         nameLap.setText(laptop.getTenLaptop());
         thanhTien.setText(donHang.getThanhTien());
         soLuong.setText(String.valueOf(donHang.getSoLuong()));
-        nameKH.setText(khachHang.getHoKH() + " " + khachHang.getTenKH());
+        nameKH.setText(changeType.fullNameKhachHang(khachHang));
         phone.setText(khachHang.getPhone());
         diaChi.setText(donHang.getDiaChi());
         pttt.setText(donHang.getLoaiThanhToan());

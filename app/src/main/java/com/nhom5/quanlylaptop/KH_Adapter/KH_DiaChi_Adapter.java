@@ -1,17 +1,13 @@
 package com.nhom5.quanlylaptop.KH_Adapter;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -19,10 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.quanlylaptop.Entity.DiaChi;
 import com.nhom5.quanlylaptop.Entity.IdData;
-import com.nhom5.quanlylaptop.Entity.KhachHang;
-import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.R;
-import com.nhom5.quanlylaptop.Support.AddData;
 
 import java.util.ArrayList;
 

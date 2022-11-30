@@ -60,6 +60,16 @@ public class KH_DonHang_Activity extends AppCompatActivity {
         useToolbar();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getUser();
+        if (khachHang != null) {
+            KH_DonHang_Loader kh_donHang_loader = new KH_DonHang_Loader(context, recyclerView, linearLayout);
+            kh_donHang_loader.execute(khachHang.getMaKH());
+        }
+    }
+
     private void getUser(){
         SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
         if (pref == null) {

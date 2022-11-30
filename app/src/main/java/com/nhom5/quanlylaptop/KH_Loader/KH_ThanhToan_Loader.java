@@ -66,7 +66,7 @@ public class KH_ThanhToan_Loader extends AsyncTask<String, Void, ArrayList<GioHa
 
         if (laptop == null){
             listLap = laptopDAO.selectLaptop(null, null, null, null);
-            listGio =  gioHangDAO.selectGioHang(null, null, null, null);
+            listGio =  gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null);
             listVou = voucherDAO.selectVoucher(null, null, null, null);
         } else {
             listLap.add(laptop);

@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,16 +25,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_ThanhToan_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
-import com.nhom5.quanlylaptop.DAO.DiaChiDAO;
+import com.nhom5.quanlylaptop.DAO.DonHangDAO;
+import com.nhom5.quanlylaptop.DAO.GioHangDAO;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
+import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
 import com.nhom5.quanlylaptop.DAO.VoucherDAO;
-import com.nhom5.quanlylaptop.Entity.DiaChi;
+import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.IdData;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.Entity.ThongBao;
 import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.R;
-import com.nhom5.quanlylaptop.Support.AddData;
 import com.nhom5.quanlylaptop.Support.ChangeType;
+import com.nhom5.quanlylaptop.Support.GetData;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -51,7 +57,11 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
     KH_ThanhToan_Activity khThanhToanActivity;
     TextView tongTienHang_View, voucherGiamGia_View, tongThanhToan_View, total_View;
     int giaTien, tongTienHang, tienGiamGia;
+    KhachHang khachHang;
+    ThongBaoDAO thongBaoDAO;
+    GioHangDAO gioHangDAO;
     String maVou;
+    GetData getData;
 
     public KH_ThanhToan_Adapter(ArrayList<Laptop> listLap, ArrayList<GioHang> listGio, ArrayList<Voucher> listVou,
                                 Context context, KH_ThanhToan_Activity khThanhToanActivity) {
@@ -60,6 +70,10 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
         this.listGio = listGio;
         this.listVou = listVou;
         this.khThanhToanActivity = khThanhToanActivity;
+        thongBaoDAO = new ThongBaoDAO(context);
+        gioHangDAO = new GioHangDAO(context);
+        getData = new GetData(context);
+        getUserKH();
     }
 
     @NonNull
@@ -72,6 +86,15 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
     @Override
     public void onBindViewHolder(@NonNull KH_ThanhToan_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         setRow(pos, author);
+        if (khThanhToanActivity != null) {
+            Button datHang = khThanhToanActivity.findViewById(R.id.button_DatHang);
+            datHang.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onclickDatHang();
+                }
+            });
+        }
 
         author.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +136,100 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
             total = itemView.findViewById(R.id.textView_SoTien);
             countSP = itemView.findViewById(R.id.textView_TongSP);
             clickVoucher = itemView.findViewById(R.id.onclick_Doi_Voucher);
+        }
+    }
+
+    private void getUserKH() {
+        SharedPreferences pref = context.getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            khachHang = null;
+        } else {
+            String user = pref.getString("who", "");
+            KhachHangDAO khachHangDAO = new KhachHangDAO(context);
+            ArrayList<KhachHang> list = khachHangDAO.selectKhachHang(null, "maKH=?", new String[]{user}, null);
+            if (list.size() > 0) {
+                khachHang = list.get(0);
+            }
+        }
+    }
+
+    private void onclickDatHang() {
+        if (listGio.size() > 0) {
+            for (GioHang gio : listGio) {
+                Laptop laptop = null;
+                for (int i = 0; i < listLap.size(); i++) {
+                    Laptop getLap = listLap.get(i);
+                    if (gio.getMaLaptop().equals(getLap.getMaLaptop())) {
+                        laptop = getLap;
+                    }
+                }
+                Voucher voucher = null;
+                for (int i = 0; i < listVou.size(); i++) {
+                    Voucher getVou = listVou.get(i);
+                    if (gio.getMaVou().equals(getVou.getMaVoucher())) {
+                        voucher = getVou;
+                    }
+                }
+
+                TextView textViewDC = khThanhToanActivity.findViewById(R.id.textView_DiaChi);
+                TextView textViewHTTT = khThanhToanActivity.findViewById(R.id.textView_HinhThucTT);
+                String diaChi = textViewDC.getText().toString();
+                String httt = textViewHTTT.getText().toString();
+
+                if (diaChi.isEmpty()) {
+                    Toast.makeText(context, "Địa chỉ không được để trống!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (httt.isEmpty()) {
+                    Toast.makeText(context, "Hình thức thanh toán không được trống!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (laptop != null && voucher != null && khachHang != null) {
+                    DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                            voucher.getMaVoucher(), "No Data", diaChi, getData.getNowDateSQL(), httt, "Đang chờ",
+                            "false", changeType.stringToStringMoney(giaTien + "000"), gio.getSoLuong());
+                    DonHangDAO donHangDAO = new DonHangDAO(context);
+                    int check = donHangDAO.insertDonHang(donHang);
+                    int size = donHangDAO.selectDonHang(null, null, null, null).size();
+
+                    if (check == 1) {
+                        ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
+                                "Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                        thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+                        ThongBao thongBaoAD = new ThongBao("TB", "Null", "Xác nhận đặt hàng " + size,
+                                " Khách hàng " + changeType.fullNameKhachHang(khachHang) + " đã đặt đơn hàng "
+                                        + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien() + "\n Ấn vào để xác nhận đặt hàng.", getData.getNowDateSQL());
+                        thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                    }
+                }
+
+                if (laptop != null && khachHang != null) {
+                    DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                            "Null", "No Data", diaChi, getData.getNowDateSQL(), httt, "Đang chờ",
+                            "false", changeType.stringToStringMoney(giaTien + "000"), gio.getSoLuong());
+                    DonHangDAO donHangDAO = new DonHangDAO(context);
+                    int check = donHangDAO.insertDonHang(donHang);
+                    int size = donHangDAO.selectDonHang(null, null, null, null).size();
+
+                    if (check == 1) {
+                        ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
+                                " Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                        thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+                        ThongBao thongBaoAD = new ThongBao("TB", "Null", "Xác nhận đặt hàng " + size,
+                                " Khách hàng " + changeType.fullNameKhachHang(khachHang) + " đã đặt đơn hàng " + laptop.getTenLaptop()
+                                        + " với giá " + donHang.getThanhTien() + "\n Ấn vào để xác nhận đặt hàng", getData.getNowDateSQL());
+                        thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                    }
+                }
+
+                for (GioHang gioHang : listGio) {
+                    gioHangDAO.deleteGioHang(gioHang);
+                }
+                Toast.makeText(context, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
+                khThanhToanActivity.finish();
+            }
         }
     }
 
@@ -158,16 +275,23 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
             int giamTien = (giaTien * sale) / 100;
             int totalDh = giaTien - giamTien;
 
+            Log.d(TAG, "setRow: giaTien = " + giaTien);
+            Log.d(TAG, "setRow: giamTien = " + giamTien);
+            Log.d(TAG, "setRow: totalDh = " + totalDh);
             author.sale.setText("-" + changeType.stringToStringMoney(giamTien + "000"));
             author.sale.setTextColor(Color.parseColor("#FF5722"));
-            author.total.setText(changeType.stringToStringMoney(totalDh + ""));
+            author.total.setText(changeType.stringToStringMoney(totalDh + "000"));
             setThanhToan(pos, giaTien, giamTien);
         } else {
             String[] two = getVoucher(author.sale, giaTien);
             maVou = two[0];
             int giamTien = changeType.stringMoneyToInt(two[1]);
-            int tongTien = giaTien - changeType.stringMoneyToInt(two[1]);
-            author.total.setText(changeType.stringToStringMoney(tongTien + ""));
+            int tongTien = giaTien - giamTien;
+
+            Log.d(TAG, "setRow: giaTien = " + giaTien);
+            Log.d(TAG, "setRow: giamTien = " + giamTien);
+            Log.d(TAG, "setRow: tongTien = " + tongTien);
+            author.total.setText(changeType.stringToStringMoney(tongTien + "000"));
             setThanhToan(pos, giaTien, giamTien);
         }
 
@@ -227,7 +351,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                 int giamTien = (giaTien * sale) / 100;
 
                 textView.setText("-" + changeType.stringToStringMoney(giamTien + "000"));
-                after = changeType.stringToStringMoney(giamTien + "000");
+                after = changeType.stringToStringMoney(giamTien+"");
                 textView.setTextColor(Color.parseColor("#FF5722"));
             } else {
                 textView.setText(R.string.thay_i_m);

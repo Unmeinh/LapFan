@@ -8,8 +8,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -18,21 +16,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.ActivityKH.KH_ThanhToan_Activity;
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
-import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
-import com.nhom5.quanlylaptop.Entity.Laptop;
-import com.nhom5.quanlylaptop.KH_Adapter.KH_GioHang_Adapter;
-import com.nhom5.quanlylaptop.KH_Adapter.KH_Laptop_Adapter;
 import com.nhom5.quanlylaptop.KH_Loader.KH_GioHang_Loader;
 import com.nhom5.quanlylaptop.R;
-import com.nhom5.quanlylaptop.Support.AddData;
 
 import java.util.ArrayList;
 
@@ -75,6 +67,17 @@ public class KH_GioHang_Fragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getUser();
+        if (khachHang != null){
+            setLayout();
+            KH_GioHang_Loader kh_gioHang_loader = new KH_GioHang_Loader(KH_GioHang_Fragment.this, getContext(), recyclerView, loadingLayout, viewGHLayout);
+            kh_gioHang_loader.execute(khachHang.getMaKH());
+        }
     }
 
     private void setLayout(){

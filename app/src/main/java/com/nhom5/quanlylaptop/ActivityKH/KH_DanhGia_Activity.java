@@ -10,16 +10,21 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
+import com.nhom5.quanlylaptop.DAO.LaptopRateDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.Entity.LaptopRate;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
@@ -32,15 +37,70 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
     String TAG = "KH_DanhGia_Activity_____";
     EditText reviewInput;
     Laptop laptop;
+    LaptopRateDAO laptopRateDAO;
+    DonHangDAO donHangDAO;
+    LaptopRate laptopRate;
+    ChangeType changeType = new ChangeType();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_danh_gia);
         reviewInput = findViewById(R.id.editText_DanhGia);
+        laptopRateDAO = new LaptopRateDAO(context);
+        donHangDAO = new DonHangDAO(context);
         useToolbar();
         getInfoDonHang();
         setLaptopView();
-        setReviewText();
+        setLayout();
+    }
+
+    private void setLayout() {
+        RatingBar ratingBar = findViewById(R.id.ratingBar_DanhGia);
+        EditText editTextDanhGia = findViewById(R.id.editText_DanhGia);
+        Button buttonDanhGia = findViewById(R.id.button_DanhGia);
+        laptopRateDAO.selectLaptopRate(null, null, null, null);
+        if (donHang.getIsDanhGia().equals("false")) {
+            setReviewText();
+            ratingBar.setRating(0f);
+
+            buttonDanhGia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (!editTextDanhGia.getText().equals("")){
+                        laptopRate = new LaptopRate(donHang.getMaDH(), laptop.getMaLaptop(), editTextDanhGia.getText().toString(), ratingBar.getRating());
+                        laptopRateDAO.insertLaptopRate(laptopRate);
+                        donHang.setIsDanhGia("true");
+                        donHang.setMaRate(donHang.getMaDH());
+                        donHangDAO.updateDonHang(donHang);
+                        finish();
+                    } else {
+                        Toast.makeText(context, "Hãy nhập cảm nghĩ của bạn trước khi hoàn thành nhé!", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+
+        } else {
+            ArrayList<LaptopRate> list = laptopRateDAO.selectLaptopRate(null, "maRate=?", new String[]{donHang.getMaRate()}, null);
+            if (list.size() > 0) {
+                Log.d(TAG, "setLayout: yo");
+                laptopRate = list.get(0);
+                Log.d(TAG, "setLayout: Laptop rate: " + laptopRate.toString());
+            }
+            if (laptopRate != null) {
+                ratingBar.setRating(changeType.getRatingFloat(laptopRate.getRating()));
+                ratingBar.setIsIndicator(true);
+                editTextDanhGia.setText(laptopRate.getDanhGia());
+                editTextDanhGia.setEnabled(false);
+
+                buttonDanhGia.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish();
+                    }
+                });
+            }
+        }
     }
 
     private void useToolbar() {
@@ -68,7 +128,7 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
         }
     }
 
-    private void setLaptopView(){
+    private void setLaptopView() {
         ImageView imageLaptop = findViewById(R.id.imageView_Laptop);
         TextView name = findViewById(R.id.textView_TenLaptop);
         TextView soLuong = findViewById(R.id.textView_Soluong);
@@ -112,7 +172,7 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
         });
     }
 
-    private void setReviewText(){
+    private void setReviewText() {
         AppCompatButton review1 = findViewById(R.id.button_Hint_DanhGia1);
         AppCompatButton review2 = findViewById(R.id.button_Hint_DanhGia2);
         AppCompatButton review3 = findViewById(R.id.button_Hint_DanhGia3);

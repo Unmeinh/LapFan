@@ -22,15 +22,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
-import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
-import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.ThongBao;
 import com.nhom5.quanlylaptop.FragmentKH.KH_GioHang_Fragment;
 import com.nhom5.quanlylaptop.R;
-import com.nhom5.quanlylaptop.Support.AddData;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.text.SimpleDateFormat;
@@ -121,7 +118,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
                     String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
                     ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
                     ThongBao thongBao = new ThongBao("TB", maKH, "Quản lý giỏ hàng",
-                            "Bạn đã xóa Laptop " + laptop.getTenLaptop() + " khỏi giỏ hàng.", date);
+                            " Bạn đã xóa Laptop " + laptop.getTenLaptop() + " khỏi giỏ hàng.", date);
                     thongBaoDAO.insertThongBao(thongBao, "kh");
                     if (listGio.size() == 0){
                         totalTV.setText(changeType.stringToStringMoney("0"));

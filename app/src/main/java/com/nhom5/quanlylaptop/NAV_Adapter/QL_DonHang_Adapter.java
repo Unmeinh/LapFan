@@ -34,13 +34,15 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
     ArrayList<Laptop> listLap;
     ArrayList<KhachHang> listKH;
     ArrayList<DonHang> listDon;
+    TextView countDH;
     String TAG = "QL_DonHang_Adapter_____";
 
-    public QL_DonHang_Adapter(ArrayList<Laptop> listLap, ArrayList<DonHang> listDon, ArrayList<KhachHang> listKH, Context context) {
+    public QL_DonHang_Adapter(ArrayList<Laptop> listLap, ArrayList<DonHang> listDon, ArrayList<KhachHang> listKH, Context context, TextView countDH) {
         this.listLap = listLap;
         this.listDon = listDon;
         this.listKH = listKH;
         this.context = context;
+        this.countDH = countDH;
     }
 
     @NonNull
@@ -53,6 +55,9 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
     @Override
     public void onBindViewHolder(@NonNull QL_DonHang_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         DonHang donHang = setRow(pos, author);
+        if (countDH != null){
+            countDH.setText(String.valueOf(listDon.size()));
+        }
 
         author.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +96,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
     }
 
     public DonHang setRow(int pos, @NonNull QL_DonHang_Adapter.AuthorViewHolder author) {
+        ChangeType changeType = new ChangeType();
         Log.d(TAG, "setRow: " + pos);
         DonHang donHang = listDon.get(pos);
         Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", 0, 0, new byte[]{});
@@ -112,7 +118,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
             }
         }
 
-        author.tenKH.setText(khachHang.getHoKH() + " " + khachHang.getTenKH());
+        author.tenKH.setText(changeType.fullNameKhachHang(khachHang));
         author.tenLaptop.setText(laptop.getTenLaptop());
         author.phone.setText(khachHang.getPhone());
         author.money.setText(donHang.getThanhTien());

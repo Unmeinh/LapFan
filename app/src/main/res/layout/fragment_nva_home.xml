@@ -180,9 +180,8 @@
                         android:text="@string/s_n_ph_m_b_n_ch_y"
                         android:textSize="20sp" />
 
-                    <ScrollView
+                    <HorizontalScrollView
                         android:layout_marginTop="10dp"
-                        android:scrollbars="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -229,7 +228,7 @@
 
                         </LinearLayout>
 
-                    </ScrollView>
+                    </HorizontalScrollView>
 
                 </LinearLayout>
 

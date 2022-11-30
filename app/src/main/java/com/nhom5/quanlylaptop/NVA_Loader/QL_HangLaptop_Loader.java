@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.GridView;
@@ -60,10 +61,16 @@ public class QL_HangLaptop_Loader extends AsyncTask<String, Void, ArrayList<Hang
     protected void onPostExecute(ArrayList<HangLaptop> listHang) {
         super.onPostExecute(listHang);
 
-        if (linearLayout != null && gridView != null){
-            linearLayout.setVisibility(View.GONE);
-            setupReView(listHang, gridView);
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (linearLayout != null && gridView != null) {
+                    linearLayout.setVisibility(View.GONE);
+                    setupReView(listHang, gridView);
+                }
+            }
+        }, 1000);
     }
 
     private void setupReView(ArrayList<HangLaptop> listHang, GridView gridView) {

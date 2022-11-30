@@ -6,17 +6,14 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
 import com.nhom5.quanlylaptop.Entity.NhanVien;
-import com.nhom5.quanlylaptop.FragmentQuanLy.Tab_ThongKe_Fragment;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_ThongKe_Adapter;
-import com.nhom5.quanlylaptop.R;
-import com.nhom5.quanlylaptop.Support.AddData;
+import com.nhom5.quanlylaptop.Support.GetData;
 
 import java.util.ArrayList;
 
@@ -41,7 +38,7 @@ public class QL_ThongKe_Loader extends AsyncTask<String, Void, ArrayList<NhanVie
 
     @Override
     protected ArrayList<NhanVien> doInBackground(String... strings) {
-        AddData data = new AddData(context);
+        GetData data = new GetData(context);
         nhanVienDAO = new NhanVienDAO(context);
         listNV = nhanVienDAO.selectNhanVien(null, null, null, null);
         data.addDataDoanhSo(listNV, getDate);

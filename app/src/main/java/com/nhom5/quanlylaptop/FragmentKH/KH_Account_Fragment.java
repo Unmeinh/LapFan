@@ -122,7 +122,7 @@ public class KH_Account_Fragment extends Fragment {
     private void setInfoUser() {
         if (khachHang != null) {
             imageView.setImageBitmap(changeType.byteToBitmap(khachHang.getAvatar()));
-            ten.setText(khachHang.getHoKH() + " " + khachHang.getTenKH());
+            ten.setText(changeType.fullNameKhachHang(khachHang));
             sdt.setText(khachHang.getPhone());
             email.setText(khachHang.getEmail());
         }
@@ -236,7 +236,7 @@ public class KH_Account_Fragment extends Fragment {
                         String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
                         ThongBaoDAO thongBaoDAO = new ThongBaoDAO(getContext());
                         ThongBao thongBao = new ThongBao("TB", khachHang.getMaKH(), "Thiết lập tài khoản",
-                                "Bạn đã thay đổi mật khẩu.\nĐừng quên mật khẩu mới nhé!", date);
+                                " Bạn đã thay đổi mật khẩu.\n Đừng quên mật khẩu mới nhé!", date);
                         thongBaoDAO.insertThongBao(thongBao, "kh");
                     } else {
                         clearDialogChangePass(view, dialog);
@@ -385,7 +385,7 @@ public class KH_Account_Fragment extends Fragment {
                     String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
                     ThongBaoDAO thongBaoDAO = new ThongBaoDAO(getContext());
                     ThongBao thongBao = new ThongBao("TB", khachHang.getMaKH(), "Thiết lập tài khoản",
-                            "Bạn đã thay đổi ảnh đại diện.\nKhi nào chán thì đổi ảnh mới nhé!", date);
+                            " Bạn đã thay đổi ảnh đại diện.\n Khi nào chán thì đổi ảnh mới nhé!", date);
                     thongBaoDAO.insertThongBao(thongBao, "kh");
                 }
             }
@@ -403,7 +403,7 @@ public class KH_Account_Fragment extends Fragment {
                 String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
                 ThongBaoDAO thongBaoDAO = new ThongBaoDAO(getContext());
                 ThongBao thongBao = new ThongBao("TB", khachHang.getMaKH(), "Thiết lập tài khoản",
-                        "Bạn đã thay đổi ảnh đại diện.\nKhi nào chán thì đổi ảnh mới nhé!", date);
+                        " Bạn đã thay đổi ảnh đại diện.\n Khi nào chán thì đổi ảnh mới nhé!", date);
                 thongBaoDAO.insertThongBao(thongBao, "kh");
             }
         }

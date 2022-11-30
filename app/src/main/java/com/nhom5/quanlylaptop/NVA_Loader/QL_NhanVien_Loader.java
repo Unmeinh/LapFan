@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -52,8 +53,8 @@ public class QL_NhanVien_Loader extends AsyncTask<String, Void, ArrayList<NhanVi
     protected ArrayList<NhanVien> doInBackground(String... strings) {
         nhanVienDAO = new NhanVienDAO(context);
         ArrayList<KhachHang> list = nhanVienDAO.selectNhanVien(null, null, null, null);
-        if (list != null){
-            if (list.size() == 0){
+        if (list != null) {
+            if (list.size() == 0) {
                 addDemoNV();
             }
         }
@@ -65,27 +66,33 @@ public class QL_NhanVien_Loader extends AsyncTask<String, Void, ArrayList<NhanVi
     protected void onPostExecute(ArrayList<NhanVien> listNV) {
         super.onPostExecute(listNV);
 
-        if (loadingView != null && relativeLayout != null && reView != null && countNV != null){
-            loadingView.setVisibility(View.GONE);
-            relativeLayout.setVisibility(View.VISIBLE);
-            setupReView(listNV, reView);
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (loadingView != null && relativeLayout != null && reView != null && countNV != null) {
+                    loadingView.setVisibility(View.GONE);
+                    relativeLayout.setVisibility(View.VISIBLE);
+                    setupReView(listNV, reView);
+                }
+            }
+        }, 1000);
     }
 
     private void setupReView(ArrayList<NhanVien> listNV, RecyclerView recyclerView) {
         Log.d(TAG, "setUpReView: true");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
-        QL_NhanVien_Adapter ql_nhanVien_adapter = new QL_NhanVien_Adapter(listNV, context);
+        QL_NhanVien_Adapter ql_nhanVien_adapter = new QL_NhanVien_Adapter(listNV, context, countNV);
         recyclerView.setAdapter(ql_nhanVien_adapter);
         setCountKH(listNV);
     }
 
-    private void setCountKH(ArrayList<NhanVien> listNV){
+    private void setCountKH(ArrayList<NhanVien> listNV) {
         countNV.setText(String.valueOf(listNV.size()));
     }
 
-    private void addDemoNV(){
+    private void addDemoNV() {
         ChangeType changeType = new ChangeType();
 
         NhanVien nv0 = new NhanVien("0", "Leonardo", "DiCaprio", "Nam", "leo@gmail.com",

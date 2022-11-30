@@ -25,7 +25,6 @@ import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.ThongBao;
 import com.nhom5.quanlylaptop.R;
-import com.nhom5.quanlylaptop.Support.AddData;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.text.SimpleDateFormat;
@@ -132,11 +131,10 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                         String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
                         ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
                         ThongBao thongBao = new ThongBao("TB", khachHang.getMaKH(), "Quản lý giỏ hàng",
-                                "Bạn đã thêm Laptop " + laptop.getTenLaptop() + " với giá " + laptop.getGiaTien() + " vào giỏ hàng.", date);
+                                " Bạn đã thêm Laptop " + laptop.getTenLaptop() + " với giá " + laptop.getGiaTien() + " vào giỏ hàng.", date);
                         thongBaoDAO.insertThongBao(thongBao, "kh");
-                        finish();
                     } else {
-                        Toast.makeText(context, "Sản phẩm đang hết hàng!\nXin vui lòng đợi chúng tôi nhập sản phẩm!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Sản phẩm đang hết hàng!\n Xin vui lòng đợi chúng tôi nhập sản phẩm!", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

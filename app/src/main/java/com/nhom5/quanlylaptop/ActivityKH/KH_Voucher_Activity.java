@@ -2,32 +2,22 @@ package com.nhom5.quanlylaptop.ActivityKH;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
-import com.nhom5.quanlylaptop.DAO.VoucherDAO;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
-import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.KH_Loader.KH_Voucher_Loader;
-import com.nhom5.quanlylaptop.NAV_Adapter.QL_Voucher_Adapter;
 import com.nhom5.quanlylaptop.R;
-import com.nhom5.quanlylaptop.Support.AddData;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class KH_Voucher_Activity extends AppCompatActivity {
 

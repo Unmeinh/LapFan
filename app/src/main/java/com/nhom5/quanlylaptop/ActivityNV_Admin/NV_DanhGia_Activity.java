@@ -132,7 +132,7 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
         nameLap.setText(laptop.getTenLaptop());
         giaTien.setText(donHang.getThanhTien());
         soLuong.setText(String.valueOf(donHang.getSoLuong()));
-        nameKH.setText(khachHang.getHoKH() + " " + khachHang.getTenKH());
+        nameKH.setText(changeType.fullNameKhachHang(khachHang));
         email.setText(khachHang.getEmail());
 
         setReview(donHang.getIsDanhGia());

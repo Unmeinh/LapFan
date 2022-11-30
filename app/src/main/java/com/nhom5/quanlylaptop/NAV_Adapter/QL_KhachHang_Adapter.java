@@ -37,8 +37,10 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
     ArrayList<KhachHang> listKH;
     KhachHangDAO khachHangDAO;
     String TAG = "QL_KhachHang_Adapter_____";
+    TextView countKH;
 
-    public QL_KhachHang_Adapter(ArrayList<KhachHang> listKH, Context context) {
+    public QL_KhachHang_Adapter(ArrayList<KhachHang> listKH, Context context, TextView countKH) {
+        this.countKH = countKH;
         this.listKH = listKH;
         this.context = context;
         khachHangDAO = new KhachHangDAO(context);
@@ -54,6 +56,9 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
     @Override
     public void onBindViewHolder(@NonNull QL_KhachHang_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         KhachHang khachHang = setRow(pos, author);
+        if (countKH != null){
+            countKH.setText(String.valueOf(listKH.size()));
+        }
 
         author.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

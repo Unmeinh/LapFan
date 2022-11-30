@@ -12,12 +12,13 @@ public class DonHang extends Binder {
     private String diaChi;
     private String ngayMua;
     private String loaiThanhToan;
+    private String trangThai;
     private String isDanhGia;
     private String thanhTien;
     private int soLuong;
 
-    public DonHang(String maDH, String maNV, String maKH, String maLaptop, String maVoucher, String maRate,
-                   String diaChi, String ngayMua, String loaiThanhToan, String isDanhGia, String thanhTien, int soLuong) {
+    public DonHang(String maDH, String maNV, String maKH, String maLaptop, String maVoucher, String maRate, String diaChi,
+                   String ngayMua, String loaiThanhToan, String trangThai, String isDanhGia, String thanhTien, int soLuong) {
         this.maDH = maDH;
         this.maNV = maNV;
         this.maKH = maKH;
@@ -27,6 +28,7 @@ public class DonHang extends Binder {
         this.diaChi = diaChi;
         this.ngayMua = ngayMua;
         this.loaiThanhToan = loaiThanhToan;
+        this.trangThai = trangThai;
         this.isDanhGia = isDanhGia;
         this.soLuong = soLuong;
         this.thanhTien = thanhTien;
@@ -104,6 +106,14 @@ public class DonHang extends Binder {
         this.loaiThanhToan = loaiThanhToan;
     }
 
+    public String getTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(String trangThai) {
+        this.trangThai = trangThai;
+    }
+
     public String getIsDanhGia() {
         return isDanhGia;
     }
@@ -140,8 +150,10 @@ public class DonHang extends Binder {
                 ", diaChi = '" + diaChi + '\'' +
                 ", ngayMua = '" + ngayMua + '\'' +
                 ", loaiThanhToan = '" + loaiThanhToan + '\'' +
+                ", trangThai = '" + trangThai + '\'' +
+                ", isDanhGia = '" + isDanhGia + '\'' +
+                ", thanhTien = '" + thanhTien + '\'' +
                 ", soLuong = " + soLuong +
-                ", thanhTien = " + thanhTien +
                 '}';
     }
 }

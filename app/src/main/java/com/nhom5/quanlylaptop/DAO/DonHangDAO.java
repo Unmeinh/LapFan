@@ -39,7 +39,7 @@ public class DonHangDAO {
             c.moveToFirst();
             while (!c.isAfterLast()) {
                 Log.d(TAG, "selectDonHang: Cursor not last");
-                String maDH = c.getString(0)+"";
+                String maDH = c.getString(0) + "";
                 String maNV = c.getString(1);
                 String maKH = c.getString(2);
                 String maLaptop = c.getString(3);
@@ -48,15 +48,17 @@ public class DonHangDAO {
                 int soLuong = 0;
                 try {
                     soLuong = Integer.parseInt(c.getString(6));
-                } catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
                 String diaChi = c.getString(7);
                 @SuppressLint("Range") String ngayMua = changeType.longDateToString(c.getLong(c.getColumnIndex("ngayMua")));
                 String loaiThanhToan = c.getString(9);
-                String isDanhGia = c.getString(10);
-                String thanhTien = c.getString(11);
-                DonHang newDH = new DonHang(maDH, maNV, maKH, maLaptop, maVoucher, maRate, diaChi, ngayMua, loaiThanhToan, isDanhGia, thanhTien, soLuong);
+                String trangThai = c.getString(10);
+                String isDanhGia = c.getString(11);
+                String thanhTien = c.getString(12);
+                DonHang newDH = new DonHang(maDH, maNV, maKH, maLaptop, maVoucher, maRate, diaChi,
+                        ngayMua, loaiThanhToan, trangThai, isDanhGia, thanhTien, soLuong);
                 Log.d(TAG, "selectDonHang: new DonHang: " + newDH.toString());
 
                 listDH.add(newDH);
@@ -80,12 +82,13 @@ public class DonHangDAO {
         values.put("maLaptop", donHang.getMaLaptop());
         values.put("maVoucher", donHang.getMaVoucher());
         values.put("maRate", donHang.getMaRate());
-        values.put("soLuong", donHang.getSoLuong());
         values.put("diaChi", donHang.getDiaChi());
         values.put("ngayMua", changeType.stringToLongDate(donHang.getNgayMua()));
         values.put("loaiThanhToan", donHang.getLoaiThanhToan());
+        values.put("trangThai", donHang.getTrangThai());
         values.put("isDanhGia", donHang.getIsDanhGia());
         values.put("thanhTien", donHang.getThanhTien());
+        values.put("soLuong", donHang.getSoLuong());
         Log.d(TAG, "insertDonHang: DonHang: " + donHang.toString());
         Log.d(TAG, "insertDonHang: Values: " + values);
 
@@ -100,7 +103,7 @@ public class DonHangDAO {
         }
     }
 
-    public void updateDonHang(DonHang donHang) {
+    public int updateDonHang(DonHang donHang) {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -110,25 +113,28 @@ public class DonHangDAO {
         values.put("maLaptop", donHang.getMaLaptop());
         values.put("maVoucher", donHang.getMaVoucher());
         values.put("maRate", donHang.getMaRate());
-        values.put("soLuong", donHang.getSoLuong());
         values.put("diaChi", donHang.getDiaChi());
         values.put("ngayMua", changeType.stringToLongDate(donHang.getNgayMua()));
         values.put("loaiThanhToan", donHang.getLoaiThanhToan());
+        values.put("trangThai", donHang.getTrangThai());
         values.put("isDanhGia", donHang.getIsDanhGia());
         values.put("thanhTien", donHang.getThanhTien());
+        values.put("soLuong", donHang.getSoLuong());
         Log.d(TAG, "updateDonHang: DonHang: " + donHang.toString());
         Log.d(TAG, "updateDonHang: Values: " + values);
 
         long ketqua = db.update("DonHang", values, "maDH=?", new String[]{String.valueOf(donHang.getMaDH())});
+        db.close();
         if (ketqua > 0) {
             Log.d(TAG, "updateDonHang: Sửa thành công");
+            return 1;
         } else {
             Log.d(TAG, "updateDonHang: Sửa thất bại");
+            return -1;
         }
-        db.close();
     }
 
-    public void deleteDonHang(DonHang donHang){
+    public void deleteDonHang(DonHang donHang) {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         Log.d(TAG, "deleteDonHang: DonHang: " + donHang.toString());
@@ -141,4 +147,5 @@ public class DonHangDAO {
         }
         db.close();
     }
+
 }

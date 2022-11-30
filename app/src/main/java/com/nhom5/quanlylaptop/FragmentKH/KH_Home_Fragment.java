@@ -18,6 +18,7 @@ import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.util.ArrayList;
 
@@ -25,15 +26,17 @@ public class KH_Home_Fragment extends Fragment {
 
     ImageView laptopView;
     KhachHang khachHang;
+    ChangeType changeType = new ChangeType();
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_kh_home, container, false);
         laptopView = view.findViewById(R.id.imageView_Laptop);
 
+        getUser();
         if (khachHang != null){
             TextView textView = view.findViewById(R.id.textView_TenUser);
-            textView.setText("Xin chào, " + khachHang.getHoKH() + " " + khachHang.getTenKH());
+            textView.setText("Xin chào, " + changeType.fullNameKhachHang(khachHang));
         }
         return view;
     }

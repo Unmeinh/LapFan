@@ -3,6 +3,7 @@ package com.nhom5.quanlylaptop.NVA_Loader;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -78,18 +79,24 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
     protected void onPostExecute(ArrayList<DonHang> listDon) {
         super.onPostExecute(listDon);
 
-        if (loadingView != null && relativeLayout != null && reView != null && countDH != null) {
-            loadingView.setVisibility(View.GONE);
-            relativeLayout.setVisibility(View.VISIBLE);
-            setupReView(listDon, reView);
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (loadingView != null && relativeLayout != null && reView != null && countDH != null) {
+                    loadingView.setVisibility(View.GONE);
+                    relativeLayout.setVisibility(View.VISIBLE);
+                    setupReView(listDon, reView);
+                }
+            }
+        }, 1000);
     }
 
     private void setupReView(ArrayList<DonHang> listDon, RecyclerView recyclerView) {
         Log.d(TAG, "setUpReView: true");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
-        QL_DonHang_Adapter ql_donHang_adapter = new QL_DonHang_Adapter(listLap, listDon, listKH, context);
+        QL_DonHang_Adapter ql_donHang_adapter = new QL_DonHang_Adapter(listLap, listDon, listKH, context, countDH);
         recyclerView.setAdapter(ql_donHang_adapter);
         setCountDH(listDon);
     }
@@ -101,59 +108,59 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
     private void addDemoDH() {
         ChangeType changeType = new ChangeType();
 
-        DonHang dh0 = new DonHang("DH0", "1", "5", "4", "1", "11",
+        DonHang dh0 = new DonHang("DH0", "1", "5", "4", "1", "No Data",
                 "The Reverie Saigon nằm bên trong tòa nhà Times Square Sài Gòn - Nguyễn Huệ - Quận 1 - TP Hồ Chí Minh",
-                "2022-11-19", "Ví FPT Pay", "false", changeType.stringToStringMoney("62013600"), 3);
+                "2022-11-19", "Ví FPT Pay", "Hoàn thành", "false", changeType.stringToStringMoney("62013600"), 3);
         donHangDAO.insertDonHang(dh0);
 
-        DonHang dh1 = new DonHang("DH1", "1", "4", "1", "4", "1",
+        DonHang dh1 = new DonHang("DH1", "1", "4", "1", "4", "No Data",
                 "The Reverie Saigon nằm bên trong tòa nhà Times Square Sài Gòn - Nguyễn Huệ - Quận 1 - TP Hồ Chí Minh",
-                "2022-11-20", "Ví FPT Pay", "false", changeType.stringToStringMoney("21762000"), 2);
+                "2022-11-20", "Ví FPT Pay", "Hoàn thành", "false", changeType.stringToStringMoney("21762000"), 2);
         donHangDAO.insertDonHang(dh1);
 
-        DonHang dh2 = new DonHang("DH2", "1", "1", "2", "4", "2",
+        DonHang dh2 = new DonHang("DH2", "1", "1", "2", "4", "No Data",
                 "Sofitel Metropole Hà Nội Số 15 - Phố Ngô Quyền - Hoàn Kiếm - Hà Nội",
-                "2022-11-26", "Ví FPT Pay", "false", changeType.stringToStringMoney("49312000"), 1);
+                "2022-11-26", "Ví FPT Pay", "Hoàn thành", "false", changeType.stringToStringMoney("49312000"), 1);
         donHangDAO.insertDonHang(dh2);
 
-        DonHang dh3 = new DonHang("DH3", "2", "2", "3", "1", "3",
+        DonHang dh3 = new DonHang("DH3", "2", "2", "3", "1", "No Data",
                 "Evason Hideaway - Đường Trần Phú - Lộc Thọ - Nha Trang - Khánh Hòa",
-                "2022-12-04", "Ví FPT Pay", "false", changeType.stringToStringMoney("58942400"), 2);
+                "2022-12-04", "Ví FPT Pay", "Hoàn thành", "false", changeType.stringToStringMoney("58942400"), 2);
         donHangDAO.insertDonHang(dh3);
 
-        DonHang dh4 = new DonHang("DH4", "2", "4", "4", "7", "4",
+        DonHang dh4 = new DonHang("DH4", "2", "4", "4", "7", "No Data",
                 "InterContinental Hanoi Westlake 05 Phố Từ Hoa - Quảng An - Tây Hồ - Hà Nội",
-                "2022-12-15", "Ví FPT Pay", "false", changeType.stringToStringMoney("204645600"), 4);
+                "2022-12-15", "Ví FPT Pay", "Hoàn thành", "false", changeType.stringToStringMoney("204645600"), 4);
         donHangDAO.insertDonHang(dh4);
 
-        DonHang dh5 = new DonHang("DH5", "1", "3", "5", "5", "5",
+        DonHang dh5 = new DonHang("DH5", "1", "3", "5", "5", "No Data",
                 "Khách sạn JW Marriott Hanoi - Đường Đỗ Đức Dục - Mễ Trì - Từ Liêm - Hà Nội",
-                "2022-12-21", "Ví FPT Pay", "false", changeType.stringToStringMoney("63816000"), 3);
+                "2022-12-21", "Ví FPT Pay", "Hoàn thành", "false", changeType.stringToStringMoney("63816000"), 3);
         donHangDAO.insertDonHang(dh5);
 
-        DonHang dh6 = new DonHang("DH6", "3", "3", "9", "6", "6",
+        DonHang dh6 = new DonHang("DH6", "3", "3", "9", "6", "No Data",
                 "Khách sạn JW Marriott Hanoi - Đường Đỗ Đức Dục - Mễ Trì - Từ Liêm - Hà Nội",
-                "2022-12-25", "Ví FPT Pay", "false", changeType.stringToStringMoney("19166000"), 2);
+                "2022-12-25", "Ví FPT Pay", "Hoàn thành", "false", changeType.stringToStringMoney("19166000"), 2);
         donHangDAO.insertDonHang(dh6);
 
-        DonHang dh7 = new DonHang("DH7", "4", "4", "11", "6", "7",
+        DonHang dh7 = new DonHang("DH7", "4", "4", "11", "6", "No Data",
                 "InterContinental Hanoi Westlake 05 Phố Từ Hoa - Quảng An - Tây Hồ - Hà Nội",
-                "2022-12-31", "Thanh toán khi nhận hàng", "false", changeType.stringToStringMoney("44086000"), 2);
+                "2022-12-31", "Thanh toán khi nhận hàng", "Hoàn thành", "false", changeType.stringToStringMoney("44086000"), 2);
         donHangDAO.insertDonHang(dh7);
 
-        DonHang dh8 = new DonHang("DH8", "3", "2", "17", "4", "8",
+        DonHang dh8 = new DonHang("DH8", "3", "2", "17", "4", "No Data",
                 "Evason Hideaway - Đường Trần Phú - Lộc Thọ - Nha Trang - Khánh Hòa",
-                "2022-01-01", "Thanh toán khi nhận hàng", "false", changeType.stringToStringMoney("25821000"), 1);
+                "2022-01-01", "Thanh toán khi nhận hàng", "Hoàn thành", "false", changeType.stringToStringMoney("25821000"), 1);
         donHangDAO.insertDonHang(dh8);
 
-        DonHang dh9 = new DonHang("DH9", "2", "3", "24", "3", "9",
+        DonHang dh9 = new DonHang("DH9", "2", "3", "24", "3", "No Data",
                 "Khách sạn JW Marriott Hanoi - Đường Đỗ Đức Dục - Mễ Trì - Từ Liêm - Hà Nội",
-                "2022-01-21", "Thanh toán khi nhận hàng", "false", changeType.stringToStringMoney("42343000"), 1);
+                "2022-01-21", "Thanh toán khi nhận hàng", "Hoàn thành", "false", changeType.stringToStringMoney("42343000"), 1);
         donHangDAO.insertDonHang(dh9);
 
-        DonHang dh10 = new DonHang("DH10", "2", "4", "28", "2", "10",
+        DonHang dh10 = new DonHang("DH10", "2", "4", "28", "2", "No Data",
                 "InterContinental Hanoi Westlake 05 Phố Từ Hoa - Quảng An - Tây Hồ - Hà Nội",
-                "2022-02-12", "Thanh toán khi nhận hàng", "false", changeType.stringToStringMoney("26992500"), 1);
+                "2022-02-12", "Thanh toán khi nhận hàng", "Hoàn thành", "false", changeType.stringToStringMoney("26992500"), 1);
         donHangDAO.insertDonHang(dh10);
     }
 }

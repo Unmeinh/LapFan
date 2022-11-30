@@ -53,7 +53,7 @@ public class SignIn_Activity extends AppCompatActivity {
         loginTime();
         goToSignUp();
 
-        if (roleUser.equals("admin")){
+        if (roleUser.equals("admin") || roleUser.equals("nhanVien")){
             LinearLayout linearLayout = findViewById(R.id.layout_Sign_Up);
             linearLayout.setVisibility(View.GONE);
         }

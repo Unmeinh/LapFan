@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -46,6 +47,7 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
     KhachHangDAO khachHangDAO;
     NhanVienDAO nhanVienDAO;
     VoucherDAO voucherDAO;
+    String roleUser;
     NhanVien nhanVien;
     KhachHang khachHang;
     Laptop laptop;
@@ -62,6 +64,7 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
         nhanVienDAO = new NhanVienDAO(context);
         voucherDAO = new VoucherDAO(context);
 
+        getUser();
         findViewId();
         setUpListDialog();
         useToolbar();
@@ -112,15 +115,35 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
             NhanVien getNV = listNV.get(0);
             KhachHang getKH = listKH.get(0);
             Laptop getLap = listLap.get(0);
-            ThongBao thongBao = new ThongBao("TB", donHang.getMaKH(), "Quản lý đơn hàng",
-                    " Bạn đã được tạo một đơn hàng mới bởi Nhân viên " + getNV.getHoNV() + " " + getNV.getTenNV() + " :\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
-            thongBaoDAO.insertThongBao(thongBao, "kh");
-            ThongBao thongBao1 = new ThongBao("TB", donHang.getMaNV(), "Quản lý đơn hàng",
-                    " Bạn đã tạo một đơn hàng mới cho Khách hàng " + getKH.getHoKH() + " " + getKH.getTenKH() + " :\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
-            thongBaoDAO.insertThongBao(thongBao1, "nv");
-            ThongBao thongBao2 = new ThongBao("TB", "admin", "Quản lý đơn hàng",
-                    " Nhân viên " + getNV.getHoNV() + " " + getNV.getTenNV() + " đã tạo một đơn hàng mới cho Khách hàng " + getKH.getHoKH() + " " + getKH.getTenKH() + "\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
-            thongBaoDAO.insertThongBao(thongBao2, "ad");
+            ThongBao thongBaoKH = new ThongBao("TB", donHang.getMaKH(), "Quản lý đơn hàng",
+                    " Bạn đã được tạo một đơn hàng mới bởi Nhân viên " + changeType.fullNameNhanVien(getNV) + " :\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
+            thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+            if (!roleUser.equals("null")){
+                if (roleUser.equals("admin")){
+                    ThongBao thongBaoAD = new ThongBao("TB", "admin", "Quản lý đơn hàng",
+                            " Bạn đã tạo một đơn hàng mới cho Khách hàng " + changeType.fullNameKhachHang(getKH) + " :\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
+                    thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                    ThongBao thongBaoNV = new ThongBao("TB", donHang.getMaNV(), "Quản lý đơn hàng",
+                            " Bạn đã được Admin tạo đơn hàng mới " + "\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
+                    thongBaoDAO.insertThongBao(thongBaoNV, "nv");
+                } else {
+                    ThongBao thongBaoNV = new ThongBao("TB", donHang.getMaNV(), "Quản lý đơn hàng",
+                            " Bạn đã tạo một đơn hàng mới cho Khách hàng " + changeType.fullNameKhachHang(getKH) + " :\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
+                    thongBaoDAO.insertThongBao(thongBaoNV, "nv");
+                    ThongBao thongBaoAD = new ThongBao("TB", "admin", "Quản lý đơn hàng",
+                            " Nhân viên " + changeType.fullNameNhanVien(getNV) + " đã tạo một đơn hàng mới cho Khách hàng " + changeType.fullNameKhachHang(getKH) + "\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
+                    thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                }
+            }
+        }
+    }
+
+    private void getUser() {
+        SharedPreferences pref = context.getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            roleUser = "null";
+        } else {
+            roleUser = pref.getString("who", "");
         }
     }
 
@@ -151,10 +174,10 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
             lap = laptop.getTenLaptop();
         }
         if (khachHang != null) {
-            kh = khachHang.getHoKH() + " " + khachHang.getTenKH();
+            kh = changeType.fullNameKhachHang(khachHang);
         }
         if (nhanVien != null) {
-            nv = nhanVien.getHoNV() + " " + nhanVien.getTenNV();
+            nv = changeType.fullNameNhanVien(nhanVien);
         }
         if (voucher != null) {
             vou = voucher.getTenVoucher();
@@ -247,7 +270,7 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
 
         return new DonHang("", nhanVien.getMaNV(), khachHang.getMaKH(), laptop.getMaLaptop(),
                 voucher.getMaVoucher(), "No Data", dc, dateSQL, "Thanh toán tại cửa hàng",
-                "false", changeType.stringToStringMoney(tt), sl);
+                "Hoàn thành", "false", changeType.stringToStringMoney(tt), sl);
     }
 
     private void setUpListDialog() {
@@ -270,7 +293,7 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         nhanVien = list.get(position);
-                        tilNV.getEditText().setText(nhanVien.getHoNV() + " " + nhanVien.getTenNV());
+                        tilNV.getEditText().setText(changeType.fullNameNhanVien(nhanVien));
                         dialog.dismiss();
                     }
                 });
@@ -290,7 +313,7 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         nhanVien = list.get(position);
-                        tilNV.getEditText().setText(nhanVien.getHoNV() + " " + nhanVien.getTenNV());
+                        tilNV.getEditText().setText(changeType.fullNameNhanVien(nhanVien));
                         dialog.dismiss();
                     }
                 });
@@ -310,7 +333,7 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         khachHang = list.get(position);
-                        tilKH.getEditText().setText(khachHang.getHoKH() + " " + khachHang.getTenKH());
+                        tilKH.getEditText().setText(changeType.fullNameKhachHang(khachHang));
                         dialog.dismiss();
                     }
                 });
@@ -330,7 +353,7 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         khachHang = list.get(position);
-                        tilKH.getEditText().setText(khachHang.getHoKH() + " " + khachHang.getTenKH());
+                        tilKH.getEditText().setText(changeType.fullNameKhachHang(khachHang));
                         dialog.dismiss();
                     }
                 });

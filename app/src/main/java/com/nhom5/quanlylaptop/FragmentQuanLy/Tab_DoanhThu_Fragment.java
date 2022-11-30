@@ -29,7 +29,7 @@ import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.R;
-import com.nhom5.quanlylaptop.Support.AddData;
+import com.nhom5.quanlylaptop.Support.GetData;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.text.SimpleDateFormat;
@@ -40,7 +40,7 @@ import java.util.Date;
 public class Tab_DoanhThu_Fragment extends Fragment implements OnChartValueSelectedListener {
 
     PieChart mPieChart;
-    AddData addData;
+    GetData getData;
     DonHangDAO donHangDAO;
     LaptopDAO laptopDAO;
     String getMonth;
@@ -60,7 +60,7 @@ public class Tab_DoanhThu_Fragment extends Fragment implements OnChartValueSelec
         changeTime = view.findViewById(R.id.change_Time);
         textView_Date = view.findViewById(R.id.textView_Date);
         textView_GiaTien = view.findViewById(R.id.textView_GiaTien);
-        addData = new AddData(getContext());
+        getData = new GetData(getContext());
         donHangDAO = new DonHangDAO(getContext());
         laptopDAO = new LaptopDAO(getContext());
 
@@ -74,10 +74,10 @@ public class Tab_DoanhThu_Fragment extends Fragment implements OnChartValueSelec
         listDon = donHangDAO.selectDonHang(null, null, null, null);
         listLap = laptopDAO.selectLaptop(null, null, null, null);
 
-        khoanThu = addData.tinhTongKhoanThu(listDon);
-        khoanChi = addData.tinhTongKhoanChi(listLap);
-        slNhap = addData.tinhSoLuongNhapVe(listLap);
-        slBan = addData.tinhSoLuongDaBan(listLap);
+        khoanThu = getData.tinhTongKhoanThu(listDon);
+        khoanChi = getData.tinhTongKhoanChi(listLap);
+        slNhap = getData.tinhSoLuongNhapVe(listLap);
+        slBan = getData.tinhSoLuongDaBan(listLap);
     }
 
     private void setUpPieChart() {
@@ -152,7 +152,7 @@ public class Tab_DoanhThu_Fragment extends Fragment implements OnChartValueSelec
             listDon = donHangDAO.selectDonHang(null, "ngayMua>=? and ngayMua<?", time, null);
             if (listDon != null) {
                 if (listDon.size() > 0) {
-                    int doanhThu = addData.tinhTongKhoanThu(listDon) * 1000;
+                    int doanhThu = getData.tinhTongKhoanThu(listDon) * 1000;
                     textView_GiaTien.setText(changeType.stringToStringMoney(doanhThu + ""));
                 } else {
                     textView_GiaTien.setText(changeType.stringToStringMoney("0"));

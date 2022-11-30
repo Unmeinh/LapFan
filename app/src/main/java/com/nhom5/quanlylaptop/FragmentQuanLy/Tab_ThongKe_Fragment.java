@@ -4,36 +4,22 @@ import android.app.DatePickerDialog;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
-import com.nhom5.quanlylaptop.DAO.DonHangDAO;
-import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
-import com.nhom5.quanlylaptop.Entity.DonHang;
-import com.nhom5.quanlylaptop.Entity.NhanVien;
-import com.nhom5.quanlylaptop.NAV_Adapter.QL_NhanVien_Adapter;
-import com.nhom5.quanlylaptop.NAV_Adapter.QL_ThongKe_Adapter;
 import com.nhom5.quanlylaptop.NVA_Loader.QL_ThongKe_Loader;
 import com.nhom5.quanlylaptop.R;
-import com.nhom5.quanlylaptop.Support.AddData;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
 
 public class Tab_ThongKe_Fragment extends Fragment {
 

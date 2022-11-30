@@ -19,16 +19,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.DAO.DiaChiDAO;
-import com.nhom5.quanlylaptop.DAO.GioHangDAO;
-import com.nhom5.quanlylaptop.DAO.LaptopDAO;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.Entity.DiaChi;
-import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.IdData;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
-import com.nhom5.quanlylaptop.KH_Adapter.KH_ThanhToan_Adapter;
 import com.nhom5.quanlylaptop.KH_Loader.KH_ThanhToan_Loader;
 import com.nhom5.quanlylaptop.R;
-import com.nhom5.quanlylaptop.Support.AddData;
 
 import java.util.ArrayList;
 
@@ -41,6 +38,7 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
     LinearLayout linearLayout;
     String TAG = "KH_ThanhToan_Activity_____", input = "";
     Context context = this;
+    KhachHang khachHang;
     String maDC;
     int pos = 0;
 
@@ -55,22 +53,42 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
         relativeLayout = findViewById(R.id.layoutView);
         linearLayout = findViewById(R.id.loadingView);
 
+        getUserKH();
         getInput();
         doiDiaChi();
         doiHTTT();
         useToolbar();
         getSetDiaChi();
 
-        KH_ThanhToan_Loader kh_thanhToan_loader = new KH_ThanhToan_Loader(context, laptop, recyclerView, linearLayout, relativeLayout, KH_ThanhToan_Activity.this);
-        kh_thanhToan_loader.execute("");
+        if (khachHang != null){
+            KH_ThanhToan_Loader kh_thanhToan_loader = new KH_ThanhToan_Loader(context, laptop, recyclerView, linearLayout, relativeLayout, KH_ThanhToan_Activity.this);
+            kh_thanhToan_loader.execute(khachHang.getMaKH());
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+        getUserKH();
         getSetDiaChi();
-        KH_ThanhToan_Loader kh_thanhToan_loader = new KH_ThanhToan_Loader(context, laptop, recyclerView, linearLayout, relativeLayout, KH_ThanhToan_Activity.this);
-        kh_thanhToan_loader.execute("");
+        if (khachHang != null){
+            KH_ThanhToan_Loader kh_thanhToan_loader = new KH_ThanhToan_Loader(context, laptop, recyclerView, linearLayout, relativeLayout, KH_ThanhToan_Activity.this);
+            kh_thanhToan_loader.execute(khachHang.getMaKH());
+        }
+    }
+
+    private void getUserKH() {
+        SharedPreferences pref = context.getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            khachHang = null;
+        } else {
+            String user = pref.getString("who", "");
+            KhachHangDAO khachHangDAO = new KhachHangDAO(context);
+            ArrayList<KhachHang> list = khachHangDAO.selectKhachHang(null, "maKH=?", new String[]{user}, null);
+            if (list.size() > 0) {
+                khachHang = list.get(0);
+            }
+        }
     }
 
     private void doiDiaChi() {

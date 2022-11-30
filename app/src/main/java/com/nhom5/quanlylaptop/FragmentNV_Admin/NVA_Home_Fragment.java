@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,10 +20,9 @@ import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.R;
-import com.nhom5.quanlylaptop.Support.AddData;
+import com.nhom5.quanlylaptop.Support.GetData;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,7 +33,7 @@ public class NVA_Home_Fragment extends Fragment {
     LinearLayout changeTime;
     TextView textView_Date, textView_GiaTien;
     String getDate;
-    AddData addData;
+    GetData getData;
     ChangeType changeType = new ChangeType();
     ArrayList<Laptop> listLap = new ArrayList<>();
     ArrayList<DonHang> listDon = new ArrayList<>();
@@ -51,7 +49,7 @@ public class NVA_Home_Fragment extends Fragment {
         changeTime = view.findViewById(R.id.change_Time);
         textView_Date = view.findViewById(R.id.textView_Date);
         textView_GiaTien = view.findViewById(R.id.textView_GiaTien);
-        addData = new AddData(getContext());
+        getData = new GetData(getContext());
         laptopDAO = new LaptopDAO(getContext());
         donHangDAO = new DonHangDAO(getContext());
         listLap = laptopDAO.selectLaptop(null, null, null, null);
@@ -90,7 +88,7 @@ public class NVA_Home_Fragment extends Fragment {
             if (listDon != null) {
                 Log.d(TAG, "setDoanhThu: hope");
                 if (listDon.size() > 0) {
-                    int doanhThu = addData.tinhTongKhoanThu(listDon) * 1000;
+                    int doanhThu = getData.tinhTongKhoanThu(listDon) * 1000;
                     textView_GiaTien.setText(changeType.stringToStringMoney(doanhThu+""));
                 } else {
                     textView_GiaTien.setText(changeType.stringToStringMoney("0"));
@@ -113,7 +111,7 @@ public class NVA_Home_Fragment extends Fragment {
         giaTien = view.findViewById(R.id.textView_GiaTien_Laptop);
         imageView = view.findViewById(R.id.imageView_Laptop);
         titleSort.setText("Sản phẩm bán chạy nhất theo doanh thu");
-        Laptop laptop = addData.getTop1DoanhThu(listLap);
+        Laptop laptop = getData.getTop1DoanhThu(listLap);
         if (laptop != null) {
             tenLaptop.setText(laptop.getTenLaptop());
             giaTien.setText("Giá tiền: " + laptop.getGiaTien());
@@ -124,7 +122,7 @@ public class NVA_Home_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 titleSort.setText("Sản phẩm bán chạy nhất theo doanh thu");
-                Laptop laptop = addData.getTop1DoanhThu(listLap);
+                Laptop laptop = getData.getTop1DoanhThu(listLap);
                 if (laptop != null) {
                     tenLaptop.setText(laptop.getTenLaptop());
                     giaTien.setText("Giá tiền: " + laptop.getGiaTien());
@@ -137,7 +135,7 @@ public class NVA_Home_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 titleSort.setText("Sản phẩm thấp tiền bán chạy nhất theo số lượng");
-                Laptop laptop = addData.getTop1SoLuong(listLap, "asc");
+                Laptop laptop = getData.getTop1SoLuong(listLap, "asc");
                 if (laptop != null) {
                     tenLaptop.setText(laptop.getTenLaptop());
                     giaTien.setText("Giá tiền: " + laptop.getGiaTien());
@@ -150,7 +148,7 @@ public class NVA_Home_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 titleSort.setText("Sản phẩm cao tiền bán chạy nhất theo số lượng");
-                Laptop laptop = addData.getTop1SoLuong(listLap, "desc");
+                Laptop laptop = getData.getTop1SoLuong(listLap, "desc");
                 if (laptop != null) {
                     tenLaptop.setText(laptop.getTenLaptop());
                     giaTien.setText("Giá tiền: " + laptop.getGiaTien());

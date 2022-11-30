@@ -1,27 +1,22 @@
 package com.nhom5.quanlylaptop.Support;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.util.Log;
-import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
-import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.NhanVien;
-import com.nhom5.quanlylaptop.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
-public class AddData {
+public class GetData {
     Context context;
     NhanVienDAO nhanVienDAO;
     DonHangDAO donHangDAO;
@@ -29,7 +24,7 @@ public class AddData {
     ChangeType changeType = new ChangeType();
     String TAG = "AddData_____";
 
-    public AddData(Context context) {
+    public GetData(Context context) {
         this.context = context;
         nhanVienDAO = new NhanVienDAO(context);
         donHangDAO = new DonHangDAO(context);
@@ -179,6 +174,11 @@ public class AddData {
             }
         }
         return soLuong;
+    }
+
+    public String getNowDateSQL(){
+        Date currentTime = Calendar.getInstance().getTime();
+        return new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
     }
 
     public void addDemoLaptopDell() {

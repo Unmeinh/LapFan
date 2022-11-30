@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -50,8 +51,8 @@ public class QL_KhachHang_Loader extends AsyncTask<String, Void, ArrayList<Khach
     protected ArrayList<KhachHang> doInBackground(String... strings) {
         khachHangDAO = new KhachHangDAO(context);
         ArrayList<KhachHang> list = khachHangDAO.selectKhachHang(null, null, null, null);
-        if (list != null){
-            if (list.size() == 0){
+        if (list != null) {
+            if (list.size() == 0) {
                 addDemoKH();
             }
         }
@@ -63,28 +64,34 @@ public class QL_KhachHang_Loader extends AsyncTask<String, Void, ArrayList<Khach
     protected void onPostExecute(ArrayList<KhachHang> listKH) {
         super.onPostExecute(listKH);
 
-        if (loadingView != null && relativeLayout != null && reView != null && countKH != null){
-            loadingView.setVisibility(View.GONE);
-            relativeLayout.setVisibility(View.VISIBLE);
-            setupReView(listKH, reView);
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (loadingView != null && relativeLayout != null && reView != null && countKH != null) {
+                    loadingView.setVisibility(View.GONE);
+                    relativeLayout.setVisibility(View.VISIBLE);
+                    setupReView(listKH, reView);
+                }
+            }
+        }, 1000);
     }
 
     private void setupReView(ArrayList<KhachHang> listKH, RecyclerView recyclerView) {
         Log.d(TAG, "setUpReView: true");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(linearLayoutManager);
-        QL_KhachHang_Adapter ql_khachHang_adapter = new QL_KhachHang_Adapter(listKH, context);
+        QL_KhachHang_Adapter ql_khachHang_adapter = new QL_KhachHang_Adapter(listKH, context, countKH);
         recyclerView.setAdapter(ql_khachHang_adapter);
         setCountKH(listKH);
     }
 
-    private void setCountKH(ArrayList<KhachHang> listKH){
+    private void setCountKH(ArrayList<KhachHang> listKH) {
         Log.d(TAG, "setCountKH: countKh " + listKH.size());
         countKH.setText(String.valueOf(listKH.size()));
     }
 
-    private void addDemoKH(){
+    private void addDemoKH() {
         ChangeType changeType = new ChangeType();
         ViTienDAO viTienDAO = new ViTienDAO(context);
 
@@ -92,35 +99,35 @@ public class QL_KhachHang_Loader extends AsyncTask<String, Void, ArrayList<Khach
                 "tom1234", "Hoa Kỳ", "003071962", "true",
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.tom_cruise))));
         khachHangDAO.insertKhachHang(kh0);
-        ViTien vi1 = new ViTien("Vi0", "1", changeType.stringToStringMoney("62000000"), "MBBank");
+        ViTien vi1 = new ViTien("1", "1", changeType.stringToStringMoney("62000000"), "MBBank");
         viTienDAO.insertViTien(vi1);
 
         KhachHang kh1 = new KhachHang("1", "Hugh", "Jackman", "Nam", "hugh@gmail.com",
                 "hugh5678", "Úc", "012101968", "true",
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.hugh_jackman))));
         khachHangDAO.insertKhachHang(kh1);
-        ViTien vi2 = new ViTien("Vi1", "2", changeType.stringToStringMoney("68000000"), "MBBank");
+        ViTien vi2 = new ViTien("2", "2", changeType.stringToStringMoney("68000000"), "MBBank");
         viTienDAO.insertViTien(vi2);
 
         KhachHang kh2 = new KhachHang("2", "Ryan", "Reynolds", "Nam", "ryan@gmail.com",
                 "ryan0987", "Canada", "023101976", "true",
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.ryan_reynolds))));
         khachHangDAO.insertKhachHang(kh2);
-        ViTien vi3 = new ViTien("Vi2", "3", changeType.stringToStringMoney("76000000"), "MBBank");
+        ViTien vi3 = new ViTien("3", "3", changeType.stringToStringMoney("76000000"), "MBBank");
         viTienDAO.insertViTien(vi3);
 
         KhachHang kh3 = new KhachHang("3", "Nguyễn", "Thanh Tùng", "Nam", "tung@gmail.com",
                 "sontung", "Việt Nam", "05071994", "true",
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.son_tung))));
         khachHangDAO.insertKhachHang(kh3);
-        ViTien vi4 = new ViTien("Vi3", "4", changeType.stringToStringMoney("94000000"), "MBBank");
+        ViTien vi4 = new ViTien("4", "4", changeType.stringToStringMoney("94000000"), "MBBank");
         viTienDAO.insertViTien(vi4);
 
         KhachHang kh4 = new KhachHang("4", "Nguyễn", "Xuân Bắc", "Nam", "xb@gmail.com",
                 "xuanbac", "Việt Nam", "021081976", "true",
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.xuan_bac))));
         khachHangDAO.insertKhachHang(kh4);
-        ViTien vi5 = new ViTien("Vi4", "5", changeType.stringToStringMoney("76000000"), "MBBank");
+        ViTien vi5 = new ViTien("5", "5", changeType.stringToStringMoney("76000000"), "MBBank");
         viTienDAO.insertViTien(vi5);
     }
 

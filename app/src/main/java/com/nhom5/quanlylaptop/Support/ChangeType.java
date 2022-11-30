@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.bumptech.glide.Glide;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
+import com.nhom5.quanlylaptop.Entity.NhanVien;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -130,6 +132,14 @@ public class ChangeType {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public String fullNameKhachHang(KhachHang khachHang) {
+        return khachHang.getHoKH() + " " + khachHang.getTenKH();
+    }
+
+    public String fullNameNhanVien(NhanVien nhanVien) {
+        return nhanVien.getHoNV() + " " + nhanVien.getTenNV();
     }
 
     public float getRatingFloat(float rating) {

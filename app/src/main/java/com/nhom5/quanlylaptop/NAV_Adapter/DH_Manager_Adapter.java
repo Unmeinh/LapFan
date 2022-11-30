@@ -28,6 +28,7 @@ public class DH_Manager_Adapter extends BaseAdapter {
     ArrayList<Voucher> listVou;
     String TAG = "DH_Manager_Adapter_____";
     TextView stt, name, other;
+    ChangeType changeType = new ChangeType();
 
     public DH_Manager_Adapter(ArrayList<Laptop> listLap, ArrayList<NhanVien> listNV, ArrayList<KhachHang> listKH, ArrayList<Voucher> listVou) {
         this.listLap = listLap;
@@ -84,13 +85,13 @@ public class DH_Manager_Adapter extends BaseAdapter {
         if (listKH != null) {
             KhachHang khachHang = listKH.get(pos);
             stt.setText(String.valueOf(pos + 1));
-            name.setText(khachHang.getHoKH() + " " + khachHang.getTenKH());
+            name.setText(changeType.fullNameKhachHang(khachHang));
             other.setText(khachHang.getEmail());
         }
         if (listNV != null) {
             NhanVien nhanVien = listNV.get(pos);
             stt.setText(String.valueOf(pos + 1));
-            name.setText(nhanVien.getHoNV() + " " + nhanVien.getTenNV());
+            name.setText(changeType.fullNameNhanVien(nhanVien));
             other.setText(nhanVien.getEmail());
         }
         if (listVou != null) {
