@@ -34,7 +34,7 @@ public class NV_DonHang_Activity extends AppCompatActivity {
     Context context;
     String TAG = "NV_DonHang_Activity_____";
     RecyclerView recyclerView;
-    LinearLayout linearLayout;
+    LinearLayout linearLayout, linearDonHangEmpty;
     NhanVien nhanVien;
 
     @Override
@@ -44,10 +44,11 @@ public class NV_DonHang_Activity extends AppCompatActivity {
         context = this;
         recyclerView = findViewById(R.id.recyclerView_NV_DonHang);
         linearLayout = findViewById(R.id.loadingView);
+        linearDonHangEmpty = findViewById(R.id.linearDonHangEmpty);
 
         getUser();
         if (nhanVien != null) {
-            NV_DonHang_Loader nv_donHang_loader = new NV_DonHang_Loader(context, recyclerView, linearLayout);
+            NV_DonHang_Loader nv_donHang_loader = new NV_DonHang_Loader(context, recyclerView, linearLayout, linearDonHangEmpty);
             nv_donHang_loader.execute(nhanVien.getMaNV());
         }
         useToolbar();

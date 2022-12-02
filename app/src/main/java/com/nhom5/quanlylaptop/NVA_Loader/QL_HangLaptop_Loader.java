@@ -111,7 +111,7 @@ public class QL_HangLaptop_Loader extends AsyncTask<String, Void, ArrayList<Hang
 
         Bitmap bmMac = BitmapFactory.decodeResource(context.getResources(),
                 R.drawable.img_macbook);
-        HangLaptop mac = new HangLaptop("LMac", "MacBook",
+        HangLaptop mac = new HangLaptop("LMacBook", "MacBook",
                 changeType.checkByteInput(changeType.bitmapToByte(bmMac)));
         hangLaptopDAO.insertHangLaptop(mac);
     }

@@ -76,7 +76,7 @@ public class KH_DiaChi_Loader extends AsyncTask<String, Void, ArrayList<DiaChi>>
                 , "Dinh thự Novo-Ogaryevo", "Nga", "Moscow", "Phía tây");
         diaChiDAO.insertDiaChi(dc3);
 
-        DiaChi dc4 = new DiaChi("DC3", "2", "Donald Trump", "014041944"
+        DiaChi dc4 = new DiaChi("DC3", "2", "Nguyễn Phú Trọng", "014041944"
                 , "Số 5 phố Thiền Quang", "Hà Nội", "Hai Bà Trưng", "Nguyễn Du");
         diaChiDAO.insertDiaChi(dc4);
 

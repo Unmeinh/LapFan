@@ -62,7 +62,6 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         gioHangDAO = new GioHangDAO(context);
 
         getUser();
-        useToolbar();
         getInfoLaptop();
         setInfoLaptop();
         addToCart();
@@ -71,8 +70,10 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         if (openFrom != null) {
             if (openFrom.equals("viewer")) {
                 layout.setVisibility(View.VISIBLE);
+                useToolbar(openFrom);
             } else {
                 layout.setVisibility(View.GONE);
+                useToolbar(openFrom);
             }
         }
     }
@@ -102,7 +103,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         });
     }
 
-    private void getUser(){
+    private void getUser() {
         SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
         if (pref == null) {
             khachHang = null;
@@ -110,34 +111,51 @@ public class Info_Laptop_Activity extends AppCompatActivity {
             String user = pref.getString("who", "");
             KhachHangDAO khachHangDAO = new KhachHangDAO(context);
             ArrayList<KhachHang> list = khachHangDAO.selectKhachHang(null, "maKH=?", new String[]{user}, null);
-            if (list.size() > 0){
+            if (list.size() > 0) {
                 khachHang = list.get(0);
             }
         }
     }
 
     private void addToCart() {
-        listGio = gioHangDAO.selectGioHang(null, null, null, null);
-        if (listGio != null) {
-            themVaoGio.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (laptop.getSoLuong() != 0) {
-                        GioHang gioHang = new GioHang("GH" + listGio.size(), laptop.getMaLaptop(),
-                                khachHang.getMaKH(), "2022-11-17", "No Data", 1);
-                        gioHangDAO.insertGioHang(gioHang);
+        if (khachHang != null){
+            listGio = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{khachHang.getMaKH()}, null);
+            if (listGio != null) {
+                themVaoGio.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if (laptop.getSoLuong() != 0) {
+                            GioHang getGio = null;
+                            for (GioHang gio : listGio) {
+                                if (gio.getMaLaptop().equals(laptop.getMaLaptop())) {
+                                    getGio = gio;
+                                }
+                            }
+                            if (getGio == null) {
+                                GioHang gioHang = new GioHang("GH" + listGio.size(), laptop.getMaLaptop(),
+                                        khachHang.getMaKH(), "2022-11-17", "No Data", 1);
+                                gioHangDAO.insertGioHang(gioHang);
 
-                        Date currentTime = Calendar.getInstance().getTime();
-                        String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
-                        ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
-                        ThongBao thongBao = new ThongBao("TB", khachHang.getMaKH(), "Quản lý giỏ hàng",
-                                " Bạn đã thêm Laptop " + laptop.getTenLaptop() + " với giá " + laptop.getGiaTien() + " vào giỏ hàng.", date);
-                        thongBaoDAO.insertThongBao(thongBao, "kh");
-                    } else {
-                        Toast.makeText(context, "Sản phẩm đang hết hàng!\n Xin vui lòng đợi chúng tôi nhập sản phẩm!", Toast.LENGTH_SHORT).show();
+                                Date currentTime = Calendar.getInstance().getTime();
+                                String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
+                                ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
+                                ThongBao thongBao = new ThongBao("TB", khachHang.getMaKH(), "Quản lý giỏ hàng",
+                                        " Bạn đã thêm Laptop " + laptop.getTenLaptop() + " với giá " + laptop.getGiaTien() + " vào giỏ hàng.", date);
+                                thongBaoDAO.insertThongBao(thongBao, "kh");
+                            } else {
+                                if (getGio.getSoLuong() > laptop.getSoLuong()) {
+                                    Toast.makeText(context, "Số lượng sản phẩm trong giỏ tối đa!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    getGio.setSoLuong(getGio.getSoLuong() + 1);
+                                    gioHangDAO.updateGioHang(getGio);
+                                }
+                            }
+                        } else {
+                            Toast.makeText(context, "Sản phẩm đang hết hàng!\n Xin vui lòng đợi chúng tôi nhập sản phẩm!", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-            });
+                });
+            }
         }
     }
 
@@ -175,15 +193,92 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         }
     }
 
-    private void useToolbar() {
+    private void useToolbar(String openFrom) {
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar_Navi));
         ImageButton back = findViewById(R.id.imageButton_Back_Toolbar);
+        ImageButton home = findViewById(R.id.imageButton_Home);
+        ImageButton noti = findViewById(R.id.imageButton_Notifi);
+        ImageButton gio = findViewById(R.id.imageButton_GioHang);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+                if (pref != null) {
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("what", "none");
+                    editor.commit();
+                }
                 finish();
             }
         });
+
+        if (openFrom != null) {
+            if (openFrom.equals("other")) {
+                gio.setVisibility(View.GONE);
+                home.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+                        if (pref != null) {
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("what", "home");
+                            editor.commit();
+                        }
+                        finish();
+                    }
+                });
+                noti.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+                        if (pref != null) {
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("what", "noti");
+                            editor.commit();
+                        }
+                        finish();
+                    }
+                });
+            } else {
+                gio.setVisibility(View.VISIBLE);
+                home.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+                        if (pref != null) {
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("what", "home");
+                            editor.commit();
+                        }
+                        finish();
+                    }
+                });
+                noti.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+                        if (pref != null) {
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("what", "noti");
+                            editor.commit();
+                        }
+                        finish();
+                    }
+                });
+                gio.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+                        if (pref != null) {
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("what", "gio");
+                            editor.commit();
+                        }
+                        finish();
+                    }
+                });
+            }
+        }
     }
 
 }

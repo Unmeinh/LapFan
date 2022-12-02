@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+@SuppressLint("StaticFieldLeak")
 public class KH_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher>> {
     @SuppressLint("StaticFieldLeak")
     Context context;
@@ -38,12 +41,14 @@ public class KH_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
     RecyclerView reView;
     GioHang gioHang;
     String openFrom;
+    LinearLayout linearLayout;
     ChangeType changeType = new ChangeType();
     int pos;
 
-    public KH_Voucher_Loader(Context context, RecyclerView reView, String openFrom, int pos) {
+    public KH_Voucher_Loader(Context context, RecyclerView reView, LinearLayout linearLayout, String openFrom, int pos) {
         this.context = context;
         this.reView = reView;
+        this.linearLayout = linearLayout;
         this.openFrom = openFrom;
         this.pos = pos;
     }
@@ -78,8 +83,13 @@ public class KH_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
     protected void onPostExecute(ArrayList<Voucher> listVou) {
         super.onPostExecute(listVou);
 
-        if (reView != null && listVou != null){
-            setupReView(listVou, reView);
+        if (reView != null && listVou != null && linearLayout != null){
+            if (listVou.size() > 0){
+                linearLayout.setVisibility(View.GONE);
+                setupReView(listVou, reView);
+            } else {
+                linearLayout.setVisibility(View.VISIBLE);
+            }
         }
     }
 

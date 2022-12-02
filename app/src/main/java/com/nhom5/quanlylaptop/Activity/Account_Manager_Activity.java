@@ -36,6 +36,7 @@ import java.util.PropertyPermission;
 
 public class Account_Manager_Activity extends AppCompatActivity {
 
+    TextView tv_error_email, tv_error_ho_ten, tv_error_sdt, tv_error_gioiTinh, tv_error_queQuan;
     Spinner genderSpinner;
     AppCompatButton buttonUpdate;
     Context context = this;
@@ -57,6 +58,11 @@ public class Account_Manager_Activity extends AppCompatActivity {
         til_SDT = findViewById(R.id.textInput_SDT);
         til_QueQuan = findViewById(R.id.textInput_QueQuan);
         til_GioiTinh = findViewById(R.id.textInput_GioiTinh);
+        tv_error_email = findViewById(R.id.tv_error_email);
+        tv_error_ho_ten = findViewById(R.id.tv_error_ho_ten);
+        tv_error_sdt = findViewById(R.id.tv_error_sdt);
+        tv_error_gioiTinh = findViewById(R.id.tv_error_gioiTinh);
+        tv_error_queQuan = findViewById(R.id.tv_error_queQuan);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.gender_array, android.R.layout.simple_spinner_item);
@@ -76,7 +82,7 @@ public class Account_Manager_Activity extends AppCompatActivity {
         buttonUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getTextInput() == 1){
+                if (getTextInput() == 1) {
                     if (role.equals("kh")) {
                         String email = changeType.deleteSpaceText(til_Email.getEditText().getText().toString());
                         String ho = changeType.deleteSpaceText(til_Ho.getEditText().getText().toString());
@@ -124,7 +130,7 @@ public class Account_Manager_Activity extends AppCompatActivity {
         useToolbar();
     }
 
-    private int getTextInput(){
+    private int getTextInput() {
         String email = changeType.deleteSpaceText(til_Email.getEditText().getText().toString());
         String ho = changeType.deleteSpaceText(til_Ho.getEditText().getText().toString());
         String ten = changeType.deleteSpaceText(til_Ten.getEditText().getText().toString());
@@ -135,54 +141,80 @@ public class Account_Manager_Activity extends AppCompatActivity {
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             til_Email.setError("Định dạng email không hợp lệ!");
             til_Email.setErrorEnabled(true);
+            tv_error_email.setVisibility(View.VISIBLE);
+            tv_error_email.setText("Định dạng email không hợp lệ!");
+
             check = -1;
+
         } else {
             til_Email.setError("");
             til_Email.setErrorEnabled(false);
+            tv_error_email.setVisibility(View.INVISIBLE);
+            tv_error_email.setText("");
+
         }
 
         if (ho.isEmpty()) {
             til_Ho.setError("Họ không được bỏ trống!");
             til_Ho.setErrorEnabled(true);
+            tv_error_ho_ten.setVisibility(View.VISIBLE);
+            tv_error_ho_ten.setText("Họ và tên không được bỏ trống!");
             check = -1;
         } else {
             til_Ho.setError("");
             til_Ho.setErrorEnabled(false);
+            tv_error_ho_ten.setVisibility(View.INVISIBLE);
+            tv_error_ho_ten.setText("");
         }
 
         if (ten.isEmpty()) {
-            til_Ten.setError("Tên không được bỏ trống!");
+            til_Ten.setError("Ten không được bỏ trống!");
             til_Ten.setErrorEnabled(true);
+            tv_error_ho_ten.setVisibility(View.VISIBLE);
+            tv_error_ho_ten.setText("Họ và tên không được bỏ trống!");
             check = -1;
         } else {
             til_Ten.setError("");
             til_Ten.setErrorEnabled(false);
+            tv_error_ho_ten.setVisibility(View.INVISIBLE);
+            tv_error_ho_ten.setText("");
         }
 
         if (!Patterns.PHONE.matcher(sdt).matches()) {
             til_SDT.setError("Định dạng số điện thoại không hợp lệ!");
             til_SDT.setErrorEnabled(true);
+            tv_error_sdt.setVisibility(View.VISIBLE);
+            tv_error_sdt.setText("Định dạng số điện thoại không hợp lệ!");
             check = -1;
         } else {
             til_SDT.setError("");
             til_SDT.setErrorEnabled(false);
+            tv_error_sdt.setVisibility(View.INVISIBLE);
+            tv_error_sdt.setText("");
         }
 
         if (queQuan.isEmpty()) {
             til_QueQuan.setError("Quê quán không được bỏ trống!");
             til_QueQuan.setErrorEnabled(true);
+            tv_error_queQuan.setVisibility(View.VISIBLE);
+            tv_error_queQuan.setText("Quê quán không được bỏ trống!");
             check = -1;
         } else {
             til_QueQuan.setError("");
             til_QueQuan.setErrorEnabled(false);
+            tv_error_queQuan.setVisibility(View.INVISIBLE);
+            tv_error_queQuan.setText("");
         }
 
-        if (genderSpinner.getSelectedItemPosition() == 0){
-            til_GioiTinh.setError("Giới tính phải được chọn!");
-            til_GioiTinh.setErrorEnabled(true);
+        if (genderSpinner.getSelectedItemPosition() == 0) {
+
+            tv_error_gioiTinh.setVisibility(View.VISIBLE);
+            tv_error_gioiTinh.setText("Giới tính phải được chọn!");
+            check = -1;
+
         } else {
-            til_GioiTinh.setError("");
-            til_GioiTinh.setErrorEnabled(false);
+            tv_error_gioiTinh.setVisibility(View.INVISIBLE);
+            tv_error_gioiTinh.setText("");
         }
 
         return check;

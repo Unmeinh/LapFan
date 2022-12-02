@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -31,6 +30,13 @@
         android:theme="@style/Theme.QuanLyLaptop"
         tools:targetApi="31">
         <activity
+            android:name=".Activity.ForgotPass_Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".CreateWallet.TaoVi_Activity"
             android:exported="false">
             <meta-data
@@ -54,7 +60,6 @@
         <activity
             android:name=".HelloWorld.HelloActivity"
             android:exported="true">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -199,7 +204,6 @@
         <activity
             android:name=".Activity.MainActivity"
             android:exported="true">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -221,6 +225,5 @@
                 android:resource="@xml/file_paths" />
         </provider>
     </application>
-
 
 </manifest>

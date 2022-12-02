@@ -3,7 +3,10 @@ package com.nhom5.quanlylaptop.NVA_Loader;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,10 +32,14 @@ public class QL_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
     VoucherDAO voucherDAO;
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
+    @SuppressLint("StaticFieldLeak")
+    LinearLayout loadingView, linearEmpty;
 
-    public QL_Voucher_Loader(Context context, RecyclerView reView) {
+    public QL_Voucher_Loader(Context context, RecyclerView reView, LinearLayout loadingView, LinearLayout linearEmpty) {
         this.reView = reView;
         this.context = context;
+        this.loadingView = loadingView;
+        this.linearEmpty = linearEmpty;
     }
 
     @Override
@@ -58,9 +65,26 @@ public class QL_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
     protected void onPostExecute(ArrayList<Voucher> listVou) {
         super.onPostExecute(listVou);
 
-        if (reView != null) {
-            setupReView(listVou, reView);
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (loadingView != null && reView != null && linearEmpty != null) {
+                    if (listVou != null) {
+                        if (listVou.size() == 0) {
+                            loadingView.setVisibility(View.GONE);
+                            reView.setVisibility(View.GONE);
+                            linearEmpty.setVisibility(View.VISIBLE);
+                        } else {
+                            reView.setVisibility(View.VISIBLE);
+                            loadingView.setVisibility(View.GONE);
+                            linearEmpty.setVisibility(View.GONE);
+                            setupReView(listVou, reView);
+                        }
+                    }
+                }
+            }
+        }, 1000);
     }
 
     private void setupReView(ArrayList<Voucher> listVou, RecyclerView recyclerView) {

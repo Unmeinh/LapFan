@@ -38,7 +38,7 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
     @SuppressLint("StaticFieldLeak")
     TextView countDH;
     @SuppressLint("StaticFieldLeak")
-    LinearLayout loadingView;
+    LinearLayout loadingView, linearEmpty;
     @SuppressLint("StaticFieldLeak")
     RelativeLayout relativeLayout;
     LaptopDAO laptopDAO;
@@ -48,12 +48,13 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
     ArrayList<DonHang> listDon = new ArrayList<>();
     ArrayList<KhachHang> listKH = new ArrayList<>();
 
-    public QL_DonHang_Loader(Context context, RecyclerView reView, TextView countDH, LinearLayout loadingView, RelativeLayout relativeLayout) {
+    public QL_DonHang_Loader(Context context, RecyclerView reView, TextView countDH, LinearLayout loadingView, LinearLayout linearEmpty, RelativeLayout relativeLayout) {
         this.context = context;
         this.reView = reView;
         this.countDH = countDH;
         this.loadingView = loadingView;
         this.relativeLayout = relativeLayout;
+        this.linearEmpty = linearEmpty;
     }
 
     @Override
@@ -83,10 +84,21 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (loadingView != null && relativeLayout != null && reView != null && countDH != null) {
-                    loadingView.setVisibility(View.GONE);
-                    relativeLayout.setVisibility(View.VISIBLE);
-                    setupReView(listDon, reView);
+                if (loadingView != null && relativeLayout != null && linearEmpty != null && reView != null && countDH != null) {
+                    if (listDon != null) {
+                        if (listDon.size() == 0) {
+                            relativeLayout.setVisibility(View.GONE);
+                            loadingView.setVisibility(View.GONE);
+                            reView.setVisibility(View.GONE);
+                            linearEmpty.setVisibility(View.VISIBLE);
+                        } else {
+                            relativeLayout.setVisibility(View.VISIBLE);
+                            loadingView.setVisibility(View.GONE);
+                            reView.setVisibility(View.VISIBLE);
+                            linearEmpty.setVisibility(View.GONE);
+                            setupReView(listDon, reView);
+                        }
+                    }
                 }
             }
         }, 1000);

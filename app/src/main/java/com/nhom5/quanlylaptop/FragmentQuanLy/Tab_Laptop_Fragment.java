@@ -25,7 +25,7 @@ public class Tab_Laptop_Fragment extends Fragment {
     String TAG = "Tab_Laptop_Fragment_____";
     QL_Laptop_Loader QL_laptop_loader;
     RecyclerView reView;
-    LinearLayout loadingView;
+    LinearLayout loadingView, linearLayoutEmpty;
     RelativeLayout relativeLayout;
 
     @Override
@@ -36,8 +36,9 @@ public class Tab_Laptop_Fragment extends Fragment {
         loadingView = view.findViewById(R.id.loadingView);
         relativeLayout = view.findViewById(R.id.layoutView);
         reView = view.findViewById(R.id.recyclerView_Laptop);
+        linearLayoutEmpty = view.findViewById(R.id.linearLaptopEmpty);
 
-        QL_laptop_loader = new QL_Laptop_Loader(getContext(), reView, loadingView, relativeLayout);
+        QL_laptop_loader = new QL_Laptop_Loader(getContext(), reView, loadingView, linearLayoutEmpty, relativeLayout);
         QL_laptop_loader.execute("");
 
         themLaptop.setOnClickListener(new View.OnClickListener() {
@@ -49,4 +50,10 @@ public class Tab_Laptop_Fragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        QL_laptop_loader = new QL_Laptop_Loader(getContext(), reView, loadingView, linearLayoutEmpty, relativeLayout);
+        QL_laptop_loader.execute("");
+    }
 }

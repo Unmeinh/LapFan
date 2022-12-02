@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -27,6 +28,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.nhom5.quanlylaptop.Activity.PickRole_Activity;
 import com.nhom5.quanlylaptop.PagerAdapter.Admin_PagerAdapter_Bottom;
 import com.nhom5.quanlylaptop.PagerAdapter.Admin_PagerAdapter_Drawer;
+import com.nhom5.quanlylaptop.PagerAdapter.KH_PagerAdapter_Drawer;
 import com.nhom5.quanlylaptop.R;
 
 public class Main_Admin_Navi_Activity extends AppCompatActivity {
@@ -50,6 +52,34 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
         setViewNaviBottom();
         setViewNaviDrawer();
         useToolbar("", 0);
+
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("what", "none");
+            editor.commit();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            String infoWhat = pref.getString("what", "none");
+            if (infoWhat.equals("home")) {
+                setOnResumeNavi(0);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("what", "none");
+                editor.commit();
+            }
+            if (infoWhat.equals("noti")) {
+                setOnResumeNavi(1);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("what", "none");
+                editor.commit();
+            }
+        }
     }
 
     private void useToolbar(String title, int type) {
@@ -341,5 +371,30 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    private void setOnResumeNavi(int frag) {
+        Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(frag);
+        itemNaviDr = frag;
+        if (frag == 0) {
+            useToolbar("", 0);
+            bottomNavigationView.setVisibility(View.VISIBLE);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_home).setCheckable(true);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_home).setChecked(true);
+            naviView.getMenu().getItem(0).setChecked(true);
+            naviView.getMenu().getItem(0).setCheckable(true);
+            getSupportActionBar().show();
+        }
+        if (frag == 1) {
+            useToolbar("Thông Báo", 0);
+            bottomNavigationView.setVisibility(View.VISIBLE);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_noti).setCheckable(true);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_noti).setChecked(true);
+            naviView.getMenu().getItem(1).setChecked(true);
+            naviView.getMenu().getItem(1).setCheckable(true);
+            getSupportActionBar().show();
+        }
     }
 }

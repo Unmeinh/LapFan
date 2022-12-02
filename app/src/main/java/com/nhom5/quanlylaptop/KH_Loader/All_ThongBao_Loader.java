@@ -55,12 +55,13 @@ public class All_ThongBao_Loader extends AsyncTask<String, Void, ArrayList<Thong
     protected void onPostExecute(ArrayList<ThongBao> listTB) {
         super.onPostExecute(listTB);
 
-        if (reView != null && emptyLayout != null) {
-            loadingView.setVisibility(View.GONE);
+        if (reView != null && emptyLayout != null && loadingView != null) {
             if (listTB.size() > 0){
+                loadingView.setVisibility(View.GONE);
                 emptyLayout.setVisibility(View.GONE);
                 setupReView(listTB, reView);
             } else {
+                loadingView.setVisibility(View.GONE);
                 emptyLayout.setVisibility(View.VISIBLE);
             }
         }

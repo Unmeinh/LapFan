@@ -1,13 +1,16 @@
 package com.nhom5.quanlylaptop.Activity;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
@@ -68,6 +71,9 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
         findViewId();
         setUpListDialog();
         useToolbar();
+        Date currentTime = Calendar.getInstance().getTime();
+        String dateForm = new SimpleDateFormat("dd/MM/yyyy").format(currentTime);
+        tilDate.getEditText().setText(dateForm);
     }
 
     private void findViewId() {
@@ -150,21 +156,6 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
     private DonHang checkInputDonHang() {
         Date currentTime = Calendar.getInstance().getTime();
         String dateSQL = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
-        String dateForm = new SimpleDateFormat("dd/MM/yyyy").format(currentTime);
-
-        tilDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tilDate.getEditText().setText(dateForm);
-            }
-        });
-
-        tilDate.getEditText().setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tilDate.getEditText().setText(dateForm);
-            }
-        });
 
         String dc = tilDC.getEditText().getText().toString();
         String tt = tilTT.getEditText().getText().toString();
@@ -274,11 +265,13 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
     }
 
     private void setUpListDialog() {
-        View view = getLayoutInflater().inflate(R.layout.dialog_list, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inft = ((Activity) context).getLayoutInflater();
+        View view = inft.inflate(R.layout.dialog_list, null);
         TextView title = view.findViewById(R.id.textView_Title_Dialog);
         ListView listView = view.findViewById(R.id.listView_Item_DH);
-        Dialog dialog = new Dialog(context);
-        dialog.setContentView(view);
+        builder.setView(view);
+        Dialog dialog = builder.create();
 
         tilNV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -413,7 +406,7 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         voucher = list.get(position);
-                        tilVou.getEditText().setText(voucher.getTenVoucher() + " " + voucher.getGiamGia());
+                        tilVou.getEditText().setText(voucher.getTenVoucher() + " : Sale " + voucher.getGiamGia());
                         dialog.dismiss();
                     }
                 });
@@ -433,7 +426,7 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         voucher = list.get(position);
-                        tilVou.getEditText().setText(voucher.getTenVoucher() + " " + voucher.getGiamGia());
+                        tilVou.getEditText().setText(voucher.getTenVoucher() + " : Sale " + voucher.getGiamGia());
                         dialog.dismiss();
                     }
                 });

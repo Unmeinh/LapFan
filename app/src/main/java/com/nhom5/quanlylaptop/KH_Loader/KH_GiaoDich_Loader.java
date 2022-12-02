@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,11 +33,14 @@ public class KH_GiaoDich_Loader extends AsyncTask<String, Void, ArrayList<GiaoDi
     GiaoDichDAO giaoDichDAO;
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
+    @SuppressLint("StaticFieldLeak")
+    LinearLayout linearLayout;
     ChangeType changeType = new ChangeType();
 
-    public KH_GiaoDich_Loader(Context context, RecyclerView reView) {
+    public KH_GiaoDich_Loader(Context context, RecyclerView reView, LinearLayout linearLayout) {
         this.context = context;
         this.reView = reView;
+        this.linearLayout = linearLayout;
     }
 
     @Override
@@ -58,8 +63,13 @@ public class KH_GiaoDich_Loader extends AsyncTask<String, Void, ArrayList<GiaoDi
     protected void onPostExecute(ArrayList<GiaoDich> listGD) {
         super.onPostExecute(listGD);
 
-        if (reView != null){
-            setupReView(listGD, reView);
+        if (reView != null && linearLayout != null){
+            if (listGD.size() > 0){
+                linearLayout.setVisibility(View.GONE);
+                setupReView(listGD, reView);
+            } else {
+                linearLayout.setVisibility(View.VISIBLE);
+            }
         }
     }
 

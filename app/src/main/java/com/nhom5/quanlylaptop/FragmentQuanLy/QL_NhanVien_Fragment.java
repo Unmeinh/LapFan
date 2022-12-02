@@ -34,7 +34,7 @@ public class QL_NhanVien_Fragment extends Fragment {
     RecyclerView reView;
     TextView countNV;
     RelativeLayout relativeLayout;
-    LinearLayout linearLayout;
+    LinearLayout linearLayout, linearNhanVienEmpty;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -44,9 +44,16 @@ public class QL_NhanVien_Fragment extends Fragment {
         reView = view.findViewById(R.id.recyclerView_NVA_NhanVien);
         linearLayout = view.findViewById(R.id.loadingView);
         relativeLayout = view.findViewById(R.id.layoutView);
-        QL_NhanVien_Loader ql_nhanVien_loader = new QL_NhanVien_Loader(getContext(), reView, countNV, linearLayout, relativeLayout);
+        linearNhanVienEmpty  = view.findViewById(R.id.linearNhanVienEmpty);
+        QL_NhanVien_Loader ql_nhanVien_loader = new QL_NhanVien_Loader(getContext(), reView, countNV, linearLayout, linearNhanVienEmpty, relativeLayout);
         ql_nhanVien_loader.execute("");
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        QL_NhanVien_Loader ql_nhanVien_loader = new QL_NhanVien_Loader(getContext(), reView, countNV, linearLayout, linearNhanVienEmpty, relativeLayout);
+        ql_nhanVien_loader.execute("");
+    }
 }

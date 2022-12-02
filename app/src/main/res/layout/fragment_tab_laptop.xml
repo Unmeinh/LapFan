@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +9,7 @@
     tools:context=".FragmentQuanLy.Tab_Laptop_Fragment">
     
     <LinearLayout
+        android:visibility="visible"
         android:id="@+id/loadingView"
         android:gravity="center"
         android:orientation="vertical"
@@ -56,20 +57,45 @@
 
         </LinearLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/button_Add_Laptop"
-            android:layout_marginBottom="50dp"
-            android:layout_marginEnd="30dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:src="@drawable/add_icon"
-            app:maxImageSize="40dp"
-            android:backgroundTint="#F20C0C"
-            app:tint="@color/white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:id="@+id/linearLaptopEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="gone">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="60dp"
+            android:text="Không có sản phẩm nào"
+            android:textColor="#FF5722"
+            android:textSize="30sp" />
+
+        <ImageView
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:src="@drawable/empty_product"
+            app:tint="#FF5722" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/button_Add_Laptop"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="30dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/add_icon"
+        app:maxImageSize="40dp"
+        android:backgroundTint="#F20C0C"
+        app:tint="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

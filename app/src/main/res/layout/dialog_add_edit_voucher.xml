@@ -56,37 +56,63 @@
                 tools:ignore="TouchTargetSizeCheck" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInput_NSX"
-            style="@style/TextInputLayoutOutlinedBoxBrown"
-            app:startIconDrawable="@drawable/calendar_icon"
-            app:startIconTint="#4E352F"
+        <RelativeLayout
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInput_NBD"
+                style="@style/TextInputLayoutOutlinedBoxBrown"
+                app:startIconDrawable="@drawable/calendar_icon"
+                app:startIconTint="#4E352F"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:focusable="false"
+                    android:hint="@string/th_i_gian_b_t_u"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:focusableInTouchMode="false"
+                android:id="@+id/onlick_NBD"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInput_NKT"
+                style="@style/TextInputLayoutOutlinedBoxBrown"
+                app:startIconDrawable="@drawable/calendar_icon"
+                app:startIconTint="#4E352F"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/th_i_gian_b_t_u"
-                tools:ignore="TouchTargetSizeCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textInput_HSD"
-            style="@style/TextInputLayoutOutlinedBoxBrown"
-            app:startIconDrawable="@drawable/calendar_icon"
-            app:startIconTint="#4E352F"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:focusable="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:hint="@string/th_i_gian_k_t_th_c"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
+            <TextView
+                android:focusableInTouchMode="false"
+                android:id="@+id/onlick_NKT"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/th_i_gian_k_t_th_c"
-                tools:ignore="TouchTargetSizeCheck" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_height="55dp"/>
+
+        </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_Dialog"

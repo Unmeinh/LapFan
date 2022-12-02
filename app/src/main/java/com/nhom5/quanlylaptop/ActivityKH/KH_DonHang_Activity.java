@@ -41,7 +41,7 @@ public class KH_DonHang_Activity extends AppCompatActivity {
     Context context;
     String TAG = "KH_DonHang_Activity_____";
     RecyclerView recyclerView;
-    LinearLayout linearLayout;
+    LinearLayout linearLayout, linearDonHangEmpty;
     KhachHang khachHang;
 
     @Override
@@ -51,10 +51,11 @@ public class KH_DonHang_Activity extends AppCompatActivity {
         context = this;
         linearLayout = findViewById(R.id.loadingView);
         recyclerView = findViewById(R.id.recyclerView_KH_DonHang);
+        linearDonHangEmpty = findViewById(R.id.linearDonHangEmpty);
 
         getUser();
         if (khachHang != null) {
-            KH_DonHang_Loader kh_donHang_loader = new KH_DonHang_Loader(context, recyclerView, linearLayout);
+            KH_DonHang_Loader kh_donHang_loader = new KH_DonHang_Loader(context, recyclerView, linearLayout, linearDonHangEmpty);
             kh_donHang_loader.execute(khachHang.getMaKH());
         }
         useToolbar();
@@ -65,7 +66,7 @@ public class KH_DonHang_Activity extends AppCompatActivity {
         super.onResume();
         getUser();
         if (khachHang != null) {
-            KH_DonHang_Loader kh_donHang_loader = new KH_DonHang_Loader(context, recyclerView, linearLayout);
+            KH_DonHang_Loader kh_donHang_loader = new KH_DonHang_Loader(context, recyclerView, linearLayout, linearDonHangEmpty);
             kh_donHang_loader.execute(khachHang.getMaKH());
         }
     }

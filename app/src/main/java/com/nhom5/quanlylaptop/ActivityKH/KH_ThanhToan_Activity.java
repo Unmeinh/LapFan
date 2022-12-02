@@ -64,6 +64,13 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
             KH_ThanhToan_Loader kh_thanhToan_loader = new KH_ThanhToan_Loader(context, laptop, recyclerView, linearLayout, relativeLayout, KH_ThanhToan_Activity.this);
             kh_thanhToan_loader.execute(khachHang.getMaKH());
         }
+
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("what", "none");
+            editor.commit();
+        }
     }
 
     @Override
@@ -74,6 +81,14 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
         if (khachHang != null){
             KH_ThanhToan_Loader kh_thanhToan_loader = new KH_ThanhToan_Loader(context, laptop, recyclerView, linearLayout, relativeLayout, KH_ThanhToan_Activity.this);
             kh_thanhToan_loader.execute(khachHang.getMaKH());
+        }
+
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            String infoWhat = pref.getString("what", "null");
+            if (!infoWhat.equals("none")) {
+                finish();
+            }
         }
     }
 

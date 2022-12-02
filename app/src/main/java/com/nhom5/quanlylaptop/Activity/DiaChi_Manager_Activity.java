@@ -29,6 +29,7 @@ public class DiaChi_Manager_Activity extends AppCompatActivity {
         spinnerXaPhuong = findViewById(R.id.spinner_PhuongXa);
         useToolbar();
         setSpinnerThanhPho();
+        setSpinnerQuanHuyen();
     }
 
     private void setSpinnerThanhPho() {
@@ -89,6 +90,194 @@ public class DiaChi_Manager_Activity extends AppCompatActivity {
 
     //Phần cần làm thêm
     private void setSpinnerQuanHuyen() {
+        spinnerQuanHuyen.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                String qh = adapterView.getItemAtPosition(i).toString();
+
+                switch (qh){
+                    case "Phong Điền": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocPhongDien);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Ninh Kiều": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocNinhKieu);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Bình Thủy": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocBinhThuy);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Ô Môn": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocOMon);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Thốt Nốt": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocThotNot);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Cờ Đỏ": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocCoDo);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    //đà nẵng
+                    case "Hải Châu": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocHaiChau);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Cẩm Lệ": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocCamLe);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Thanh Khê": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocThanhKhe);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Liên Chiểu": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocLienChieu);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Ngũ Hành Sơn": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocNguHanhSon);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    //hà nội
+                    case "Bắc Từ Liêm": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocBacTuLiem);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Nam Từ Liêm": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocNamTuLiem);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Đống Đa": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocDongDa);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Cầu Giấy": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocCauGiay);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    //thanh hóa
+                    case "Nga Sơn": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocNgaSon);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Nông Cống": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocNongCong);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Hà Trung": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocHaTrung);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Hậu Lộc": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocHauLoc);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Thọ Xuân": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocThoXuan);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    //ninh bình
+                    case "Hoa Lư": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocHoaLu);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Kim Sơn": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocKimSon);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Quan Nho": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocQuanNho);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Tam Điệp": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocTamDiep);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    //thái bình
+                    case "Hưng Hà": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocHungHa);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Thái Thụy": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocThaiThuy);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Đông Hưng": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocDongHung);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                    case "Kiến Xương": {
+                        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, xaThuocKienXuong);
+                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                        spinnerXaPhuong.setAdapter(adapter);
+                        break;
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     private void useToolbar() {

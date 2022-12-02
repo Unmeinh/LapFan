@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
@@ -25,6 +26,7 @@ public class KH_Voucher_Activity extends AppCompatActivity {
     Context context = this;
     String openFrom;
     RecyclerView recyclerView;
+    LinearLayout linearLayout;
     int pos;
     KhachHang khachHang;
     @Override
@@ -32,11 +34,12 @@ public class KH_Voucher_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_voucher);
         recyclerView = findViewById(R.id.recyclerView_KH_Voucher);
+        linearLayout = findViewById(R.id.linearVoucherEmpty);
 
         getUser();
         getData();
         if (khachHang != null) {
-            KH_Voucher_Loader kh_voucher_loader = new KH_Voucher_Loader(context, recyclerView, openFrom, pos);
+            KH_Voucher_Loader kh_voucher_loader = new KH_Voucher_Loader(context, recyclerView, linearLayout, openFrom, pos);
             kh_voucher_loader.execute(khachHang.getMaKH());
         }
         useToolbar();

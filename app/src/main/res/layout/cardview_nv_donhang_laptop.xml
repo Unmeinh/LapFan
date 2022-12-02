@@ -33,6 +33,7 @@
                 android:layout_height="match_parent"/>
 
             <TextView
+                android:id="@+id/textView_TienDo"
                 android:layout_gravity="center_vertical"
                 android:gravity="end"
                 android:textStyle="bold"
@@ -132,6 +133,7 @@
             android:src="@drawable/truck_icon" />
 
         <TextView
+            android:id="@+id/textView_TrangThai"
             android:layout_width="0dp"
             android:layout_weight="7"
             android:layout_height="wrap_content"
@@ -142,6 +144,7 @@
             android:textSize="17sp" />
 
         <ImageView
+            android:id="@+id/imageView_TrangThai"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_gravity="end"
@@ -199,7 +202,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:backgroundTint="#FB2104"
+                android:backgroundTint="#CDDC39"
                 android:text="Xem đánh giá"
                 android:textStyle="bold" />
 

@@ -5,25 +5,30 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
+import com.nhom5.quanlylaptop.DAO.LaptopRateDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.Entity.LaptopRate;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
@@ -33,6 +38,9 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
 
     Context context = this;
     DonHang donHang = null;
+    LaptopRateDAO laptopRateDAO;
+    LaptopRate laptopRate;
+    ChangeType changeType = new ChangeType();
     Laptop laptop;
     String TAG = "NV_DanhGia_Activity_____";
 
@@ -40,9 +48,29 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nv_danh_gia);
+        laptopRateDAO = new LaptopRateDAO(context);
         useToolbar();
         getInfoDonHang();
         setLaptopView();
+
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("what", "none");
+            editor.commit();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            String infoWhat = pref.getString("what", "null");
+            if (!infoWhat.equals("none")) {
+                finish();
+            }
+        }
     }
 
     private void useToolbar() {
@@ -75,17 +103,42 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
         TextView detailReview = findViewById(R.id.textView_DetailReview);
         ImageView imageReview = findViewById(R.id.imageView_Review);
         EditText reviewKH = findViewById(R.id.editText_DanhGia);
+        RatingBar ratingBar = findViewById(R.id.ratingBar_DanhGia);
+        Button buttonDanhGia = findViewById(R.id.button_DanhGia);
 
         if (isRate.equals("true")){
+            ratingBar.setRating(0f);
             detailReview.setText("Khách hàng đã đánh giá đơn hàng này!");
             layoutReview.setBackgroundColor(Color.parseColor("#26AB9A"));
             imageReview.setImageResource(R.drawable.check_icon);
+            ArrayList<LaptopRate> list = laptopRateDAO.selectLaptopRate(null, "maRate=?", new String[]{donHang.getMaRate()}, null);
+            if (list.size() > 0) {
+                Log.d(TAG, "setLayout: yo");
+                laptopRate = list.get(0);
+                Log.d(TAG, "setLayout: Laptop rate: " + laptopRate.toString());
+            }
+            if (laptopRate != null) {
+                ratingBar.setRating(changeType.getRatingFloat(laptopRate.getRating()));
+                ratingBar.setIsIndicator(true);
+                reviewKH.setText(laptopRate.getDanhGia());
+                reviewKH.setEnabled(false);
+            }
         }
+
         if (isRate.equals("false")){
+            ratingBar.setRating(0f);
+            reviewKH.setText("Đánh giá của khách hàng.");
             detailReview.setText("Khách hàng chưa đánh giá đơn hàng này!");
             layoutReview.setBackgroundColor(Color.parseColor("#F44336"));
             imageReview.setImageResource(R.drawable.crossed_icon);
         }
+
+        buttonDanhGia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void setLaptopView() {

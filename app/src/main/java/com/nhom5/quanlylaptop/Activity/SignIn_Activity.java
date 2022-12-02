@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class SignIn_Activity extends AppCompatActivity {
 
-    TextView gotoSignUpAct;
+    TextView gotoSignUpAct, textView_Forgot_Pass;
     String TAG = "SignIn_Activity_____";
     String roleUser = "";
     AppCompatButton loginButton;
@@ -47,13 +47,20 @@ public class SignIn_Activity extends AppCompatActivity {
         tilEmail = findViewById(R.id.textInput_Email);
         tilPass = findViewById(R.id.textInput_Password);
         checkBox = findViewById(R.id.checkBox_Remember_Me);
+        textView_Forgot_Pass = findViewById(R.id.textView_Forgot_Pass);
 
         getDataIntent();
         getRememberMe();
         loginTime();
         goToSignUp();
+        goToForgotPass();
 
-        if (roleUser.equals("admin") || roleUser.equals("nhanVien")){
+        if (roleUser.equals("admin")){
+            LinearLayout linearLayout = findViewById(R.id.layout_Sign_Up);
+            linearLayout.setVisibility(View.GONE);
+            textView_Forgot_Pass.setVisibility(View.GONE);
+        }
+        if (roleUser.equals("nhanVien")){
             LinearLayout linearLayout = findViewById(R.id.layout_Sign_Up);
             linearLayout.setVisibility(View.GONE);
         }
@@ -252,6 +259,35 @@ public class SignIn_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, SignUp_Acitivity.class);
+                Log.d(TAG, "goToSignUp: roleUser: " + roleUser);
+                intent.putExtra("role", roleUser);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private void goToForgotPass(){
+        textView_Forgot_Pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (roleUser.equals("khachHang")){
+                    SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
+                    if (pref != null) {
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putString("who", "khachHang");
+                        editor.commit();
+                    }
+                }
+                if (roleUser.equals("nhanVien")){
+                    SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
+                    if (pref != null) {
+                        SharedPreferences.Editor editor = pref.edit();
+                        editor.putString("who", "nhanVien");
+                        editor.commit();
+                    }
+                }
+                Intent intent = new Intent(context, ForgotPass_Activity.class);
                 Log.d(TAG, "goToSignUp: roleUser: " + roleUser);
                 intent.putExtra("role", roleUser);
                 startActivity(intent);

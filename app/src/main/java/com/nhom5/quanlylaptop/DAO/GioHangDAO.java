@@ -103,9 +103,11 @@ public class GioHangDAO {
 
         long ketqua = db.update("GioHang", values, "maGio=?", new String[]{String.valueOf(gioHang.getMaGio())});
         if (ketqua > 0) {
-            Log.d(TAG, "updateGioHang: Sửa thành công"); 
+            Log.d(TAG, "updateGioHang: Sửa thành công");
+            Log.d(TAG, "insertGioHang: Thêm thành công");
         } else {
-            Log.d(TAG, "updateGioHang: Sửa thất bại");  
+            Log.d(TAG, "updateGioHang: Sửa thất bại");
+            Log.d(TAG, "insertGioHang: Thêm thất bại");
         }
         db.close();
     }

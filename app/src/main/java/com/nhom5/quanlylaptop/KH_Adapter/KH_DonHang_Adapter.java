@@ -149,13 +149,13 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
             author.trangThai.setTextColor(Color.parseColor("#C93852B0"));
         } else if (donHang.getTrangThai().equals("Đang chờ xác nhận")) {
             author.tienDo.setText("Đang chờ xác nhận");
-            author.imgTrangThai.setImageResource(R.drawable.crossed_icon);
+            author.imgTrangThai.setImageResource(R.drawable.waiting_confirm_icon);
             author.imgTrangThai.setColorFilter(Color.parseColor("#FF9800"));
             author.trangThai.setText("Đơn hàng đang chờ xác nhận");
             author.trangThai.setTextColor(Color.parseColor("#FF9800"));
         } else {
             author.tienDo.setText("Đang giao");
-            author.imgTrangThai.setImageResource(R.drawable.crossed_icon);
+            author.imgTrangThai.setImageResource(R.drawable.icon_delivery_dining);
             author.imgTrangThai.setColorFilter(Color.parseColor("#FF9800"));
             author.trangThai.setText("Đơn hàng đang được giao");
             author.trangThai.setTextColor(Color.parseColor("#FF9800"));

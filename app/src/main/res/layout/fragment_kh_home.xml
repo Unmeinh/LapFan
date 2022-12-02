@@ -56,60 +56,24 @@
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/textView_Title"
-                    android:layout_marginTop="25dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="30dp"
-                    android:textSize="28sp"
-                    android:text="Laptop mua nhiều nhất"
-                    android:textColor="@color/white"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
                 <LinearLayout
-                    android:orientation="vertical"
                     android:gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="match_parent">
 
                     <ImageView
-                        android:id="@+id/imageView_Laptop"
-                        android:src="@drawable/img_demo_laptop"
-                        android:layout_width="250dp"
-                        android:layout_height="250dp"/>
+                        android:id="@+id/imageView_Home"
+                        android:src="@drawable/for_home_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="400dp"/>
 
-                    <TextView
-                        android:id="@+id/textView_TenLaptop"
-                        android:textStyle="bold"
-                        android:textSize="30sp"
-                        android:text="DELL Latitude 9420"
-                        android:textColor="@color/white"
+                    <androidx.recyclerview.widget.RecyclerView
+                        tools:listitem="@layout/cardview_kh_laptop"
+                        android:id="@+id/recyclerView_Laptop_Search"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <TextView
-                        android:id="@+id/textView_GiaTien"
-                        android:textStyle="bold"
-                        android:textSize="27sp"
-                        android:text="32.500.000 đ"
-                        android:textColor="@color/white"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/button_BuyNow"
-                        android:layout_marginTop="15dp"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="15dp"
-                        android:paddingStart="75dp"
-                        android:paddingEnd="75dp"
-                        android:textSize="25sp"
-                        android:textColor="#4E352F"
-                        android:text="MUA NGAY"
-                        android:background="@drawable/shape_button1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="match_parent"/>
 
                 </LinearLayout>
 

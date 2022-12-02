@@ -58,6 +58,40 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
         useToolbar("");
         setViewNaviBottom();
         setViewNaviDrawer();
+
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("what", "none");
+            editor.commit();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            String infoWhat = pref.getString("what", "none");
+            if (infoWhat.equals("home")) {
+                setOnResumeNavi(0);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("what", "none");
+                editor.commit();
+            }
+            if (infoWhat.equals("noti")) {
+                setOnResumeNavi(1);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("what", "none");
+                editor.commit();
+            }
+            if (infoWhat.equals("gio")) {
+                setOnResumeNavi(8);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("what", "none");
+                editor.commit();
+            }
+        }
     }
 
     @Override
@@ -344,5 +378,37 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
         });
     }
 
-
+    private void setOnResumeNavi(int frag) {
+        KH_PagerAdapter_Drawer adapter = new KH_PagerAdapter_Drawer(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(frag);
+        itemNaviDr = frag;
+        if (frag == 0) {
+            useToolbar("");
+            bottomNavigationView.setVisibility(View.VISIBLE);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_kh_home).setCheckable(true);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_kh_home).setChecked(true);
+            naviView.getMenu().getItem(0).setChecked(true);
+            naviView.getMenu().getItem(0).setCheckable(true);
+            getSupportActionBar().show();
+        }
+        if (frag == 1) {
+            useToolbar("Thông Báo");
+            bottomNavigationView.setVisibility(View.VISIBLE);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_kh_noti).setCheckable(true);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_kh_noti).setChecked(true);
+            naviView.getMenu().getItem(1).setChecked(true);
+            naviView.getMenu().getItem(1).setCheckable(true);
+            getSupportActionBar().show();
+        }
+        if (frag == 8) {
+            useToolbar("Giỏ Hàng");
+            bottomNavigationView.setVisibility(View.VISIBLE);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_kh_gioHang).setCheckable(true);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_kh_gioHang).setChecked(true);
+            naviView.getMenu().getItem(9).setChecked(true);
+            naviView.getMenu().getItem(9).setCheckable(true);
+            getSupportActionBar().show();
+        }
+    }
 }

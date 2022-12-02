@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -53,6 +54,25 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
         getInfoDonHang();
         setLaptopView();
         setLayout();
+
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("what", "none");
+            editor.commit();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            String infoWhat = pref.getString("what", "null");
+            if (!infoWhat.equals("none")) {
+                finish();
+            }
+        }
     }
 
     private void setLayout() {

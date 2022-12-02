@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ActivityNV_Admin.Laptop_Manager_Activity">
+    android:orientation="vertical">
 
-    <include layout="@layout/toolbar_normal"/>
+    <TextView
+        android:text="Sửa Laptop"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:textSize="27sp"
+        android:gravity="center"
+        android:background="#ECDBCB"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -29,14 +34,6 @@
                     android:layout_width="190dp"
                     android:layout_height="180dp"
                     android:src="@drawable/add_laptop_icon"/>
-
-                <ImageView
-                    android:id="@+id/imageView_AddLaptop"
-                    android:layout_marginBottom="20dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/add_icon"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"/>
 
             </FrameLayout>
 
@@ -168,7 +165,7 @@
                         android:paddingEnd="60dp"
                         android:textSize="25sp"
                         android:textColor="#4E352F"
-                        android:text="Thêm mới"
+                        android:text="@string/c_p_nh_t"
                         android:background="@drawable/shape_button3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>

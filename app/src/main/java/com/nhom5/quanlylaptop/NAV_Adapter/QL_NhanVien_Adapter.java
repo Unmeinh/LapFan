@@ -57,10 +57,6 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
     @Override
     public void onBindViewHolder(@NonNull QL_NhanVien_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         NhanVien nhanVien = setRow(pos, author);
-        if (countNV != null){
-            countNV.setText(String.valueOf(listNV.size()));
-        }
-
 
         author.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,6 +76,13 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
 
     @Override
     public int getItemCount() {
+        if (countNV != null){
+            if (listNV.size() > 0) {
+                countNV.setText(String.valueOf(listNV.size()));
+            } else {
+                countNV.setText(String.valueOf(0));
+            }
+        }
         return listNV.size();
     }
 

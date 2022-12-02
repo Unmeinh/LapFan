@@ -35,16 +35,17 @@ public class QL_KhachHang_Loader extends AsyncTask<String, Void, ArrayList<Khach
     @SuppressLint("StaticFieldLeak")
     TextView countKH;
     @SuppressLint("StaticFieldLeak")
-    LinearLayout loadingView;
+    LinearLayout loadingView, linearEmpty;
     @SuppressLint("StaticFieldLeak")
     RelativeLayout relativeLayout;
 
-    public QL_KhachHang_Loader(Context context, RecyclerView reView, TextView countKH, LinearLayout loadingView, RelativeLayout relativeLayout) {
+    public QL_KhachHang_Loader(Context context, RecyclerView reView, TextView countKH, LinearLayout loadingView, LinearLayout linearEmpty, RelativeLayout relativeLayout) {
         this.countKH = countKH;
         this.reView = reView;
         this.context = context;
         this.loadingView = loadingView;
         this.relativeLayout = relativeLayout;
+        this.linearEmpty = linearEmpty;
     }
 
     @Override
@@ -68,10 +69,21 @@ public class QL_KhachHang_Loader extends AsyncTask<String, Void, ArrayList<Khach
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (loadingView != null && relativeLayout != null && reView != null && countKH != null) {
-                    loadingView.setVisibility(View.GONE);
-                    relativeLayout.setVisibility(View.VISIBLE);
-                    setupReView(listKH, reView);
+                if (loadingView != null && relativeLayout != null && linearEmpty != null && reView != null && countKH != null) {
+                    if (listKH != null) {
+                        if (listKH.size() == 0) {
+                            relativeLayout.setVisibility(View.GONE);
+                            loadingView.setVisibility(View.GONE);
+                            reView.setVisibility(View.GONE);
+                            linearEmpty.setVisibility(View.VISIBLE);
+                        } else {
+                            relativeLayout.setVisibility(View.VISIBLE);
+                            loadingView.setVisibility(View.GONE);
+                            reView.setVisibility(View.VISIBLE);
+                            linearEmpty.setVisibility(View.GONE);
+                            setupReView(listKH, reView);
+                        }
+                    }
                 }
             }
         }, 1000);

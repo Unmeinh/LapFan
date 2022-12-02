@@ -62,6 +62,12 @@ public class SignUp_Acitivity extends AppCompatActivity {
                     if (insert == -1) {
                         Toast.makeText(context, "Đăng ký thất bại!\nEmail đã có người sử dụng!", Toast.LENGTH_SHORT).show();
                     } else {
+                        tilEmail.getEditText().setText("");
+                        tilPass.getEditText().setText("");
+                        tilConfirmPass.getEditText().setText("");
+                        tilEmail.getEditText().clearFocus();
+                        tilPass.getEditText().clearFocus();
+                        tilConfirmPass.getEditText().clearFocus();
                         Toast.makeText(context, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
                     }
                 }

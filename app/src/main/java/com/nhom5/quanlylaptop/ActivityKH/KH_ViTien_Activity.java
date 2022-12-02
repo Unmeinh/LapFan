@@ -1,17 +1,20 @@
 package com.nhom5.quanlylaptop.ActivityKH;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -42,24 +45,35 @@ public class KH_ViTien_Activity extends AppCompatActivity {
     GiaoDichDAO giaoDichDAO;
     Context context = this;
     ChangeType changeType = new ChangeType();
+    LinearLayout linearLayout;
     ViTien viTien;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_vi_tien);
+        linearLayout = findViewById(R.id.linearGiaoDichEmpty);
         viTienDAO = new ViTienDAO(context);
         giaoDichDAO = new GiaoDichDAO(context);
         listGD = giaoDichDAO.selectGiaoDich(null, null, null, null);
 
         getUser();
         if (viTien != null) {
-            KH_GiaoDich_Loader kh_giaoDich_loader = new KH_GiaoDich_Loader(context, findViewById(R.id.recyclerView_GiaoDich));
+            KH_GiaoDich_Loader kh_giaoDich_loader = new KH_GiaoDich_Loader(context, findViewById(R.id.recyclerView_GiaoDich), linearLayout);
             kh_giaoDich_loader.execute(viTien.getMaVi());
         }
 
         useToolbar();
         clickNapTien();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (viTien != null) {
+            KH_GiaoDich_Loader kh_giaoDich_loader = new KH_GiaoDich_Loader(context, findViewById(R.id.recyclerView_GiaoDich), linearLayout);
+            kh_giaoDich_loader.execute(viTien.getMaVi());
+        }
     }
 
     private void getUser() {
@@ -77,11 +91,13 @@ public class KH_ViTien_Activity extends AppCompatActivity {
 
     private void clickNapTien() {
         LinearLayout napTien = findViewById(R.id.onclick_NapTien);
-        View view = getLayoutInflater().inflate(R.layout.dialog_naptien, null);
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        LayoutInflater inft = ((Activity) context).getLayoutInflater();
+        View view = inft.inflate(R.layout.dialog_naptien, null);
         AppCompatButton button = view.findViewById(R.id.button_Dialog);
 
-        Dialog dialog = new Dialog(context);
-        dialog.setContentView(view);
+        builder.setView(view);
+        Dialog dialog = builder.create();
         napTien.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,7 +108,7 @@ public class KH_ViTien_Activity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.cancel();
+                dialog.dismiss();
             }
         });
     }

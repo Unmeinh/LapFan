@@ -3,6 +3,7 @@ package com.nhom5.quanlylaptop.NVA_Loader;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -32,12 +33,13 @@ public class NV_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
     @SuppressLint("StaticFieldLeak")
-    LinearLayout loadingView;
+    LinearLayout loadingView, linearEmpty;
 
-    public NV_DonHang_Loader(Context context, RecyclerView reView, LinearLayout loadingView) {
+    public NV_DonHang_Loader(Context context, RecyclerView reView, LinearLayout loadingView, LinearLayout linearEmpty) {
         this.context = context;
         this.reView = reView;
         this.loadingView = loadingView;
+        this.linearEmpty = linearEmpty;
     }
 
     @Override
@@ -55,10 +57,26 @@ public class NV_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
     protected void onPostExecute(ArrayList<DonHang> listDon) {
         super.onPostExecute(listDon);
 
-        if (loadingView != null  && reView != null){
-            loadingView.setVisibility(View.GONE);
-            setupReView(listDon, reView);
-        }
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (loadingView != null && linearEmpty != null && reView != null) {
+                    if (listDon != null) {
+                        if (listDon.size() == 0) {
+                            loadingView.setVisibility(View.GONE);
+                            reView.setVisibility(View.GONE);
+                            linearEmpty.setVisibility(View.VISIBLE);
+                        } else {
+                            loadingView.setVisibility(View.GONE);
+                            reView.setVisibility(View.VISIBLE);
+                            linearEmpty.setVisibility(View.GONE);
+                            setupReView(listDon, reView);
+                        }
+                    }
+                }
+            }
+        }, 1000);
     }
 
     private void setupReView(ArrayList<DonHang> listDon, RecyclerView recyclerView) {

@@ -37,15 +37,16 @@ public class QL_NhanVien_Loader extends AsyncTask<String, Void, ArrayList<NhanVi
     @SuppressLint("StaticFieldLeak")
     TextView countNV;
     @SuppressLint("StaticFieldLeak")
-    LinearLayout loadingView;
+    LinearLayout loadingView, linearEmpty;
     @SuppressLint("StaticFieldLeak")
     RelativeLayout relativeLayout;
 
-    public QL_NhanVien_Loader(Context context, RecyclerView reView, TextView countNV, LinearLayout loadingView, RelativeLayout relativeLayout) {
+    public QL_NhanVien_Loader(Context context, RecyclerView reView, TextView countNV, LinearLayout loadingView, LinearLayout linearEmpty, RelativeLayout relativeLayout) {
         this.context = context;
         this.reView = reView;
         this.countNV = countNV;
         this.loadingView = loadingView;
+        this.linearEmpty = linearEmpty;
         this.relativeLayout = relativeLayout;
     }
 
@@ -70,10 +71,21 @@ public class QL_NhanVien_Loader extends AsyncTask<String, Void, ArrayList<NhanVi
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (loadingView != null && relativeLayout != null && reView != null && countNV != null) {
-                    loadingView.setVisibility(View.GONE);
-                    relativeLayout.setVisibility(View.VISIBLE);
-                    setupReView(listNV, reView);
+                if (loadingView != null && relativeLayout != null && linearEmpty != null && reView != null && countNV != null) {
+                    if (listNV != null) {
+                        if (listNV.size() == 0) {
+                            relativeLayout.setVisibility(View.GONE);
+                            loadingView.setVisibility(View.GONE);
+                            reView.setVisibility(View.GONE);
+                            linearEmpty.setVisibility(View.VISIBLE);
+                        } else {
+                            relativeLayout.setVisibility(View.VISIBLE);
+                            loadingView.setVisibility(View.GONE);
+                            reView.setVisibility(View.VISIBLE);
+                            linearEmpty.setVisibility(View.GONE);
+                            setupReView(listNV, reView);
+                        }
+                    }
                 }
             }
         }, 1000);

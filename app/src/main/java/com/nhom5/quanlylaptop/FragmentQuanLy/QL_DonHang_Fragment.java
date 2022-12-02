@@ -25,7 +25,7 @@ public class QL_DonHang_Fragment extends Fragment {
     RecyclerView recyclerView;
     TextView count;
     RelativeLayout relativeLayout;
-    LinearLayout linearLayout;
+    LinearLayout linearLayout, linearDonHangEmpty;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,12 +36,20 @@ public class QL_DonHang_Fragment extends Fragment {
         count = view.findViewById(R.id.textView_Soluong);
         relativeLayout = view.findViewById(R.id.layoutView);
         linearLayout = view.findViewById(R.id.loadingView);
+        linearDonHangEmpty = view.findViewById(R.id.linearDonHangEmpty);
 
-        QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(getContext(), recyclerView, count, linearLayout, relativeLayout);
+        QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(getContext(), recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
         ql_donHang_loader.execute("");
 
         addDonHang();
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(getContext(), recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
+        ql_donHang_loader.execute("");
     }
 
     private void addDonHang(){

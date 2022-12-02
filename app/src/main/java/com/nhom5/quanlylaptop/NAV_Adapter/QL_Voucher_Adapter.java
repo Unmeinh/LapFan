@@ -2,6 +2,7 @@ package com.nhom5.quanlylaptop.NAV_Adapter;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -32,6 +34,7 @@ import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.AuthorViewHolder> {
 
@@ -88,6 +91,7 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
             date = itemView.findViewById(R.id.textView_Date_Voucher);
             ma = itemView.findViewById(R.id.textView_MaVoucher);
             sale = itemView.findViewById(R.id.textView_GiamGia);
+            itemView.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) this);
         }
 
         @Override
@@ -149,21 +153,25 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
         TextView title = view.findViewById(R.id.textView_Title_Dialog);
         TextInputLayout textInput_Name = view.findViewById(R.id.textInput_Name);
         TextInputLayout textInput_GiamGia = view.findViewById(R.id.textInput_GiamGia);
-        TextInputLayout textInput_NSX = view.findViewById(R.id.textInput_NSX);
-        TextInputLayout textInput_HSD = view.findViewById(R.id.textInput_HSD);
+        TextInputLayout textInput_NBD = view.findViewById(R.id.textInput_NBD);
+        TextInputLayout textInput_NKT = view.findViewById(R.id.textInput_NKT);
+        TextView onclick_NBD = view.findViewById(R.id.onlick_NBD);
+        TextView onclick_NKT = view.findViewById(R.id.onlick_NKT);
         AppCompatButton button = view.findViewById(R.id.button_Dialog);
         ChangeType changeType = new ChangeType();
 
         title.setText("Cập nhật Voucher");
         textInput_Name.getEditText().setText(voucher.getTenVoucher());
         textInput_GiamGia.getEditText().setText(voucher.getGiamGia());
-        textInput_NSX.getEditText().setText(voucher.getNgayBD());
-        textInput_HSD.getEditText().setText(voucher.getNgayKT());
+        textInput_NBD.getEditText().setText(voucher.getNgayBD());
+        textInput_NKT.getEditText().setText(voucher.getNgayKT());
         button.setText("Cập nhật");
 
         builder.setView(view);
         Dialog dialog = builder.create();
         dialog.show();
+        onclickGetTime(textInput_NBD, onclick_NBD);
+        onclickGetTime(textInput_NKT, onclick_NKT);
 
         button.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
@@ -171,8 +179,8 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
             public void onClick(View v) {
                 String tenVou = changeType.deleteSpaceText(textInput_Name.getEditText().getText().toString());
                 String giamGia = changeType.deleteSpaceText(textInput_GiamGia.getEditText().getText().toString());
-                String nbd = changeType.deleteSpaceText(textInput_NSX.getEditText().getText().toString());
-                String nkt = changeType.deleteSpaceText(textInput_HSD.getEditText().getText().toString());
+                String nbd = textInput_NBD.getEditText().getText().toString();
+                String nkt = textInput_NKT.getEditText().getText().toString();
                 voucher.setTenVoucher(tenVou);
                 voucher.setGiamGia(giamGia);
                 voucher.setNgayBD(nbd);
@@ -195,4 +203,35 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
     public void setPosVou(int posVou) {
         this.posVou = posVou;
     }
+
+    private void onclickGetTime(TextInputLayout textInputLayout, TextView textView) {
+        Calendar calendar = Calendar.getInstance();
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        context, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month += 1;
+                        String getDay;
+                        String getMonth;
+                        if (day < 10) {
+                            getDay = "0" + day;
+                        } else {
+                            getDay = String.valueOf(day);
+                        }
+                        if (month < 10) {
+                            getMonth = "0" + month;
+                        } else {
+                            getMonth = String.valueOf(month);
+                        }
+                        textInputLayout.getEditText().setText(year + "-" + getMonth + "-" + getDay);
+                    }
+                }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
+            }
+        });
+    }
+
 }

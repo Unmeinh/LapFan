@@ -58,11 +58,17 @@
         <item>RAM 4GB</item>
         <item>RAM 8GB</item>
         <item>RAM 16GB</item>
+        <item>RAM 32GB</item>
     </string-array>
 
     <string-array name="httt_array">
         <item>Thanh toán khi nhận hàng</item>
         <item>Thanh toán qua Ví FPTPay</item>
+    </string-array>
+
+    <string-array name="chon_anh_laptop">
+        <item>Chọn ảnh từ thư viện</item>
+        <item>Nhập link ảnh</item>
     </string-array>
 
     <string name="a_ch_nh_n_h_ng">Địa chỉ nhận hàng</string>

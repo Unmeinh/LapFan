@@ -30,14 +30,15 @@ public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>>
     @SuppressLint("StaticFieldLeak")
     RecyclerView reView;
     @SuppressLint("StaticFieldLeak")
-    LinearLayout loadingView;
+    LinearLayout loadingView, linearEmpty;
     @SuppressLint("StaticFieldLeak")
     RelativeLayout relativeLayout;
 
-    public QL_Laptop_Loader(Context context, RecyclerView reView, LinearLayout loadingView, RelativeLayout relativeLayout) {
+    public QL_Laptop_Loader(Context context, RecyclerView reView, LinearLayout loadingView, LinearLayout linearEmpty, RelativeLayout relativeLayout) {
         this.context = context;
         this.reView = reView;
         this.loadingView = loadingView;
+        this.linearEmpty = linearEmpty;
         this.relativeLayout = relativeLayout;
     }
 
@@ -69,10 +70,21 @@ public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>>
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (loadingView != null && relativeLayout != null && reView != null) {
-                    loadingView.setVisibility(View.GONE);
-                    relativeLayout.setVisibility(View.VISIBLE);
-                    setupReView(listLap, reView);
+                if (loadingView != null && relativeLayout != null && linearEmpty != null && reView != null) {
+                    if (listLap != null) {
+                        if (listLap.size() == 0) {
+                            relativeLayout.setVisibility(View.GONE);
+                            loadingView.setVisibility(View.GONE);
+                            reView.setVisibility(View.GONE);
+                            linearEmpty.setVisibility(View.VISIBLE);
+                        } else {
+                            relativeLayout.setVisibility(View.VISIBLE);
+                            loadingView.setVisibility(View.GONE);
+                            reView.setVisibility(View.VISIBLE);
+                            linearEmpty.setVisibility(View.GONE);
+                            setupReView(listLap, reView);
+                        }
+                    }
                 }
             }
         }, 1000);

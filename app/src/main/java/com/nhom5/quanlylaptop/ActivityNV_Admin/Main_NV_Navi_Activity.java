@@ -30,6 +30,7 @@ import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.NhanVien;
+import com.nhom5.quanlylaptop.PagerAdapter.KH_PagerAdapter_Drawer;
 import com.nhom5.quanlylaptop.PagerAdapter.NV_PagerAdapter_Bottom;
 import com.nhom5.quanlylaptop.PagerAdapter.NV_PagerAdapter_Drawer;
 import com.nhom5.quanlylaptop.R;
@@ -62,6 +63,34 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
         useToolbar("", 0);
         setViewNaviBottom();
         setViewNaviDrawer();
+
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("what", "none");
+            editor.commit();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            String infoWhat = pref.getString("what", "none");
+            if (infoWhat.equals("home")) {
+                setOnResumeNavi(0);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("what", "none");
+                editor.commit();
+            }
+            if (infoWhat.equals("noti")) {
+                setOnResumeNavi(1);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("what", "none");
+                editor.commit();
+            }
+        }
     }
 
     @Override
@@ -363,5 +392,28 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
         });
     }
 
-
+    private void setOnResumeNavi(int frag) {
+        NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
+        viewPager.setAdapter(adapter);
+        viewPager.setCurrentItem(frag);
+        itemNaviDr = frag;
+        if (frag == 0) {
+            useToolbar("", 0);
+            bottomNavigationView.setVisibility(View.VISIBLE);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_home).setCheckable(true);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_home).setChecked(true);
+            naviView.getMenu().getItem(0).setChecked(true);
+            naviView.getMenu().getItem(0).setCheckable(true);
+            getSupportActionBar().show();
+        }
+        if (frag == 1) {
+            useToolbar("Thông Báo", 0);
+            bottomNavigationView.setVisibility(View.VISIBLE);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_noti).setCheckable(true);
+            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_noti).setChecked(true);
+            naviView.getMenu().getItem(1).setChecked(true);
+            naviView.getMenu().getItem(1).setCheckable(true);
+            getSupportActionBar().show();
+        }
+    }
 }

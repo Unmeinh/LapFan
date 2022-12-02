@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -16,7 +17,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.DiaChiDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
@@ -43,6 +46,18 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
         useToolbar();
         getInfoDonHang();
         setLaptopView();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences pref = getSharedPreferences("Info_Click", MODE_PRIVATE);
+        if (pref != null) {
+            String infoWhat = pref.getString("what", "null");
+            if (!infoWhat.equals("none")) {
+                finish();
+            }
+        }
     }
 
     private void useToolbar() {
@@ -120,6 +135,7 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
         TextView maDH = findViewById(R.id.textView_MaDH);
         TextView date = findViewById(R.id.textView_Date);
         Button hoanThanh = findViewById(R.id.button_HoanThanh);
+        LinearLayout linearLaptop = findViewById(R.id.linearLaptop);
 
         Laptop laptop = new Laptop("No Data", "No Data", "No Data", "No Data", "0", 0, 0, new byte[]{});
         Log.d(TAG, "setRow: DonHang: " + donHang.toString());
@@ -164,6 +180,20 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        Laptop finalLaptop = laptop;
+        linearLaptop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, Info_Laptop_Activity.class);
+                final Bundle bundle = new Bundle();
+                bundle.putBinder("laptop", finalLaptop);
+                Log.d(TAG, "onBindViewHolder: Laptop: " + finalLaptop.toString());
+                intent.putExtras(bundle);
+                intent.putExtra("openFrom", "other");
+                context.startActivity(intent);
             }
         });
 

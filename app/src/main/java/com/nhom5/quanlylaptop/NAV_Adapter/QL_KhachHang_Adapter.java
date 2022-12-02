@@ -56,9 +56,6 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
     @Override
     public void onBindViewHolder(@NonNull QL_KhachHang_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         KhachHang khachHang = setRow(pos, author);
-        if (countKH != null){
-            countKH.setText(String.valueOf(listKH.size()));
-        }
 
         author.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +75,13 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
 
     @Override
     public int getItemCount() {
+        if (countKH != null){
+            if (listKH.size() > 0) {
+                countKH.setText(String.valueOf(listKH.size()));
+            } else {
+                countKH.setText(String.valueOf(0));
+            }
+        }
         return listKH.size();
     }
 
