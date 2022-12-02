@@ -259,6 +259,11 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
             tilTT.setError("");
         }
 
+        if (laptop != null){
+            laptop.setSoLuong(laptop.getSoLuong() - sl);
+            laptopDAO.updateLaptop(laptop);
+        }
+
         return new DonHang("", nhanVien.getMaNV(), khachHang.getMaKH(), laptop.getMaLaptop(),
                 voucher.getMaVoucher(), "No Data", dc, dateSQL, "Thanh toán tại cửa hàng",
                 "Hoàn thành", "false", changeType.stringToStringMoney(tt), sl);

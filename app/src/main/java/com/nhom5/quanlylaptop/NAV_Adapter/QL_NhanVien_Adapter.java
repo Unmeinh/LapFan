@@ -76,13 +76,6 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
 
     @Override
     public int getItemCount() {
-        if (countNV != null){
-            if (listNV.size() > 0) {
-                countNV.setText(String.valueOf(listNV.size()));
-            } else {
-                countNV.setText(String.valueOf(0));
-            }
-        }
         return listNV.size();
     }
 
@@ -97,6 +90,9 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
             gender = itemView.findViewById(R.id.textView_GioiTinh);
             phone = itemView.findViewById(R.id.textView_SDT);
             itemView.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) this);
+            if (listNV.size() == 0){
+                countNV.setText(String.valueOf(0));
+            }
         }
 
         @Override
@@ -139,6 +135,7 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
         ChangeType changeType = new ChangeType();
         Bitmap avatar = changeType.byteToBitmap(nhanVien.getAvatar());
 
+        countNV.setText(String.valueOf(listNV.size()));
         author.avatar.setImageBitmap(avatar);
         author.name.setText(changeType.fullNameNhanVien(nhanVien));
         author.gender.setText(nhanVien.getGioiTinh());

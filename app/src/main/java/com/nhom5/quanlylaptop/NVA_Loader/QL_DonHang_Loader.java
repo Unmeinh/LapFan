@@ -59,13 +59,13 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
 
     @Override
     protected ArrayList<DonHang> doInBackground(String... strings) {
-
         laptopDAO = new LaptopDAO(context);
         donHangDAO = new DonHangDAO(context);
         khachHangDAO = new KhachHangDAO(context);
         listLap = laptopDAO.selectLaptop(null, null, null, null);
         listDon = donHangDAO.selectDonHang(null, null, null, null);
         listKH = khachHangDAO.selectKhachHang(null, null, null, null);
+        String type = strings[0];
 
         if (listDon != null) {
             if (listDon.size() == 0) {
@@ -73,7 +73,13 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
             }
         }
 
-        return donHangDAO.selectDonHang(null, null, null, "ngayMua");
+        if (type.equals("ADV")){
+            return donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Đang chờ xác nhận", "Null"}, "ngayMua");
+        } else if (type.equals("NVD")){
+            return donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Đang chờ xác nhận", "No Data"}, "ngayMua");
+        } else  {
+            return donHangDAO.selectDonHang(null, "trangThai=?", new String[]{"Hoàn thành"}, "ngayMua");
+        }
     }
 
     @Override

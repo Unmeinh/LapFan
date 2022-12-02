@@ -151,7 +151,7 @@ public class NV_DonHang_Adapter extends RecyclerView.Adapter<NV_DonHang_Adapter.
             author.trangThai.setText("Đơn hàng giao thành công");
             author.trangThai.setTextColor(Color.parseColor("#C93852B0"));
         } else {
-            author.tienDo.setText("Đang giao");
+            author.tienDo.setText("Đang giao hàng");
             author.imgTrangThai.setImageResource(R.drawable.icon_delivery_dining);
             author.imgTrangThai.setColorFilter(Color.parseColor("#FF9800"));
             author.trangThai.setText("Đơn hàng đang được giao");

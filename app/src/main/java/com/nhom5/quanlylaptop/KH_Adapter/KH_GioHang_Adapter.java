@@ -68,6 +68,26 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
     public void onBindViewHolder(@NonNull KH_GioHang_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         Laptop laptop = setRow(pos, author, "none");
 
+        if (laptop.getSoLuong() == 0){
+            GioHang gio = listGio.get(pos);
+            gioHangDAO.deleteGioHang(gio);
+
+            listGio.clear();
+            if (maKH != null){
+                listGio.addAll(gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null));
+                Date currentTime = Calendar.getInstance().getTime();
+                String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
+                ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
+                ThongBao thongBao = new ThongBao("TB", maKH, "Quản lý giỏ hàng",
+                        " Đơn hàng " + laptop.getTenLaptop() + " đã hết hàng\n Đơn hàng này sẽ bị xóa hỏi giỏ hàng của bạn", date);
+                thongBaoDAO.insertThongBao(thongBao, "kh");
+                if (listGio.size() == 0){
+                    totalTV.setText(changeType.stringToStringMoney("0"));
+                }
+            }
+            notifyDataSetChanged();
+        }
+
         author.giam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -93,13 +113,17 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
             public void onClick(View v) {
                 GioHang gioHang = listGio.get(pos);
                 int soLuong = gioHang.getSoLuong();
-                soLuong++;
-                gioHang.setmaVou("false");
-                gioHang.setSoLuong(soLuong);
-                gioHangDAO.updateGioHang(gioHang);
-                if (maKH != null){
-                    listGio = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null);
-                    setRow(pos, author, "up");
+                if (soLuong < laptop.getSoLuong()){
+                    soLuong++;
+                    gioHang.setmaVou("false");
+                    gioHang.setSoLuong(soLuong);
+                    gioHangDAO.updateGioHang(gioHang);
+                    if (maKH != null){
+                        listGio = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null);
+                        setRow(pos, author, "up");
+                    }
+                } else {
+                    Toast.makeText(context, "!!!Không thể vượt quá số lượng sản phẩm có sẵn!!!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

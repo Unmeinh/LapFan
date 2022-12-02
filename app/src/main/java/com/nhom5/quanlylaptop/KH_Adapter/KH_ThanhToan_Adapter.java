@@ -28,6 +28,7 @@ import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
+import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
 import com.nhom5.quanlylaptop.DAO.VoucherDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
@@ -60,8 +61,10 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
     KhachHang khachHang;
     ThongBaoDAO thongBaoDAO;
     GioHangDAO gioHangDAO;
+    LaptopDAO laptopDAO;
     String maVou;
     GetData getData;
+    ArrayList<Integer> listTotal = new ArrayList<>();
 
     public KH_ThanhToan_Adapter(ArrayList<Laptop> listLap, ArrayList<GioHang> listGio, ArrayList<Voucher> listVou,
                                 Context context, KH_ThanhToan_Activity khThanhToanActivity) {
@@ -72,6 +75,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
         this.khThanhToanActivity = khThanhToanActivity;
         thongBaoDAO = new ThongBaoDAO(context);
         gioHangDAO = new GioHangDAO(context);
+        laptopDAO = new LaptopDAO(context);
         getData = new GetData(context);
         getUserKH();
     }
@@ -86,6 +90,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
     @Override
     public void onBindViewHolder(@NonNull KH_ThanhToan_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         setRow(pos, author);
+
         if (khThanhToanActivity != null) {
             Button datHang = khThanhToanActivity.findViewById(R.id.button_DatHang);
             datHang.setOnClickListener(new View.OnClickListener() {
@@ -153,86 +158,6 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
         }
     }
 
-    private void onclickDatHang() {
-        if (listGio.size() > 0) {
-            for (GioHang gio : listGio) {
-                Laptop laptop = null;
-                for (int i = 0; i < listLap.size(); i++) {
-                    Laptop getLap = listLap.get(i);
-                    if (gio.getMaLaptop().equals(getLap.getMaLaptop())) {
-                        laptop = getLap;
-                    }
-                }
-                Voucher voucher = null;
-                for (int i = 0; i < listVou.size(); i++) {
-                    Voucher getVou = listVou.get(i);
-                    if (gio.getMaVou().equals(getVou.getMaVoucher())) {
-                        voucher = getVou;
-                    }
-                }
-
-                TextView textViewDC = khThanhToanActivity.findViewById(R.id.textView_DiaChi);
-                TextView textViewHTTT = khThanhToanActivity.findViewById(R.id.textView_HinhThucTT);
-                String diaChi = textViewDC.getText().toString();
-                String httt = textViewHTTT.getText().toString();
-
-                if (diaChi.isEmpty()) {
-                    Toast.makeText(context, "Địa chỉ không được để trống!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (httt.isEmpty()) {
-                    Toast.makeText(context, "Hình thức thanh toán không được trống!", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                if (laptop != null && voucher != null && khachHang != null) {
-                    DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
-                            voucher.getMaVoucher(), "No Data", diaChi, getData.getNowDateSQL(), httt, "Đang chờ xác nhận",
-                            "false", changeType.stringToStringMoney(giaTien + "000"), gio.getSoLuong());
-                    DonHangDAO donHangDAO = new DonHangDAO(context);
-                    int check = donHangDAO.insertDonHang(donHang);
-                    int size = donHangDAO.selectDonHang(null, null, null, null).size();
-
-                    if (check == 1) {
-                        ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
-                                "Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
-                        thongBaoDAO.insertThongBao(thongBaoKH, "kh");
-                        ThongBao thongBaoAD = new ThongBao("TB", "Null", "Xác nhận đặt hàng " + size,
-                                " Khách hàng " + changeType.fullNameKhachHang(khachHang) + " đã đặt đơn hàng "
-                                        + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien() + "\n Ấn vào để xác nhận đặt hàng.", getData.getNowDateSQL());
-                        thongBaoDAO.insertThongBao(thongBaoAD, "ad");
-                    }
-                }
-
-                if (laptop != null && khachHang != null) {
-                    DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
-                            "Null", "No Data", diaChi, getData.getNowDateSQL(), httt, "Đang chờ xác nhận",
-                            "false", changeType.stringToStringMoney(giaTien + "000"), gio.getSoLuong());
-                    DonHangDAO donHangDAO = new DonHangDAO(context);
-                    int check = donHangDAO.insertDonHang(donHang);
-                    int size = donHangDAO.selectDonHang(null, null, null, null).size();
-
-                    if (check == 1) {
-                        ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
-                                " Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
-                        thongBaoDAO.insertThongBao(thongBaoKH, "kh");
-                        ThongBao thongBaoAD = new ThongBao("TB", "Null", "Xác nhận đặt hàng " + size,
-                                " Khách hàng " + changeType.fullNameKhachHang(khachHang) + " đã đặt đơn hàng " + laptop.getTenLaptop()
-                                        + " với giá " + donHang.getThanhTien() + "\n Ấn vào để xác nhận đặt hàng", getData.getNowDateSQL());
-                        thongBaoDAO.insertThongBao(thongBaoAD, "ad");
-                    }
-                }
-
-                for (GioHang gioHang : listGio) {
-                    gioHangDAO.deleteGioHang(gioHang);
-                }
-                Toast.makeText(context, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
-                khThanhToanActivity.finish();
-            }
-        }
-    }
-
     public Laptop setRow(int pos, @NonNull KH_ThanhToan_Adapter.AuthorViewHolder author) {
         Log.d(TAG, "setRow: " + pos);
         GioHang gioHang = listGio.get(pos);
@@ -274,6 +199,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
             int sale = changeType.voucherToInt(voucher.getGiamGia());
             int giamTien = (giaTien * sale) / 100;
             int totalDh = giaTien - giamTien;
+            listTotal.add(totalDh);
 
             Log.d(TAG, "setRow: giaTien = " + giaTien);
             Log.d(TAG, "setRow: giamTien = " + giamTien);
@@ -287,6 +213,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
             maVou = two[0];
             int giamTien = changeType.stringMoneyToInt(two[1]);
             int tongTien = giaTien - giamTien;
+            listTotal.add(tongTien);
 
             Log.d(TAG, "setRow: giaTien = " + giaTien);
             Log.d(TAG, "setRow: giamTien = " + giamTien);
@@ -312,6 +239,96 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
         });
 
         return laptop;
+    }
+
+    private void onclickDatHang() {
+        if (listGio.size() > 0) {
+            int thToan = 0;
+            for (int pos = 0; pos < listGio.size(); pos++) {
+                GioHang gio = listGio.get(pos);
+                int money = listTotal.get(pos);
+                Laptop laptop = null;
+                for (int i = 0; i < listLap.size(); i++) {
+                    Laptop getLap = listLap.get(i);
+                    if (gio.getMaLaptop().equals(getLap.getMaLaptop())) {
+                        laptop = getLap;
+                    }
+                }
+                Voucher voucher = null;
+                for (int i = 0; i < listVou.size(); i++) {
+                    Voucher getVou = listVou.get(i);
+                    if (gio.getMaVou().equals(getVou.getMaVoucher())) {
+                        voucher = getVou;
+                    }
+                }
+
+                TextView textViewDC = khThanhToanActivity.findViewById(R.id.textView_DiaChi);
+                TextView textViewHTTT = khThanhToanActivity.findViewById(R.id.textView_HinhThucTT);
+                String diaChi = textViewDC.getText().toString();
+                String httt = textViewHTTT.getText().toString();
+
+                if (diaChi.isEmpty()) {
+                    Toast.makeText(context, "Địa chỉ không được để trống!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (httt.isEmpty()) {
+                    Toast.makeText(context, "Hình thức thanh toán không được trống!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (laptop != null && voucher != null && khachHang != null) {
+
+                    DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                            voucher.getMaVoucher(), "No Data", diaChi, getData.getNowDateSQL(), httt, "Đang chờ xác nhận",
+                            "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
+                    DonHangDAO donHangDAO = new DonHangDAO(context);
+                    int check = donHangDAO.insertDonHang(donHang);
+                    int size = donHangDAO.selectDonHang(null, null, null, null).size();
+
+                    if (check == 1) {
+                        ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
+                                "Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                        thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+                        ThongBao thongBaoAD = new ThongBao("TB", "Null", "Xác nhận đặt hàng " + size,
+                                " Khách hàng " + changeType.fullNameKhachHang(khachHang) + " đã đặt đơn hàng "
+                                        + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                        thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                        thToan = 1;
+                    }
+                }
+
+                if (laptop != null && khachHang != null) {
+
+                    DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                            "Null", "No Data", diaChi, getData.getNowDateSQL(), httt, "Đang chờ xác nhận",
+                            "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
+                    DonHangDAO donHangDAO = new DonHangDAO(context);
+                    int check = donHangDAO.insertDonHang(donHang);
+                    int size = donHangDAO.selectDonHang(null, null, null, null).size();
+
+                    if (check == 1) {
+                        ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
+                                " Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                        thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+                        ThongBao thongBaoAD = new ThongBao("TB", "Null", "Xác nhận đặt hàng " + size,
+                                " Khách hàng " + changeType.fullNameKhachHang(khachHang) + " đã đặt đơn hàng " + laptop.getTenLaptop()
+                                        + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                        thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                        thToan = 1;
+                    }
+                }
+
+            }
+
+            if (thToan == 1) {
+                for (GioHang gioHang : listGio) {
+                    gioHangDAO.deleteGioHang(gioHang);
+                }
+                Toast.makeText(context, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
+                khThanhToanActivity.finish();
+            }
+        }
     }
 
     private void setThanhToan(int pos, int tienHang, int giamTien) {
@@ -351,7 +368,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                 int giamTien = (giaTien * sale) / 100;
 
                 textView.setText("-" + changeType.stringToStringMoney(giamTien + "000"));
-                after = changeType.stringToStringMoney(giamTien+"");
+                after = changeType.stringToStringMoney(giamTien + "");
                 textView.setTextColor(Color.parseColor("#FF5722"));
             } else {
                 textView.setText(R.string.thay_i_m);

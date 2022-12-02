@@ -75,13 +75,6 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
 
     @Override
     public int getItemCount() {
-        if (countKH != null){
-            if (listKH.size() > 0) {
-                countKH.setText(String.valueOf(listKH.size()));
-            } else {
-                countKH.setText(String.valueOf(0));
-            }
-        }
         return listKH.size();
     }
 
@@ -96,6 +89,9 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
             gender = itemView.findViewById(R.id.textView_GioiTinh);
             phone = itemView.findViewById(R.id.textView_SDT);
             itemView.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) this);
+            if (listKH.size() == 0){
+                countKH.setText(String.valueOf(0));
+            }
         }
 
         @Override
@@ -137,6 +133,7 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
         ChangeType changeType = new ChangeType();
         Bitmap avatar = changeType.byteToBitmap(kh.getAvatar());
 
+        countKH.setText(String.valueOf(listKH.size()));
         author.avatar.setImageBitmap(avatar);
         author.name.setText(kh.getHoKH() + " " + kh.getTenKH());
         author.gender.setText(kh.getGioiTinh());

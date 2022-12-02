@@ -1,6 +1,10 @@
 package com.nhom5.quanlylaptop.FragmentNV_Admin;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatButton;
@@ -11,14 +15,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
+import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.Entity.NhanVien;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.GetData;
 import com.nhom5.quanlylaptop.Support.ChangeType;
@@ -40,12 +47,14 @@ public class NVA_Home_Fragment extends Fragment {
     LaptopDAO laptopDAO;
     DonHangDAO donHangDAO;
     String getMonth;
+    NhanVien nhanVien;
+    View view;
     String TAG = "NVA_Home_Fragment_____";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_nva_home, container, false);
+        view = inflater.inflate(R.layout.fragment_nva_home, container, false);
         changeTime = view.findViewById(R.id.change_Time);
         textView_Date = view.findViewById(R.id.textView_Date);
         textView_GiaTien = view.findViewById(R.id.textView_GiaTien);
@@ -54,11 +63,36 @@ public class NVA_Home_Fragment extends Fragment {
         donHangDAO = new DonHangDAO(getContext());
         listLap = laptopDAO.selectLaptop(null, null, null, null);
 
+        getUser();
         setDoanhThuCreate();
         onclickChangeTime();
         sortLaptop(view);
         setSLDonHang(view);
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getUser();
+        setDoanhThuCreate();
+        onclickChangeTime();
+        sortLaptop(view);
+        setSLDonHang(view);
+    }
+
+    private void getUser() {
+        SharedPreferences pref = getContext().getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            nhanVien = null;
+        } else {
+            String user = pref.getString("who", "");
+            NhanVienDAO nhanVienDAO = new NhanVienDAO(getContext());
+            ArrayList<NhanVien> list = nhanVienDAO.selectNhanVien(null, "maNV=?", new String[]{user}, null);
+            if (list.size() > 0) {
+                nhanVien = list.get(0);
+            }
+        }
     }
 
     private void setDoanhThuCreate() {
@@ -77,9 +111,21 @@ public class NVA_Home_Fragment extends Fragment {
     private void setSLDonHang(View view) {
         TextView slDHText = view.findViewById(R.id.textView_Soluong_DH);
         TextView slDHNum = view.findViewById(R.id.textView_Soluong);
-        listDon = donHangDAO.selectDonHang(null, null, null, null);
-        slDHText.setText(listDon.size() + " đơn hàng");
+        ImageView goToDonDat = view.findViewById(R.id.imageView_GoTo_DonDat);
+        if (nhanVien == null){
+            listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Đang chờ xác nhận", "Null"}, null);
+        } else {
+            listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Đang chờ xác nhận", "No Data"}, null);
+        }
+        slDHText.setText(listDon.size() + " đơn đặt");
         slDHNum.setText(String.valueOf(listDon.size()));
+        goToDonDat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), NVA_DonDat_Activity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void setDoanhThu(String[] time) {

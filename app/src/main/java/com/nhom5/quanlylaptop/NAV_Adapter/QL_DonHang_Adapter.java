@@ -1,10 +1,14 @@
 package com.nhom5.quanlylaptop.NAV_Adapter;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,15 +37,18 @@ import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
+import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
 import com.nhom5.quanlylaptop.DAO.VoucherDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.NhanVien;
+import com.nhom5.quanlylaptop.Entity.ThongBao;
 import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.KH_Adapter.KH_DonHang_Adapter;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
+import com.nhom5.quanlylaptop.Support.GetData;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -66,6 +73,8 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
     KhachHangDAO khachHangDAO;
     VoucherDAO voucherDAO;
     LaptopDAO laptopDAO;
+    ThongBaoDAO thongBaoDAO;
+    GetData getData;
     TextView countDH;
     ChangeType changeType = new ChangeType();
     String TAG = "QL_DonHang_Adapter_____";
@@ -81,6 +90,8 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
         laptopDAO = new LaptopDAO(context);
         voucherDAO = new VoucherDAO(context);
         khachHangDAO = new KhachHangDAO(context);
+        thongBaoDAO = new ThongBaoDAO(context);
+        getData = new GetData(context);
     }
 
     @NonNull
@@ -114,20 +125,57 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
         author.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                setPosDH(pos);
-                return false;
+                if (donHang.getTrangThai().equals("Đang chờ xác nhận")) {
+                    if (donHang.getMaNV().equals("Null")) {
+                        android.app.AlertDialog.Builder aBuild = new android.app.AlertDialog.Builder(context);
+                        aBuild.setTitle("Xác nhận đơn đặt hàng " + donHang.getMaDH());
+                        aBuild.setMessage("Sau khi thay đổi sẽ không thể hoàn tác!");
+                        aBuild.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int stt) {
+                                xacNhanDatHang(donHang);
+                            }
+                        });
+                        aBuild.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int stt) {
+                            }
+                        });
+                        android.app.AlertDialog alertDialog = aBuild.create();
+                        alertDialog.show();
+                    }
+                    if (donHang.getMaNV().equals("No Data")) {
+                        android.app.AlertDialog.Builder aBuild = new android.app.AlertDialog.Builder(context);
+                        aBuild.setTitle("Xác nhận đơn hàng " + donHang.getMaDH());
+                        aBuild.setMessage("Sau khi thay đổi sẽ không thể hoàn tác!");
+                        aBuild.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int stt) {
+                                xacNhanDonHang(donHang);
+                            }
+                        });
+                        aBuild.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int stt) {
+                            }
+                        });
+                        android.app.AlertDialog alertDialog = aBuild.create();
+                        alertDialog.show();
+                    }
+                    return false;
+                } else {
+                    setPosDH(pos);
+                    author.itemView.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) author);
+                    return false;
+                }
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        if (countDH != null) {
-            if (listDon.size() > 0) {
-                countDH.setText(String.valueOf(listDon.size()));
-            } else {
-                countDH.setText(String.valueOf(0));
-            }
+        if (listDon.size() == 0){
+            countDH.setText(String.valueOf(0));
         }
         return listDon.size();
     }
@@ -142,7 +190,6 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
             phone = itemView.findViewById(R.id.textView_SDT);
             money = itemView.findViewById(R.id.textView_Soluong);
             date = itemView.findViewById(R.id.textView_Date);
-            itemView.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) this);
         }
 
         @Override
@@ -178,9 +225,8 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
                 }
                 return true;
             }
-
-
         };
+
     }
 
     public DonHang setRow(int pos, @NonNull QL_DonHang_Adapter.AuthorViewHolder author) {
@@ -206,6 +252,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
             }
         }
 
+        countDH.setText(String.valueOf(listDon.size()));
         author.tenKH.setText(changeType.fullNameKhachHang(khachHang));
         author.tenLaptop.setText(laptop.getTenLaptop());
         author.phone.setText(khachHang.getPhone());
@@ -606,6 +653,93 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
         return new DonHang("", nhanVien.getMaNV(), khachHang.getMaKH(), laptop.getMaLaptop(),
                 voucher.getMaVoucher(), "No Data", dc, dateSQL, "Thanh toán tại cửa hàng",
                 "Hoàn thành", "false", changeType.stringToStringMoney(tt), sl);
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void xacNhanDatHang(DonHang donHang) {
+        if (donHang.getMaNV().equals("Null")) {
+            ArrayList<Laptop> listLap = laptopDAO.selectLaptop(null, "maLaptop=?", new String[]{donHang.getMaLaptop()}, null);
+            if (listLap.size() > 0) {
+                laptop = listLap.get(0);
+            }
+
+            donHang.setMaNV("No Data");
+            int check = donHangDAO.updateDonHang(donHang);
+            if (check == 1) {
+                Toast.makeText(context, "Xác nhận đặt hàng thành công!", Toast.LENGTH_SHORT).show();
+                ThongBao thongBaoAD = new ThongBao("TB", "ad", "Xác nhận đặt hàng " + donHang.getMaDH(),
+                        " Bạn đã xác nhận đơn hàng " + donHang.getMaDH()
+                                + "\n Đơn hàng đã được chuyển đến cho nhân viên", getData.getNowDateSQL());
+                thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                listDon.clear();
+                listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Đang chờ xác nhận", "Null"}, "ngayMua");
+                notifyDataSetChanged();
+                if (laptop != null) {
+                    ThongBao thongBaoNV = new ThongBao("TB", "No Data", "Xác nhận đơn hàng " + donHang.getMaDH(),
+                            " Đơn hàng " + laptop.getTenLaptop() + " đang chờ được xác nhận", getData.getNowDateSQL());
+                    thongBaoDAO.insertThongBao(thongBaoNV, "nv");
+                } else {
+                    ThongBao thongBaoNV = new ThongBao("TB", "No Data", "Xác nhận đơn hàng " + donHang.getMaDH(),
+                            " Đơn hàng No Data" + " đang chờ được xác nhận", getData.getNowDateSQL());
+                    thongBaoDAO.insertThongBao(thongBaoNV, "nv");
+                }
+            } else {
+                Toast.makeText(context, "Xác nhận đặt hàng thất bại!", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(context, "Đơn hàng đã được xác nhận!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void xacNhanDonHang(DonHang donHang) {
+        if (donHang.getMaNV().equals("No Data")) {
+            SharedPreferences pref = context.getSharedPreferences("Who_Login", MODE_PRIVATE);
+            if (pref == null) {
+                nhanVien = null;
+            } else {
+                String user = pref.getString("who", "");
+                NhanVienDAO nhanVienDAO = new NhanVienDAO(context);
+                ArrayList<NhanVien> list = nhanVienDAO.selectNhanVien(null, "maNV=?", new String[]{user}, null);
+                if (list.size() > 0) {
+                    nhanVien = list.get(0);
+                }
+            }
+            if (nhanVien != null) {
+                ArrayList<Laptop> listLap = laptopDAO.selectLaptop(null, "maLaptop=?", new String[]{donHang.getMaLaptop()}, null);
+                if (listLap.size() > 0) {
+                    laptop = listLap.get(0);
+                }
+                donHang.setMaNV(nhanVien.getMaNV());
+                donHang.setTrangThai("Đang giao hàng");
+                int check = donHangDAO.updateDonHang(donHang);
+                if (check == 1) {
+                    laptop.setSoLuong(laptop.getSoLuong() - donHang.getSoLuong());
+                    laptop.setDaBan(laptop.getDaBan() + donHang.getSoLuong());
+                    laptopDAO.updateLaptop(laptop);
+                    Toast.makeText(context, "Xác nhận đơn hàng thành công!", Toast.LENGTH_SHORT).show();
+                    ThongBao thongBaoNV = new ThongBao("", nhanVien.getMaNV(), "Xác nhận đơn hàng " + donHang.getMaDH(),
+                            " Bạn đã xác nhận đơn hàng " + donHang.getMaDH() + ", đơn hàng đã được lưu trong Đơn hàng đã bán", getData.getNowDateSQL());
+                    thongBaoDAO.insertThongBao(thongBaoNV, "nv");
+                    listDon.clear();
+                    listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Đang chờ xác nhận", "No Data"}, "ngayMua");
+                    notifyDataSetChanged();
+                    if (laptop != null) {
+                        ThongBao thongBaoKH = new ThongBao("TB", donHang.getMaKH(), "Đơn hàng đã được xác nhận", " Đơn hàng "
+                                + laptop.getTenLaptop() + " đã được xác nhận\n Hãy vào Đơn hàng đã mua để xem đơn hàng nhé", getData.getNowDateSQL());
+                        thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+                    } else {
+                        ThongBao thongBaoKH = new ThongBao("TB", donHang.getMaKH(), "Đơn hàng đã được xác nhận",
+                                " Đơn hàng No data" + " đã được xác nhận\n Hãy vào Đơn hàng đã mua để xem đơn hàng nhé", getData.getNowDateSQL());
+                        thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+                    }
+                } else {
+                    Toast.makeText(context, "Xác nhận đơn hàng thất bại!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        } else {
+            Toast.makeText(context, "Đơn hàng đã được xác nhận!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public int getPosDH() {

@@ -108,7 +108,7 @@
 
                 <LinearLayout
                     android:orientation="vertical"
-                    android:layout_width="120dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent">
 
                     <TextView
@@ -147,7 +147,7 @@
                         android:textSize="22sp" />
 
                     <ImageView
-                        android:id="@+id/imageView_GoTo_DonHang"
+                        android:id="@+id/imageView_GoTo_DonDat"
                         android:layout_width="50dp"
                         android:layout_height="match_parent"
                         android:src="@drawable/next_icon_black" />

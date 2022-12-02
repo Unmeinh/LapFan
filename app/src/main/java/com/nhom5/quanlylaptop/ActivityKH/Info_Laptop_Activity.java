@@ -119,11 +119,11 @@ public class Info_Laptop_Activity extends AppCompatActivity {
 
     private void addToCart() {
         if (khachHang != null){
-            listGio = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{khachHang.getMaKH()}, null);
             if (listGio != null) {
                 themVaoGio.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        listGio = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{khachHang.getMaKH()}, null);
                         if (laptop.getSoLuong() != 0) {
                             GioHang getGio = null;
                             for (GioHang gio : listGio) {
@@ -143,11 +143,12 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                                         " Bạn đã thêm Laptop " + laptop.getTenLaptop() + " với giá " + laptop.getGiaTien() + " vào giỏ hàng.", date);
                                 thongBaoDAO.insertThongBao(thongBao, "kh");
                             } else {
-                                if (getGio.getSoLuong() > laptop.getSoLuong()) {
+                                if (getGio.getSoLuong() >= laptop.getSoLuong()) {
                                     Toast.makeText(context, "Số lượng sản phẩm trong giỏ tối đa!", Toast.LENGTH_SHORT).show();
                                 } else {
                                     getGio.setSoLuong(getGio.getSoLuong() + 1);
                                     gioHangDAO.updateGioHang(getGio);
+                                    Toast.makeText(context, "Đã thêm vào giỏ hàng!", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         } else {

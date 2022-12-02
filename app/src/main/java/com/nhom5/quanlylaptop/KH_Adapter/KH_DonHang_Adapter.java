@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -148,13 +147,22 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
             author.trangThai.setText("Đơn hàng giao thành công");
             author.trangThai.setTextColor(Color.parseColor("#C93852B0"));
         } else if (donHang.getTrangThai().equals("Đang chờ xác nhận")) {
-            author.tienDo.setText("Đang chờ xác nhận");
+            author.tienDo.setText("Đang chờ");
+            author.hint.setVisibility(View.GONE);
             author.imgTrangThai.setImageResource(R.drawable.waiting_confirm_icon);
             author.imgTrangThai.setColorFilter(Color.parseColor("#FF9800"));
             author.trangThai.setText("Đơn hàng đang chờ xác nhận");
             author.trangThai.setTextColor(Color.parseColor("#FF9800"));
-        } else {
+        } else if (donHang.getTrangThai().equals("Đang chờ thanh toán")) {
+            author.tienDo.setText("Đang chờ");
+            author.hint.setVisibility(View.GONE);
+            author.imgTrangThai.setImageResource(R.drawable.send_icon);
+            author.imgTrangThai.setColorFilter(Color.parseColor("#FF9800"));
+            author.trangThai.setText("Đơn hàng đang chờ xác nhận");
+            author.trangThai.setTextColor(Color.parseColor("#FF9800"));
+        } else if (donHang.getTrangThai().equals("Đang giao hàng")) {
             author.tienDo.setText("Đang giao");
+            author.hint.setVisibility(View.GONE);
             author.imgTrangThai.setImageResource(R.drawable.icon_delivery_dining);
             author.imgTrangThai.setColorFilter(Color.parseColor("#FF9800"));
             author.trangThai.setText("Đơn hàng đang được giao");
@@ -214,7 +222,7 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
             author.danhGia.setText("Chờ xác nhận");
             author.danhGia.setEnabled(false);
         }
-        if (donHang.getTrangThai().equals("Đang giao")) {
+        if (donHang.getTrangThai().equals("Đang giao hàng")) {
             author.danhGia.setText("Đã nhận hàng");
             author.danhGia.setEnabled(true);
             author.danhGia.setOnClickListener(new View.OnClickListener() {
