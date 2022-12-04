@@ -175,6 +175,8 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
         author.daBan.setText(String.valueOf(laptop.getDaBan()));
     }
 
+
+
     private void openDialogUpdate(Laptop laptop) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inft = ((Activity) context).getLayoutInflater();

@@ -45,6 +45,12 @@
         <item>Khác</item>
     </string-array>
 
+    <string-array name="role_array">
+        <item>Xác nhận đơn hàng Online</item>
+        <item>Bán hàng Online</item>
+        <item>Bán hàng Ofline</item>
+    </string-array>
+
     <string-array name="hang_laptop_array">
         <item>Dell</item>
         <item>HP</item>
@@ -192,4 +198,6 @@
     <string name="theo_s_l_ng_ncao_ti_n_nh_t">Lớn tiền nhất</string>
     <string name="theo_s_l_ng_nth_p_ti_n_nh_t">Thấp tiền nhất</string>
     <string name="bi_u_doanh_thu">Biểu đồ thống kê</string>
+    <string name="b_ph_n">Bộ phận</string>
+    <string name="th_ng_tin_nh_n_vi_n">Thông tin nhân viên:</string>
 </resources>

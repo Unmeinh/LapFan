@@ -26,6 +26,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.nhom5.quanlylaptop.Activity.PickRole_Activity;
+import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.PagerAdapter.Admin_PagerAdapter_Bottom;
 import com.nhom5.quanlylaptop.PagerAdapter.Admin_PagerAdapter_Drawer;
 import com.nhom5.quanlylaptop.PagerAdapter.KH_PagerAdapter_Drawer;
@@ -154,10 +155,6 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                 if (id == R.id.item_navi_drawer_admin_trangChu) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 0 - home");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(0);
@@ -166,16 +163,10 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                             bottomNavigationView.setVisibility(View.VISIBLE);
                             bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_home).setCheckable(true);
                             bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_home).setChecked(true);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_admin_noti) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 1 - fptshop");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(1);
@@ -184,96 +175,60 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                             bottomNavigationView.setVisibility(View.VISIBLE);
                             bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_noti).setCheckable(true);
                             bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_noti).setChecked(true);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_admin_Laptop) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 2 - laptop");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(2);
                             itemNaviDr = 3;
                             useToolbar("QLý Laptop", 1);
                             bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_admin_DonHang) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 3 - đơn hàng");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(3);
                             itemNaviDr = 4;
                             useToolbar("QLý Đơn Hàng", 1);
                             bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_admin_KhachHang) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 4 - khách hàng");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(4);
                             itemNaviDr = 5;
                             useToolbar("QLý Khách Hàng", 1);
                             bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_admin_Voucher) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 5 - voucher");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(5);
                             itemNaviDr = 6;
                             useToolbar("QLý Voucher", 1);
                             bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_admin_NhanVien) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 6 - nhân viên");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(6);
                             itemNaviDr = 7;
                             useToolbar("QLý Nhân Viên", 1);
                             bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_admin_ThongKe) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 7 - thống kê");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(7);
@@ -282,9 +237,20 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                             bottomNavigationView.setVisibility(View.VISIBLE);
                             bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_thongKe).setCheckable(true);
                             bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_thongKe).setChecked(true);
-                        }
-                    }, 300);
                 }
+                if (id == R.id.item_navi_drawer_admin_Them_NV) {
+                            Admin_PagerAdapter_Bottom adapter = new Admin_PagerAdapter_Bottom(getSupportFragmentManager());
+                            viewPager.setAdapter(adapter);
+                            viewPager.setCurrentItem(3);
+                            Log.d(TAG, "onNavigationItemSelected: itemNavi: " + itemNaviDr);
+                            naviView.getMenu().getItem(itemNaviDr).setChecked(false);
+                            naviView.getMenu().getItem(itemNaviDr).setCheckable(false);
+                            useToolbar("Thêm Nhân Viên", 0);
+                            bottomNavigationView.setVisibility(View.VISIBLE);
+                            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_add_staff).setCheckable(true);
+                            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_add_staff).setChecked(true);
+                }
+
                 if (id == R.id.item_navi_drawer_admin_Logout) {
                     itemNaviDr = 9;
                     item.setCheckable(true);
@@ -309,10 +275,6 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int i = item.getItemId();
                 if (i == R.id.item_navi_bottom_admin_home) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             Admin_PagerAdapter_Bottom adapter = new Admin_PagerAdapter_Bottom(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(0);
@@ -320,14 +282,8 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                             naviView.getMenu().getItem(0).setCheckable(true);
                             itemNaviDr = 0;
                             useToolbar("", 0);
-                        }
-                    }, 300);
                 }
                 if (i == R.id.item_navi_bottom_admin_noti) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             Admin_PagerAdapter_Bottom adapter = new Admin_PagerAdapter_Bottom(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(1);
@@ -335,14 +291,8 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                             naviView.getMenu().getItem(1).setCheckable(true);
                             itemNaviDr = 1;
                             useToolbar("FPT Shop", 0);
-                        }
-                    }, 300);
                 }
                 if (i == R.id.item_navi_bottom_admin_thongKe) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             Admin_PagerAdapter_Bottom adapter = new Admin_PagerAdapter_Bottom(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(2);
@@ -350,14 +300,8 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                             naviView.getMenu().getItem(8).setCheckable(true);
                             itemNaviDr = 8;
                             useToolbar("Doanh Thu\nThống Kê", 0);
-                        }
-                    }, 300);
                 }
                 if (i == R.id.item_navi_bottom_add_staff) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             Admin_PagerAdapter_Bottom adapter = new Admin_PagerAdapter_Bottom(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(3);
@@ -365,8 +309,6 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                             naviView.getMenu().getItem(itemNaviDr).setChecked(false);
                             naviView.getMenu().getItem(itemNaviDr).setCheckable(false);
                             useToolbar("Thêm Nhân Viên", 0);
-                        }
-                    }, 300);
                 }
                 return true;
             }

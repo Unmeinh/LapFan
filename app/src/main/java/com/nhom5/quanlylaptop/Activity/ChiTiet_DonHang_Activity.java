@@ -23,10 +23,14 @@ import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.DiaChiDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
+import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
+import com.nhom5.quanlylaptop.DAO.VoucherDAO;
 import com.nhom5.quanlylaptop.Entity.DiaChi;
 import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.Entity.NhanVien;
+import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
@@ -46,6 +50,7 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
         useToolbar();
         getInfoDonHang();
         setLaptopView();
+        setNhanVien();
     }
 
     @Override
@@ -86,14 +91,14 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
         }
     }
 
-    private void setReview(String isRate, String typeUser){
+    private void setReview(String isRate, String typeUser) {
         LinearLayout layoutReview = findViewById(R.id.layout_Review);
         TextView titleReview = findViewById(R.id.textView_TitleReview);
         TextView detailReview = findViewById(R.id.textView_DetailReview);
         ImageView imageReview = findViewById(R.id.imageView_Review);
 
-        if (typeUser.equals("KH")){
-            if (isRate.equals("true")){
+        if (typeUser.equals("KH")) {
+            if (isRate.equals("true")) {
                 titleReview.setText("Đơn hàng đã được đánh giá!");
                 detailReview.setText("Cảm ơn bạn đã đánh giá. Chúc bạn có một trải nghiệm tuyệt vời với sản phẩm của chúng tôi.");
                 layoutReview.setBackgroundColor(Color.parseColor("#26AB9A"));
@@ -107,7 +112,7 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
                 imageReview.setImageBitmap(bitmap);
             }
         } else {
-            if (isRate.equals("true")){
+            if (isRate.equals("true")) {
                 titleReview.setText("Đơn hàng đã được đánh giá!");
                 detailReview.setText("Khách hàng đã đánh giá sản phẩm này. Xem chi tiết đánh giá thông qua nút đánh giá của đơn hàng.");
                 layoutReview.setBackgroundColor(Color.parseColor("#26AB9A"));
@@ -123,11 +128,34 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
         }
     }
 
+    private void setNhanVien(){
+        ImageView ava = findViewById(R.id.imageView_Avatar);
+        TextView ten = findViewById(R.id.textView_TenUser);
+        TextView email = findViewById(R.id.textView_Email);
+
+        ChangeType changeType = new ChangeType();
+        NhanVien nhanVien = null;
+        NhanVienDAO nhanVienDAO = new NhanVienDAO(context);
+        if (donHang != null){
+            ArrayList<NhanVien> list = nhanVienDAO.selectNhanVien(null,"maNV=?", new String[]{donHang.getMaNV()}, null);
+            if (list.size() > 0){
+                nhanVien = list.get(0);
+            }
+        }
+        if (nhanVien != null){
+            ava.setImageBitmap(changeType.byteToBitmap(nhanVien.getAvatar()));
+            ten.setText(changeType.fullNameNhanVien(nhanVien));
+            email.setText(nhanVien.getEmail());
+        }
+    }
+
     private void setLaptopView() {
         ImageView imageLaptop = findViewById(R.id.imageView_Laptop);
         TextView nameLap = findViewById(R.id.textView_TenLaptop);
         TextView soLuong = findViewById(R.id.textView_Soluong);
-        TextView thanhTien = findViewById(R.id.textView_GiaTien);
+        TextView thanhTienTV = findViewById(R.id.textView_Total);
+        TextView giamTienTV = findViewById(R.id.textView_GiamGia);
+        TextView giaTienTV = findViewById(R.id.textView_TienHang);
         TextView nameKH = findViewById(R.id.textView_TenKH);
         TextView phone = findViewById(R.id.textView_SDT);
         TextView diaChi = findViewById(R.id.textView_DiaChi);
@@ -162,12 +190,30 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
             }
         }
 
+        Voucher voucher = null;
         ChangeType changeType = new ChangeType();
-        Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
 
+        VoucherDAO voucherDAO = new VoucherDAO(context);
+        ArrayList<Voucher> listV = voucherDAO.selectVoucher(null, "maVoucher=?", new String[]{donHang.getMaVoucher()}, null);
+        if (listV.size() > 0){
+            voucher = listV.get(0);
+        }
+        int giaTien = changeType.stringMoneyToInt(laptop.getGiaTien()) / 1000;
+        int soTien = giaTien * donHang.getSoLuong();
+        if (voucher != null) {
+            int sale = changeType.voucherToInt(voucher.getGiamGia());
+            int giamTien = (giaTien * sale) / 100;
+            giamTienTV.setText("-" + changeType.stringToStringMoney(giamTien + "000"));
+        } else {
+            giamTienTV.setText("-" + changeType.stringToStringMoney("0"));
+        }
+
+
+        Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
         imageLaptop.setImageBitmap(anhLap);
         nameLap.setText(laptop.getTenLaptop());
-        thanhTien.setText(donHang.getThanhTien());
+        thanhTienTV.setText(donHang.getThanhTien());
+        giaTienTV.setText(changeType.stringToStringMoney(soTien + "000"));
         soLuong.setText(String.valueOf(donHang.getSoLuong()));
         nameKH.setText(changeType.fullNameKhachHang(khachHang));
         phone.setText(khachHang.getPhone());

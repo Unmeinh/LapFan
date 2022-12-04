@@ -13,11 +13,12 @@ public class NhanVien extends Binder {
     private String matKhau;
     private String queQuan;
     private String phone;
+    private String roleNV;
     private int doanhSo;
     private int soSP;
     private byte[] avatar;
 
-    public NhanVien(String maNV, String hoNV, String tenNV, String gioiTinh, String email, String matKhau, String queQuan, String phone, int doanhSo, int soSP, byte[] avatar) {
+    public NhanVien(String maNV, String hoNV, String tenNV, String gioiTinh, String email, String matKhau, String queQuan, String phone, String roleNV, int doanhSo, int soSP, byte[] avatar) {
         this.maNV = maNV;
         this.hoNV = hoNV;
         this.tenNV = tenNV;
@@ -29,6 +30,7 @@ public class NhanVien extends Binder {
         this.phone = phone;
         this.soSP = soSP;
         this.avatar = avatar;
+        this.roleNV = roleNV;
     }
 
     public String getMaNV() {
@@ -111,6 +113,14 @@ public class NhanVien extends Binder {
         this.soSP = soSP;
     }
 
+    public String getRoleNV() {
+        return roleNV;
+    }
+
+    public void setRoleNV(String roleNV) {
+        this.roleNV = roleNV;
+    }
+
     public byte[] getAvatar() {
         return avatar;
     }
@@ -130,8 +140,8 @@ public class NhanVien extends Binder {
                 ", matKhau = '" + matKhau + '\'' +
                 ", queQuan = '" + queQuan + '\'' +
                 ", phone = '" + phone + '\'' +
+                ", roleNV = '" + roleNV + '\'' +
                 ", avatar = " + avatar +
-                " : " + Arrays.toString(avatar) +
                 '}';
     }
 }

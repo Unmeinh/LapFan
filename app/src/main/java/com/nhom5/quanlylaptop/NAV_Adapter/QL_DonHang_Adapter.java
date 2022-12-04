@@ -125,7 +125,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
         author.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                if (donHang.getTrangThai().equals("Đang chờ xác nhận")) {
+                if (donHang.getTrangThai().equals("Chờ xác nhận")) {
                     if (donHang.getMaNV().equals("Null")) {
                         android.app.AlertDialog.Builder aBuild = new android.app.AlertDialog.Builder(context);
                         aBuild.setTitle("Xác nhận đơn đặt hàng " + donHang.getMaDH());
@@ -672,7 +672,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
                                 + "\n Đơn hàng đã được chuyển đến cho nhân viên", getData.getNowDateSQL());
                 thongBaoDAO.insertThongBao(thongBaoAD, "ad");
                 listDon.clear();
-                listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Đang chờ xác nhận", "Null"}, "ngayMua");
+                listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "Null"}, "ngayMua");
                 notifyDataSetChanged();
                 if (laptop != null) {
                     ThongBao thongBaoNV = new ThongBao("TB", "No Data", "Xác nhận đơn hàng " + donHang.getMaDH(),
@@ -722,7 +722,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
                             " Bạn đã xác nhận đơn hàng " + donHang.getMaDH() + ", đơn hàng đã được lưu trong Đơn hàng đã bán", getData.getNowDateSQL());
                     thongBaoDAO.insertThongBao(thongBaoNV, "nv");
                     listDon.clear();
-                    listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Đang chờ xác nhận", "No Data"}, "ngayMua");
+                    listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "No Data"}, "ngayMua");
                     notifyDataSetChanged();
                     if (laptop != null) {
                         ThongBao thongBaoKH = new ThongBao("TB", donHang.getMaKH(), "Đơn hàng đã được xác nhận", " Đơn hàng "

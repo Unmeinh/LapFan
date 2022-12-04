@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.nhom5.quanlylaptop.CreateWallet.TaoVi_Activity;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.PagerAdapter.KH_PagerAdapter_Bottom;
@@ -140,10 +141,6 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                 if (id == R.id.item_navi_drawer_kh_trangChu) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 0 - home");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Drawer adapter = new KH_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(0);
@@ -152,16 +149,10 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                             bottomNavigationView.setVisibility(View.VISIBLE);
                             bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_kh_home).setCheckable(true);
                             bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_kh_home).setChecked(true);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_kh_thongBao) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 1 - thông báo");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Drawer adapter = new KH_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(1);
@@ -170,112 +161,70 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                             bottomNavigationView.setVisibility(View.VISIBLE);
                             bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_kh_noti).setCheckable(true);
                             bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_kh_noti).setChecked(true);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_kh_lTDell) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 2 - laptop dell");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Drawer adapter = new KH_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(2);
                             itemNaviDr = 2;
                             useToolbar("");
                             bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_kh_lTHP) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 3 - laptop hp");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Drawer adapter = new KH_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(3);
                             itemNaviDr = 4;
                             useToolbar("");
                             bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_kh_lTAsus) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 4 - laptop asus");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Drawer adapter = new KH_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(4);
                             itemNaviDr = 5;
                             useToolbar("");
                             bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_kh_lTAcer) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 5 - laptop acer");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Drawer adapter = new KH_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(5);
                             itemNaviDr = 6;
                             useToolbar("");
                             bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_kh_lTMsi) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 6 - laptop msi");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Drawer adapter = new KH_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(6);
                             itemNaviDr = 7;
                             useToolbar("");
                             bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_kh_mac) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 6 - laptop samsung");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Drawer adapter = new KH_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(7);
                             itemNaviDr = 8;
                             useToolbar("");
                             bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
                 }
                 if (id == R.id.item_navi_drawer_kh_gioHang) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 7 - giỏ hàng");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Drawer adapter = new KH_PagerAdapter_Drawer(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(8);
@@ -284,8 +233,23 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                             bottomNavigationView.setVisibility(View.VISIBLE);
                             bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_kh_gioHang).setCheckable(true);
                             bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_kh_gioHang).setChecked(true);
-                        }
-                    }, 300);
+                }
+                if (id == R.id.item_navi_drawer_kh_DH_Damua) {
+                    item.setCheckable(true);
+                    Log.d(TAG, "onNavigationItemSelected: 7 - giỏ hàng");
+                            startActivity(new Intent(context, KH_DonHang_Activity.class));
+                }
+                if (id == R.id.item_navi_drawer_kh_vi) {
+                    item.setCheckable(true);
+                            if (khachHang != null) {
+                                Intent intent;
+                                if(khachHang.getHaveVi().equals("false")) {
+                                    intent = new Intent(context, TaoVi_Activity.class);
+                                } else {
+                                    intent = new Intent(context, KH_ViTien_Activity.class);
+                                }
+                                startActivity(intent);
+                            }
                 }
                 if (id == R.id.item_navi_drawer_kh_lienHe) {
                     itemNaviDr = 10;
@@ -293,9 +257,17 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                     Log.d(TAG, "onNavigationItemSelected: 8 - liên hệ");
                     bottomNavigationView.setVisibility(View.VISIBLE);
                 }
+                if (id == R.id.item_navi_drawer_admin_Logout) {
+                    itemNaviDr = 9;
+                    item.setCheckable(true);
+                    Log.d(TAG, "onNavigationItemSelected: 8 - log out");
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                    finish();
+                }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }
+
         });
         Log.d(TAG, "onNavigationItemSelected: itemNavi: " + itemNaviDr);
         getSupportActionBar().show();
@@ -311,10 +283,6 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int i = item.getItemId();
                 if (i == R.id.item_navi_bottom_kh_home) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Bottom adapter = new KH_PagerAdapter_Bottom(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(0);
@@ -323,14 +291,8 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                             itemNaviDr = 0;
                             useToolbar("");
                             getSupportActionBar().show();
-                        }
-                    }, 300);
                 }
                 if (i == R.id.item_navi_bottom_kh_noti) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Bottom adapter = new KH_PagerAdapter_Bottom(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(1);
@@ -339,14 +301,8 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                             itemNaviDr = 1;
                             useToolbar("Thông Báo");
                             getSupportActionBar().show();
-                        }
-                    }, 300);
                 }
                 if (i == R.id.item_navi_bottom_kh_gioHang) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Bottom adapter = new KH_PagerAdapter_Bottom(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(2);
@@ -355,14 +311,8 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                             itemNaviDr = 9;
                             useToolbar("Giỏ Hàng");
                             getSupportActionBar().show();
-                        }
-                    }, 300);
                 }
                 if (i == R.id.item_navi_bottom_kh_acc) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
                             KH_PagerAdapter_Bottom adapter = new KH_PagerAdapter_Bottom(getSupportFragmentManager());
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(3);
@@ -370,8 +320,6 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                             naviView.getMenu().getItem(itemNaviDr).setChecked(false);
                             naviView.getMenu().getItem(itemNaviDr).setCheckable(false);
                             getSupportActionBar().hide();
-                        }
-                    }, 300);
                 }
                 return true;
             }

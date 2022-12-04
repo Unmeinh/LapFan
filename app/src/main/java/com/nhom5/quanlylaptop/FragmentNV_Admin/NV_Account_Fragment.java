@@ -206,9 +206,8 @@ public class NV_Account_Fragment extends Fragment {
 
                 if (checkInputPass(currPass, newPass, firmPass) == 1){
                     NhanVienDAO nhanVienDAO = new NhanVienDAO(getContext());
-                    int check = nhanVienDAO.updateNhanVien(new NhanVien(nhanVien.getMaNV(), nhanVien.getHoNV(),
-                            nhanVien.getTenNV(), nhanVien.getGioiTinh(), nhanVien.getEmail(), newPass,
-                            nhanVien.getQueQuan(), nhanVien.getPhone(), nhanVien.getDoanhSo(), nhanVien.getSoSP(), nhanVien.getAvatar()));
+                    nhanVien.setMatKhau(newPass);
+                    int check = nhanVienDAO.updateNhanVien(nhanVien);
                     if (check == 1){
                         clearDialogChangePass(view, dialog);
                         Toast.makeText(getContext(), "Thay đổi mật khẩu thành công!", Toast.LENGTH_SHORT).show();
@@ -356,10 +355,8 @@ public class NV_Account_Fragment extends Fragment {
                 Bitmap bitmap = BitmapFactory.decodeStream(imageStream);
                 if (bitmap != null) {
                     NhanVienDAO nhanVienDAO = new NhanVienDAO(getContext());
-                    nhanVienDAO.updateNhanVien(new NhanVien(nhanVien.getMaNV(), nhanVien.getHoNV(),
-                            nhanVien.getTenNV(), nhanVien.getGioiTinh(), nhanVien.getEmail(), nhanVien.getMatKhau(),
-                            nhanVien.getQueQuan(), nhanVien.getPhone(), nhanVien.getDoanhSo(), nhanVien.getSoSP(),
-                            changeType.checkByteInput(changeType.bitmapToByte(bitmap))));
+                    nhanVien.setAvatar(changeType.checkByteInput(changeType.bitmapToByte(bitmap)));
+                    nhanVienDAO.updateNhanVien(nhanVien);
 
                     Date currentTime = Calendar.getInstance().getTime();
                     String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
@@ -374,10 +371,8 @@ public class NV_Account_Fragment extends Fragment {
             Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
             if (bitmap != null){
                 NhanVienDAO nhanVienDAO = new NhanVienDAO(getContext());
-                nhanVienDAO.updateNhanVien(new NhanVien(nhanVien.getMaNV(), nhanVien.getHoNV(),
-                        nhanVien.getTenNV(), nhanVien.getGioiTinh(), nhanVien.getEmail(), nhanVien.getMatKhau(),
-                        nhanVien.getQueQuan(), nhanVien.getPhone(), nhanVien.getDoanhSo(), nhanVien.getSoSP(),
-                        changeType.checkByteInput(changeType.bitmapToByte(bitmap))));
+                nhanVien.setAvatar(changeType.checkByteInput(changeType.bitmapToByte(bitmap)));
+                nhanVienDAO.updateNhanVien(nhanVien);
 
                 Date currentTime = Calendar.getInstance().getTime();
                 String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);

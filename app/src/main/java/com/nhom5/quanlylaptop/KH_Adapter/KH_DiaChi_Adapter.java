@@ -24,7 +24,6 @@ public class KH_DiaChi_Adapter extends RecyclerView.Adapter<KH_DiaChi_Adapter.Au
     Context context;
     ArrayList<DiaChi> listDC;
     String TAG = "KH_DiaChi_Adapter_____";
-    String selected;
     int selectedPos = -1;
 
     public KH_DiaChi_Adapter(ArrayList<DiaChi> listDC, Context context) {

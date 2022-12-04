@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +18,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
+import com.nhom5.quanlylaptop.DAO.LaptopRateDAO;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.Entity.LaptopRate;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
@@ -37,7 +40,7 @@ public class KH_Laptop_Adapter extends RecyclerView.Adapter<KH_Laptop_Adapter.Au
     @NonNull
     @Override
     public KH_Laptop_Adapter.AuthorViewHolder onCreateViewHolder(@NonNull ViewGroup vGroup, int i) {
-        View v = LayoutInflater.from(context).inflate(R.layout.cardview_kh_laptop, vGroup , false);
+        View v = LayoutInflater.from(context).inflate(R.layout.cardview_kh_laptop, vGroup, false);
         return new KH_Laptop_Adapter.AuthorViewHolder(v);
     }
 
@@ -69,15 +72,18 @@ public class KH_Laptop_Adapter extends RecyclerView.Adapter<KH_Laptop_Adapter.Au
         return listLap.size();
     }
 
-    public static class AuthorViewHolder extends RecyclerView.ViewHolder{
+    public static class AuthorViewHolder extends RecyclerView.ViewHolder {
         ImageView imgLaptop;
         TextView name, gia, ram;
+        RatingBar ratingBar;
+
         public AuthorViewHolder(@NonNull View itemView) {
             super(itemView);
             imgLaptop = itemView.findViewById(R.id.imageView_Laptop);
             name = itemView.findViewById(R.id.textView_TenLaptop);
             gia = itemView.findViewById(R.id.textView_GiaTien);
             ram = itemView.findViewById(R.id.textView_Ram);
+            ratingBar = itemView.findViewById(R.id.ratingBar_DanhGia);
         }
     }
 
@@ -94,5 +100,18 @@ public class KH_Laptop_Adapter extends RecyclerView.Adapter<KH_Laptop_Adapter.Au
         author.name.setText(laptop.getTenLaptop());
         author.gia.setText(laptop.getGiaTien());
         author.ram.setText(laptop.getThongSoKT());
+
+        LaptopRateDAO laptopRateDAO = new LaptopRateDAO(context);
+        ArrayList<LaptopRate> list = laptopRateDAO.selectLaptopRate(null, "maLaptop=?", new String[]{laptop.getMaLaptop()}, null);
+        if (list.size() > 0) {
+            float rating = 0;
+            for (LaptopRate lapRate : list) {
+                rating += lapRate.getRating();
+            }
+            rating = rating / list.size();
+            author.ratingBar.setRating(changeType.getRatingFloat(rating));
+        } else {
+            author.ratingBar.setRating(0f);
+        }
     }
 }

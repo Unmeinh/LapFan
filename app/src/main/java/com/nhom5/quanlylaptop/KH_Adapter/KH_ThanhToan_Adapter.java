@@ -26,17 +26,21 @@ import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_ThanhToan_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
+import com.nhom5.quanlylaptop.DAO.GiaoDichDAO;
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
+import com.nhom5.quanlylaptop.DAO.ViTienDAO;
 import com.nhom5.quanlylaptop.DAO.VoucherDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
+import com.nhom5.quanlylaptop.Entity.GiaoDich;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.ThongBao;
+import com.nhom5.quanlylaptop.Entity.ViTien;
 import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
@@ -211,6 +215,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
         } else {
             String[] two = getVoucher(author.sale, giaTien);
             maVou = two[0];
+            gioHang.setmaVou(maVou);
             int giamTien = changeType.stringMoneyToInt(two[1]);
             int tongTien = giaTien - giamTien;
             listTotal.add(tongTien);
@@ -277,46 +282,142 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                     return;
                 }
 
+                getUserKH();
+                final String[] arrHTTT = context.getResources().getStringArray(R.array.httt_array);
+                ViTienDAO viTienDAO = new ViTienDAO(context);
+                ArrayList<ViTien> listV = viTienDAO.selectViTien(null, "maKH=?", new String[]{khachHang.getMaKH()}, null);
+                ViTien getVi = null;
+                if (listV.size() > 0) {
+                    getVi = listV.get(0);
+                }
+
                 if (laptop != null && voucher != null && khachHang != null) {
+                    if (httt.equals(arrHTTT[0])) {
+                        DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                                voucher.getMaVoucher(), "No Data", diaChi, getData.getNowDateSQL(), httt, "Chờ xác nhận",
+                                "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
+                        DonHangDAO donHangDAO = new DonHangDAO(context);
+                        int check = donHangDAO.insertDonHang(donHang);
+                        int size = donHangDAO.selectDonHang(null, null, null, null).size();
 
-                    DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
-                            voucher.getMaVoucher(), "No Data", diaChi, getData.getNowDateSQL(), httt, "Đang chờ xác nhận",
-                            "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
-                    DonHangDAO donHangDAO = new DonHangDAO(context);
-                    int check = donHangDAO.insertDonHang(donHang);
-                    int size = donHangDAO.selectDonHang(null, null, null, null).size();
+                        if (check == 1) {
+                            ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
+                                    "Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                            thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+                            ThongBao thongBaoAD = new ThongBao("TB", "Null", "Xác nhận đặt hàng " + size,
+                                    " Khách hàng " + changeType.fullNameKhachHang(khachHang) + " đã đặt đơn hàng "
+                                            + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                            thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                            thToan = 1;
+                        }
+                    } else {
+                        int tong = 0;
+                        for (int tien : listTotal) {
+                            tong += tien;
+                        }
+                        if (getVi != null) {
+                            int soDu = changeType.stringMoneyToInt(getVi.getSoTien());
+                            if (soDu < (tong * 1000)) {
+                                DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                                        voucher.getMaVoucher(), "No Data", diaChi, getData.getNowDateSQL(), httt, "Chưa thanh toán",
+                                        "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
+                                DonHangDAO donHangDAO = new DonHangDAO(context);
+                                donHangDAO.insertDonHang(donHang);
+                                khThanhToanActivity.finish();
+                            } else {
+                                DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                                        voucher.getMaVoucher(), "No Data", diaChi, getData.getNowDateSQL(), httt, "Chờ xác nhận",
+                                        "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
+                                DonHangDAO donHangDAO = new DonHangDAO(context);
+                                int check = donHangDAO.insertDonHang(donHang);
+                                int size = donHangDAO.selectDonHang(null, null, null, null).size();
 
-                    if (check == 1) {
-                        ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
-                                "Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
-                        thongBaoDAO.insertThongBao(thongBaoKH, "kh");
-                        ThongBao thongBaoAD = new ThongBao("TB", "Null", "Xác nhận đặt hàng " + size,
-                                " Khách hàng " + changeType.fullNameKhachHang(khachHang) + " đã đặt đơn hàng "
-                                        + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
-                        thongBaoDAO.insertThongBao(thongBaoAD, "ad");
-                        thToan = 1;
+                                if (check == 1) {
+                                    int soTien = setSoDu(getVi, money);
+                                    GiaoDichDAO giaoDichDAO = new GiaoDichDAO(context);
+                                    giaoDichDAO.insertGiaoDich(new GiaoDich("", getVi.getMaVi(), "Thanh toán đơn hàng",
+                                            "Thanh toán đơn hàng " + laptop.getTenLaptop() + " bằng Ví điện tử FPT Pay",
+                                            changeType.stringToStringMoney(money + "000"), getData.getNowDateSQL()));
+
+                                    ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
+                                            "Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                                    thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+                                    ThongBao thongBaoAD = new ThongBao("TB", "Null", "Xác nhận đặt hàng " + size,
+                                            " Khách hàng " + changeType.fullNameKhachHang(khachHang) + " đã đặt đơn hàng "
+                                                    + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                                    thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                                    thToan = 1;
+                                }
+                            }
+
+                        }
                     }
                 }
 
                 if (laptop != null && khachHang != null) {
+                    if (httt.equals(arrHTTT[0])) {
+                        Log.d(TAG, "onclickDatHang: Ofline");
+                        DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                                "Null", "No Data", diaChi, getData.getNowDateSQL(), httt, "Chờ xác nhận",
+                                "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
+                        DonHangDAO donHangDAO = new DonHangDAO(context);
+                        int check = donHangDAO.insertDonHang(donHang);
+                        int size = donHangDAO.selectDonHang(null, null, null, null).size();
 
-                    DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
-                            "Null", "No Data", diaChi, getData.getNowDateSQL(), httt, "Đang chờ xác nhận",
-                            "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
-                    DonHangDAO donHangDAO = new DonHangDAO(context);
-                    int check = donHangDAO.insertDonHang(donHang);
-                    int size = donHangDAO.selectDonHang(null, null, null, null).size();
+                        if (check == 1) {
+                            ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
+                                    " Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                            thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+                            ThongBao thongBaoAD = new ThongBao("TB", "Null", "Xác nhận đặt hàng " + size,
+                                    " Khách hàng " + changeType.fullNameKhachHang(khachHang) + " đã đặt đơn hàng " + laptop.getTenLaptop()
+                                            + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                            thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                            thToan = 1;
+                        }
+                    } else {
+                        Log.d(TAG, "onclickDatHang: Online");
+                        if (getVi != null) {
+                            Log.d(TAG, "onclickDatHang: getVi not null");
+                            Log.d(TAG, "onclickDatHang: " + getVi.toString());
+                            int soDu = changeType.stringMoneyToInt(getVi.getSoTien());
+                            Log.d(TAG, "onclickDatHang: soDu: " + soDu + " money: " + money * 1000);
+                            if (soDu < (money * 1000)) {
+                                Log.d(TAG, "onclickDatHang: soDu: " + soDu + " < money: " + money);
+                                DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                                        "Null", "No Data", diaChi, getData.getNowDateSQL(), httt, "Chưa thanh toán",
+                                        "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
+                                DonHangDAO donHangDAO = new DonHangDAO(context);
+                                donHangDAO.insertDonHang(donHang);
+                                khThanhToanActivity.finish();
+                            } else {
+                                Log.d(TAG, "onclickDatHang: soDu: " + soDu + " >= money: " + money * 1000);
+                                int soTien = setSoDu(getVi, money);
+                                GiaoDichDAO giaoDichDAO = new GiaoDichDAO(context);
+                                giaoDichDAO.insertGiaoDich(new GiaoDich("", getVi.getMaVi(), "Thanh toán đơn hàng",
+                                        "Thanh toán đơn hàng " + laptop.getTenLaptop() + " bằng Ví điện tử FPT Pay",
+                                        changeType.stringToStringMoney(money + "000"), getData.getNowDateSQL()));
 
-                    if (check == 1) {
-                        ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
-                                " Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
-                        thongBaoDAO.insertThongBao(thongBaoKH, "kh");
-                        ThongBao thongBaoAD = new ThongBao("TB", "Null", "Xác nhận đặt hàng " + size,
-                                " Khách hàng " + changeType.fullNameKhachHang(khachHang) + " đã đặt đơn hàng " + laptop.getTenLaptop()
-                                        + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
-                        thongBaoDAO.insertThongBao(thongBaoAD, "ad");
-                        thToan = 1;
+                                DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                                        "Null", "No Data", diaChi, getData.getNowDateSQL(), httt, "Chờ xác nhận",
+                                        "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
+                                DonHangDAO donHangDAO = new DonHangDAO(context);
+                                int check = donHangDAO.insertDonHang(donHang);
+                                int size = donHangDAO.selectDonHang(null, null, null, null).size();
+
+                                if (check == 1) {
+                                    ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
+                                            " Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                                    thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+                                    ThongBao thongBaoAD = new ThongBao("TB", "Null", "Xác nhận đặt hàng " + size,
+                                            " Khách hàng " + changeType.fullNameKhachHang(khachHang) + " đã đặt đơn hàng " + laptop.getTenLaptop()
+                                                    + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
+                                    thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                                    thToan = 1;
+                                }
+                            }
+                        }
                     }
+
                 }
 
             }
@@ -329,6 +430,14 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                 khThanhToanActivity.finish();
             }
         }
+    }
+
+    private int setSoDu(ViTien viTien, int money) {
+        ViTienDAO viTienDAO = new ViTienDAO(context);
+        int soDu = changeType.stringMoneyToInt(viTien.getSoTien()) / 1000;
+        viTien.setSoTien(changeType.stringToStringMoney((soDu - (money)) + "000"));
+        viTienDAO.updateViTien(viTien);
+        return soDu - money;
     }
 
     private void setThanhToan(int pos, int tienHang, int giamTien) {

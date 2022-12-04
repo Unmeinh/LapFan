@@ -36,23 +36,30 @@ public class KH_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
     RecyclerView reView;
     @SuppressLint("StaticFieldLeak")
     LinearLayout loadingView, linearEmpty;
+    String type;
 
-    public KH_DonHang_Loader(Context context, RecyclerView reView, LinearLayout loadingView, LinearLayout linearEmpty) {
+    public KH_DonHang_Loader(Context context, RecyclerView reView, LinearLayout loadingView, LinearLayout linearEmpty, String type) {
         this.context = context;
         this.reView = reView;
         this.loadingView = loadingView;
         this.linearEmpty = linearEmpty;
+        this.type = type;
     }
 
     @Override
     protected ArrayList<DonHang> doInBackground(String... strings) {
-
         laptopDAO = new LaptopDAO(context);
         donHangDAO = new DonHangDAO(context);
         String maKH = strings[0];
         listLap = laptopDAO.selectLaptop(null, null, null, null);
 
-        return donHangDAO.selectDonHang(null, "maKH=?", new String[]{maKH}, "ngayMua");
+        if (type.equals("yep")){
+            return donHangDAO.selectDonHang(null, "maKH=? and trangThai!=?", new String[]{maKH, "Chưa thanh toán"}, "ngayMua");
+        }
+        if (type.equals("none")){
+            return donHangDAO.selectDonHang(null, "maKH=? and trangThai=?", new String[]{maKH, "Chưa thanh toán"}, "ngayMua");
+        }
+        return null;
     }
 
     @Override

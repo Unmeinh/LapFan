@@ -78,7 +78,7 @@ public class ViTienDAO {
         db.close();
     }
 
-    public void updateViTien(ViTien viTien) {
+    public int updateViTien(ViTien viTien) {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -90,12 +90,14 @@ public class ViTienDAO {
         Log.d(TAG, "updateViTien: Values: " + values);
 
         long ketqua = db.update("ViTien", values, "maVi=?", new String[]{String.valueOf(viTien.getMaVi())});
+        db.close();
         if (ketqua > 0) {
             Log.d(TAG, "updateViTien: Sửa thành công");
+            return 1;
         } else {
             Log.d(TAG, "updateViTien: Sửa thất bại");
+            return -1;
         }
-        db.close();
     }
 
     public void deleteViTien(ViTien viTien){

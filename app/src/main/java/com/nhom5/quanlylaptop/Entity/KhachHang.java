@@ -122,7 +122,6 @@ public class KhachHang extends Binder {
                 ", phone = '" + phone + '\'' +
                 ", haveVi = '" + haveVi + '\'' +
                 ", avatar = " +  avatar +
-                " : " + Arrays.toString(avatar) +
                 '}';
     }
 }

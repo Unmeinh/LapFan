@@ -50,10 +50,9 @@ public class GetData {
                         }
                     }
 
-                    NhanVien update = new NhanVien(nhanVien.getMaNV(), nhanVien.getHoNV(), nhanVien.getTenNV(), nhanVien.getGioiTinh(),
-                            nhanVien.getEmail(), nhanVien.getMatKhau(), nhanVien.getQueQuan(), nhanVien.getPhone(),
-                            doanhSo, cout, nhanVien.getAvatar());
-                    nhanVienDAO.updateNhanVien(update);
+                    nhanVien.setDoanhSo(doanhSo);
+                    nhanVien.setSoSP(cout);
+                    nhanVienDAO.updateNhanVien(nhanVien);
                 }
             }
         }

@@ -26,6 +26,9 @@ import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
+import com.nhom5.quanlylaptop.ActivityKH.KH_DonHang_Activity;
+import com.nhom5.quanlylaptop.ActivityKH.KH_ViTien_Activity;
+import com.nhom5.quanlylaptop.CreateWallet.TaoVi_Activity;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
@@ -186,126 +189,97 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                 if (id == R.id.item_navi_drawer_nv_trangChu) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 0 - home");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(0);
-                            itemNaviDr = 0;
-                            useToolbar("", 0);
-                            bottomNavigationView.setVisibility(View.VISIBLE);
-                            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_home).setCheckable(true);
-                            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_home).setChecked(true);
-                        }
-                    }, 300);
+                    NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(0);
+                    itemNaviDr = 0;
+                    useToolbar("", 0);
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_home).setCheckable(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_home).setChecked(true);
                 }
                 if (id == R.id.item_navi_drawer_nv_noti) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 1 - fptshop");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(1);
-                            itemNaviDr = 1;
-                            useToolbar("FPT Shop", 0);
-                            bottomNavigationView.setVisibility(View.VISIBLE);
-                            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_noti).setCheckable(true);
-                            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_noti).setChecked(true);
-                        }
-                    }, 300);
+                    NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(1);
+                    itemNaviDr = 1;
+                    useToolbar("FPT Shop", 0);
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_noti).setCheckable(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_noti).setChecked(true);
                 }
                 if (id == R.id.item_navi_drawer_nv_Laptop) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 2 - laptop");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(2);
-                            itemNaviDr = 3;
-                            useToolbar("QLý Laptop", 1);
-                            bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
+                    NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(2);
+                    itemNaviDr = 3;
+                    useToolbar("QLý Laptop", 1);
+                    bottomNavigationView.setVisibility(View.GONE);
                 }
                 if (id == R.id.item_navi_drawer_nv_DonHang) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 3 - đơn hàng");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(3);
-                            itemNaviDr = 4;
-                            useToolbar("QLý Đơn Hàng", 1);
-                            bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
+                    NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(3);
+                    itemNaviDr = 4;
+                    useToolbar("QLý Đơn Hàng", 1);
+                    bottomNavigationView.setVisibility(View.GONE);
                 }
                 if (id == R.id.item_navi_drawer_nv_KhachHang) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 4 - khách hàng");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(4);
-                            itemNaviDr = 5;
-                            useToolbar("QLý Khách Hàng", 1);
-                            bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
+                    NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(4);
+                    itemNaviDr = 5;
+                    useToolbar("QLý Khách Hàng", 1);
+                    bottomNavigationView.setVisibility(View.GONE);
                 }
                 if (id == R.id.item_navi_drawer_nv_Voucher) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 5 - voucher");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(5);
-                            itemNaviDr = 6;
-                            useToolbar("QLý Voucher", 1);
-                            bottomNavigationView.setVisibility(View.GONE);
-                        }
-                    }, 300);
+                    NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(5);
+                    itemNaviDr = 6;
+                    useToolbar("QLý Voucher", 1);
+                    bottomNavigationView.setVisibility(View.GONE);
                 }
                 if (id == R.id.item_navi_drawer_nv_ThongKe) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 6 - thống kê");
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(6);
-                            itemNaviDr = 7;
-                            useToolbar("Doanh Thu\nThống Kê", 0);
-                            bottomNavigationView.setVisibility(View.VISIBLE);
-                            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_thongKe).setCheckable(true);
-                            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_thongKe).setChecked(true);
-                        }
-                    }, 300);
+                    NV_PagerAdapter_Drawer adapter = new NV_PagerAdapter_Drawer(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(6);
+                    itemNaviDr = 7;
+                    useToolbar("Doanh Thu\nThống Kê", 0);
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_thongKe).setCheckable(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_thongKe).setChecked(true);
                 }
+                if (id == R.id.item_navi_drawer_kh_DH_Damua) {
+                    item.setCheckable(true);
+                    Log.d(TAG, "onNavigationItemSelected: 7 - giỏ hàng");
+                    startActivity(new Intent(context, NV_DonHang_Activity.class));
+                }
+
                 if (id == R.id.item_navi_drawer_nv_lienHe) {
                     itemNaviDr = 8;
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 8 - liên hệ");
                     bottomNavigationView.setVisibility(View.VISIBLE);
+                }
+                if (id == R.id.item_navi_drawer_admin_Logout) {
+                    itemNaviDr = 9;
+                    item.setCheckable(true);
+                    Log.d(TAG, "onNavigationItemSelected: 8 - log out");
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                    finish();
                 }
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
@@ -325,67 +299,43 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int i = item.getItemId();
                 if (i == R.id.item_navi_bottom_nv_home) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(0);
-                            naviView.getMenu().getItem(0).setChecked(true);
-                            naviView.getMenu().getItem(0).setCheckable(true);
-                            itemNaviDr = 0;
-                            useToolbar("", 0);
-                            getSupportActionBar().show();
-                        }
-                    }, 300);
+                    NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(0);
+                    naviView.getMenu().getItem(0).setChecked(true);
+                    naviView.getMenu().getItem(0).setCheckable(true);
+                    itemNaviDr = 0;
+                    useToolbar("", 0);
+                    getSupportActionBar().show();
                 }
                 if (i == R.id.item_navi_bottom_nv_noti) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(1);
-                            naviView.getMenu().getItem(1).setChecked(true);
-                            naviView.getMenu().getItem(1).setCheckable(true);
-                            itemNaviDr = 1;
-                            useToolbar("FPT Shop", 0);
-                            getSupportActionBar().show();
-                        }
-                    }, 300);
+                    NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(1);
+                    naviView.getMenu().getItem(1).setChecked(true);
+                    naviView.getMenu().getItem(1).setCheckable(true);
+                    itemNaviDr = 1;
+                    useToolbar("FPT Shop", 0);
+                    getSupportActionBar().show();
                 }
                 if (i == R.id.item_navi_bottom_nv_thongKe) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(2);
-                            naviView.getMenu().getItem(7).setChecked(true);
-                            naviView.getMenu().getItem(7).setCheckable(true);
-                            itemNaviDr = 7;
-                            useToolbar("Doanh Thu\nThống Kê", 0);
-                            getSupportActionBar().show();
-                        }
-                    }, 300);
+                    NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(2);
+                    naviView.getMenu().getItem(7).setChecked(true);
+                    naviView.getMenu().getItem(7).setCheckable(true);
+                    itemNaviDr = 7;
+                    useToolbar("Doanh Thu\nThống Kê", 0);
+                    getSupportActionBar().show();
                 }
                 if (i == R.id.item_navi_bottom_nv_acc) {
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(3);
-                            Log.d(TAG, "onNavigationItemSelected: itemNavi: " + itemNaviDr);
-                            naviView.getMenu().getItem(itemNaviDr).setChecked(false);
-                            naviView.getMenu().getItem(itemNaviDr).setCheckable(false);
-                            getSupportActionBar().hide();
-                        }
-                    }, 300);
+                    NV_PagerAdapter_Bottom adapter = new NV_PagerAdapter_Bottom(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(3);
+                    Log.d(TAG, "onNavigationItemSelected: itemNavi: " + itemNaviDr);
+                    naviView.getMenu().getItem(itemNaviDr).setChecked(false);
+                    naviView.getMenu().getItem(itemNaviDr).setCheckable(false);
+                    getSupportActionBar().hide();
                 }
                 return true;
             }

@@ -36,14 +36,13 @@ import java.util.PropertyPermission;
 
 public class Account_Manager_Activity extends AppCompatActivity {
 
-    TextView tv_error_email, tv_error_ho_ten, tv_error_sdt, tv_error_gioiTinh, tv_error_queQuan;
-    Spinner genderSpinner;
     AppCompatButton buttonUpdate;
     Context context = this;
     NhanVien nhanVien;
     KhachHang khachHang;
     String role;
     TextInputLayout til_Email, til_Ho, til_Ten, til_SDT, til_QueQuan, til_GioiTinh;
+    Spinner genderSpinner;
     ChangeType changeType = new ChangeType();
 
     @Override
@@ -58,11 +57,6 @@ public class Account_Manager_Activity extends AppCompatActivity {
         til_SDT = findViewById(R.id.textInput_SDT);
         til_QueQuan = findViewById(R.id.textInput_QueQuan);
         til_GioiTinh = findViewById(R.id.textInput_GioiTinh);
-        tv_error_email = findViewById(R.id.tv_error_email);
-        tv_error_ho_ten = findViewById(R.id.tv_error_ho_ten);
-        tv_error_sdt = findViewById(R.id.tv_error_sdt);
-        tv_error_gioiTinh = findViewById(R.id.tv_error_gioiTinh);
-        tv_error_queQuan = findViewById(R.id.tv_error_queQuan);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.gender_array, android.R.layout.simple_spinner_item);
@@ -112,7 +106,7 @@ public class Account_Manager_Activity extends AppCompatActivity {
                         String gioiTinh = genderSpinner.getSelectedItem().toString();
 
                         NhanVien newNV = new NhanVien(nhanVien.getMaNV(), ho, ten, gioiTinh, email, nhanVien.getMatKhau()
-                                , queQuan, sdt, nhanVien.getDoanhSo(), nhanVien.getSoSP(), nhanVien.getAvatar());
+                                , queQuan, sdt, nhanVien.getRoleNV(), nhanVien.getDoanhSo(), nhanVien.getSoSP(), nhanVien.getAvatar());
                         NhanVienDAO nhanVienDAO = new NhanVienDAO(context);
                         nhanVienDAO.updateNhanVien(newNV);
                         Date currentTime = Calendar.getInstance().getTime();
@@ -138,83 +132,59 @@ public class Account_Manager_Activity extends AppCompatActivity {
         String queQuan = changeType.deleteSpaceText(til_QueQuan.getEditText().getText().toString());
 
         int check = 1;
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() && email.isEmpty()) {
             til_Email.setError("Định dạng email không hợp lệ!");
             til_Email.setErrorEnabled(true);
-            tv_error_email.setVisibility(View.VISIBLE);
-            tv_error_email.setText("Định dạng email không hợp lệ!");
-
             check = -1;
-
         } else {
             til_Email.setError("");
             til_Email.setErrorEnabled(false);
-            tv_error_email.setVisibility(View.INVISIBLE);
-            tv_error_email.setText("");
-
         }
 
         if (ho.isEmpty()) {
             til_Ho.setError("Họ không được bỏ trống!");
             til_Ho.setErrorEnabled(true);
-            tv_error_ho_ten.setVisibility(View.VISIBLE);
-            tv_error_ho_ten.setText("Họ và tên không được bỏ trống!");
             check = -1;
         } else {
             til_Ho.setError("");
             til_Ho.setErrorEnabled(false);
-            tv_error_ho_ten.setVisibility(View.INVISIBLE);
-            tv_error_ho_ten.setText("");
         }
 
         if (ten.isEmpty()) {
-            til_Ten.setError("Ten không được bỏ trống!");
+            til_Ten.setError("Tên không được bỏ trống!");
             til_Ten.setErrorEnabled(true);
-            tv_error_ho_ten.setVisibility(View.VISIBLE);
-            tv_error_ho_ten.setText("Họ và tên không được bỏ trống!");
             check = -1;
         } else {
             til_Ten.setError("");
             til_Ten.setErrorEnabled(false);
-            tv_error_ho_ten.setVisibility(View.INVISIBLE);
-            tv_error_ho_ten.setText("");
+        }
+
+        if (genderSpinner.getSelectedItemPosition() == 0) {
+            til_GioiTinh.setError("Giới tính phải được chọn!");
+            til_GioiTinh.setErrorEnabled(true);
+            check = -1;
+        } else {
+            til_Email.setError("");
+            til_Email.setErrorEnabled(false);
         }
 
         if (!Patterns.PHONE.matcher(sdt).matches()) {
             til_SDT.setError("Định dạng số điện thoại không hợp lệ!");
             til_SDT.setErrorEnabled(true);
-            tv_error_sdt.setVisibility(View.VISIBLE);
-            tv_error_sdt.setText("Định dạng số điện thoại không hợp lệ!");
             check = -1;
         } else {
             til_SDT.setError("");
             til_SDT.setErrorEnabled(false);
-            tv_error_sdt.setVisibility(View.INVISIBLE);
-            tv_error_sdt.setText("");
         }
 
         if (queQuan.isEmpty()) {
             til_QueQuan.setError("Quê quán không được bỏ trống!");
             til_QueQuan.setErrorEnabled(true);
-            tv_error_queQuan.setVisibility(View.VISIBLE);
-            tv_error_queQuan.setText("Quê quán không được bỏ trống!");
             check = -1;
         } else {
             til_QueQuan.setError("");
             til_QueQuan.setErrorEnabled(false);
-            tv_error_queQuan.setVisibility(View.INVISIBLE);
-            tv_error_queQuan.setText("");
-        }
-
-        if (genderSpinner.getSelectedItemPosition() == 0) {
-
-            tv_error_gioiTinh.setVisibility(View.VISIBLE);
-            tv_error_gioiTinh.setText("Giới tính phải được chọn!");
-            check = -1;
-
-        } else {
-            tv_error_gioiTinh.setVisibility(View.INVISIBLE);
-            tv_error_gioiTinh.setText("");
         }
 
         return check;

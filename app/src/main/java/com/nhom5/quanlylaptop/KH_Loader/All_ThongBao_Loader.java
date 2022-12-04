@@ -43,11 +43,11 @@ public class All_ThongBao_Loader extends AsyncTask<String, Void, ArrayList<Thong
         String id = strings[0];
 
         if (table.equals("kh")) {
-            return thongBaoDAO.selectThongBao(null, "maKH=?", new String[]{id}, "ngayTB", table);
+            return thongBaoDAO.selectThongBao(null, "maKH=?", new String[]{id}, "ngayTB DESC", table);
         } else if (table.equals("nv")) {
-            return thongBaoDAO.selectThongBao(null, "maNV=? or maNV='No Data'", new String[]{id}, "ngayTB", table);
+            return thongBaoDAO.selectThongBao(null, "maNV=? or maNV='No Data'", new String[]{id}, "ngayTB DESC", table);
         } else {
-            return thongBaoDAO.selectThongBao(null, "admin=Admin", null, "ngayTB", table);
+            return thongBaoDAO.selectThongBao(null, "admin=Admin", null, "ngayTB DESC", table);
         }
     }
 

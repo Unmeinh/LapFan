@@ -74,9 +74,9 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
         }
 
         if (type.equals("ADV")){
-            return donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Đang chờ xác nhận", "Null"}, "ngayMua");
+            return donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "Null"}, "ngayMua");
         } else if (type.equals("NVD")){
-            return donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Đang chờ xác nhận", "No Data"}, "ngayMua");
+            return donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "No Data"}, "ngayMua");
         } else  {
             return donHangDAO.selectDonHang(null, "trangThai=?", new String[]{"Hoàn thành"}, "ngayMua");
         }

@@ -18,11 +18,12 @@
         android:paddingEnd="30dp">
 
         <com.google.android.material.textfield.TextInputLayout
+            android:layout_marginBottom="20dp"
             android:id="@+id/textInput_Email"
             app:errorIconDrawable="@null"
             style="@style/TextInputLayoutOutlinedBoxViolet"
             android:layout_width="match_parent"
-            android:layout_height="65dp">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -33,20 +34,11 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tv_error_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:textColor="#D50202"
-            android:visibility="invisible"
-            app:drawableLeftCompat="@drawable/icon_warning"
-            app:drawableTint="#F11606" />
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:orientation="horizontal">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -54,7 +46,7 @@
                 app:errorIconDrawable="@null"
                 style="@style/TextInputLayoutOutlinedBoxViolet"
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:layout_weight="5">
 
@@ -73,7 +65,7 @@
                 app:errorIconDrawable="@null"
                 style="@style/TextInputLayoutOutlinedBoxViolet"
                 android:layout_width="0dp"
-                android:layout_height="65dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="5">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -87,22 +79,13 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_error_ho_ten"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/icon_warning"
-            android:drawableTint="#F11606"
-            android:gravity="center_vertical"
-            android:textColor="#D50202"
-            android:visibility="invisible" />
-
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInput_SDT"
             app:errorIconDrawable="@null"
             style="@style/TextInputLayoutOutlinedBoxViolet"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -115,29 +98,18 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tv_error_sdt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/icon_warning"
-            android:drawableTint="#F11606"
-            android:gravity="center_vertical"
-            android:textColor="#D50202"
-            android:visibility="invisible" />
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textInput_GioiTinh"
                 style="@style/TextInputLayoutOutlinedBoxViolet"
+                app:errorIconDrawable="@null"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:errorContentDescription="Lỗi đăng nhập"
-                app:errorEnabled="true"
-                app:errorIconDrawable="@null">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -151,28 +123,19 @@
             <Spinner
                 android:id="@+id/spinner_Gender"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="65dp"
                 android:paddingStart="10dp"
                 android:textColor="@color/black" />
 
         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/tv_error_gioiTinh"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/icon_warning"
-            android:drawableTint="#F11606"
-            android:gravity="center_vertical"
-            android:textColor="#D50202"
-            android:visibility="invisible" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInput_QueQuan"
             app:errorIconDrawable="@null"
             style="@style/TextInputLayoutOutlinedBoxViolet"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -183,16 +146,6 @@
                 android:textSize="20sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <TextView
-            android:id="@+id/tv_error_queQuan"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/icon_warning"
-            android:drawableTint="#F11606"
-            android:gravity="center_vertical"
-            android:textColor="#D50202"
-            android:visibility="invisible" />
 
         <LinearLayout
             android:layout_width="match_parent"

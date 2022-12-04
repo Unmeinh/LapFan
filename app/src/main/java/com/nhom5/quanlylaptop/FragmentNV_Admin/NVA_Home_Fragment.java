@@ -113,9 +113,9 @@ public class NVA_Home_Fragment extends Fragment {
         TextView slDHNum = view.findViewById(R.id.textView_Soluong);
         ImageView goToDonDat = view.findViewById(R.id.imageView_GoTo_DonDat);
         if (nhanVien == null){
-            listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Đang chờ xác nhận", "Null"}, null);
+            listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "Null"}, null);
         } else {
-            listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Đang chờ xác nhận", "No Data"}, null);
+            listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "No Data"}, null);
         }
         slDHText.setText(listDon.size() + " đơn đặt");
         slDHNum.setText(String.valueOf(listDon.size()));

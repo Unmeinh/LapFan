@@ -6,14 +6,17 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +38,9 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
 
     Context context;
     int posNV;
+    ChangeType changeType = new ChangeType();
+    TextInputLayout textInput_LastName, textInput_FirstName, textInput_GioiTinh, textInput_Email, textInput_SDT, textInput_Password;
+    Spinner roleSpinner;
     ArrayList<NhanVien> listNV;
     NhanVienDAO nhanVienDAO;
     String TAG = "QL_NhanVien_Adapter_____";
@@ -155,20 +161,18 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
         View view = inft.inflate(R.layout.dialog_add_edit_sth, null);
 
         TextView title = view.findViewById(R.id.textView_Title_Dialog);
-        TextInputLayout textInput_LastName = view.findViewById(R.id.textInput_LastName);
-        TextInputLayout textInput_FirstName = view.findViewById(R.id.textInput_FirstName);
-        TextInputLayout textInput_Email = view.findViewById(R.id.textInput_Email);
-        TextInputLayout textInput_SDT = view.findViewById(R.id.textInput_SDT);
-        TextInputLayout textInput_Password = view.findViewById(R.id.textInput_Password);
+        textInput_LastName = view.findViewById(R.id.textInput_LastName);
+        textInput_FirstName = view.findViewById(R.id.textInput_FirstName);
+        textInput_GioiTinh = view.findViewById(R.id.textInput_GioiTinh);
+        textInput_Email = view.findViewById(R.id.textInput_Email);
+        textInput_SDT = view.findViewById(R.id.textInput_SDT);
+        textInput_Password = view.findViewById(R.id.textInput_Password);
+        roleSpinner = view.findViewById(R.id.spinner_Gender);
         Button button_Dialog = view.findViewById(R.id.button_Dialog);
         ChangeType changeType = new ChangeType();
 
+        setTextInput(nv);
         title.setText("Cập nhật Nhân viên");
-        textInput_LastName.getEditText().setText(nv.getHoNV());
-        textInput_FirstName.getEditText().setText(nv.getTenNV());
-        textInput_Email.getEditText().setText(nv.getEmail());
-        textInput_SDT.getEditText().setText(nv.getPhone());
-        textInput_Password.setVisibility(View.GONE);
         button_Dialog.setText("Cập nhật");
 
         builder.setView(view);
@@ -183,19 +187,102 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
                 String firstName = changeType.deleteSpaceText(textInput_FirstName.getEditText().getText().toString());
                 String email = changeType.deleteSpaceText(textInput_Email.getEditText().getText().toString());
                 String sdt = changeType.deleteSpaceText(textInput_SDT.getEditText().getText().toString());
-                nv.setHoNV(lastName);
-                nv.setTenNV(firstName);
-                nv.setEmail(email);
-                nv.setPhone(sdt);
+                String role = roleSpinner.getSelectedItem().toString();
+                if (getTextInput() == 1){
+                    nv.setHoNV(lastName);
+                    nv.setTenNV(firstName);
+                    nv.setEmail(email);
+                    nv.setPhone(sdt);
+                    nv.setRoleNV(role);
 
-                nhanVienDAO.updateNhanVien(nv);
-                dialog.dismiss();
-                listNV.clear();
-                listNV.addAll(nhanVienDAO.selectNhanVien(null, null, null, null));
-                notifyDataSetChanged();
+                    nhanVienDAO.updateNhanVien(nv);
+                    dialog.dismiss();
+                    listNV.clear();
+                    listNV.addAll(nhanVienDAO.selectNhanVien(null, null, null, null));
+                    notifyDataSetChanged();
+                }
             }
         });
 
+    }
+
+    private void setTextInput(NhanVien nv) {
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
+                R.array.role_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        roleSpinner.setAdapter(adapter);
+        textInput_LastName.getEditText().setText(nv.getHoNV());
+        textInput_FirstName.getEditText().setText(nv.getTenNV());
+        textInput_GioiTinh.setStartIconDrawable(R.drawable.role_icon);
+        textInput_Email.getEditText().setText(nv.getEmail());
+        textInput_SDT.getEditText().setText(nv.getPhone());
+        textInput_Password.setVisibility(View.GONE);
+        if (nv.getRoleNV().equals("Xác nhận đơn hàng Online")) {
+            roleSpinner.setSelection(0);
+        }
+        if (nv.getRoleNV().equals("Bán hàng Online")) {
+            roleSpinner.setSelection(1);
+        }
+        if (nv.getRoleNV().equals("Bán hàng Ofline")) {
+            roleSpinner.setSelection(2);
+        }
+    }
+
+    private int getTextInput() {
+        String lastName = changeType.deleteSpaceText(textInput_LastName.getEditText().getText().toString());
+        String firstName = changeType.deleteSpaceText(textInput_FirstName.getEditText().getText().toString());
+        String email = changeType.deleteSpaceText(textInput_Email.getEditText().getText().toString());
+        String sdt = changeType.deleteSpaceText(textInput_SDT.getEditText().getText().toString());
+        String password = changeType.deleteSpaceText(textInput_Password.getEditText().getText().toString());
+
+        int check = 1;
+
+        if (lastName.isEmpty()) {
+            textInput_LastName.setError("Họ không được bỏ trống!");
+            textInput_LastName.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_LastName.setError("");
+            textInput_LastName.setErrorEnabled(false);
+        }
+
+        if (firstName.isEmpty()) {
+            textInput_FirstName.setError("Tên không được bỏ trống!");
+            textInput_FirstName.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_FirstName.setError("");
+            textInput_FirstName.setErrorEnabled(false);
+        }
+
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches() && email.isEmpty()) {
+            textInput_Email.setError("Định dạng email không hợp lệ!");
+            textInput_Email.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_Email.setError("");
+            textInput_Email.setErrorEnabled(false);
+        }
+
+        if (!Patterns.PHONE.matcher(sdt).matches()) {
+            textInput_SDT.setError("Định dạng số điện thoại không hợp lệ!");
+            textInput_SDT.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_SDT.setError("");
+            textInput_SDT.setErrorEnabled(false);
+        }
+
+        if (password.isEmpty()) {
+            textInput_Password.setError("Quê quán không được bỏ trống!");
+            textInput_Password.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_Password.setError("");
+            textInput_Password.setErrorEnabled(false);
+        }
+
+        return check;
     }
 
     public int getPosNV() {

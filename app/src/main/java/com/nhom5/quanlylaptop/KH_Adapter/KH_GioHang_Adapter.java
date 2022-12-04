@@ -68,12 +68,12 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
     public void onBindViewHolder(@NonNull KH_GioHang_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         Laptop laptop = setRow(pos, author, "none");
 
-        if (laptop.getSoLuong() == 0){
+        if (laptop.getSoLuong() == 0) {
             GioHang gio = listGio.get(pos);
             gioHangDAO.deleteGioHang(gio);
 
             listGio.clear();
-            if (maKH != null){
+            if (maKH != null) {
                 listGio.addAll(gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null));
                 Date currentTime = Calendar.getInstance().getTime();
                 String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
@@ -81,7 +81,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
                 ThongBao thongBao = new ThongBao("TB", maKH, "Quản lý giỏ hàng",
                         " Đơn hàng " + laptop.getTenLaptop() + " đã hết hàng\n Đơn hàng này sẽ bị xóa hỏi giỏ hàng của bạn", date);
                 thongBaoDAO.insertThongBao(thongBao, "kh");
-                if (listGio.size() == 0){
+                if (listGio.size() == 0) {
                     totalTV.setText(changeType.stringToStringMoney("0"));
                 }
             }
@@ -98,7 +98,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
                     gioHang.setmaVou("false");
                     gioHang.setSoLuong(soLuong);
                     gioHangDAO.updateGioHang(gioHang);
-                    if (maKH != null){
+                    if (maKH != null) {
                         listGio = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null);
                         setRow(pos, author, "down");
                     }
@@ -113,12 +113,12 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
             public void onClick(View v) {
                 GioHang gioHang = listGio.get(pos);
                 int soLuong = gioHang.getSoLuong();
-                if (soLuong < laptop.getSoLuong()){
+                if (soLuong < laptop.getSoLuong()) {
                     soLuong++;
                     gioHang.setmaVou("false");
                     gioHang.setSoLuong(soLuong);
                     gioHangDAO.updateGioHang(gioHang);
-                    if (maKH != null){
+                    if (maKH != null) {
                         listGio = gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null);
                         setRow(pos, author, "up");
                     }
@@ -136,7 +136,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
                 gioHangDAO.deleteGioHang(gio);
 
                 listGio.clear();
-                if (maKH != null){
+                if (maKH != null) {
                     listGio.addAll(gioHangDAO.selectGioHang(null, "maKH=?", new String[]{maKH}, null));
                     Date currentTime = Calendar.getInstance().getTime();
                     String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
@@ -144,7 +144,7 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
                     ThongBao thongBao = new ThongBao("TB", maKH, "Quản lý giỏ hàng",
                             " Bạn đã xóa Laptop " + laptop.getTenLaptop() + " khỏi giỏ hàng.", date);
                     thongBaoDAO.insertThongBao(thongBao, "kh");
-                    if (listGio.size() == 0){
+                    if (listGio.size() == 0) {
                         totalTV.setText(changeType.stringToStringMoney("0"));
                     }
                 }
@@ -208,8 +208,8 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
             total = total + giaTien;
         }
         Log.d(TAG, "setTotal: total: " + total);
-        Log.d(TAG, "setTotal: total String: " + changeType.stringToStringMoney(total + ""));
-        return changeType.stringToStringMoney(total + "");
+        Log.d(TAG, "setTotal: total String: " + changeType.stringToStringMoney(total + "000"));
+        return changeType.stringToStringMoney(total + "000");
     }
 
     public Laptop setRow(int pos, @NonNull KH_GioHang_Adapter.AuthorViewHolder author, String change) {
@@ -226,12 +226,12 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
         }
 
         Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
-        int giaTien = changeType.stringMoneyToInt(laptop.getGiaTien());
+        int giaTien = changeType.stringMoneyToInt(laptop.getGiaTien()) / 1000;
         int tongTien = giaTien * gioHang.getSoLuong();
 
         author.imgLaptop.setImageBitmap(anhLap);
         author.name.setText(laptop.getTenLaptop());
-        author.gia.setText(changeType.stringToStringMoney(tongTien + ""));
+        author.gia.setText(changeType.stringToStringMoney(tongTien + "000"));
         author.soLuong.setText(String.valueOf(gioHang.getSoLuong()));
 
         //Total

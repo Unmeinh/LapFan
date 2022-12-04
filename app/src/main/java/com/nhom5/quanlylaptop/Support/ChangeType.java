@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
@@ -76,7 +77,9 @@ public class ChangeType {
                 afterCheck += checkS;
             }
         }
-        if (afterCheck.length() > 0) {
+        if (afterCheck.length() >= 9) {
+            money = Integer.parseInt(afterCheck.substring(afterCheck.length() - 3));
+        } else if (afterCheck.length() > 0) {
             money = Integer.parseInt(afterCheck);
         }
         Log.d(TAG, "stringMoneyToInt: Money: " + money);

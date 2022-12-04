@@ -13,16 +13,19 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
+import com.nhom5.quanlylaptop.DAO.LaptopRateDAO;
 import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.Entity.LaptopRate;
 import com.nhom5.quanlylaptop.Entity.ThongBao;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
@@ -38,7 +41,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
     Laptop laptop = null;
     String TAG = "Info_Laptop_Activity_____";
     ImageView imageLaptop;
-    TextView tenLaptop, giaLaptop, tsktLaptop, soLuong;
+    TextView tenLaptop, giaLaptop, tsktLaptop, soLuong, ratingTV, textView_CountRating;
     ChangeType changeType = new ChangeType();
     AppCompatButton buyNow, themVaoGio;
     GioHangDAO gioHangDAO;
@@ -46,6 +49,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
     String openFrom;
     LinearLayout layout;
     KhachHang khachHang;
+    RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +61,10 @@ public class Info_Laptop_Activity extends AppCompatActivity {
         tsktLaptop = findViewById(R.id.textView_TSKT);
         soLuong = findViewById(R.id.textView_Soluong);
         buyNow = findViewById(R.id.button_Mua);
+        ratingBar = findViewById(R.id.ratingBar_DanhGia);
+        ratingTV = findViewById(R.id.textView_Rating);
         layout = findViewById(R.id.layoutViewer);
+        textView_CountRating = findViewById(R.id.textView_CountRating);
         themVaoGio = findViewById(R.id.button_Add_To_GioHang);
         gioHangDAO = new GioHangDAO(context);
 
@@ -118,7 +125,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
     }
 
     private void addToCart() {
-        if (khachHang != null){
+        if (khachHang != null) {
             if (listGio != null) {
                 themVaoGio.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -178,6 +185,22 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                 tsktLaptop.setText(R.string.tskt_ram_32g);
             }
             soLuong.setText("Số lượng còn lại: " + laptop.getSoLuong() + " sản phẩm");
+            LaptopRateDAO laptopRateDAO = new LaptopRateDAO(context);
+            ArrayList<LaptopRate> list = laptopRateDAO.selectLaptopRate(null, "maLaptop=?", new String[]{laptop.getMaLaptop()}, null);
+            if (list.size() > 0) {
+                float rating = 0;
+                for (LaptopRate lapRate : list) {
+                    rating += lapRate.getRating();
+                }
+                rating = rating / list.size();
+                ratingBar.setRating(changeType.getRatingFloat(rating));
+                ratingTV.setText(rating + "/5");
+                textView_CountRating.setText(list.size() + " đánh giá:");
+            } else {
+                ratingBar.setRating(0f);
+                ratingTV.setText("0/5");
+                textView_CountRating.setText("0 đánh giá:");
+            }
         }
     }
 

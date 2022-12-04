@@ -2,6 +2,7 @@ package com.nhom5.quanlylaptop.KH_Adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -22,13 +23,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nhom5.quanlylaptop.Activity.ChiTiet_DonHang_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_DanhGia_Activity;
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
+import com.nhom5.quanlylaptop.DAO.GiaoDichDAO;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopRateDAO;
 import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
+import com.nhom5.quanlylaptop.DAO.ViTienDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
+import com.nhom5.quanlylaptop.Entity.GiaoDich;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.LaptopRate;
 import com.nhom5.quanlylaptop.Entity.ThongBao;
+import com.nhom5.quanlylaptop.Entity.ViTien;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 import com.nhom5.quanlylaptop.Support.GetData;
@@ -42,6 +49,7 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
     ArrayList<DonHang> listDon;
     LaptopRateDAO laptopRateDAO;
     Laptop getLaptop;
+    ViTien getVi;
     DonHangDAO donHangDAO;
     ChangeType changeType = new ChangeType();
     String TAG = "KH_DonHang_Adapter_____";
@@ -142,18 +150,19 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
     private void setDonHangDanhGia(@NonNull KH_DonHang_Adapter.AuthorViewHolder author, DonHang donHang) {
         if (donHang.getTrangThai().equals("Hoàn thành")) {
             author.tienDo.setText("Hoàn thành");
+            author.hint.setVisibility(View.VISIBLE);
             author.imgTrangThai.setImageResource(R.drawable.check_icon);
             author.imgTrangThai.setColorFilter(Color.parseColor("#4CAF50"));
             author.trangThai.setText("Đơn hàng giao thành công");
             author.trangThai.setTextColor(Color.parseColor("#C93852B0"));
-        } else if (donHang.getTrangThai().equals("Đang chờ xác nhận")) {
+        } else if (donHang.getTrangThai().equals("Chưa thanh toán")) {
             author.tienDo.setText("Đang chờ");
             author.hint.setVisibility(View.GONE);
             author.imgTrangThai.setImageResource(R.drawable.waiting_confirm_icon);
             author.imgTrangThai.setColorFilter(Color.parseColor("#FF9800"));
-            author.trangThai.setText("Đơn hàng đang chờ xác nhận");
+            author.trangThai.setText("Đơn hàng đang chờ thanh toán");
             author.trangThai.setTextColor(Color.parseColor("#FF9800"));
-        } else if (donHang.getTrangThai().equals("Đang chờ thanh toán")) {
+        } else if (donHang.getTrangThai().equals("Chờ xác nhận")) {
             author.tienDo.setText("Đang chờ");
             author.hint.setVisibility(View.GONE);
             author.imgTrangThai.setImageResource(R.drawable.send_icon);
@@ -170,7 +179,6 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
         }
 
         if (donHang.getIsDanhGia().equals("false")) {
-            author.hint.setVisibility(View.VISIBLE);
             author.ratingBar.setRating(0f);
             author.ratingBar.setIsIndicator(true);
         } else {
@@ -191,11 +199,16 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
 
     private void onclickDanhGia(@NonNull KH_DonHang_Adapter.AuthorViewHolder author, DonHang donHang) {
         LaptopDAO laptopDAO = new LaptopDAO(context);
+        ViTienDAO viTienDAO = new ViTienDAO(context);
         ThongBaoDAO thongBaoDAO = new ThongBaoDAO(context);
         GetData getData = new GetData(context);
-        ArrayList<Laptop> list = laptopDAO.selectLaptop(null, "maLaptop=?", new String[]{donHang.getMaLaptop()}, null);
-        if (list.size() > 0) {
-            getLaptop = list.get(0);
+        ArrayList<Laptop> listL = laptopDAO.selectLaptop(null, "maLaptop=?", new String[]{donHang.getMaLaptop()}, null);
+        ArrayList<ViTien> listV = viTienDAO.selectViTien(null, "maKH=?", new String[]{donHang.getMaKH()}, null);
+        if (listL.size() > 0) {
+            getLaptop = listL.get(0);
+        }
+        if (listV.size() > 0) {
+            getVi = listV.get(0);
         }
 
         if (donHang.getTrangThai().equals("Hoàn thành")) {
@@ -218,7 +231,52 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
                 }
             });
         }
-        if (donHang.getTrangThai().equals("Đang chờ xác nhận")) {
+        if (donHang.getTrangThai().equals("Chưa thanh toán")) {
+            author.danhGia.setText("Thanh toán ngay");
+            author.danhGia.setEnabled(true);
+            author.danhGia.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    android.app.AlertDialog.Builder aBuild = new android.app.AlertDialog.Builder(context);
+                    aBuild.setTitle("Thanh toán qua ví FPT Pay");
+                    aBuild.setMessage("Xác nhận thanh toán " + donHang.getThanhTien() + " cho đơn hàng " + getLaptop.getTenLaptop());
+                    aBuild.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @SuppressLint("NotifyDataSetChanged")
+                        @Override
+                        public void onClick(DialogInterface dialog, int stt) {
+                            if (getVi != null) {
+                                int thanhTien = changeType.stringMoneyToInt(donHang.getThanhTien());
+                                int soTien = changeType.stringMoneyToInt(getVi.getSoTien());
+                                if (soTien >= thanhTien) {
+                                    getVi.setSoTien(changeType.stringToStringMoney(String.valueOf(soTien - thanhTien)));
+                                    int check = viTienDAO.updateViTien(getVi);
+                                    if (check == 1) {
+                                        donHang.setTrangThai("Chờ xác nhận");
+                                        donHangDAO.updateDonHang(donHang);
+                                        GiaoDichDAO giaoDichDAO = new GiaoDichDAO(context);
+                                        giaoDichDAO.insertGiaoDich(new GiaoDich("", getVi.getMaVi(), "Thanh toán đơn hàng",
+                                                "Thanh toán đơn hàng " + getLaptop.getTenLaptop() + " bằng Ví điện tử FPT Pay",
+                                                changeType.stringToStringMoney((soTien - thanhTien) + "000"), getData.getNowDateSQL()));
+                                    }
+                                    notifyDataSetChanged();
+                                } else {
+                                    Toast.makeText(context, "Số dư trong ví của bạn không đủ\n để thực hiên giao dịch! ", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }
+                    });
+                    aBuild.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int stt) {
+
+                        }
+                    });
+                    android.app.AlertDialog alertDialog = aBuild.create();
+                    alertDialog.show();
+                }
+            });
+        }
+        if (donHang.getTrangThai().equals("Chờ xác nhận")) {
             author.danhGia.setText("Chờ xác nhận");
             author.danhGia.setEnabled(false);
         }
