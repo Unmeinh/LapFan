@@ -1,13 +1,17 @@
 package com.nhom5.quanlylaptop.NVA_Loader;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -29,6 +33,7 @@ public class QL_HangLaptop_Loader extends AsyncTask<String, Void, ArrayList<Hang
     String TAG = "LaptopLoader_____";
     HangLaptopDAO hangLaptopDAO;
     ChangeType changeType = new ChangeType();
+    @SuppressLint("StaticFieldLeak")
     LinearLayout linearLayout;
 
     public QL_HangLaptop_Loader(Context context, GridView gridView, LinearLayout linearLayout) {

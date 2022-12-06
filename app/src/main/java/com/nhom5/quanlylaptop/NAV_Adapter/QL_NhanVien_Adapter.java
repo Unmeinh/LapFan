@@ -82,6 +82,9 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
 
     @Override
     public int getItemCount() {
+        if (listNV.size() == 0){
+            countNV.setText(String.valueOf(0));
+        }
         return listNV.size();
     }
 
@@ -96,9 +99,6 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
             gender = itemView.findViewById(R.id.textView_GioiTinh);
             phone = itemView.findViewById(R.id.textView_SDT);
             itemView.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) this);
-            if (listNV.size() == 0){
-                countNV.setText(String.valueOf(0));
-            }
         }
 
         @Override
@@ -118,8 +118,7 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
                 switch (item.getItemId()) {
                     case R.id.item_Xoa:
                         nhanVienDAO.deleteNhanVien(nhanVien);
-                        listNV.clear();
-                        listNV.addAll(nhanVienDAO.selectNhanVien(null, null, null, null));
+                        listNV.remove(getPosNV());
                         notifyDataSetChanged();
                         break;
                     case R.id.item_CapNhat:
@@ -196,9 +195,8 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
                     nv.setRoleNV(role);
 
                     nhanVienDAO.updateNhanVien(nv);
+                    listNV.set(getPosNV(), nv);
                     dialog.dismiss();
-                    listNV.clear();
-                    listNV.addAll(nhanVienDAO.selectNhanVien(null, null, null, null));
                     notifyDataSetChanged();
                 }
             }
@@ -214,6 +212,7 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
         textInput_LastName.getEditText().setText(nv.getHoNV());
         textInput_FirstName.getEditText().setText(nv.getTenNV());
         textInput_GioiTinh.setStartIconDrawable(R.drawable.role_icon);
+        textInput_GioiTinh.setHint("Bộ phận");
         textInput_Email.getEditText().setText(nv.getEmail());
         textInput_SDT.getEditText().setText(nv.getPhone());
         textInput_Password.setVisibility(View.GONE);
@@ -233,7 +232,6 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
         String firstName = changeType.deleteSpaceText(textInput_FirstName.getEditText().getText().toString());
         String email = changeType.deleteSpaceText(textInput_Email.getEditText().getText().toString());
         String sdt = changeType.deleteSpaceText(textInput_SDT.getEditText().getText().toString());
-        String password = changeType.deleteSpaceText(textInput_Password.getEditText().getText().toString());
 
         int check = 1;
 
@@ -271,15 +269,6 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
         } else {
             textInput_SDT.setError("");
             textInput_SDT.setErrorEnabled(false);
-        }
-
-        if (password.isEmpty()) {
-            textInput_Password.setError("Quê quán không được bỏ trống!");
-            textInput_Password.setErrorEnabled(true);
-            check = -1;
-        } else {
-            textInput_Password.setError("");
-            textInput_Password.setErrorEnabled(false);
         }
 
         return check;

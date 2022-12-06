@@ -7,11 +7,14 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,6 +43,7 @@ public class QL_NhanVien_Loader extends AsyncTask<String, Void, ArrayList<NhanVi
     LinearLayout loadingView, linearEmpty;
     @SuppressLint("StaticFieldLeak")
     RelativeLayout relativeLayout;
+    String roleNV;
 
     public QL_NhanVien_Loader(Context context, RecyclerView reView, TextView countNV, LinearLayout loadingView, LinearLayout linearEmpty, RelativeLayout relativeLayout) {
         this.context = context;
@@ -60,7 +64,21 @@ public class QL_NhanVien_Loader extends AsyncTask<String, Void, ArrayList<NhanVi
             }
         }
 
-        return nhanVienDAO.selectNhanVien(null, null, null, null);
+        String role = strings[0];
+        if ("all".equals(role)) {
+            roleNV = "all";
+            return nhanVienDAO.selectNhanVien(null, null, null, null);
+        } else if ("firm".equals(role)) {
+            roleNV = "firm";
+            return nhanVienDAO.selectNhanVien(null, "roleNV=?", new String[]{"Xác nhận đơn hàng Online"}, null);
+        } else if ("saleol".equals(role)) {
+            roleNV = "saleol";
+            return nhanVienDAO.selectNhanVien(null, "roleNV=?", new String[]{"Bán hàng Online"}, null);
+        } else if ("saleof".equals(role)) {
+            roleNV = "saleof";
+            return nhanVienDAO.selectNhanVien(null, "roleNV=?", new String[]{"Bán hàng Ofline"}, null);
+        }
+        return null;
     }
 
     @Override
@@ -74,10 +92,11 @@ public class QL_NhanVien_Loader extends AsyncTask<String, Void, ArrayList<NhanVi
                 if (loadingView != null && relativeLayout != null && linearEmpty != null && reView != null && countNV != null) {
                     if (listNV != null) {
                         if (listNV.size() == 0) {
-                            relativeLayout.setVisibility(View.GONE);
+                            relativeLayout.setVisibility(View.VISIBLE);
                             loadingView.setVisibility(View.GONE);
                             reView.setVisibility(View.GONE);
                             linearEmpty.setVisibility(View.VISIBLE);
+                            countNV.setText(String.valueOf(0));
                         } else {
                             relativeLayout.setVisibility(View.VISIBLE);
                             loadingView.setVisibility(View.GONE);
@@ -108,7 +127,7 @@ public class QL_NhanVien_Loader extends AsyncTask<String, Void, ArrayList<NhanVi
         ChangeType changeType = new ChangeType();
 
         NhanVien nv0 = new NhanVien("0", "Leonardo", "DiCaprio", "Nam", "leo@gmail.com",
-                "leonardo", "Hoa Kỳ", "011111974", "Xác nhận đơn hàng", 0, 0,
+                "leonardo", "Hoa Kỳ", "011111974", "Xác nhận đơn hàng Online", 0, 0,
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.leonardo_dicaprio))));
         nhanVienDAO.insertNhanVien(nv0);
 

@@ -7,7 +7,7 @@
     android:background="#80BBA19A"
     android:orientation="vertical"
     tools:context=".FragmentQuanLy.Tab_Laptop_Fragment">
-    
+
     <LinearLayout
         android:visibility="visible"
         android:id="@+id/loadingView"
@@ -38,13 +38,120 @@
     </LinearLayout>
 
     <RelativeLayout
+        android:paddingTop="10dp"
         android:id="@+id/layoutView"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:layout_marginBottom="10dp"
+            android:id="@+id/selectHang"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_Laptop_All"
+                android:textAllCaps="false"
+                android:textSize="17sp"
+                android:layout_width="150dp"
+                android:layout_height="35dp"
+                android:background="@drawable/shape_square_whitebg"
+                android:text="Tất cả" />
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_Laptop_Acer"
+                    android:textAllCaps="false"
+                    android:layout_width="105dp"
+                    android:layout_height="35dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#4CAF50"
+                    android:background="@drawable/shape_round"
+                    android:text="Acer" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_Laptop_Asus"
+                    android:textAllCaps="false"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#3F51B5"
+                    android:layout_width="105dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/shape_round"
+                    android:text="Asus" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_Laptop_Dell"
+                    android:textAllCaps="false"
+                    android:layout_width="105dp"
+                    android:layout_height="35dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#2196F3"
+                    android:background="@drawable/shape_round"
+                    android:text="Dell" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:gravity="center"
+                android:layout_marginTop="7dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_Laptop_Hp"
+                    android:textAllCaps="false"
+                    android:layout_width="105dp"
+                    android:layout_height="35dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#03A9F4"
+                    android:background="@drawable/shape_round"
+                    android:text="Hp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_Laptop_Msi"
+                    android:textAllCaps="false"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#E91E63"
+                    android:layout_width="105dp"
+                    android:layout_height="35dp"
+                    android:background="@drawable/shape_round"
+                    android:text="MSi" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/button_Laptop_Mac"
+                    android:textAllCaps="false"
+                    android:layout_width="105dp"
+                    android:layout_height="35dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:background="@drawable/shape_round"
+                    android:text="MacBook" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/selectHang"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -57,45 +164,46 @@
 
         </LinearLayout>
 
-    </RelativeLayout>
-
-    <LinearLayout
-        android:layout_marginTop="100dp"
-        android:id="@+id/linearLaptopEmpty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="60dp"
-            android:text="Không có sản phẩm nào"
-            android:textColor="#FF5722"
-            android:textSize="30sp" />
-
-        <ImageView
-            android:layout_marginTop="20dp"
+        <LinearLayout
+            android:layout_below="@+id/selectHang"
+            android:layout_marginTop="100dp"
+            android:id="@+id/linearLaptopEmpty"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:src="@drawable/empty_product"
-            app:tint="#FF5722" />
-    </LinearLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/button_Add_Laptop"
-        android:layout_marginBottom="50dp"
-        android:layout_marginEnd="30dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/add_icon"
-        app:maxImageSize="40dp"
-        android:backgroundTint="#F20C0C"
-        app:tint="@color/white"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="60dp"
+                android:text="Không có sản phẩm nào"
+                android:textColor="#FF5722"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:src="@drawable/empty_product"
+                app:tint="#FF5722" />
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/button_Add_Laptop"
+            android:layout_marginBottom="50dp"
+            android:layout_marginEnd="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:src="@drawable/add_icon"
+            app:maxImageSize="40dp"
+            android:backgroundTint="#F20C0C"
+            app:tint="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
 
 </RelativeLayout>

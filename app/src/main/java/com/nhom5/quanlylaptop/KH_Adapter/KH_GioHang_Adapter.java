@@ -226,7 +226,12 @@ public class KH_GioHang_Adapter extends RecyclerView.Adapter<KH_GioHang_Adapter.
         }
 
         Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
-        int giaTien = changeType.stringMoneyToInt(laptop.getGiaTien()) / 1000;
+        int giaTien;
+        if (laptop.getGiaTien().length() < 12){
+            giaTien = changeType.stringMoneyToInt(laptop.getGiaTien()) / 1000;
+        } else {
+            giaTien = changeType.stringMoneyToInt(laptop.getGiaTien());
+        }
         int tongTien = giaTien * gioHang.getSoLuong();
 
         author.imgLaptop.setImageBitmap(anhLap);

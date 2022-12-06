@@ -63,7 +63,7 @@
                 <RelativeLayout
                     android:layout_marginTop="30dp"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputLayout
                         style="@style/TextInputLayoutOutlinedBoxBrown"
@@ -84,7 +84,7 @@
                         android:textColor="@color/black"
                         android:id="@+id/spinner_HangLaptop"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="65dp"/>
 
                 </RelativeLayout>
 
@@ -121,7 +121,7 @@
                     android:layout_marginTop="30dp"
                     style="@style/TextInputLayoutOutlinedBoxBrown"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:inputType="number"
@@ -138,7 +138,7 @@
                     android:layout_marginTop="30dp"
                     style="@style/TextInputLayoutOutlinedBoxBrown"
                     android:layout_width="match_parent"
-                    android:layout_height="65dp">
+                    android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:inputType="number"

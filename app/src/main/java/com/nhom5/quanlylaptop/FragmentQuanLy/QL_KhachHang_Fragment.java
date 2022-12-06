@@ -7,17 +7,22 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -30,9 +35,12 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
+import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
+import com.nhom5.quanlylaptop.Entity.NhanVien;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_DonHang_Adapter;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_KhachHang_Adapter;
+import com.nhom5.quanlylaptop.NAV_Adapter.QL_NhanVien_Adapter;
 import com.nhom5.quanlylaptop.NVA_Loader.QL_KhachHang_Loader;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
@@ -69,6 +77,7 @@ public class QL_KhachHang_Fragment extends Fragment {
         linearKhachHangEmpty = view.findViewById(R.id.linearKhachHangEmpty);
 
         khachHangDAO = new KhachHangDAO(getContext());
+        useToolbar();
         QL_KhachHang_Loader qlKhachHangLoader = new QL_KhachHang_Loader(getContext(), recyclerView, countKH, linearLayout, linearKhachHangEmpty, relativeLayout);
         qlKhachHangLoader.execute("");
         openDialog();
@@ -80,6 +89,48 @@ public class QL_KhachHang_Fragment extends Fragment {
         super.onResume();
         QL_KhachHang_Loader qlKhachHangLoader = new QL_KhachHang_Loader(getContext(), recyclerView, countKH, linearLayout, linearKhachHangEmpty, relativeLayout);
         qlKhachHangLoader.execute("");
+    }
+
+    private void useToolbar() {
+        Toolbar toolbar = getActivity().findViewById(R.id.toolbar_Account);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+//        if (toolbar != null) {
+//            khachHangDAO = new KhachHangDAO(getContext());
+//            ArrayList<KhachHang> listKH = khachHangDAO.selectKhachHang(null, null, null, null);
+//            EditText search = toolbar.findViewById(R.id.editText_Search);
+//            search.setHint("Email khách hàng...");
+//            if (search.getHint().equals("Email khách hàng...")) {
+//                search.addTextChangedListener(new TextWatcher() {
+//                    @Override
+//                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//                    }
+//
+//                    @Override
+//                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                        String input = search.getText().toString();
+//                        ArrayList<KhachHang> getList = new ArrayList<>();
+//                        if (!input.equals("")) {
+//                            for (KhachHang kh : listKH) {
+//                                if (kh.getEmail().matches(".*?" + input + ".*")) {
+//                                    getList.add(kh);
+//                                }
+//                            }
+//                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+//                            recyclerView.setLayoutManager(linearLayoutManager);
+//                            QL_KhachHang_Adapter ql_khachHang_adapter = new QL_KhachHang_Adapter(getList, getContext(), countKH);
+//                            recyclerView.setAdapter(ql_khachHang_adapter);
+//                        } else {
+//                            QL_KhachHang_Loader qlKhachHangLoader = new QL_KhachHang_Loader(getContext(), recyclerView, countKH, linearLayout, linearKhachHangEmpty, relativeLayout);
+//                            qlKhachHangLoader.execute("");
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void afterTextChanged(Editable s) {
+//                    }
+//                });
+//            }
+//        }
     }
 
     private void openDialog() {
@@ -125,7 +176,7 @@ public class QL_KhachHang_Fragment extends Fragment {
                 String gioiTinh = genderSpinner.getSelectedItem().toString();
                 Bitmap bitmap = BitmapFactory.decodeResource(getContext().getResources(), R.drawable.image_avatar);
                 byte[] avatar = changeType.checkByteInput(changeType.bitmapToByte(bitmap));
-                if (getTextInput() == 1){
+                if (getTextInput() == 1) {
                     KhachHang khachHang = new KhachHang("KH", lastName, firstName, gioiTinh,
                             email, password, "No Data", sdt, "false", avatar);
                     khachHangDAO.insertKhachHang(khachHang);

@@ -76,8 +76,7 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
             public void onClick(View v) {
                 laptop = listLap.get(getPosLap());
                 laptopDAO.deleteLaptop(laptop);
-                listLap.clear();
-                listLap.addAll(laptopDAO.selectLaptop(null, null, null, "maHangLap"));
+                listLap.remove(getPosLap());
                 notifyDataSetChanged();
             }
         });
@@ -175,8 +174,6 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
         author.daBan.setText(String.valueOf(laptop.getDaBan()));
     }
 
-
-
     private void openDialogUpdate(Laptop laptop) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         LayoutInflater inft = ((Activity) context).getLayoutInflater();
@@ -195,14 +192,14 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
         Dialog dialog = builder.create();
         dialog.show();
         button_Laptop_Manager.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
                 Laptop update = getTextInput(laptop);
                 if (update != null) {
                     laptopDAO.updateLaptop(update);
+                    listLap.set(posLap, update);
                     dialog.dismiss();
-                    listLap.clear();
-                    listLap.addAll(laptopDAO.selectLaptop(null, null, null, "maHangLap"));
                     notifyDataSetChanged();
                 }
             }

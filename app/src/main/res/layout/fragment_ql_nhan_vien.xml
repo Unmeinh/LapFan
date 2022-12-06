@@ -36,33 +36,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_marginTop="100dp"
-        android:id="@+id/linearNhanVienEmpty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="60dp"
-            android:text="Không có nhân viên nào"
-            android:textColor="#673AB7"
-            android:textSize="30sp" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="#fff"
-            android:src="@drawable/empty_staff"
-            app:tint="#673AB7" />
-    </LinearLayout>
-
     <RelativeLayout
         android:visibility="gone"
         android:id="@+id/layoutView"
@@ -103,6 +76,7 @@
                     android:layout_gravity="center"
                     android:layout_marginEnd="10dp"
                     android:gravity="center"
+                    android:text="0"
                     android:textColor="#FD0F0F"
                     android:textSize="25sp" />
 
@@ -118,13 +92,77 @@
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView_NVA_NhanVien"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <LinearLayout
+            android:orientation="horizontal"
+            android:id="@+id/linearSpinner"
+            android:paddingStart="10dp"
             android:layout_below="@+id/linearNhanvien"
-            android:layout_marginTop="10dp"
-            tools:listitem="@layout/cardview_nva_user" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Bộ phận:"
+                android:textColor="#000000"
+                android:textSize="21sp" />
+
+            <LinearLayout
+                android:gravity="end"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <Spinner
+                    android:gravity="end"
+                    android:id="@+id/spinner_Role"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/linearSpinner"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/linearNhanVienEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="60dp"
+                    android:text="Không có nhân viên nào"
+                    android:textColor="#673AB7"
+                    android:textSize="30sp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:background="#fff"
+                    android:src="@drawable/empty_staff"
+                    app:tint="#673AB7" />
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView_NVA_NhanVien"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                tools:listitem="@layout/cardview_nva_user" />
+
+        </LinearLayout>
 
     </RelativeLayout>
 

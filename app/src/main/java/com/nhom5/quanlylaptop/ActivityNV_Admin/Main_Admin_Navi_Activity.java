@@ -124,7 +124,8 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
         titleView.setText(title);
         if (count % 2 == 0) {
             titleView.setVisibility(View.VISIBLE);
-            search.setText("");
+            search.setText("...");
+            search.setHint("...");
             search.setVisibility(View.GONE);
             count++;
         }
@@ -155,26 +156,26 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                 if (id == R.id.item_navi_drawer_admin_trangChu) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 0 - home");
-                            Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(0);
-                            itemNaviDr = 0;
-                            useToolbar("", 0);
-                            bottomNavigationView.setVisibility(View.VISIBLE);
-                            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_home).setCheckable(true);
-                            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_home).setChecked(true);
+                    Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(0);
+                    itemNaviDr = 0;
+                    useToolbar("", 0);
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_home).setCheckable(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_home).setChecked(true);
                 }
                 if (id == R.id.item_navi_drawer_admin_noti) {
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 1 - fptshop");
-                            Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
-                            viewPager.setAdapter(adapter);
-                            viewPager.setCurrentItem(1);
-                            itemNaviDr = 1;
-                            useToolbar("FPT Shop", 0);
-                            bottomNavigationView.setVisibility(View.VISIBLE);
-                            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_noti).setCheckable(true);
-                            bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_noti).setChecked(true);
+                    Admin_PagerAdapter_Drawer adapter = new Admin_PagerAdapter_Drawer(getSupportFragmentManager());
+                    viewPager.setAdapter(adapter);
+                    viewPager.setCurrentItem(1);
+                    itemNaviDr = 1;
+                    useToolbar("FPT Shop", 0);
+                    bottomNavigationView.setVisibility(View.VISIBLE);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_noti).setCheckable(true);
+                    bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_noti).setChecked(true);
                 }
                 if (id == R.id.item_navi_drawer_admin_Laptop) {
                     item.setCheckable(true);
@@ -193,7 +194,7 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(3);
                             itemNaviDr = 4;
-                            useToolbar("QLý Đơn Hàng", 1);
+                            useToolbar("QLý Đơn Hàng", 0);
                             bottomNavigationView.setVisibility(View.GONE);
                 }
                 if (id == R.id.item_navi_drawer_admin_KhachHang) {
@@ -213,7 +214,7 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                             viewPager.setAdapter(adapter);
                             viewPager.setCurrentItem(5);
                             itemNaviDr = 6;
-                            useToolbar("QLý Voucher", 1);
+                            useToolbar("QLý Voucher", 0);
                             bottomNavigationView.setVisibility(View.GONE);
                 }
                 if (id == R.id.item_navi_drawer_admin_NhanVien) {

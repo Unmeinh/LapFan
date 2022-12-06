@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuanLyLaptop</string>
+    <string name="app_name">LAPFAN</string>
     <string name="sign_in">Đăng nhập</string>
     <string name="email">Email</string>
     <string name="emailhint">Email...</string>
@@ -46,6 +46,13 @@
     </string-array>
 
     <string-array name="role_array">
+        <item>Xác nhận đơn hàng Online</item>
+        <item>Bán hàng Online</item>
+        <item>Bán hàng Ofline</item>
+    </string-array>
+
+    <string-array name="select_role_array">
+        <item>Tất cả</item>
         <item>Xác nhận đơn hàng Online</item>
         <item>Bán hàng Online</item>
         <item>Bán hàng Ofline</item>

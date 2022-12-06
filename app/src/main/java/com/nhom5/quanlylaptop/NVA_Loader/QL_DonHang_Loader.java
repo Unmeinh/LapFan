@@ -93,10 +93,11 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
                 if (loadingView != null && relativeLayout != null && linearEmpty != null && reView != null && countDH != null) {
                     if (listDon != null) {
                         if (listDon.size() == 0) {
-                            relativeLayout.setVisibility(View.GONE);
+                            relativeLayout.setVisibility(View.VISIBLE);
                             loadingView.setVisibility(View.GONE);
                             reView.setVisibility(View.GONE);
                             linearEmpty.setVisibility(View.VISIBLE);
+                            countDH.setText("0");
                         } else {
                             relativeLayout.setVisibility(View.VISIBLE);
                             loadingView.setVisibility(View.GONE);

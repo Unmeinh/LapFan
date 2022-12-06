@@ -210,8 +210,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
                 switch (item.getItemId()) {
                     case R.id.item_Xoa:
                         donHangDAO.deleteDonHang(donHang);
-                        listDon.clear();
-                        listDon.addAll(donHangDAO.selectDonHang(null, null, null, "ngayMua"));
+                        listDon.remove(getPosDH());
                         notifyDataSetChanged();
                         break;
                     case R.id.item_CapNhat:
@@ -321,9 +320,8 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
                 donHang.setThanhTien(changeType.stringToStringMoney(changeType.stringMoneyToInt(thanhtien) + ""));
 
                 donHangDAO.updateDonHang(donHang);
+                listDon.set(getPosDH(), donHang);
                 dialog.dismiss();
-                listDon.clear();
-                listDon.addAll(donHangDAO.selectDonHang(null, null, null, "ngayMua"));
                 notifyDataSetChanged();
             }
         });

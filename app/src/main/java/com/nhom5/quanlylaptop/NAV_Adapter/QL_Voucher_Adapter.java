@@ -111,8 +111,7 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
                 switch (item.getItemId()) {
                     case R.id.item_Xoa:
                         voucherDAO.deleteVoucher(voucher);
-                        listVou.clear();
-                        listVou.addAll(voucherDAO.selectVoucher(null, null, null, null));
+                        listVou.remove(getPosVou());
                         notifyDataSetChanged();
                         break;
                     case R.id.item_CapNhat:
@@ -187,9 +186,8 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
                 voucher.setNgayKT(nkt);
 
                 voucherDAO.updateVoucher(voucher);
+                listVou.set(getPosVou(), voucher);
                 dialog.dismiss();
-                listVou.clear();
-                listVou.addAll(voucherDAO.selectVoucher(null, null, null, null));
                 notifyDataSetChanged();
             }
         });

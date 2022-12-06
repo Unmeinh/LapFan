@@ -52,7 +52,7 @@ public class MacBookFragment extends Fragment {
         sliderView.startAutoCycle();
 
         KH_Laptop_Loader kh_laptop_loader = new KH_Laptop_Loader(getContext(), view.findViewById(R.id.recyclerView_Macbook));
-        kh_laptop_loader.execute("LMac");
+        kh_laptop_loader.execute("LMacBook");
 
         return view;
     }

@@ -186,7 +186,11 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
         }
 
         Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
-        giaTien = changeType.stringMoneyToInt(laptop.getGiaTien()) / 1000;
+        if (laptop.getGiaTien().length() < 12){
+            giaTien = changeType.stringMoneyToInt(laptop.getGiaTien()) / 1000;
+        } else {
+            giaTien = changeType.stringMoneyToInt(laptop.getGiaTien());
+        }
         giaTien = giaTien * gioHang.getSoLuong();
         Date currentTime = Calendar.getInstance().getTime();
         String date = new SimpleDateFormat("dd/MM/yyyy").format(currentTime);

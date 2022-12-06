@@ -46,6 +46,7 @@ public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>>
     protected ArrayList<Laptop> doInBackground(String... strings) {
         laptopDAO = new LaptopDAO(context);
         hangLaptopDAO = new HangLaptopDAO(context);
+        String hangL = strings[0];
         ArrayList<Laptop> list = laptopDAO.selectLaptop(null, null, null, "maHangLap");
         if (list != null) {
             if (list.size() == 0) {
@@ -59,7 +60,11 @@ public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>>
             }
         }
 
-        return laptopDAO.selectLaptop(null, null, null, "maHangLap");
+        if ("all".equals(hangL)) {
+            return laptopDAO.selectLaptop(null, null, null, "maHangLap");
+        } else {
+            return laptopDAO.selectLaptop(null, "maHangLap=?", new String[]{hangL}, "maHangLap");
+        }
     }
 
     @Override
@@ -73,7 +78,7 @@ public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>>
                 if (loadingView != null && relativeLayout != null && linearEmpty != null && reView != null) {
                     if (listLap != null) {
                         if (listLap.size() == 0) {
-                            relativeLayout.setVisibility(View.GONE);
+                            relativeLayout.setVisibility(View.VISIBLE);
                             loadingView.setVisibility(View.GONE);
                             reView.setVisibility(View.GONE);
                             linearEmpty.setVisibility(View.VISIBLE);

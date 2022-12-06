@@ -32,7 +32,7 @@
             android:layout_width="315dp"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="5dp"
-            android:text="Bring laptop to everyone."
+            android:text="Mang Laptop đến với mọi người."
             android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />

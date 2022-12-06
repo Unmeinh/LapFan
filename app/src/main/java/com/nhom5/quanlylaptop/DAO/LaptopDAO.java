@@ -110,8 +110,10 @@ public class LaptopDAO {
         long ketqua = db.update("Laptop", values, "maLaptop=?", new String[]{String.valueOf(laptop.getMaLaptop())});
         if (ketqua > 0) {
             Log.d(TAG, "updateLaptop: Sửa thành công");
+            Toast.makeText(context, "Sửa thành công!", Toast.LENGTH_SHORT).show();
         } else {
             Log.d(TAG, "updateLaptop: Sửa thất bại");
+            Toast.makeText(context, "Sửa thất bại!", Toast.LENGTH_SHORT).show();
         }
         db.close();
     }
@@ -124,8 +126,10 @@ public class LaptopDAO {
         long ketqua = db.delete("Laptop", "maLaptop=?", new String[]{String.valueOf(laptop.getMaLaptop())});
         if (ketqua > 0) {
             Log.d(TAG, "deleteLaptop: Xóa thành công");
+            Toast.makeText(context, "Xóa thành công!", Toast.LENGTH_SHORT).show();
         } else {
             Log.d(TAG, "deleteLaptop: Xóa thất bại");
+            Toast.makeText(context, "Xóa thất bại!", Toast.LENGTH_SHORT).show();
         }
         db.close();
     }

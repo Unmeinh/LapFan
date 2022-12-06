@@ -368,35 +368,35 @@ public class GetData {
     public void addDemoLaptopMac() {
         Bitmap bm0 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/289472/apple-macbook-air-m2-2022-16gb-256gb-thumb-600x600.jpg");
         if (bm0 != null) {
-            Laptop lp0 = new Laptop("25", "LMac", "Laptop Apple MacBook Air M2 2022 16GB"
+            Laptop lp0 = new Laptop("25", "LMacBook", "Laptop Apple MacBook Air M2 2022 16GB"
                     , "RAM 16GB", "38.990.000₫", 3, 0, changeType.checkByteInput(changeType.bitmapToByte(bm0)));
             laptopDAO.insertLaptop(lp0);
         }
 
         Bitmap bm1 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-10-core-cpu-600x600.jpg");
         if (bm1 != null) {
-            Laptop lp1 = new Laptop("26", "LMac", "Laptop Apple MacBook Pro 16 M1 Pro 2021 10 core-CPU"
+            Laptop lp1 = new Laptop("26", "LMacBook", "Laptop Apple MacBook Pro 16 M1 Pro 2021 10 core-CPU"
                     , "RAM 16GB", "66.990.000₫", 5, 0, changeType.checkByteInput(changeType.bitmapToByte(bm1)));
             laptopDAO.insertLaptop(lp1);
         }
 
         Bitmap bm2 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/253582/apple-macbook-pro-16-m1-max-2021-1.jpg");
         if (bm2 != null) {
-            Laptop lp2 = new Laptop("27", "LMac", "Laptop Apple MacBook Pro 16 M1 Max 2021 10 core-CPU"
+            Laptop lp2 = new Laptop("27", "LMacBook", "Laptop Apple MacBook Pro 16 M1 Max 2021 10 core-CPU"
                     , "RAM 32GB", "92.990.000₫", 1, 0, changeType.checkByteInput(changeType.bitmapToByte(bm2)));
             laptopDAO.insertLaptop(lp2);
         }
 
         Bitmap bm3 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/282828/apple-macbook-pro-13-inch-m2-2022-1.jpg");
         if (bm0 != null) {
-            Laptop lp3 = new Laptop("28", "LMac", "Laptop Apple MacBook Pro M2 2022 8GB"
+            Laptop lp3 = new Laptop("28", "LMacBook", "Laptop Apple MacBook Pro M2 2022 8GB"
                     , "RAM 8GB", "35.990.000₫", 0, 0, changeType.checkByteInput(changeType.bitmapToByte(bm3)));
             laptopDAO.insertLaptop(lp3);
         }
 
         Bitmap bm4 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/231244/grey-1-org.jpg");
         if (bm4 != null) {
-            Laptop lp4 = new Laptop("29", "LMac", "Laptop Apple MacBook Air M1 2020 8GB"
+            Laptop lp4 = new Laptop("29", "LMacBook", "Laptop Apple MacBook Air M1 2020 8GB"
                     , "RAM 8GB", "27.490.000₫", 3, 0, changeType.checkByteInput(changeType.bitmapToByte(bm4)));
             laptopDAO.insertLaptop(lp4);
         }

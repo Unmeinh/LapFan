@@ -81,6 +81,9 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
 
     @Override
     public int getItemCount() {
+        if (listKH.size() == 0) {
+            countKH.setText(String.valueOf(0));
+        }
         return listKH.size();
     }
 
@@ -95,9 +98,6 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
             gender = itemView.findViewById(R.id.textView_GioiTinh);
             phone = itemView.findViewById(R.id.textView_SDT);
             itemView.setOnCreateContextMenuListener((View.OnCreateContextMenuListener) this);
-            if (listKH.size() == 0) {
-                countKH.setText(String.valueOf(0));
-            }
         }
 
         @Override
@@ -117,8 +117,7 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
                 switch (item.getItemId()) {
                     case R.id.item_Xoa:
                         khachHangDAO.deleteKhachHang(khachHang);
-                        listKH.clear();
-                        listKH.addAll(khachHangDAO.selectKhachHang(null, null, null, null));
+                        listKH.remove(getPosKH());
                         notifyDataSetChanged();
                         break;
                     case R.id.item_CapNhat:
@@ -195,9 +194,8 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
                     kh.setGioiTinh(gioiTinh);
 
                     khachHangDAO.updateKhachHang(kh);
+                    listKH.set(getPosKH(), kh);
                     dialog.dismiss();
-                    listKH.clear();
-                    listKH.addAll(khachHangDAO.selectKhachHang(null, null, null, null));
                     notifyDataSetChanged();
                 }
             }
@@ -235,7 +233,6 @@ public class QL_KhachHang_Adapter extends RecyclerView.Adapter<QL_KhachHang_Adap
         String firstName = changeType.deleteSpaceText(textInput_FirstName.getEditText().getText().toString());
         String email = changeType.deleteSpaceText(textInput_Email.getEditText().getText().toString());
         String sdt = changeType.deleteSpaceText(textInput_SDT.getEditText().getText().toString());
-        String password = changeType.deleteSpaceText(textInput_Password.getEditText().getText().toString());
 
         int check = 1;
 

@@ -78,7 +78,11 @@ public class ChangeType {
             }
         }
         if (afterCheck.length() >= 9) {
-            money = Integer.parseInt(afterCheck.substring(afterCheck.length() - 3));
+            Log.d(TAG, "setRow: DH Thanh toán: afterCheck: >= 9");
+            afterCheck = afterCheck.substring(0, afterCheck.length() - 3);
+            Log.d(TAG, "setRow: DH Thanh toán: afterCheck: " + afterCheck);
+            money = Integer.parseInt(afterCheck);
+            Log.d(TAG, "setRow: DH Thanh toán: money: " + money);
         } else if (afterCheck.length() > 0) {
             money = Integer.parseInt(afterCheck);
         }

@@ -72,10 +72,11 @@ public class QL_KhachHang_Loader extends AsyncTask<String, Void, ArrayList<Khach
                 if (loadingView != null && relativeLayout != null && linearEmpty != null && reView != null && countKH != null) {
                     if (listKH != null) {
                         if (listKH.size() == 0) {
-                            relativeLayout.setVisibility(View.GONE);
+                            relativeLayout.setVisibility(View.VISIBLE);
                             loadingView.setVisibility(View.GONE);
                             reView.setVisibility(View.GONE);
                             linearEmpty.setVisibility(View.VISIBLE);
+                            countKH.setText("0");
                         } else {
                             relativeLayout.setVisibility(View.VISIBLE);
                             loadingView.setVisibility(View.GONE);

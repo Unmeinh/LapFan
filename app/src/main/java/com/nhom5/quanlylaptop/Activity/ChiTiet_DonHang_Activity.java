@@ -198,7 +198,13 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
         if (listV.size() > 0){
             voucher = listV.get(0);
         }
-        int giaTien = changeType.stringMoneyToInt(laptop.getGiaTien()) / 1000;
+
+        int giaTien;
+        if (laptop.getGiaTien().length() < 12){
+            giaTien = changeType.stringMoneyToInt(laptop.getGiaTien()) / 1000;
+        } else {
+            giaTien = changeType.stringMoneyToInt(laptop.getGiaTien());
+        }
         int soTien = giaTien * donHang.getSoLuong();
         if (voucher != null) {
             int sale = changeType.voucherToInt(voucher.getGiamGia());
