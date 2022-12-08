@@ -138,7 +138,7 @@ public class KH_ViTien_Activity extends AppCompatActivity {
                         }
 
                         if (!ed_Naptien.equals("0₫") && !ed_Naptien.equals("₫")){
-                            if (ed_Naptien.length() < 9){
+                            if (ed_Naptien.length() < 12){
                                 if (changeType.stringMoneyToInt(ed_Naptien) <= 50000000){
                                     ThongBao thongBaoKH = new ThongBao("TB", viTien.getMaKH(), "Nạp tiền",
                                             " Bạn đã gửi yêu cầu nạp " + ed_Naptien + " vào ví FPT Pay. Vui lòng chờ Admin phê duyệt", date);

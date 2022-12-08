@@ -149,34 +149,10 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
         LinearLayout layoutAcc = findViewById(R.id.layout_Account);
         LinearLayout layoutSearch = findViewById(R.id.layout_Search);
         TextView titleView = findViewById(R.id.textView_Title_Toolbar_Search);
-        EditText search = findViewById(R.id.editText_Search);
-        ImageButton open = findViewById(R.id.imageButton_Search_Toolbar);
-        count = 0;
 
         layoutAcc.setVisibility(View.GONE);
         layoutSearch.setVisibility(View.VISIBLE);
         titleView.setText(title);
-        if (count % 2 == 0) {
-            titleView.setVisibility(View.VISIBLE);
-            search.setText("");
-            search.setVisibility(View.GONE);
-            count++;
-        }
-        open.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: count: " + count);
-                if (count % 2 == 0) {
-                    titleView.setVisibility(View.VISIBLE);
-                    search.setVisibility(View.GONE);
-                    count++;
-                } else {
-                    titleView.setVisibility(View.GONE);
-                    search.setVisibility(View.VISIBLE);
-                    count++;
-                }
-            }
-        });
     }
 
     private void setViewNaviDrawer() {
@@ -227,7 +203,7 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     viewPager.setAdapter(adapter);
                     viewPager.setCurrentItem(3);
                     itemNaviDr = 4;
-                    useToolbar("QLý Đơn Hàng", 1);
+                    useToolbar("QLý Đơn Hàng", 0);
                     bottomNavigationView.setVisibility(View.GONE);
                 }
                 if (id == R.id.item_navi_drawer_nv_KhachHang) {

@@ -2,7 +2,10 @@ package com.nhom5.quanlylaptop.Support;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
@@ -35,24 +38,31 @@ public class GetData {
         if (listNV != null) {
             if (listNV.size() > 0) {
                 for (NhanVien nhanVien : listNV) {
-                    String[] full = {nhanVien.getMaNV(), getDate[0], getDate[1]};
-                    ArrayList<DonHang> listDon = donHangDAO.selectDonHang(null, "maNV=? and ngayMua>=? and ngayMua<?", full, null);
+                    if (!nhanVien.getRoleNV().equals("Xác nhận đơn hàng Online")){
+                        String[] full = {nhanVien.getMaNV(), getDate[0], getDate[1]};
+                        ArrayList<DonHang> listDon = donHangDAO.selectDonHang(null, "maNV=? and ngayMua>=? and ngayMua<?", full, null);
 
-                    int doanhSo = 0;
-                    int cout = 0;
-                    if (listDon != null) {
-                        if (listDon.size() > 0) {
-                            for (DonHang donHang : listDon) {
-                                int giaTien = changeType.stringMoneyToInt(donHang.getThanhTien()) / 1000;
-                                doanhSo += giaTien;
+                        int doanhSo = 0;
+                        int cout = 0;
+                        if (listDon != null) {
+                            if (listDon.size() > 0) {
+                                for (DonHang donHang : listDon) {
+                                    int giaTien;
+                                    if (donHang.getThanhTien().length() < 12){
+                                        giaTien = changeType.stringMoneyToInt(donHang.getThanhTien()) / 1000;
+                                    } else {
+                                        giaTien = changeType.stringMoneyToInt(donHang.getThanhTien());
+                                    }
+                                    doanhSo += giaTien;
+                                }
+                                cout = listDon.size();
                             }
-                            cout = listDon.size();
                         }
-                    }
 
-                    nhanVien.setDoanhSo(doanhSo);
-                    nhanVien.setSoSP(cout);
-                    nhanVienDAO.updateNhanVien(nhanVien);
+                        nhanVien.setDoanhSo(doanhSo);
+                        nhanVien.setSoSP(cout);
+                        nhanVienDAO.updateNhanVien(nhanVien);
+                    }
                 }
             }
         }
@@ -182,11 +192,6 @@ public class GetData {
 
     public void addDemoLaptopDell() {
         Bitmap bm0 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/260171/dell-gaming-g15-5515-r5-p105f004dgr-291121-114930-600x600.jpg");
-        if (bm0 != null) {
-            Laptop lp0 = new Laptop("0", "LDell", "Laptop Dell Gaming G15 5515 R5 5600H"
-                    , "RAM 16GB", "23.490.000₫", 0, 0, changeType.checkByteInput(changeType.bitmapToByte(bm0)));
-            laptopDAO.insertLaptop(lp0);
-        }
 
         Bitmap bm1 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/264370/dell-inspiron-15-3511-i3-1115g4-4gb-256gb-600x600.jpg");
         if (bm1 != null) {
@@ -200,13 +205,6 @@ public class GetData {
             Laptop lp2 = new Laptop("2", "LDell", "Laptop Dell Gaming Alienware m15 R6 i7 11800H"
                     , "RAM 32GB", "61.640.000₫", 3, 0, changeType.checkByteInput(changeType.bitmapToByte(bm2)));
             laptopDAO.insertLaptop(lp2);
-        }
-
-        Bitmap bm3 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/271540/dell-gaming-g15-5511-i7-p105f006agr-140222-091722-600x600.jpg");
-        if (bm0 != null) {
-            Laptop lp3 = new Laptop("3", "LDell", "Laptop Dell Gaming G15 5511 i7 11800H"
-                    , "RAM 8GB", "33.490.000₫", 2, 0, changeType.checkByteInput(changeType.bitmapToByte(bm3)));
-            laptopDAO.insertLaptop(lp3);
         }
 
         Bitmap bm4 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/292640/dell-xps-13-plus-9320-i7-5cg56-thumb-600x600.jpg");
@@ -232,20 +230,6 @@ public class GetData {
             laptopDAO.insertLaptop(lp1);
         }
 
-        Bitmap bm2 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/266157/hp-envy-x360-convert-13-ay1056au-r7-601q8pa-170322-023537-600x600.jpg");
-        if (bm2 != null) {
-            Laptop lp2 = new Laptop("7", "LHP", "Laptop HP Envy x360 Convert 13 ay1056AU R7 5800U"
-                    , "RAM 8GB", "25.890.000₫", 1, 0, changeType.checkByteInput(changeType.bitmapToByte(bm2)));
-            laptopDAO.insertLaptop(lp2);
-        }
-
-        Bitmap bm3 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/285965/hp-pavilion-x360-14-ek0055tu-i7-6l293pa-270822-110932-600x600.jpg");
-        if (bm0 != null) {
-            Laptop lp3 = new Laptop("8", "LHP", "Laptop HP Pavilion X360 14 ek0055TU i7 1255U"
-                    , "RAM 16GB", "25.090.000₫", 3, 0, changeType.checkByteInput(changeType.bitmapToByte(bm3)));
-            laptopDAO.insertLaptop(lp3);
-        }
-
         Bitmap bm4 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/268676/hp-pavilion-x360-14-dy0171tu-i3-4y1d6pa-170322-015258-600x600.jpg");
         if (bm4 != null) {
             Laptop lp4 = new Laptop("9", "LHP", "Laptop HP Pavilion X360 14 dy0171TU i3 1125G4"
@@ -255,13 +239,6 @@ public class GetData {
     }
 
     public void addDemoLaptopAcer() {
-        Bitmap bm0 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/269314/acer-swift-x-sfx16-51g-516q-i5-nxayksv002-120122-023135-600x600.jpg");
-        if (bm0 != null) {
-            Laptop lp0 = new Laptop("10", "LAcer", "Laptop Acer Swift X SFX16 51G 516Q i5 11320H"
-                    , "RAM 16GB", "28.590.000₫", 4, 0, changeType.checkByteInput(changeType.bitmapToByte(bm0)));
-            laptopDAO.insertLaptop(lp0);
-        }
-
         Bitmap bm1 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/283458/acer-nitro-5-tiger-an515-58-773y-i7-nhqfksv001-thumb-600x600.jpg");
         if (bm1 != null) {
             Laptop lp1 = new Laptop("11", "LAcer", "Laptop Acer Nitro 5 Tiger AN515 58 773Y i7 12700H"
@@ -276,13 +253,6 @@ public class GetData {
             laptopDAO.insertLaptop(lp2);
         }
 
-        Bitmap bm3 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/269313/acer-swift-3-sf314-511-55qe-i5-nxabnsv003-120122-022600-600x600.jpg");
-        if (bm0 != null) {
-            Laptop lp3 = new Laptop("13", "LAcer", "Laptop Acer Swift 3 SF314 511 55QE i5 1135G7"
-                    , "RAM 16GB", "22.590.000₫", 10, 0, changeType.checkByteInput(changeType.bitmapToByte(bm3)));
-            laptopDAO.insertLaptop(lp3);
-        }
-
         Bitmap bm4 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/273432/acer-aprise-a315-57g-32qp-i3-1005g1-4gb-256gb-2gb-mx330-010322-044114-600x600.jpg");
         if (bm4 != null) {
             Laptop lp4 = new Laptop("14", "LAcer", "Laptop Acer Aspire A315 57G 32QP i3 1005G1"
@@ -292,13 +262,6 @@ public class GetData {
     }
 
     public void addDemoLaptopAsus() {
-        Bitmap bm0 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/279259/asus-tuf-gaming-fx506lhb-i5-hn188w-600x600.jpeg");
-        if (bm0 != null) {
-            Laptop lp0 = new Laptop("15", "LAsus", "Laptop Asus TUF Gaming FX506LHB i5 10300H"
-                    , "RAM 8GB", "18.790.000₫", 3, 0, changeType.checkByteInput(changeType.bitmapToByte(bm0)));
-            laptopDAO.insertLaptop(lp0);
-        }
-
         Bitmap bm1 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/274539/asus-gaming-rog-flow-z13-gz301z-i7-ld110w-160322-120057-600x600.jpg");
         if (bm1 != null) {
             Laptop lp1 = new Laptop("16", "LAsus", "Laptop Asus Gaming ROG Flow Z13 GZ301Z i7 12700H"
@@ -313,13 +276,6 @@ public class GetData {
             laptopDAO.insertLaptop(lp2);
         }
 
-        Bitmap bm3 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/268667/asus-zenbook-ux425e-i7-1165g7-16gb-600x600.jpg");
-        if (bm0 != null) {
-            Laptop lp3 = new Laptop("18", "LAsus", "Laptop Asus ZenBook UX425E i7 1165G7"
-                    , "RAM 16GB", "27.190.000₫", 0, 0, changeType.checkByteInput(changeType.bitmapToByte(bm3)));
-            laptopDAO.insertLaptop(lp3);
-        }
-
         Bitmap bm4 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/298373/asus-expertbook-b5402cba-i5-ki0353w-thumb-600x600.jpg");
         if (bm4 != null) {
             Laptop lp4 = new Laptop("19", "LAsus", "Asus ExpertBook B5402CB i5 1240P"
@@ -329,20 +285,6 @@ public class GetData {
     }
 
     public void addDemoLaptopMsi() {
-        Bitmap bm0 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/256266/msi-gaming-modern-14-b11sbu-i5-669vn-600x600.jpg");
-        if (bm0 != null) {
-            Laptop lp0 = new Laptop("20", "LMSi", "Laptop MSI Modern 14 B11SBU i5 1155G7"
-                    , "RAM 8GB", "15.790.000₫", 2, 0, changeType.checkByteInput(changeType.bitmapToByte(bm0)));
-            laptopDAO.insertLaptop(lp0);
-        }
-
-        Bitmap bm1 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/264029/msi-gaming-bravo-15-b5dd-r5-5600h-8gb-512gb-4gb-600x600.jpg");
-        if (bm1 != null) {
-            Laptop lp1 = new Laptop("21", "LMSi", "Laptop MSI Gaming Bravo 15 B5DD R5 5600H"
-                    , "RAM 8GB", "18.090.000₫", 3, 0, changeType.checkByteInput(changeType.bitmapToByte(bm1)));
-            laptopDAO.insertLaptop(lp1);
-        }
-
         Bitmap bm2 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/249151/msi-gaming-ge66-raider-11uh-i7-259vn-600x600.jpg");
         if (bm2 != null) {
             Laptop lp2 = new Laptop("22", "LMSi", "Laptop MSI Gaming GE66 Raider 11UH i7 11800H"
@@ -351,7 +293,7 @@ public class GetData {
         }
 
         Bitmap bm3 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/249152/msi-gaming-ge66-raider-11ug-i7-258vn-600x600.jpg");
-        if (bm0 != null) {
+        if (bm3 != null) {
             Laptop lp3 = new Laptop("23", "LMSi", "Laptop MSI Gaming GE66 Raider 11UG i7 11800H"
                     , "RAM 16GB", "59.490.000₫", 6, 0, changeType.checkByteInput(changeType.bitmapToByte(bm3)));
             laptopDAO.insertLaptop(lp3);
@@ -366,13 +308,6 @@ public class GetData {
     }
 
     public void addDemoLaptopMac() {
-        Bitmap bm0 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/289472/apple-macbook-air-m2-2022-16gb-256gb-thumb-600x600.jpg");
-        if (bm0 != null) {
-            Laptop lp0 = new Laptop("25", "LMacBook", "Laptop Apple MacBook Air M2 2022 16GB"
-                    , "RAM 16GB", "38.990.000₫", 3, 0, changeType.checkByteInput(changeType.bitmapToByte(bm0)));
-            laptopDAO.insertLaptop(lp0);
-        }
-
         Bitmap bm1 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/253636/apple-macbook-pro-16-m1-pro-2021-10-core-cpu-600x600.jpg");
         if (bm1 != null) {
             Laptop lp1 = new Laptop("26", "LMacBook", "Laptop Apple MacBook Pro 16 M1 Pro 2021 10 core-CPU"
@@ -387,18 +322,29 @@ public class GetData {
             laptopDAO.insertLaptop(lp2);
         }
 
-        Bitmap bm3 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/282828/apple-macbook-pro-13-inch-m2-2022-1.jpg");
-        if (bm0 != null) {
-            Laptop lp3 = new Laptop("28", "LMacBook", "Laptop Apple MacBook Pro M2 2022 8GB"
-                    , "RAM 8GB", "35.990.000₫", 0, 0, changeType.checkByteInput(changeType.bitmapToByte(bm3)));
-            laptopDAO.insertLaptop(lp3);
-        }
-
         Bitmap bm4 = changeType.urlToBitmap(context, "https://cdn.tgdd.vn/Products/Images/44/231244/grey-1-org.jpg");
         if (bm4 != null) {
             Laptop lp4 = new Laptop("29", "LMacBook", "Laptop Apple MacBook Air M1 2020 8GB"
                     , "RAM 8GB", "27.490.000₫", 3, 0, changeType.checkByteInput(changeType.bitmapToByte(bm4)));
             laptopDAO.insertLaptop(lp4);
         }
+    }
+
+    private void textChange(){
+        EditText editText = null;
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 }

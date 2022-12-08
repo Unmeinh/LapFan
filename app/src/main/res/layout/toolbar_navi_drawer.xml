@@ -57,34 +57,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/textView_Title_Toolbar_Search"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="9"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/textView_Title_Toolbar_Search"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="center"
-                        android:textColor="#FFFFFF"
-                        android:textSize="27sp"
-                        android:textStyle="bold" />
-
-                    <EditText
-                        android:textColorHint="@color/white"
-                        android:id="@+id/editText_Search"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginEnd="10dp"
-                        android:backgroundTint="@color/white"
-                        android:textColor="#FFFFFF"
-                        android:textSize="23sp"
-                        android:visibility="gone" />
-
-                </LinearLayout>
+                    android:gravity="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="27sp"
+                    android:textStyle="bold" />
 
                 <ImageButton
                     android:id="@+id/imageButton_Search_Toolbar"

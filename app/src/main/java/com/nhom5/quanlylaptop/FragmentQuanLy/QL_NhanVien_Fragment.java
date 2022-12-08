@@ -1,8 +1,12 @@
 package com.nhom5.quanlylaptop.FragmentQuanLy;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -26,9 +31,11 @@ import android.widget.TextView;
 
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.NhanVien;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_KhachHang_Adapter;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_NhanVien_Adapter;
+import com.nhom5.quanlylaptop.NVA_Loader.QL_KhachHang_Loader;
 import com.nhom5.quanlylaptop.NVA_Loader.QL_NhanVien_Loader;
 import com.nhom5.quanlylaptop.R;
 
@@ -66,44 +73,64 @@ public class QL_NhanVien_Fragment extends Fragment {
     private void useToolbar() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar_Account);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-//        if (toolbar != null) {
-//            NhanVienDAO nhanVienDAO = new NhanVienDAO(getContext());
-//            ArrayList<NhanVien> listNV = nhanVienDAO.selectNhanVien(null, null, null, null);
-//            EditText search = toolbar.findViewById(R.id.editText_Search);
-//            search.setHint("Email nhân viên...");
-//            if (search.getHint().equals("Email nhân viên...")){
-//                search.addTextChangedListener(new TextWatcher() {
-//                    @Override
-//                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                    }
-//
-//                    @Override
-//                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                        String input = search.getText().toString();
-//                        ArrayList<NhanVien> getList = new ArrayList<>();
-//                        if (!input.equals("")) {
-//                            for (NhanVien nv : listNV) {
-//                                if (nv.getEmail().matches(".*?" + input + ".*")) {
-//                                    getList.add(nv);
-//                                }
-//                            }
-//                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-//                            reView.setLayoutManager(linearLayoutManager);
-//                            QL_NhanVien_Adapter ql_nhanVien_adapter = new QL_NhanVien_Adapter(getList, getContext(), countNV);
-//                            reView.setAdapter(ql_nhanVien_adapter);
-//                        } else {
-//                            autoSetRole();
-//                            selectRoleNV();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void afterTextChanged(Editable s) {
-//
-//                    }
-//                });
-//            }
-//        }
+        if (toolbar != null) {
+            NhanVienDAO nhanVienDAO = new NhanVienDAO(getContext());
+            ArrayList<NhanVien> listNV = nhanVienDAO.selectNhanVien(null, null, null, null);
+            ImageButton btn_search = toolbar.findViewById(R.id.imageButton_Search_Toolbar);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            LayoutInflater inft = ((Activity) getContext()).getLayoutInflater();
+            View dialogView = inft.inflate(R.layout.dialog_text_find, null);
+            AppCompatButton buttonSearch = dialogView.findViewById(R.id.button_Search_Dialog);
+            EditText editTextSearch = dialogView.findViewById(R.id.editText_Search);
+            editTextSearch.setHint("Email khách hàng...");
+
+            builder.setView(dialogView);
+            Dialog dialog = builder.create();
+            btn_search.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.show();
+                    if (editTextSearch.getHint().equals("Email khách hàng...")){
+                        editTextSearch.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                String input = editTextSearch.getText().toString();
+                                ArrayList<NhanVien> getList = new ArrayList<>();
+                                if (!input.equals("")) {
+                                    for (NhanVien nv : listNV) {
+                                        if (nv.getEmail().matches(".*?" + input + ".*")) {
+                                            getList.add(nv);
+                                        }
+                                    }
+                                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                                    reView.setLayoutManager(linearLayoutManager);
+                                    QL_NhanVien_Adapter ql_nhanVien_adapter = new QL_NhanVien_Adapter(getList, getContext(), countNV);
+                                    reView.setAdapter(ql_nhanVien_adapter);
+                                } else {
+                                    autoSetRole();
+                                    selectRoleNV();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+            buttonSearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+        }
     }
 
     @Override

@@ -136,16 +136,6 @@ public class QL_NhanVien_Loader extends AsyncTask<String, Void, ArrayList<NhanVi
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.vu))));
         nhanVienDAO.insertNhanVien(nv1);
 
-        NhanVien nv2 = new NhanVien("2", "Nguyễn", "Đức Cường", "Nam", "den@gmail.com",
-                "denvau", "Việt Nam", "013051989", "Bán hàng Online", 0, 0,
-                changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.den_vau))));
-        nhanVienDAO.insertNhanVien(nv2);
-
-        NhanVien nv3 = new NhanVien("3", "Martin", "Garrix", "Nam", "martin@gmail.com",
-                "martingarrix", "Hà Lan", "014051996", "Bán hàng Ofline", 0, 0,
-                changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.martin_garrix))));
-        nhanVienDAO.insertNhanVien(nv3);
-
         NhanVien nv4 = new NhanVien("4", "Nguyễn", "Công Lý", "Nam", "congly@gmail.com",
                 "congly", "Việt Nam", "016101973", "Bán hàng Ofline", 0, 0,
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.cong_ly))));

@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
@@ -112,18 +113,38 @@ public class NVA_Home_Fragment extends Fragment {
         TextView slDHText = view.findViewById(R.id.textView_Soluong_DH);
         TextView slDHNum = view.findViewById(R.id.textView_Soluong);
         ImageView goToDonDat = view.findViewById(R.id.imageView_GoTo_DonDat);
-        if (nhanVien == null){
+        slDHText.setText("0 đơn đặt");
+        slDHNum.setText(String.valueOf(0));
+        if (nhanVien == null) {
             listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "Null"}, null);
+            slDHText.setText(listDon.size() + " đơn đặt");
+            slDHNum.setText(String.valueOf(listDon.size()));
         } else {
-            listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "No Data"}, null);
+            if (nhanVien.getRoleNV().equals("Xác nhận đơn hàng Online")) {
+                listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "Null"}, null);
+                slDHText.setText(listDon.size() + " đơn đặt");
+                slDHNum.setText(String.valueOf(listDon.size()));
+            }
+            if (nhanVien.getRoleNV().equals("Bán hàng Online")) {
+                listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "No Data"}, null);
+                slDHText.setText(listDon.size() + " đơn đặt");
+                slDHNum.setText(String.valueOf(listDon.size()));
+            }
         }
-        slDHText.setText(listDon.size() + " đơn đặt");
-        slDHNum.setText(String.valueOf(listDon.size()));
         goToDonDat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), NVA_DonDat_Activity.class);
-                startActivity(intent);
+                if (nhanVien != null) {
+                    if (!nhanVien.getRoleNV().equals("Bán hàng Ofline")) {
+                        Intent intent = new Intent(getContext(), NVA_DonDat_Activity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(getContext(), "Bạn không nằm trong bộ phận bán hàng Online!", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Intent intent = new Intent(getContext(), NVA_DonDat_Activity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
@@ -135,7 +156,7 @@ public class NVA_Home_Fragment extends Fragment {
                 Log.d(TAG, "setDoanhThu: hope");
                 if (listDon.size() > 0) {
                     int doanhThu = getData.tinhTongKhoanThu(listDon) * 1000;
-                    textView_GiaTien.setText(changeType.stringToStringMoney(doanhThu+""));
+                    textView_GiaTien.setText(changeType.stringToStringMoney(doanhThu + ""));
                 } else {
                     textView_GiaTien.setText(changeType.stringToStringMoney("0"));
                 }

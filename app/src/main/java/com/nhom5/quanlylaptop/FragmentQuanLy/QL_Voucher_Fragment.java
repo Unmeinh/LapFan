@@ -8,28 +8,39 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputLayout;
+import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
 import com.nhom5.quanlylaptop.DAO.VoucherDAO;
+import com.nhom5.quanlylaptop.Entity.NhanVien;
 import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Laptop_Adapter;
+import com.nhom5.quanlylaptop.NAV_Adapter.QL_NhanVien_Adapter;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Voucher_Adapter;
 import com.nhom5.quanlylaptop.NVA_Loader.QL_Voucher_Loader;
 import com.nhom5.quanlylaptop.R;
@@ -47,6 +58,7 @@ public class QL_Voucher_Fragment extends Fragment {
     VoucherDAO voucherDAO;
     String TAG = "QL_Voucher_Fragment_____";
     RecyclerView reView;
+    RelativeLayout relativeLayout;
     LinearLayout linearLayout, linearVoucherEmpty;
     ChangeType changeType = new ChangeType();
 
@@ -56,24 +68,62 @@ public class QL_Voucher_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_ql_voucher, container, false);
         addVoucher = view.findViewById(R.id.button_Add_Voucher);
         reView = view.findViewById(R.id.recyclerView_NVA_Voucher);
+        relativeLayout = view.findViewById(R.id.layoutView);
         linearLayout = view.findViewById(R.id.loadingView);
         linearVoucherEmpty = view.findViewById(R.id.linearVoucherEmpty);
         voucherDAO = new VoucherDAO(getContext());
 
         listVou = voucherDAO.selectVoucher(null, null, null, null);
-        QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(getContext(), reView, linearLayout, linearVoucherEmpty);
+        QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(getContext(), reView, linearLayout, linearVoucherEmpty, relativeLayout);
         ql_voucher_loader.execute("");
 
+        searchVoucher(view);
         openDialog();
         return view;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        listVou = voucherDAO.selectVoucher(null, null, null, null);
-        QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(getContext(), reView, linearLayout, linearVoucherEmpty);
-        ql_voucher_loader.execute("");
+    private void searchVoucher(View view) {
+        TextView textView_Progress = view.findViewById(R.id.textView_Progress);
+        SeekBar seekBar = view.findViewById(R.id.seekBar);
+        textView_Progress.setText("Mức giảm giá: = 0%");
+        seekBar.setProgress(0);
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                ArrayList<Voucher> getList = new ArrayList<>();
+                if (progress == 0) {
+                    textView_Progress.setText("Mức giảm giá: = 0%");
+                    QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(getContext(), reView, linearLayout, linearVoucherEmpty, relativeLayout);
+                    ql_voucher_loader.execute("");
+                } else {
+                    textView_Progress.setText("Mức giảm giá: < " + progress + "%");
+                    for (Voucher vou : listVou) {
+                        if (changeType.voucherToInt(vou.getGiamGia()) < progress){
+                            getList.add(vou);
+                        }
+                    }
+                    if (listVou.size() == 0){
+                        linearVoucherEmpty.setVisibility(View.VISIBLE);
+                    } else {
+                        linearVoucherEmpty.setVisibility(View.GONE);
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                        reView.setLayoutManager(linearLayoutManager);
+                        QL_Voucher_Adapter ql_voucher_adapter = new QL_Voucher_Adapter(getList, getContext());
+                        reView.setAdapter(ql_voucher_adapter);
+                    }
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 
     private void openDialog() {
@@ -119,7 +169,7 @@ public class QL_Voucher_Fragment extends Fragment {
                 Voucher voucher = new Voucher("", tenVou, giamGia + "%", nbd, nkt);
                 voucherDAO.insertVoucher(voucher);
 
-                QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(getContext(), reView, linearLayout, linearVoucherEmpty);
+                QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(getContext(), reView, linearLayout, linearVoucherEmpty, relativeLayout);
                 ql_voucher_loader.execute("");
                 dialog.dismiss();
             }

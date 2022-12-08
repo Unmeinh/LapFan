@@ -38,6 +38,10 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         String tableVoucher = "CREATE TABLE Voucher( maVoucher INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " tenVoucher TEXT not null, giamGia TEXT not null, ngayBD DATE, ngayKT DATE)";
 
+        // Bảng Voucher
+        String tableUseVoucher = "CREATE TABLE UseVoucher( maUse INTEGER PRIMARY KEY AUTOINCREMENT," +
+                " maVoucher INTEGER not null, maKH INTEGER not null, isUsed TEXT)";
+
         // Bảng Laptop
         String tableLaptop = "CREATE TABLE Laptop( maLaptop INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " maHangLap VARCHAR(15) not null, anhLaptop BLOB," +
@@ -97,6 +101,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         db.execSQL(tableKhachHang);
         db.execSQL(tableHangLaptop);
         db.execSQL(tableVoucher);
+        db.execSQL(tableUseVoucher);
         db.execSQL(tableLaptop);
         db.execSQL(tableLaptopRate);
         db.execSQL(tableGioHang);

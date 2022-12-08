@@ -174,7 +174,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
 
     @Override
     public int getItemCount() {
-        if (listDon.size() == 0){
+        if (listDon.size() == 0) {
             countDH.setText(String.valueOf(0));
         }
         return listDon.size();
@@ -665,22 +665,42 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
             int check = donHangDAO.updateDonHang(donHang);
             if (check == 1) {
                 Toast.makeText(context, "Xác nhận đặt hàng thành công!", Toast.LENGTH_SHORT).show();
-                ThongBao thongBaoAD = new ThongBao("TB", "ad", "Xác nhận đặt hàng " + donHang.getMaDH(),
-                        " Bạn đã xác nhận đơn hàng " + donHang.getMaDH()
-                                + "\n Đơn hàng đã được chuyển đến cho nhân viên", getData.getNowDateSQL());
-                thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                SharedPreferences pref = context.getSharedPreferences("Who_Login", MODE_PRIVATE);
+                if (pref == null) {
+                    nhanVien = null;
+                } else {
+                    String user = pref.getString("who", "");
+                    NhanVienDAO nhanVienDAO = new NhanVienDAO(context);
+                    ArrayList<NhanVien> list = nhanVienDAO.selectNhanVien(null, "maNV=?", new String[]{user}, null);
+                    if (list.size() > 0) {
+                        nhanVien = list.get(0);
+                    }
+                }
+                if (nhanVien != null) {
+                    nhanVien.setSoSP(nhanVien.getSoSP() + 1);
+                    if (laptop.getGiaTien().length() >= 12) {
+                        int doanhSo = nhanVien.getDoanhSo() + changeType.stringMoneyToInt(laptop.getGiaTien()) / 100;
+                        nhanVien.setDoanhSo(doanhSo);
+                    } else {
+                        int doanhSo = nhanVien.getDoanhSo() + (changeType.stringMoneyToInt(laptop.getGiaTien()) / 1000) / 100;
+                        nhanVien.setDoanhSo(doanhSo);
+                    }
+                    ThongBao thongBaoAD = new ThongBao("TB", "ad", "Xác nhận đặt hàng " + donHang.getMaDH(),
+                            " Bạn đã xác nhận đơn hàng " + donHang.getMaDH()
+                                    + "\n Đơn hàng đã được chuyển đến cho bộ phận bán hàng Online", getData.getNowDateSQL());
+                    thongBaoDAO.insertThongBao(thongBaoAD, "nv");
+                } else {
+                    ThongBao thongBaoAD = new ThongBao("TB", "ad", "Xác nhận đặt hàng " + donHang.getMaDH(),
+                            " Bạn đã xác nhận đơn hàng " + donHang.getMaDH()
+                                    + "\n Đơn hàng đã được chuyển đến cho bộ phận bán hàng Online", getData.getNowDateSQL());
+                    thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+                }
+                ThongBao thongBaoNV = new ThongBao("TB", "No Data", "Xác nhận đơn hàng " + donHang.getMaDH(),
+                        " Đơn hàng " + donHang.getMaDH() + " đang chờ được xác nhận", getData.getNowDateSQL());
+                thongBaoDAO.insertThongBao(thongBaoNV, "nv");
                 listDon.clear();
                 listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "Null"}, "ngayMua");
                 notifyDataSetChanged();
-                if (laptop != null) {
-                    ThongBao thongBaoNV = new ThongBao("TB", "No Data", "Xác nhận đơn hàng " + donHang.getMaDH(),
-                            " Đơn hàng " + laptop.getTenLaptop() + " đang chờ được xác nhận", getData.getNowDateSQL());
-                    thongBaoDAO.insertThongBao(thongBaoNV, "nv");
-                } else {
-                    ThongBao thongBaoNV = new ThongBao("TB", "No Data", "Xác nhận đơn hàng " + donHang.getMaDH(),
-                            " Đơn hàng No Data" + " đang chờ được xác nhận", getData.getNowDateSQL());
-                    thongBaoDAO.insertThongBao(thongBaoNV, "nv");
-                }
             } else {
                 Toast.makeText(context, "Xác nhận đặt hàng thất bại!", Toast.LENGTH_SHORT).show();
             }
@@ -716,8 +736,14 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
                     laptop.setDaBan(laptop.getDaBan() + donHang.getSoLuong());
                     laptopDAO.updateLaptop(laptop);
                     Toast.makeText(context, "Xác nhận đơn hàng thành công!", Toast.LENGTH_SHORT).show();
+                    ThongBao thongBaoAll = new ThongBao("", "No Data", "Xác nhận đơn hàng " + donHang.getMaDH(),
+                            " Nhân viên +" + changeType.fullNameNhanVien(nhanVien) + "+ đã xác nhận đơn hàng " + donHang.getMaDH() + "\n Đơn hàng sẽ không thể xác nhận được nữa", getData.getNowDateSQL());
+                    thongBaoDAO.insertThongBao(thongBaoAll, "nv");
+                    ThongBao thongBaoAd = new ThongBao("", "No Data", "Xác nhận đơn hàng " + donHang.getMaDH(),
+                            " Nhân viên +" + changeType.fullNameNhanVien(nhanVien) + "+ đã xác nhận đơn hàng " + donHang.getMaDH() + "\n Thông tin chi tiết đơn hàng ở trong Quản lý Đơn hàng", getData.getNowDateSQL());
+                    thongBaoDAO.insertThongBao(thongBaoAd, "ad");
                     ThongBao thongBaoNV = new ThongBao("", nhanVien.getMaNV(), "Xác nhận đơn hàng " + donHang.getMaDH(),
-                            " Bạn đã xác nhận đơn hàng " + donHang.getMaDH() + ", đơn hàng đã được lưu trong Đơn hàng đã bán", getData.getNowDateSQL());
+                            " Bạn đã xác nhận đơn hàng " + donHang.getMaDH() + "\n Đơn hàng đã được lưu trong Đơn hàng đã bán", getData.getNowDateSQL());
                     thongBaoDAO.insertThongBao(thongBaoNV, "nv");
                     listDon.clear();
                     listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "No Data"}, "ngayMua");

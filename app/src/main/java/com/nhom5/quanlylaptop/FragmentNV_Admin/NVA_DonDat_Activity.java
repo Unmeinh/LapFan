@@ -41,8 +41,14 @@ public class NVA_DonDat_Activity extends AppCompatActivity {
         useToolbar();
         getUser();
         if (nhanVien != null){
-            QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(context, recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
-            ql_donHang_loader.execute("NVD");
+            if (nhanVien.getRoleNV().equals("Xác nhận đơn hàng Online")) {
+                QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(context, recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
+                ql_donHang_loader.execute("ADV");
+            }
+            if (nhanVien.getRoleNV().equals("Bán hàng Online")) {
+                QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(context, recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
+                ql_donHang_loader.execute("NVD");
+            }
         } else {
             QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(context, recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
             ql_donHang_loader.execute("ADV");
@@ -81,8 +87,14 @@ public class NVA_DonDat_Activity extends AppCompatActivity {
         super.onResume();
         getUser();
         if (nhanVien != null){
-            QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(context, recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
-            ql_donHang_loader.execute("NVD");
+            if (nhanVien.getRoleNV().equals("Xác nhận đơn hàng Online")) {
+                QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(context, recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
+                ql_donHang_loader.execute("ADV");
+            }
+            if (nhanVien.getRoleNV().equals("Bán hàng Online")) {
+                QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(context, recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
+                ql_donHang_loader.execute("NVD");
+            }
         } else {
             QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(context, recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
             ql_donHang_loader.execute("ADV");

@@ -2,10 +2,13 @@ package com.nhom5.quanlylaptop.FragmentQuanLy;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
@@ -19,9 +22,12 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nhom5.quanlylaptop.ActivityNV_Admin.Laptop_Manager_Activity;
@@ -82,45 +88,65 @@ public class Tab_Laptop_Fragment extends Fragment {
     private void useToolbar(View view) {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar_Account);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-//        if (toolbar != null) {
-//            LaptopDAO laptopDAO = new LaptopDAO(getContext());
-//            HangLaptopDAO hangLaptopDAO = new HangLaptopDAO(getContext());
-//            ArrayList<Laptop> listLap = laptopDAO.selectLaptop(null, null, null, null);
-//            ArrayList<HangLaptop> listHang = hangLaptopDAO.selectHangLaptop(null, null, null, null);
-//            EditText search = toolbar.findViewById(R.id.editText_Search);
-//            search.setHint("Tên Laptop...");
-//            if (search.getHint().equals("Tên Laptop...")) {
-//                search.addTextChangedListener(new TextWatcher() {
-//                    @Override
-//                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                    }
-//
-//                    @Override
-//                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                        String input = search.getText().toString();
-//                        ArrayList<Laptop> getList = new ArrayList<>();
-//                        if (!input.equals("")) {
-//                            for (Laptop lap : listLap) {
-//                                if (lap.getTenLaptop().matches(".*?" + input + ".*")) {
-//                                    getList.add(lap);
-//                                }
-//                            }
-//                            RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
-//                            reView.setLayoutManager(mLayoutManager);
-//                            QL_Laptop_Adapter ql_laptop_adapter = new QL_Laptop_Adapter(getList, listHang, getContext());
-//                            reView.setAdapter(ql_laptop_adapter);
-//                        } else {
-//                            getHangLaptop(view);
-//                            setLaptop();
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void afterTextChanged(Editable s) {
-//                    }
-//                });
-//            }
-//        }
+        if (toolbar != null) {
+            LaptopDAO laptopDAO = new LaptopDAO(getContext());
+            HangLaptopDAO hangLaptopDAO = new HangLaptopDAO(getContext());
+            ArrayList<Laptop> listLap = laptopDAO.selectLaptop(null, null, null, null);
+            ArrayList<HangLaptop> listHang = hangLaptopDAO.selectHangLaptop(null, null, null, null);
+            ImageButton btn_search = toolbar.findViewById(R.id.imageButton_Search_Toolbar);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            LayoutInflater inft = ((Activity) getContext()).getLayoutInflater();
+            View dialogView = inft.inflate(R.layout.dialog_text_find, null);
+            AppCompatButton buttonSearch = dialogView.findViewById(R.id.button_Search_Dialog);
+            EditText editTextSearch = dialogView.findViewById(R.id.editText_Search);
+            editTextSearch.setHint("Tên Laptop...");
+
+            builder.setView(dialogView);
+            Dialog dialog = builder.create();
+            btn_search.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.show();
+                    if (editTextSearch.getHint().equals("Tên Laptop...")){
+                        editTextSearch.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                String input = editTextSearch.getText().toString();
+                                ArrayList<Laptop> getList = new ArrayList<>();
+                                if (!input.equals("")) {
+                                    for (Laptop lap : listLap) {
+                                        if (lap.getTenLaptop().matches(".*?" + input + ".*")) {
+                                            getList.add(lap);
+                                        }
+                                    }
+                                    RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
+                                    reView.setLayoutManager(mLayoutManager);
+                                    QL_Laptop_Adapter ql_laptop_adapter = new QL_Laptop_Adapter(getList, listHang, getContext());
+                                    reView.setAdapter(ql_laptop_adapter);
+                                } else {
+                                    getHangLaptop(view);
+                                    setLaptop();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+            buttonSearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+        }
     }
 
     private void getHangLaptop(View view) {

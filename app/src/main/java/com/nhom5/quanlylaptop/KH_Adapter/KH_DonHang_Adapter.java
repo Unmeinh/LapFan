@@ -245,10 +245,21 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
                         @Override
                         public void onClick(DialogInterface dialog, int stt) {
                             if (getVi != null) {
-                                int thanhTien = changeType.stringMoneyToInt(donHang.getThanhTien());
-                                int soTien = changeType.stringMoneyToInt(getVi.getSoTien());
+                                int thanhTien;
+                                int soTien;
+                                if (donHang.getThanhTien().length() > 12){
+                                    thanhTien = changeType.stringMoneyToInt(donHang.getThanhTien());
+                                } else {
+                                    thanhTien = changeType.stringMoneyToInt(donHang.getThanhTien()) / 1000;
+                                }
+                                if (getVi.getSoTien().length() > 12){
+                                    soTien = changeType.stringMoneyToInt(getVi.getSoTien());
+                                } else {
+                                    soTien = changeType.stringMoneyToInt(getVi.getSoTien()) / 1000;
+                                }
                                 if (soTien >= thanhTien) {
-                                    getVi.setSoTien(changeType.stringToStringMoney(String.valueOf(soTien - thanhTien)));
+                                    int soDu = soTien - thanhTien;
+                                    getVi.setSoTien(changeType.stringToStringMoney(soDu + "000"));
                                     int check = viTienDAO.updateViTien(getVi);
                                     if (check == 1) {
                                         donHang.setTrangThai("Chờ xác nhận");
@@ -256,7 +267,7 @@ public class KH_DonHang_Adapter extends RecyclerView.Adapter<KH_DonHang_Adapter.
                                         GiaoDichDAO giaoDichDAO = new GiaoDichDAO(context);
                                         giaoDichDAO.insertGiaoDich(new GiaoDich("", getVi.getMaVi(), "Thanh toán đơn hàng",
                                                 "Thanh toán đơn hàng " + getLaptop.getTenLaptop() + " bằng Ví điện tử FPT Pay",
-                                                changeType.stringToStringMoney((soTien - thanhTien) + "000"), getData.getNowDateSQL()));
+                                                donHang.getThanhTien(), getData.getNowDateSQL()));
                                     }
                                     notifyDataSetChanged();
                                 } else {

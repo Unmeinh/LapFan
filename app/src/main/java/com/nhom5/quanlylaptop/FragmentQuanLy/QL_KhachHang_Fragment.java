@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -37,9 +39,11 @@ import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
+import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.NhanVien;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_DonHang_Adapter;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_KhachHang_Adapter;
+import com.nhom5.quanlylaptop.NAV_Adapter.QL_Laptop_Adapter;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_NhanVien_Adapter;
 import com.nhom5.quanlylaptop.NVA_Loader.QL_KhachHang_Loader;
 import com.nhom5.quanlylaptop.R;
@@ -94,43 +98,64 @@ public class QL_KhachHang_Fragment extends Fragment {
     private void useToolbar() {
         Toolbar toolbar = getActivity().findViewById(R.id.toolbar_Account);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-//        if (toolbar != null) {
-//            khachHangDAO = new KhachHangDAO(getContext());
-//            ArrayList<KhachHang> listKH = khachHangDAO.selectKhachHang(null, null, null, null);
-//            EditText search = toolbar.findViewById(R.id.editText_Search);
-//            search.setHint("Email khách hàng...");
-//            if (search.getHint().equals("Email khách hàng...")) {
-//                search.addTextChangedListener(new TextWatcher() {
-//                    @Override
-//                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//                    }
-//
-//                    @Override
-//                    public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                        String input = search.getText().toString();
-//                        ArrayList<KhachHang> getList = new ArrayList<>();
-//                        if (!input.equals("")) {
-//                            for (KhachHang kh : listKH) {
-//                                if (kh.getEmail().matches(".*?" + input + ".*")) {
-//                                    getList.add(kh);
-//                                }
-//                            }
-//                            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-//                            recyclerView.setLayoutManager(linearLayoutManager);
-//                            QL_KhachHang_Adapter ql_khachHang_adapter = new QL_KhachHang_Adapter(getList, getContext(), countKH);
-//                            recyclerView.setAdapter(ql_khachHang_adapter);
-//                        } else {
-//                            QL_KhachHang_Loader qlKhachHangLoader = new QL_KhachHang_Loader(getContext(), recyclerView, countKH, linearLayout, linearKhachHangEmpty, relativeLayout);
-//                            qlKhachHangLoader.execute("");
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void afterTextChanged(Editable s) {
-//                    }
-//                });
-//            }
-//        }
+        if (toolbar != null) {
+            khachHangDAO = new KhachHangDAO(getContext());
+            ArrayList<KhachHang> listKH = khachHangDAO.selectKhachHang(null, null, null, null);
+            ImageButton btn_search = toolbar.findViewById(R.id.imageButton_Search_Toolbar);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            LayoutInflater inft = ((Activity) getContext()).getLayoutInflater();
+            View dialogView = inft.inflate(R.layout.dialog_text_find, null);
+            AppCompatButton buttonSearch = dialogView.findViewById(R.id.button_Search_Dialog);
+            EditText editTextSearch = dialogView.findViewById(R.id.editText_Search);
+            editTextSearch.setHint("Email khách hàng...");
+
+            builder.setView(dialogView);
+            Dialog dialog = builder.create();
+            btn_search.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.show();
+                    if (editTextSearch.getHint().equals("Email khách hàng...")){
+                        editTextSearch.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                            }
+
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                String input = editTextSearch.getText().toString();
+                                ArrayList<KhachHang> getList = new ArrayList<>();
+                                if (!input.equals("")) {
+                                    for (KhachHang kh : listKH) {
+                                        if (kh.getEmail().matches(".*?" + input + ".*")) {
+                                            getList.add(kh);
+                                        }
+                                    }
+                                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                                    recyclerView.setLayoutManager(linearLayoutManager);
+                                    QL_KhachHang_Adapter ql_khachHang_adapter = new QL_KhachHang_Adapter(getList, getContext(), countKH);
+                                    recyclerView.setAdapter(ql_khachHang_adapter);
+                                } else {
+                                    QL_KhachHang_Loader qlKhachHangLoader = new QL_KhachHang_Loader(getContext(), recyclerView, countKH, linearLayout, linearKhachHangEmpty, relativeLayout);
+                                    qlKhachHangLoader.execute("");
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+
+            buttonSearch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+        }
     }
 
     private void openDialog() {
