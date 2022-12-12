@@ -148,11 +148,6 @@ public class QL_NhanVien_Fragment extends Fragment {
                     ql_nhanVien_loader.execute("all");
                     break;
                 }
-                case "Xác nhận đơn hàng Online": {
-                    QL_NhanVien_Loader ql_nhanVien_loader = new QL_NhanVien_Loader(getContext(), reView, countNV, linearLayout, linearNhanVienEmpty, relativeLayout);
-                    ql_nhanVien_loader.execute("firm");
-                    break;
-                }
                 case "Bán hàng Online": {
                     QL_NhanVien_Loader ql_nhanVien_loader = new QL_NhanVien_Loader(getContext(), reView, countNV, linearLayout, linearNhanVienEmpty, relativeLayout);
                     ql_nhanVien_loader.execute("saleol");
@@ -181,11 +176,6 @@ public class QL_NhanVien_Fragment extends Fragment {
                     case "Tất cả": {
                         QL_NhanVien_Loader ql_nhanVien_loader = new QL_NhanVien_Loader(getContext(), reView, countNV, linearLayout, linearNhanVienEmpty, relativeLayout);
                         ql_nhanVien_loader.execute("all");
-                        break;
-                    }
-                    case "Xác nhận đơn hàng Online": {
-                        QL_NhanVien_Loader ql_nhanVien_loader = new QL_NhanVien_Loader(getContext(), reView, countNV, linearLayout, linearNhanVienEmpty, relativeLayout);
-                        ql_nhanVien_loader.execute("firm");
                         break;
                     }
                     case "Bán hàng Online": {

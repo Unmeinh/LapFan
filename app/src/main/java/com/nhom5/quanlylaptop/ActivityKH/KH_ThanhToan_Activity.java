@@ -69,7 +69,7 @@ public class KH_ThanhToan_Activity extends AppCompatActivity {
         if (pref != null) {
             SharedPreferences.Editor editor = pref.edit();
             editor.putString("what", "none");
-            editor.commit();
+            editor.apply();
         }
     }
 

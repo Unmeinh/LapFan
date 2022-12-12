@@ -1,5 +1,6 @@
 package com.nhom5.quanlylaptop.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -10,11 +11,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +48,7 @@ import java.util.Date;
 public class DonHang_Manager_Activity extends AppCompatActivity {
 
     TextInputLayout tilDate, tilNV, tilKH, tilDC, tilLap, tilSL, tilVou, tilTT;
+    Spinner hangLapSpinner;
     AppCompatButton addDHButton;
     Context context = this;
     DonHangDAO donHangDAO;
@@ -50,7 +56,7 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
     KhachHangDAO khachHangDAO;
     NhanVienDAO nhanVienDAO;
     VoucherDAO voucherDAO;
-    String roleUser;
+    String roleUser, hangLap;
     NhanVien nhanVien;
     KhachHang khachHang;
     Laptop laptop;
@@ -85,8 +91,8 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
         tilSL = findViewById(R.id.textInput_SoLuong);
         tilVou = findViewById(R.id.textInput_MaVoucher);
         tilTT = findViewById(R.id.textInput_Total);
+        hangLapSpinner = findViewById(R.id.spinner_HangLaptop);
         addDHButton = findViewById(R.id.button_AddDH);
-
 
         addDHButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,23 +130,12 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
             ThongBao thongBaoKH = new ThongBao("TB", donHang.getMaKH(), "Quản lý đơn hàng",
                     " Bạn đã được tạo một đơn hàng mới bởi Nhân viên " + changeType.fullNameNhanVien(getNV) + " :\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
             thongBaoDAO.insertThongBao(thongBaoKH, "kh");
-            if (!roleUser.equals("null")){
-                if (roleUser.equals("admin")){
-                    ThongBao thongBaoAD = new ThongBao("TB", "admin", "Quản lý đơn hàng",
-                            " Bạn đã tạo một đơn hàng mới cho Khách hàng " + changeType.fullNameKhachHang(getKH) + " :\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
-                    thongBaoDAO.insertThongBao(thongBaoAD, "ad");
-                    ThongBao thongBaoNV = new ThongBao("TB", donHang.getMaNV(), "Quản lý đơn hàng",
-                            " Bạn đã được Admin tạo đơn hàng mới " + "\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
-                    thongBaoDAO.insertThongBao(thongBaoNV, "nv");
-                } else {
-                    ThongBao thongBaoNV = new ThongBao("TB", donHang.getMaNV(), "Quản lý đơn hàng",
-                            " Bạn đã tạo một đơn hàng mới cho Khách hàng " + changeType.fullNameKhachHang(getKH) + " :\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
-                    thongBaoDAO.insertThongBao(thongBaoNV, "nv");
-                    ThongBao thongBaoAD = new ThongBao("TB", "admin", "Quản lý đơn hàng",
-                            " Nhân viên " + changeType.fullNameNhanVien(getNV) + " đã tạo một đơn hàng mới cho Khách hàng " + changeType.fullNameKhachHang(getKH) + "\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
-                    thongBaoDAO.insertThongBao(thongBaoAD, "ad");
-                }
-            }
+            ThongBao thongBaoNV = new ThongBao("TB", donHang.getMaNV(), "Quản lý đơn hàng",
+                    " Bạn đã tạo một đơn hàng mới cho Khách hàng " + changeType.fullNameKhachHang(getKH) + " :\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
+            thongBaoDAO.insertThongBao(thongBaoNV, "nv");
+            ThongBao thongBaoAD = new ThongBao("TB", "admin", "Quản lý đơn hàng",
+                    " Nhân viên " + changeType.fullNameNhanVien(getNV) + " đã tạo một đơn hàng mới cho Khách hàng " + changeType.fullNameKhachHang(getKH) + "\n Đơn hàng " + getLap.getTenLaptop() + "\n Tổng tiền:  " + donHang.getThanhTien(), date);
+            thongBaoDAO.insertThongBao(thongBaoAD, "ad");
         }
     }
 
@@ -259,7 +254,7 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
             tilTT.setError("");
         }
 
-        if (laptop != null){
+        if (laptop != null) {
             laptop.setSoLuong(laptop.getSoLuong() - sl);
             laptopDAO.updateLaptop(laptop);
         }
@@ -303,7 +298,7 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 title.setText("Danh sách Nhân viên");
                 dialog.show();
-                ArrayList<NhanVien> list = nhanVienDAO.selectNhanVien(null, null, null, null);
+                ArrayList<NhanVien> list = nhanVienDAO.selectNhanVien(null, "roleNV=?", new String[]{"Bán hàng Ofline"}, null);
                 DH_Manager_Adapter adapter = new DH_Manager_Adapter(null, list, null, null);
                 listView.setAdapter(adapter);
 
@@ -358,43 +353,66 @@ public class DonHang_Manager_Activity extends AppCompatActivity {
             }
         });
 
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,
+                R.array.hang_laptop_array, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        hangLapSpinner.setAdapter(adapter);
+        hangLapSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                hangLap = hangLapSpinner.getSelectedItem().toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         tilLap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                title.setText("Danh sách Laptop");
-                dialog.show();
-                ArrayList<Laptop> list = laptopDAO.selectLaptop(null, null, null, null);
-                DH_Manager_Adapter adapter = new DH_Manager_Adapter(list, null, null, null);
-                listView.setAdapter(adapter);
+                if (hangLap != null){
+                    title.setText("Danh sách Laptop " + hangLap);
+                    dialog.show();
+                    ArrayList<Laptop> list = laptopDAO.selectLaptop(null, "maHangLap=?", new String[]{"L" + hangLap}, null);
+                    DH_Manager_Adapter adapter2 = new DH_Manager_Adapter(list, null, null, null);
+                    listView.setAdapter(adapter2);
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        laptop = list.get(position);
-                        tilLap.getEditText().setText(laptop.getTenLaptop());
-                        dialog.dismiss();
-                    }
-                });
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            laptop = list.get(position);
+                            tilLap.getEditText().setText(laptop.getTenLaptop());
+                            hangLapSpinner.setVisibility(View.GONE);
+                            dialog.dismiss();
+                        }
+                    });
+                }
             }
         });
 
         tilLap.getEditText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                title.setText("Danh sách Laptop");
-                dialog.show();
-                ArrayList<Laptop> list = laptopDAO.selectLaptop(null, null, null, null);
-                DH_Manager_Adapter adapter = new DH_Manager_Adapter(list, null, null, null);
-                listView.setAdapter(adapter);
+                if (hangLap != null){
+                    title.setText("Danh sách Laptop " + hangLap);
+                    dialog.show();
+                    ArrayList<Laptop> list = laptopDAO.selectLaptop(null, "maHangLap=?", new String[]{"L" + hangLap}, null);
+                    DH_Manager_Adapter adapter2 = new DH_Manager_Adapter(list, null, null, null);
+                    listView.setAdapter(adapter2);
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        laptop = list.get(position);
-                        tilLap.getEditText().setText(laptop.getTenLaptop());
-                        dialog.dismiss();
-                    }
-                });
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            laptop = list.get(position);
+                            tilLap.getEditText().setText(laptop.getTenLaptop());
+                            hangLapSpinner.setVisibility(View.GONE);
+                            dialog.dismiss();
+                        }
+                    });
+                }
             }
         });
 

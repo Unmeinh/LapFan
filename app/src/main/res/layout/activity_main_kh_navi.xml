@@ -17,9 +17,9 @@
             android:id="@+id/top"
             layout="@layout/toolbar_navi_drawer" />
 
-        <androidx.viewpager.widget.ViewPager
+        <FrameLayout
             android:layout_below="@id/top"
-            android:id="@+id/viewP"
+            android:id="@+id/frLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/bottomNavi"/>

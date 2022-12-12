@@ -22,7 +22,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
+import com.nhom5.quanlylaptop.Activity.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_ThanhToan_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
@@ -186,7 +186,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
         }
 
         Bitmap anhLap = changeType.byteToBitmap(laptop.getAnhLaptop());
-        if (laptop.getGiaTien().length() < 12){
+        if (laptop.getGiaTien().length() < 12) {
             giaTien = changeType.stringMoneyToInt(laptop.getGiaTien()) / 1000;
         } else {
             giaTien = changeType.stringMoneyToInt(laptop.getGiaTien());
@@ -297,7 +297,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
 
                 if (laptop != null && voucher != null && khachHang != null) {
                     if (httt.equals(arrHTTT[0])) {
-                        DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                        DonHang donHang = new DonHang("", "No Data", khachHang.getMaKH(), laptop.getMaLaptop(),
                                 voucher.getMaVoucher(), "No Data", diaChi, getData.getNowDateSQL(), httt, "Chờ xác nhận",
                                 "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
                         DonHangDAO donHangDAO = new DonHangDAO(context);
@@ -317,14 +317,21 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                         if (getVi != null) {
                             int soDu = changeType.stringMoneyToInt(getVi.getSoTien());
                             if (soDu < (tong * 1000)) {
-                                DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                                DonHang donHang = new DonHang("", "No Data", khachHang.getMaKH(), laptop.getMaLaptop(),
                                         voucher.getMaVoucher(), "No Data", diaChi, getData.getNowDateSQL(), httt, "Chưa thanh toán",
                                         "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
                                 DonHangDAO donHangDAO = new DonHangDAO(context);
-                                donHangDAO.insertDonHang(donHang);
-                                khThanhToanActivity.finish();
+                                int check = donHangDAO.insertDonHang(donHang);
+
+                                if (check == 1) {
+                                    ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
+                                            " Số dư trong ví FPT Pay không đủ để đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien()
+                                                    + "\nĐơn hàng sẽ được chuyển đến khu vực chờ thanh toán trong Ví FPT Pay", getData.getNowDateSQL());
+                                    thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+                                    thToan++;
+                                }
                             } else {
-                                DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                                DonHang donHang = new DonHang("", "No Data", khachHang.getMaKH(), laptop.getMaLaptop(),
                                         voucher.getMaVoucher(), "No Data", diaChi, getData.getNowDateSQL(), httt, "Chờ xác nhận",
                                         "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
                                 DonHangDAO donHangDAO = new DonHangDAO(context);
@@ -348,15 +355,14 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                     }
                 }
 
-                if (laptop != null && khachHang != null) {
+                else if (laptop != null && khachHang != null) {
                     if (httt.equals(arrHTTT[0])) {
                         Log.d(TAG, "onclickDatHang: Ofline");
-                        DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                        DonHang donHang = new DonHang("", "No Data", khachHang.getMaKH(), laptop.getMaLaptop(),
                                 "Null", "No Data", diaChi, getData.getNowDateSQL(), httt, "Chờ xác nhận",
                                 "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
                         DonHangDAO donHangDAO = new DonHangDAO(context);
                         int check = donHangDAO.insertDonHang(donHang);
-                        int size = donHangDAO.selectDonHang(null, null, null, null).size();
 
                         if (check == 1) {
                             ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
@@ -365,40 +371,40 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                             thToan = 1;
                         }
                     } else {
-                        Log.d(TAG, "onclickDatHang: Online");
                         if (getVi != null) {
-                            Log.d(TAG, "onclickDatHang: getVi not null");
-                            Log.d(TAG, "onclickDatHang: " + getVi.toString());
                             int soDu = changeType.stringMoneyToInt(getVi.getSoTien());
-                            Log.d(TAG, "onclickDatHang: soDu: " + soDu + " money: " + money * 1000);
                             if (soDu < (money * 1000)) {
-                                Log.d(TAG, "onclickDatHang: soDu: " + soDu + " < money: " + money);
-                                DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                                DonHang donHang = new DonHang("", "No Data", khachHang.getMaKH(), laptop.getMaLaptop(),
                                         "Null", "No Data", diaChi, getData.getNowDateSQL(), httt, "Chưa thanh toán",
                                         "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
                                 DonHangDAO donHangDAO = new DonHangDAO(context);
-                                donHangDAO.insertDonHang(donHang);
-                                khThanhToanActivity.finish();
-                            } else {
-                                Log.d(TAG, "onclickDatHang: soDu: " + soDu + " >= money: " + money * 1000);
-                                setSoDu(getVi, money);
-                                GiaoDichDAO giaoDichDAO = new GiaoDichDAO(context);
-                                giaoDichDAO.insertGiaoDich(new GiaoDich("", getVi.getMaVi(), "Thanh toán đơn hàng",
-                                        "Thanh toán đơn hàng " + laptop.getTenLaptop() + " bằng Ví điện tử FPT Pay",
-                                        changeType.stringToStringMoney(money + "000"), getData.getNowDateSQL()));
+                                int check = donHangDAO.insertDonHang(donHang);
 
-                                DonHang donHang = new DonHang("", "Null", khachHang.getMaKH(), laptop.getMaLaptop(),
+                                if (check == 1) {
+                                    ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
+                                            " Số dư trong ví FPT Pay không đủ để đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien()
+                                                    + "\nĐơn hàng sẽ được chuyển đến khu vực chờ thanh toán trong Ví FPT Pay", getData.getNowDateSQL());
+                                    thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+                                    thToan++;
+                                }
+                            } else {
+                                DonHang donHang = new DonHang("", "No Data", khachHang.getMaKH(), laptop.getMaLaptop(),
                                         "Null", "No Data", diaChi, getData.getNowDateSQL(), httt, "Chờ xác nhận",
                                         "false", changeType.stringToStringMoney(money + "000"), gio.getSoLuong());
                                 DonHangDAO donHangDAO = new DonHangDAO(context);
                                 int check = donHangDAO.insertDonHang(donHang);
-                                int size = donHangDAO.selectDonHang(null, null, null, null).size();
 
                                 if (check == 1) {
+                                    setSoDu(getVi, money);
+                                    GiaoDichDAO giaoDichDAO = new GiaoDichDAO(context);
+                                    giaoDichDAO.insertGiaoDich(new GiaoDich("", getVi.getMaVi(), "Thanh toán đơn hàng",
+                                            "Thanh toán đơn hàng " + laptop.getTenLaptop() + " bằng Ví điện tử FPT Pay",
+                                            changeType.stringToStringMoney(money + "000"), getData.getNowDateSQL()));
+
                                     ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
                                             " Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
                                     thongBaoDAO.insertThongBao(thongBaoKH, "kh");
-                                    thToan = 1;
+                                    thToan++;
                                 }
                             }
                         }
@@ -408,11 +414,10 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
 
             }
 
-            if (thToan == 1) {
+            if (thToan > 0) {
                 for (GioHang gioHang : listGio) {
                     gioHangDAO.deleteGioHang(gioHang);
                 }
-                Toast.makeText(context, "Đặt hàng thành công", Toast.LENGTH_SHORT).show();
                 khThanhToanActivity.finish();
             }
         }
@@ -421,7 +426,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
     private void setSoDu(ViTien viTien, int money) {
         ViTienDAO viTienDAO = new ViTienDAO(context);
         int soDu;
-        if (viTien.getSoTien().length() > 12){
+        if (viTien.getSoTien().length() > 12) {
             soDu = changeType.stringMoneyToInt(viTien.getSoTien());
         } else {
             soDu = changeType.stringMoneyToInt(viTien.getSoTien()) / 1000;

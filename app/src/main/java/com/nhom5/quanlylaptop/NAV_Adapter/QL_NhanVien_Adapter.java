@@ -39,7 +39,7 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
     Context context;
     int posNV;
     ChangeType changeType = new ChangeType();
-    TextInputLayout textInput_LastName, textInput_FirstName, textInput_GioiTinh, textInput_Email, textInput_SDT, textInput_Password;
+    TextInputLayout textInput_LastName, textInput_FirstName, textInput_Role, textInput_Email, textInput_SDT, textInput_Password;
     Spinner roleSpinner;
     ArrayList<NhanVien> listNV;
     NhanVienDAO nhanVienDAO;
@@ -162,7 +162,7 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
         TextView title = view.findViewById(R.id.textView_Title_Dialog);
         textInput_LastName = view.findViewById(R.id.textInput_LastName);
         textInput_FirstName = view.findViewById(R.id.textInput_FirstName);
-        textInput_GioiTinh = view.findViewById(R.id.textInput_GioiTinh);
+        textInput_Role = view.findViewById(R.id.textInput_GioiTinh);
         textInput_Email = view.findViewById(R.id.textInput_Email);
         textInput_SDT = view.findViewById(R.id.textInput_SDT);
         textInput_Password = view.findViewById(R.id.textInput_Password);
@@ -211,14 +211,11 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
         roleSpinner.setAdapter(adapter);
         textInput_LastName.getEditText().setText(nv.getHoNV());
         textInput_FirstName.getEditText().setText(nv.getTenNV());
-        textInput_GioiTinh.setStartIconDrawable(R.drawable.role_icon);
-        textInput_GioiTinh.setHint("Bộ phận");
+        textInput_Role.setStartIconDrawable(R.drawable.role_icon);
+        textInput_Role.setHint("Bộ phận");
         textInput_Email.getEditText().setText(nv.getEmail());
         textInput_SDT.getEditText().setText(nv.getPhone());
         textInput_Password.setVisibility(View.GONE);
-        if (nv.getRoleNV().equals("Xác nhận đơn hàng Online")) {
-            roleSpinner.setSelection(0);
-        }
         if (nv.getRoleNV().equals("Bán hàng Online")) {
             roleSpinner.setSelection(1);
         }
@@ -269,6 +266,15 @@ public class QL_NhanVien_Adapter extends RecyclerView.Adapter<QL_NhanVien_Adapte
         } else {
             textInput_SDT.setError("");
             textInput_SDT.setErrorEnabled(false);
+        }
+
+        if (roleSpinner.getSelectedItemPosition() == 0){
+            textInput_Role.setError("Bộ phận phải được chọn!");
+            textInput_Role.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_Role.setError("");
+            textInput_Role.setErrorEnabled(false);
         }
 
         return check;

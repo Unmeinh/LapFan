@@ -1,4 +1,4 @@
-package com.nhom5.quanlylaptop.ActivityKH;
+package com.nhom5.quanlylaptop.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -17,6 +17,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nhom5.quanlylaptop.ActivityKH.KH_ThanhToan_Activity;
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopRateDAO;
@@ -230,7 +231,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                 if (pref != null) {
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("what", "none");
-                    editor.commit();
+                    editor.apply();
                 }
                 finish();
             }
@@ -246,7 +247,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                         if (pref != null) {
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putString("what", "home");
-                            editor.commit();
+                            editor.apply();
                         }
                         finish();
                     }
@@ -258,7 +259,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                         if (pref != null) {
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putString("what", "noti");
-                            editor.commit();
+                            editor.apply();
                         }
                         finish();
                     }
@@ -272,7 +273,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                         if (pref != null) {
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putString("what", "home");
-                            editor.commit();
+                            editor.apply();
                         }
                         finish();
                     }
@@ -284,7 +285,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                         if (pref != null) {
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putString("what", "noti");
-                            editor.commit();
+                            editor.apply();
                         }
                         finish();
                     }
@@ -296,7 +297,7 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                         if (pref != null) {
                             SharedPreferences.Editor editor = pref.edit();
                             editor.putString("what", "gio");
-                            editor.commit();
+                            editor.apply();
                         }
                         finish();
                     }

@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +20,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
+import com.nhom5.quanlylaptop.Activity.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopRateDAO;
@@ -57,7 +56,7 @@ public class NV_DanhGia_Activity extends AppCompatActivity {
         if (pref != null) {
             SharedPreferences.Editor editor = pref.edit();
             editor.putString("what", "none");
-            editor.commit();
+            editor.apply();
         }
     }
 

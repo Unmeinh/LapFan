@@ -70,7 +70,6 @@
                         android:layout_marginTop="20dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2.000.000.000 VNĐ"
                         android:textColor="#FF0000"
                         android:textSize="19sp" />
 

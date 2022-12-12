@@ -96,7 +96,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="65dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="25dp">
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -105,6 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:startIconTint="#4E352F"
+                    app:errorIconDrawable="@null"
                     app:startIconDrawable="@drawable/role_icon">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -119,7 +120,7 @@
                 <Spinner
                     android:id="@+id/spinner_Role"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="65dp"
                     android:paddingStart="50dp"
                     android:textColor="@color/black" />
 

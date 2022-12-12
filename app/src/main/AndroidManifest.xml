@@ -30,6 +30,20 @@
         android:theme="@style/Theme.QuanLyLaptop"
         tools:targetApi="31">
         <activity
+            android:name=".ActivityKH.KH_Delete_Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".Activity.LienHe_Activity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ActivityKH.KH_DonHang_CTT_Activity"
             android:exported="false">
             <meta-data
@@ -165,7 +179,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ActivityKH.Info_Laptop_Activity"
+            android:name=".Activity.Info_Laptop_Activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -69,6 +69,13 @@ public class NVA_Home_Fragment extends Fragment {
         onclickChangeTime();
         sortLaptop(view);
         setSLDonHang(view);
+        if (nhanVien == null){
+            TextView textView = view.findViewById(R.id.textView_TenUser);
+            textView.setText("Xin chào, Admin");
+        } else {
+            TextView textView = view.findViewById(R.id.textView_TenUser);
+            textView.setText("Xin chào, " + changeType.fullNameNhanVien(nhanVien));
+        }
         return view;
     }
 
@@ -116,21 +123,17 @@ public class NVA_Home_Fragment extends Fragment {
         slDHText.setText("0 đơn đặt");
         slDHNum.setText(String.valueOf(0));
         if (nhanVien == null) {
-            listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "Null"}, null);
+            listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "No Data"}, null);
             slDHText.setText(listDon.size() + " đơn đặt");
             slDHNum.setText(String.valueOf(listDon.size()));
         } else {
-            if (nhanVien.getRoleNV().equals("Xác nhận đơn hàng Online")) {
-                listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "Null"}, null);
-                slDHText.setText(listDon.size() + " đơn đặt");
-                slDHNum.setText(String.valueOf(listDon.size()));
-            }
             if (nhanVien.getRoleNV().equals("Bán hàng Online")) {
                 listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "No Data"}, null);
                 slDHText.setText(listDon.size() + " đơn đặt");
                 slDHNum.setText(String.valueOf(listDon.size()));
             }
         }
+
         goToDonDat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -46,14 +46,13 @@
     </string-array>
 
     <string-array name="role_array">
-        <item>Xác nhận đơn hàng Online</item>
+        <item>Chọn bộ phận</item>
         <item>Bán hàng Online</item>
         <item>Bán hàng Ofline</item>
     </string-array>
 
     <string-array name="select_role_array">
         <item>Tất cả</item>
-        <item>Xác nhận đơn hàng Online</item>
         <item>Bán hàng Online</item>
         <item>Bán hàng Ofline</item>
     </string-array>
@@ -141,6 +140,7 @@
     <string name="th_i_gian_giao_h_ng_r_t_nhanh">Thời gian giao hàng rất nhanh</string>
     <string name="hint_review"><font color="#817F7F" size="15">Hãy chia sẻ những điều bạn thích về sản phẩm nhé...</font></string>
     <string name="hint_review2"><font color="#817F7F" size="15">Đánh giá của khách hàng...</font></string>
+    <string name="hint_review3"><font color="#817F7F" size="15">Nhập lý do xóa tài khoản của bạn...</font></string>
     <string name="ho_n_th_nh">Hoàn Thành</string>
     <string name="fpt_shop">FPT Shop</string>
     <string name="giao_h_ng_th_nh_c_ng">Giao hàng thành công</string>
@@ -207,4 +207,6 @@
     <string name="bi_u_doanh_thu">Biểu đồ thống kê</string>
     <string name="b_ph_n">Bộ phận</string>
     <string name="th_ng_tin_nh_n_vi_n">Thông tin nhân viên:</string>
+    <string name="l_do_x_a_t_i_kho_n">Lý do xóa tài khoản:</string>
+    <string name="x_a_t_i_kho_n">Xóa tài khoản</string>
 </resources>

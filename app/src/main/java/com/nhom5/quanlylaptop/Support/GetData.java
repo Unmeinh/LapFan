@@ -38,31 +38,29 @@ public class GetData {
         if (listNV != null) {
             if (listNV.size() > 0) {
                 for (NhanVien nhanVien : listNV) {
-                    if (!nhanVien.getRoleNV().equals("Xác nhận đơn hàng Online")){
-                        String[] full = {nhanVien.getMaNV(), getDate[0], getDate[1]};
-                        ArrayList<DonHang> listDon = donHangDAO.selectDonHang(null, "maNV=? and ngayMua>=? and ngayMua<?", full, null);
+                    String[] full = {nhanVien.getMaNV(), getDate[0], getDate[1]};
+                    ArrayList<DonHang> listDon = donHangDAO.selectDonHang(null, "maNV=? and ngayMua>=? and ngayMua<?", full, null);
 
-                        int doanhSo = 0;
-                        int cout = 0;
-                        if (listDon != null) {
-                            if (listDon.size() > 0) {
-                                for (DonHang donHang : listDon) {
-                                    int giaTien;
-                                    if (donHang.getThanhTien().length() < 12){
-                                        giaTien = changeType.stringMoneyToInt(donHang.getThanhTien()) / 1000;
-                                    } else {
-                                        giaTien = changeType.stringMoneyToInt(donHang.getThanhTien());
-                                    }
-                                    doanhSo += giaTien;
+                    int doanhSo = 0;
+                    int cout = 0;
+                    if (listDon != null) {
+                        if (listDon.size() > 0) {
+                            for (DonHang donHang : listDon) {
+                                int giaTien;
+                                if (donHang.getThanhTien().length() < 12) {
+                                    giaTien = changeType.stringMoneyToInt(donHang.getThanhTien()) / 1000;
+                                } else {
+                                    giaTien = changeType.stringMoneyToInt(donHang.getThanhTien());
                                 }
-                                cout = listDon.size();
+                                doanhSo += giaTien;
                             }
+                            cout = listDon.size();
                         }
-
-                        nhanVien.setDoanhSo(doanhSo);
-                        nhanVien.setSoSP(cout);
-                        nhanVienDAO.updateNhanVien(nhanVien);
                     }
+
+                    nhanVien.setDoanhSo(doanhSo);
+                    nhanVien.setSoSP(cout);
+                    nhanVienDAO.updateNhanVien(nhanVien);
                 }
             }
         }
@@ -185,7 +183,7 @@ public class GetData {
         return soLuong;
     }
 
-    public String getNowDateSQL(){
+    public String getNowDateSQL() {
         Date currentTime = Calendar.getInstance().getTime();
         return new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
     }
@@ -330,7 +328,7 @@ public class GetData {
         }
     }
 
-    private void textChange(){
+    private void textChange() {
         EditText editText = null;
         editText.addTextChangedListener(new TextWatcher() {
             @Override

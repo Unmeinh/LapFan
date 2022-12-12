@@ -77,7 +77,7 @@ public class HelloActivity extends AppCompatActivity {
                 if (pref != null){
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("check", "true");
-                    editor.commit();
+                    editor.apply();
                 }
                 Intent intent = new Intent(HelloActivity.this, PickRole_Activity.class);
                 startActivity(intent);
@@ -103,7 +103,7 @@ public class HelloActivity extends AppCompatActivity {
                     if (pref != null){
                         SharedPreferences.Editor editor = pref.edit();
                         editor.putString("check", "true");
-                        editor.commit();
+                        editor.apply();
                     }
                     Intent intent = new Intent(HelloActivity.this, PickRole_Activity.class);
                     startActivity(intent);

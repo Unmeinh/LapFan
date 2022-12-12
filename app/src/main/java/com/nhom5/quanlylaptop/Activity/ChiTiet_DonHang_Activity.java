@@ -17,15 +17,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
-import com.nhom5.quanlylaptop.DAO.DiaChiDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
 import com.nhom5.quanlylaptop.DAO.VoucherDAO;
-import com.nhom5.quanlylaptop.Entity.DiaChi;
 import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
@@ -208,7 +204,7 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
         int soTien = giaTien * donHang.getSoLuong();
         if (voucher != null) {
             int sale = changeType.voucherToInt(voucher.getGiamGia());
-            int giamTien = (giaTien * sale) / 100;
+            int giamTien = (soTien * sale) / 100;
             giamTienTV.setText("-" + changeType.stringToStringMoney(giamTien + "000"));
         } else {
             giamTienTV.setText("-" + changeType.stringToStringMoney("0"));

@@ -73,9 +73,7 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
             }
         }
 
-        if (type.equals("ADV")){
-            return donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "Null"}, "ngayMua");
-        } else if (type.equals("NVD")){
+        if (type.equals("NVD")){
             return donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "No Data"}, "ngayMua");
         } else {
             return donHangDAO.selectDonHang(null, "trangThai=?", new String[]{"Hoàn thành"}, "ngayMua");
@@ -129,17 +127,17 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
 
         DonHang dh0 = new DonHang("DH0", "1", "1", "4", "1", "No Data",
                 "The Reverie Saigon nằm bên trong tòa nhà Times Square Sài Gòn - Nguyễn Huệ - Quận 1 - TP Hồ Chí Minh",
-                "2022-11-19", "Thanh toán khi nhận hàng", "Hoàn thành", "false", changeType.stringToStringMoney("62013600"), 3);
+                "2022-11-19", "Thanh toán khi nhận hàng", "Hoàn thành", "false", changeType.stringToStringMoney("63816000"), 3);
         donHangDAO.insertDonHang(dh0);
 
         DonHang dh1 = new DonHang("DH1", "2", "2", "1", "Null", "No Data",
                 "The Reverie Saigon nằm bên trong tòa nhà Times Square Sài Gòn - Nguyễn Huệ - Quận 1 - TP Hồ Chí Minh",
-                "2022-11-25", "Thanh toán khi nhận hàng", "Hoàn thành", "false", changeType.stringToStringMoney("21762000"), 2);
+                "2022-11-25", "Thanh toán khi nhận hàng", "Hoàn thành", "false", changeType.stringToStringMoney("24180000"), 2);
         donHangDAO.insertDonHang(dh1);
 
         DonHang dh2 = new DonHang("DH2", "1", "3", "2", "Null", "No Data",
                 "Sofitel Metropole Hà Nội Số 15 - Phố Ngô Quyền - Hoàn Kiếm - Hà Nội",
-                "2022-12-02", "Thanh toán khi nhận hàng", "Hoàn thành", "false", changeType.stringToStringMoney("49312000"), 1);
+                "2022-12-02", "Thanh toán khi nhận hàng", "Hoàn thành", "false", changeType.stringToStringMoney("61640000"), 1);
         donHangDAO.insertDonHang(dh2);
     }
 }

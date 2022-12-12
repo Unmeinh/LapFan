@@ -38,6 +38,7 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.Activity.Account_Manager_Activity;
 import com.nhom5.quanlylaptop.Activity.PickRole_Activity;
 import com.nhom5.quanlylaptop.Activity.Webview_Activity;
+import com.nhom5.quanlylaptop.ActivityKH.KH_Delete_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_DonHang_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_ViTien_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_Voucher_Activity;
@@ -62,7 +63,7 @@ import java.util.Date;
 
 public class KH_Account_Fragment extends Fragment {
 
-    LinearLayout maVoucher, dhDaMua, viDienTu, nhomSanVou, hdsd, doiMatKhau, thietLapTaiKhoan;
+    LinearLayout maVoucher, dhDaMua, viDienTu, xoaTK, hdsd, doiMatKhau, thietLapTaiKhoan;
     TextInputLayout til_mk, til_mkmoi, til_confirmmkmoi;
     AppCompatButton logOut;
     KhachHang khachHang;
@@ -82,7 +83,7 @@ public class KH_Account_Fragment extends Fragment {
         maVoucher = view.findViewById(R.id.onclick_Ma_Voucher);
         viDienTu = view.findViewById(R.id.onclick_Vi_FPTPay);
         dhDaMua = view.findViewById(R.id.onclick_Don_Hang_Da_Mua);
-        nhomSanVou = view.findViewById(R.id.onclick_Nhom_San_Voucher);
+        xoaTK = view.findViewById(R.id.onclick_Xoa_TaiKhoan);
         hdsd = view.findViewById(R.id.onclick_Huong_Dan_Su_Dung);
         doiMatKhau = view.findViewById(R.id.onclick_Doi_Mat_Khau);
         thietLapTaiKhoan = view.findViewById(R.id.onclick_Thiet_Lap_Tai_Khoan);
@@ -97,7 +98,7 @@ public class KH_Account_Fragment extends Fragment {
         clickMaVoucher();
         clickDonHangDaMua();
         clickViDienTu();
-        clickNhomSanVou();
+        clickXoaTk();
         clickHuongDanSuDung();
         clickDoiMatKhau();
         clickThietLapTaiKhoan();
@@ -107,6 +108,18 @@ public class KH_Account_Fragment extends Fragment {
             @Override
             public void onClick(View v) {
                 getActivity().finish();
+                SharedPreferences pref = getContext().getSharedPreferences("Who_Login", MODE_PRIVATE);
+                if (pref != null) {
+                    if (pref.getString("isLogin", "").equals("true")){
+                        getActivity().finish();
+                        startActivity(new Intent(getContext(), PickRole_Activity.class));
+                    } else {
+                        getActivity().finish();
+                    }
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("isLogin", "false");
+                    editor.apply();
+                }
             }
         });
         return view;
@@ -179,13 +192,11 @@ public class KH_Account_Fragment extends Fragment {
         });
     }
 
-    private void clickNhomSanVou() {
-        nhomSanVou.setOnClickListener(new View.OnClickListener() {
+    private void clickXoaTk() {
+        xoaTK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Webview_Activity.class);
-                intent.putExtra("titleWeb", "Nhóm săn Voucher");
-                intent.putExtra("urlWeb", "https://www.facebook.com/groups/2367026526778031");
+                Intent intent = new Intent(getContext(), KH_Delete_Activity.class);
                 startActivity(intent);
             }
         });

@@ -101,7 +101,18 @@ public class NV_Account_Fragment extends Fragment {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().finish();
+                SharedPreferences pref = getContext().getSharedPreferences("Who_Login", MODE_PRIVATE);
+                if (pref != null) {
+                    if (pref.getString("isLogin", "").equals("true")){
+                        getActivity().finish();
+                        startActivity(new Intent(getContext(), PickRole_Activity.class));
+                    } else {
+                        getActivity().finish();
+                    }
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("isLogin", "false");
+                    editor.apply();
+                }
             }
         });
 

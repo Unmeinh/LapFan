@@ -160,39 +160,6 @@
             android:layout_height="1dp"/>
 
         <LinearLayout
-            android:id="@+id/onclick_Nhom_San_Voucher"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_margin="13dp"
-                android:src="@drawable/facebook" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="7"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="@string/nh_m_s_n_voucher"
-                android:textColor="#fff"
-                android:textSize="22sp" />
-
-            <ImageView
-                android:layout_width="45dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:src="@drawable/next_icon_white" />
-        </LinearLayout>
-
-        <View
-            android:background="#BBA19A"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"/>
-
-        <LinearLayout
             android:id="@+id/onclick_Huong_Dan_Su_Dung"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -211,6 +178,40 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/h_ng_d_n_s_d_ng_app"
+                android:textColor="#fff"
+                android:textSize="22sp" />
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:src="@drawable/next_icon_white" />
+        </LinearLayout>
+
+        <View
+            android:background="#BBA19A"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <LinearLayout
+            android:id="@+id/onclick_Xoa_TaiKhoan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_margin="13dp"
+                android:src="@drawable/garbage_can_icon"
+                app:tint="@color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="7"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/x_a_t_i_kho_n"
                 android:textColor="#fff"
                 android:textSize="22sp" />
 

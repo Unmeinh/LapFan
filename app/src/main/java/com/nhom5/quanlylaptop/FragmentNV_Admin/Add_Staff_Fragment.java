@@ -95,6 +95,7 @@ public class Add_Staff_Fragment extends Fragment {
         TextInputLayout textInput_Email = view.findViewById(R.id.textInput_Email);
         TextInputLayout textInput_SDT = view.findViewById(R.id.textInput_SDT);
         TextInputLayout textInput_Password = view.findViewById(R.id.textInput_Password);
+        TextInputLayout textInput_Role = view.findViewById(R.id.textInput_BoPhan);
         String lastName = changeType.deleteSpaceText(textInput_LastName.getEditText().getText().toString());
         String firstName = changeType.deleteSpaceText(textInput_FirstName.getEditText().getText().toString());
         String email = changeType.deleteSpaceText(textInput_Email.getEditText().getText().toString());
@@ -151,6 +152,15 @@ public class Add_Staff_Fragment extends Fragment {
         } else {
             textInput_Password.setError("");
             textInput_Password.setErrorEnabled(false);
+        }
+
+        if (spinnerRole.getSelectedItemPosition() == 0){
+            textInput_Role.setError("Bộ phận phải được chọn!");
+            textInput_Role.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_Role.setError("");
+            textInput_Role.setErrorEnabled(false);
         }
 
         return check;

@@ -27,8 +27,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
-import com.nhom5.quanlylaptop.ActivityKH.Info_Laptop_Activity;
-import com.nhom5.quanlylaptop.DAO.HangLaptopDAO;
+import com.nhom5.quanlylaptop.Activity.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.HangLaptop;
 import com.nhom5.quanlylaptop.Entity.Laptop;

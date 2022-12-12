@@ -20,6 +20,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nhom5.quanlylaptop.Activity.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopRateDAO;
@@ -59,7 +60,7 @@ public class KH_DanhGia_Activity extends AppCompatActivity {
         if (pref != null) {
             SharedPreferences.Editor editor = pref.edit();
             editor.putString("what", "none");
-            editor.commit();
+            editor.apply();
         }
     }
 

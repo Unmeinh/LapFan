@@ -68,9 +68,6 @@ public class QL_NhanVien_Loader extends AsyncTask<String, Void, ArrayList<NhanVi
         if ("all".equals(role)) {
             roleNV = "all";
             return nhanVienDAO.selectNhanVien(null, null, null, null);
-        } else if ("firm".equals(role)) {
-            roleNV = "firm";
-            return nhanVienDAO.selectNhanVien(null, "roleNV=?", new String[]{"Xác nhận đơn hàng Online"}, null);
         } else if ("saleol".equals(role)) {
             roleNV = "saleol";
             return nhanVienDAO.selectNhanVien(null, "roleNV=?", new String[]{"Bán hàng Online"}, null);
@@ -127,7 +124,7 @@ public class QL_NhanVien_Loader extends AsyncTask<String, Void, ArrayList<NhanVi
         ChangeType changeType = new ChangeType();
 
         NhanVien nv0 = new NhanVien("0", "Leonardo", "DiCaprio", "Nam", "leo@gmail.com",
-                "leonardo", "Hoa Kỳ", "011111974", "Xác nhận đơn hàng Online", 0, 0,
+                "leonardo", "Hoa Kỳ", "011111974", "Bán hàng Online", 0, 0,
                 changeType.checkByteInput(changeType.bitmapToByte(BitmapFactory.decodeResource(context.getResources(), R.drawable.leonardo_dicaprio))));
         nhanVienDAO.insertNhanVien(nv0);
 

@@ -102,28 +102,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_marginEnd="10dp"
-                    android:id="@+id/textInput_MaLaptop"
-                    style="@style/TextInputLayoutOutlinedBoxBrown"
+                <RelativeLayout
                     android:layout_width="0dp"
                     android:layout_weight="7"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    app:startIconDrawable="@drawable/icon_laptop"
-                    app:startIconTint="@color/black">
+                    android:layout_height="wrap_content">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <Spinner
+                        android:id="@+id/spinner_HangLaptop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_below="@+id/spinner_HangLaptop"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/textInput_MaLaptop"
+                        style="@style/TextInputLayoutOutlinedBoxBrown"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:clickable="true"
-                        android:focusable="false"
-                        android:hint="Laptop*"
-                        android:textColor="@color/black" />
+                        app:startIconDrawable="@drawable/icon_laptop"
+                        app:startIconTint="@color/black">
 
-                </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="false"
+                            android:hint="Laptop*"
+                            android:textColor="@color/black" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </RelativeLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:layout_gravity="bottom"
                     android:id="@+id/textInput_SoLuong"
                     style="@style/TextInputLayoutOutlinedBoxBrown"
                     android:layout_width="0dp"

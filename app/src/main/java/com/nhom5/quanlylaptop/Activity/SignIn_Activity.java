@@ -80,8 +80,11 @@ public class SignIn_Activity extends AppCompatActivity {
                         SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
                         if (pref != null) {
                             SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("role", "ad");
                             editor.putString("who", "admin");
-                            editor.commit();
+                            editor.putString("isLogin", "true");
+                            Log.d(TAG, "checkFirstTime: isLogin " + pref.getString("isLogin", ""));
+                            editor.apply();
                         }
                         startActivity(intent);
                         finish();
@@ -130,7 +133,7 @@ public class SignIn_Activity extends AppCompatActivity {
                 editor.putString("Pass_RM", pass);
                 editor.putString("Role_RM", role);
             }
-            editor.commit();
+            editor.apply();
         }
     }
 
@@ -200,8 +203,11 @@ public class SignIn_Activity extends AppCompatActivity {
                     SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
                     if (pref != null) {
                         SharedPreferences.Editor editor = pref.edit();
+                        editor.putString("role", "nv");
                         editor.putString("who", nhanVien.getMaNV());
-                        editor.commit();
+                        editor.putString("isLogin", "true");
+                        Log.d(TAG, "checkFirstTime: isLogin " + pref.getString("isLogin", ""));
+                        editor.apply();
                     }
                     return true;
                 } else {
@@ -232,8 +238,11 @@ public class SignIn_Activity extends AppCompatActivity {
                     SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
                     if (pref != null) {
                         SharedPreferences.Editor editor = pref.edit();
+                        editor.putString("role", "kh");
                         editor.putString("who", khachHang.getMaKH());
-                        editor.commit();
+                        editor.putString("isLogin", "true");
+                        Log.d(TAG, "checkFirstTime: isLogin " + pref.getString("isLogin", ""));
+                        editor.apply();
                     }
                     return true;
                 } else {
@@ -276,7 +285,7 @@ public class SignIn_Activity extends AppCompatActivity {
                     if (pref != null) {
                         SharedPreferences.Editor editor = pref.edit();
                         editor.putString("who", "khachHang");
-                        editor.commit();
+                        editor.apply();
                     }
                 }
                 if (roleUser.equals("nhanVien")){
@@ -284,7 +293,7 @@ public class SignIn_Activity extends AppCompatActivity {
                     if (pref != null) {
                         SharedPreferences.Editor editor = pref.edit();
                         editor.putString("who", "nhanVien");
-                        editor.commit();
+                        editor.apply();
                     }
                 }
                 Intent intent = new Intent(context, ForgotPass_Activity.class);

@@ -75,6 +75,32 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_below="@+id/linearNhanvien"
+            android:layout_marginTop="50dp"
+            android:id="@+id/linearDonHangEmpty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="60dp"
+                android:text="Không có đơn hàng nào"
+                android:textColor="#3F51B5"
+                android:textSize="30sp" />
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:src="@drawable/empty_order" />
+        </LinearLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView_NVA_DonDat"
             android:layout_width="match_parent"
@@ -84,30 +110,5 @@
             tools:listitem="@layout/cardview_nva_don_hang" />
 
     </RelativeLayout>
-
-    <LinearLayout
-        android:layout_marginTop="100dp"
-        android:id="@+id/linearDonHangEmpty"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="60dp"
-            android:text="Không có đơn hàng nào"
-            android:textColor="#3F51B5"
-            android:textSize="30sp" />
-
-        <ImageView
-            android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center"
-            android:src="@drawable/empty_order" />
-    </LinearLayout>
 
 </LinearLayout>

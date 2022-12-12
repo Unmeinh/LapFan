@@ -74,6 +74,7 @@
                         android:layout_height="wrap_content"/>
 
                     <EditText
+                        android:inputType="number"
                         android:id="@+id/editText_SDT"
                         android:textColorHint="#BBA19A"
                         android:backgroundTint="#BBA19A"
