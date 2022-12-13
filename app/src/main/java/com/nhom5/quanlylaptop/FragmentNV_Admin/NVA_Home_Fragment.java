@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nhom5.quanlylaptop.Activity.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
@@ -59,6 +60,7 @@ public class NVA_Home_Fragment extends Fragment {
         changeTime = view.findViewById(R.id.change_Time);
         textView_Date = view.findViewById(R.id.textView_Date);
         textView_GiaTien = view.findViewById(R.id.textView_GiaTien);
+        TextView textView = view.findViewById(R.id.textView_TenUser);
         getData = new GetData(getContext());
         laptopDAO = new LaptopDAO(getContext());
         donHangDAO = new DonHangDAO(getContext());
@@ -70,10 +72,8 @@ public class NVA_Home_Fragment extends Fragment {
         sortLaptop(view);
         setSLDonHang(view);
         if (nhanVien == null){
-            TextView textView = view.findViewById(R.id.textView_TenUser);
             textView.setText("Xin chào, Admin");
         } else {
-            TextView textView = view.findViewById(R.id.textView_TenUser);
             textView.setText("Xin chào, " + changeType.fullNameNhanVien(nhanVien));
         }
         return view;
@@ -173,6 +173,7 @@ public class NVA_Home_Fragment extends Fragment {
         TextView titleSort, tenLaptop, giaTien;
         AppCompatButton theoDoanhThu, theoSLAsc, theoSLDesc;
         ImageView imageView;
+        LinearLayout linearLayout = view.findViewById(R.id.onlick_Laptop);
         theoDoanhThu = view.findViewById(R.id.button_Theo_DoanhThu);
         theoSLAsc = view.findViewById(R.id.button_Theo_ThapTien);
         theoSLDesc = view.findViewById(R.id.button_Theo_CaoTien);
@@ -186,6 +187,18 @@ public class NVA_Home_Fragment extends Fragment {
             tenLaptop.setText(laptop.getTenLaptop());
             giaTien.setText("Giá tiền: " + laptop.getGiaTien());
             imageView.setImageBitmap(changeType.byteToBitmap(laptop.getAnhLaptop()));
+            linearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), Info_Laptop_Activity.class);
+                    final Bundle bundle = new Bundle();
+                    bundle.putBinder("laptop", laptop);
+                    Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
+                    intent.putExtras(bundle);
+                    intent.putExtra("openFrom", "other");
+                    getContext().startActivity(intent);
+                }
+            });
         }
 
         theoDoanhThu.setOnClickListener(new View.OnClickListener() {
@@ -197,6 +210,18 @@ public class NVA_Home_Fragment extends Fragment {
                     tenLaptop.setText(laptop.getTenLaptop());
                     giaTien.setText("Giá tiền: " + laptop.getGiaTien());
                     imageView.setImageBitmap(changeType.byteToBitmap(laptop.getAnhLaptop()));
+                    linearLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getContext(), Info_Laptop_Activity.class);
+                            final Bundle bundle = new Bundle();
+                            bundle.putBinder("laptop", laptop);
+                            Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
+                            intent.putExtras(bundle);
+                            intent.putExtra("openFrom", "other");
+                            getContext().startActivity(intent);
+                        }
+                    });
                 }
             }
         });
@@ -210,6 +235,18 @@ public class NVA_Home_Fragment extends Fragment {
                     tenLaptop.setText(laptop.getTenLaptop());
                     giaTien.setText("Giá tiền: " + laptop.getGiaTien());
                     imageView.setImageBitmap(changeType.byteToBitmap(laptop.getAnhLaptop()));
+                    linearLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getContext(), Info_Laptop_Activity.class);
+                            final Bundle bundle = new Bundle();
+                            bundle.putBinder("laptop", laptop);
+                            Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
+                            intent.putExtras(bundle);
+                            intent.putExtra("openFrom", "other");
+                            getContext().startActivity(intent);
+                        }
+                    });
                 }
             }
         });
@@ -223,6 +260,18 @@ public class NVA_Home_Fragment extends Fragment {
                     tenLaptop.setText(laptop.getTenLaptop());
                     giaTien.setText("Giá tiền: " + laptop.getGiaTien());
                     imageView.setImageBitmap(changeType.byteToBitmap(laptop.getAnhLaptop()));
+                    linearLayout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getContext(), Info_Laptop_Activity.class);
+                            final Bundle bundle = new Bundle();
+                            bundle.putBinder("laptop", laptop);
+                            Log.d(TAG, "onBindViewHolder: Laptop: " + laptop.toString());
+                            intent.putExtras(bundle);
+                            intent.putExtra("openFrom", "other");
+                            getContext().startActivity(intent);
+                        }
+                    });
                 }
             }
         });

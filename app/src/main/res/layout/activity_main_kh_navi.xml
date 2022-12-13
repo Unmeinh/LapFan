@@ -21,7 +21,7 @@
             android:layout_below="@id/top"
             android:id="@+id/frLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_above="@id/bottomNavi"/>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

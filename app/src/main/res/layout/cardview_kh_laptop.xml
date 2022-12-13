@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingStart="15dp"
-    android:paddingEnd="15dp"
+    android:paddingStart="5dp"
+    android:paddingEnd="5dp"
     android:paddingBottom="16dp">
 
     <LinearLayout
@@ -42,6 +42,7 @@
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:textSize="13sp"
                     android:id="@+id/textView_Ram"
                     android:layout_marginStart="5dp"
                     android:layout_marginEnd="5dp"

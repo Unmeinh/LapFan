@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -22,10 +23,10 @@ public class Webview_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_webview);
         webView = findViewById(R.id.webView);
-
         getDataWeb();
         useToolbar(title);
         setWebView(url);
+        webView.setWebViewClient(new WebViewClient());
     }
 
     private void getDataWeb(){

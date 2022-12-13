@@ -27,7 +27,10 @@ import com.nhom5.quanlylaptop.NAV_Adapter.QL_DonHang_Adapter;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang>> {
     @SuppressLint("StaticFieldLeak")
@@ -47,6 +50,7 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
     ArrayList<Laptop> listLap = new ArrayList<>();
     ArrayList<DonHang> listDon = new ArrayList<>();
     ArrayList<KhachHang> listKH = new ArrayList<>();
+    ChangeType changeType = new ChangeType();
 
     public QL_DonHang_Loader(Context context, RecyclerView reView, TextView countDH, LinearLayout loadingView, LinearLayout linearEmpty, RelativeLayout relativeLayout) {
         this.context = context;
@@ -65,6 +69,10 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
         listLap = laptopDAO.selectLaptop(null, null, null, null);
         listDon = donHangDAO.selectDonHang(null, null, null, null);
         listKH = khachHangDAO.selectKhachHang(null, null, null, null);
+        Date currentTime = Calendar.getInstance().getTime();
+        int year = Integer.parseInt(new SimpleDateFormat("yyyy").format(currentTime));
+        int month = Integer.parseInt(new SimpleDateFormat("MM").format(currentTime));
+        String[] time = changeType.intDateToStringDate(month, year);
         String type = strings[0];
 
         if (listDon != null) {
@@ -73,8 +81,10 @@ public class QL_DonHang_Loader extends AsyncTask<String, Void, ArrayList<DonHang
             }
         }
 
-        if (type.equals("NVD")){
+        if (type.equals("NVD")) {
             return donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "No Data"}, "ngayMua");
+        } else if (type.equals("create")) {
+            return donHangDAO.selectDonHang(null, "trangThai=? and ngayMua>=? and ngayMua<?", new String[]{"Hoàn thành", time[0], time[1]}, "ngayMua");
         } else {
             return donHangDAO.selectDonHang(null, "trangThai=?", new String[]{"Hoàn thành"}, "ngayMua");
         }

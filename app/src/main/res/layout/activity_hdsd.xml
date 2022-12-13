@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.Webview_Activity">
+    tools:context=".Activity.HDSD_Activity">
 
     <include layout="@layout/toolbar_normal"/>
 
-    <WebView
-        android:id="@+id/webView"
+    <VideoView
+        android:id="@+id/videoView_HDSD"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

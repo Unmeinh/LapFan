@@ -29,6 +29,8 @@ import android.widget.Toast;
 
 import com.nhom5.quanlylaptop.Activity.DonHang_Manager_Activity;
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
+import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
@@ -57,7 +59,11 @@ public class QL_DonHang_Fragment extends Fragment {
     ChangeType changeType;
     LinearLayout linearLayout, linearDonHangEmpty, change_Time;
     ArrayList<DonHang> listDon = new ArrayList<>();
-    DonHangDAO donHangDAO;
+    ArrayList<Laptop> listLap = new ArrayList<>();
+    ArrayList<KhachHang> listKH = new ArrayList<>();
+    LaptopDAO laptopDAO = new LaptopDAO(getContext());
+    KhachHangDAO khachHangDAO = new KhachHangDAO(getContext());
+    DonHangDAO donHangDAO = new DonHangDAO(getContext());
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,7 +79,9 @@ public class QL_DonHang_Fragment extends Fragment {
         textView_Date = view.findViewById(R.id.textView_Date);
 
         QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(getContext(), recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
-        ql_donHang_loader.execute("");
+        ql_donHang_loader.execute("create");
+        listLap = laptopDAO.selectLaptop(null, null, null, null);
+        listKH = khachHangDAO.selectKhachHang(null, null, null, null);
 
         getUser();
         if (nhanVien != null) {
@@ -90,7 +98,7 @@ public class QL_DonHang_Fragment extends Fragment {
     public void onResume() {
         super.onResume();
         QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(getContext(), recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
-        ql_donHang_loader.execute("");
+        ql_donHang_loader.execute("create");
     }
 
     private void addDonHang() {
@@ -163,12 +171,8 @@ public class QL_DonHang_Fragment extends Fragment {
     }
 
     private void setDonHang(String[] time) {
-        ArrayList<Laptop> listLap = new ArrayList<>();
-        ArrayList<KhachHang> listKH = new ArrayList<>();
-        donHangDAO = new DonHangDAO(getContext());
         if (time != null) {
-            listDon = donHangDAO.selectDonHang(null, "ngayMua>=? and ngayMua<?", time, "ngayMua");
-            Log.d("dddd", "setDonHang: " + listDon.size());
+            listDon = donHangDAO.selectDonHang(null, "trangThai=? and ngayMua>=? and ngayMua<?", new String[]{"Chờ xác nhận", time[0], time[1]}, "ngayMua");
             if (listDon != null) {
                 if (listDon.size() > 0) {
                     QL_DonHang_Adapter ql_donHang_adapter = new QL_DonHang_Adapter(listLap, listDon, listKH, getContext(), count);

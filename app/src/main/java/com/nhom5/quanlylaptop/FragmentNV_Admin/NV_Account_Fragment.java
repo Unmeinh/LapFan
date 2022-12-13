@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -34,6 +35,7 @@ import android.widget.Toast;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.Activity.Account_Manager_Activity;
+import com.nhom5.quanlylaptop.Activity.HDSD_Activity;
 import com.nhom5.quanlylaptop.Activity.PickRole_Activity;
 import com.nhom5.quanlylaptop.Activity.Webview_Activity;
 import com.nhom5.quanlylaptop.ActivityKH.KH_DonHang_Activity;
@@ -187,6 +189,7 @@ public class NV_Account_Fragment extends Fragment {
         hdsd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(getContext(), HDSD_Activity.class));
             }
         });
     }
@@ -381,16 +384,19 @@ public class NV_Account_Fragment extends Fragment {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
             if (bitmap != null){
-                NhanVienDAO nhanVienDAO = new NhanVienDAO(getContext());
-                nhanVien.setAvatar(changeType.checkByteInput(changeType.bitmapToByte(bitmap)));
-                nhanVienDAO.updateNhanVien(nhanVien);
+                Bitmap afterCheck = rotateBitmapInput(bitmap, currentPhotoPath);
+                if (afterCheck != null){
+                    NhanVienDAO nhanVienDAO = new NhanVienDAO(getContext());
+                    nhanVien.setAvatar(changeType.checkByteInput(changeType.bitmapToByte(afterCheck)));
+                    nhanVienDAO.updateNhanVien(nhanVien);
 
-                Date currentTime = Calendar.getInstance().getTime();
-                String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
-                ThongBaoDAO thongBaoDAO = new ThongBaoDAO(getContext());
-                ThongBao thongBao = new ThongBao("TB", nhanVien.getMaNV(), "Thiết lập tài khoản",
-                        "Bạn đã thay đổi ảnh đại diện.\n Khi nào chán thì đổi ảnh mới nhé!", date);
-                thongBaoDAO.insertThongBao(thongBao, "nv");
+                    Date currentTime = Calendar.getInstance().getTime();
+                    String date = new SimpleDateFormat("yyyy-MM-dd").format(currentTime);
+                    ThongBaoDAO thongBaoDAO = new ThongBaoDAO(getContext());
+                    ThongBao thongBao = new ThongBao("TB", nhanVien.getMaNV(), "Thiết lập tài khoản",
+                            "Bạn đã thay đổi ảnh đại diện.\n Khi nào chán thì đổi ảnh mới nhé!", date);
+                    thongBaoDAO.insertThongBao(thongBao, "nv");
+                }
             }
         }
     }
@@ -436,4 +442,37 @@ public class NV_Account_Fragment extends Fragment {
         startActivityForResult(photoPickerIntent, SELECT_PHOTO);
     }
 
+    private Bitmap rotateBitmapInput(Bitmap bitmap, String photoPath) {
+        ExifInterface ei = null;
+        try {
+            ei = new ExifInterface(photoPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if (ei != null){
+            int orientation = ei.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_UNDEFINED);
+
+            Bitmap rotatedBitmap;
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    rotatedBitmap = changeType.rotateImage(bitmap, 90);
+                    break;
+
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    rotatedBitmap = changeType.rotateImage(bitmap, 180);
+                    break;
+
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    rotatedBitmap = changeType.rotateImage(bitmap, 270);
+                    break;
+
+                case ExifInterface.ORIENTATION_NORMAL:
+                default:
+                    rotatedBitmap = bitmap;
+            }
+            return rotatedBitmap;
+        }
+        return null;
+    }
 }
