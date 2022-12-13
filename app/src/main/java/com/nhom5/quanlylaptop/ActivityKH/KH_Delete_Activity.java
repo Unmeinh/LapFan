@@ -39,6 +39,11 @@ public class KH_Delete_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kh_delete);
+        edittext_emailXoa = findViewById(R.id.edittext_emailXoa);
+        editText_LyDoXoaTK = findViewById(R.id.editText_LyDoXoaTK);
+        checkBox = findViewById(R.id.checkBox);
+        button_huyXoaTKKH = findViewById(R.id.button_huyXoaTKKH);
+        button_xoaTKKH = findViewById(R.id.button_xoaTKKH);
         khachHangDAO = new KhachHangDAO(context);
 
         getUserKH();
