@@ -10,7 +10,9 @@ import android.widget.LinearLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
 import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
+import com.nhom5.quanlylaptop.Entity.NhanVien;
 import com.nhom5.quanlylaptop.Entity.ThongBao;
 import com.nhom5.quanlylaptop.KH_Adapter.All_ThongBao_Adapter;
 import com.nhom5.quanlylaptop.Support.ChangeType;
@@ -45,10 +47,20 @@ public class All_ThongBao_Loader extends AsyncTask<String, Void, ArrayList<Thong
         if (table.equals("kh")) {
             return thongBaoDAO.selectThongBao(null, "maKH=?", new String[]{id}, "ngayTB DESC", table);
         } else if (table.equals("nv")) {
-            return thongBaoDAO.selectThongBao(null, "maNV=? or maNV='No Data'", new String[]{id}, "ngayTB DESC", table);
+            NhanVienDAO nhanVienDAO = new NhanVienDAO(context);
+            ArrayList<NhanVien> getList = nhanVienDAO.selectNhanVien(null, "maNV=?", new String[]{id}, null);
+            NhanVien getNV = getList.get(0);
+            if (getNV != null){
+                if (getNV.getRoleNV().equals("Bán hàng Online")){
+                    return thongBaoDAO.selectThongBao(null, "maNV=? or maNV='Online'", new String[]{id}, "ngayTB DESC", table);
+                } else {
+                    return thongBaoDAO.selectThongBao(null, "maNV=?", new String[]{id}, "ngayTB DESC", table);
+                }
+            }
         } else {
             return thongBaoDAO.selectThongBao(null, "admin=Admin", null, "ngayTB DESC", table);
         }
+        return null;
     }
 
     @Override

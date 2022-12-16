@@ -134,18 +134,20 @@ public class DonHangDAO {
         }
     }
 
-    public void deleteDonHang(DonHang donHang) {
+    public int deleteDonHang(DonHang donHang) {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         Log.d(TAG, "deleteDonHang: DonHang: " + donHang.toString());
 
         long ketqua = db.delete("DonHang", "maDH=?", new String[]{String.valueOf(donHang.getMaDH())});
+        db.close();
         if (ketqua > 0) {
             Log.d(TAG, "deleteDonHang: Xóa thành công");
+            return 1;
         } else {
             Log.d(TAG, "deleteDonHang: Xóa thất bại");
+            return -1;
         }
-        db.close();
     }
 
 }

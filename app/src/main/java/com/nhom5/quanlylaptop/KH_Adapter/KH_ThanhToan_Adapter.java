@@ -244,12 +244,12 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                     intent.putExtra("posLap", pos);
                     IdData.getInstance().setIdVou(gioHang.getMaVou());
                     ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maKH=?", new String[]{khachHang.getMaKH()}, null);
-                    if (listUS.size() > 0){
-                        for (UseVoucher use: listUS) {
-                            if (use.getMaVoucher().equals(gioHang.getMaVou())){
+                    if (listUS.size() > 0) {
+                        for (UseVoucher use : listUS) {
+                            if (use.getMaVoucher().equals(gioHang.getMaVou())) {
                                 use.setIsUsed("truen't");
                             } else {
-                                if (use.getIsUsed().equals("truen't")){
+                                if (use.getIsUsed().equals("truen't")) {
                                     use.setIsUsed("false");
                                 }
                             }
@@ -259,13 +259,13 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                     intent.putExtra("posLap", -1);
                     IdData.getInstance().setIdVou(maVou);
                     ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maKH=?", new String[]{khachHang.getMaKH()}, null);
-                    if (listUS.size() > 0){
-                        for (UseVoucher use: listUS) {
-                            if (use.getMaVoucher().equals(maVou)){
+                    if (listUS.size() > 0) {
+                        for (UseVoucher use : listUS) {
+                            if (use.getMaVoucher().equals(maVou)) {
                                 use.setIsUsed("truen't");
                                 useVoucherDAO.updateUseVoucher(use);
                             } else {
-                                if (use.getIsUsed().equals("truen't")){
+                                if (use.getIsUsed().equals("truen't")) {
                                     use.setIsUsed("false");
                                     useVoucherDAO.updateUseVoucher(use);
                                 }
@@ -335,7 +335,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
 
                         if (check == 1) {
                             ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maVoucher=? and maKH=?", new String[]{gio.getMaVou(), khachHang.getMaKH()}, null);
-                            if (listUS.size() > 0){
+                            if (listUS.size() > 0) {
                                 UseVoucher useVoucher = listUS.get(0);
                                 useVoucher.setIsUsed("true");
                                 useVoucherDAO.updateUseVoucher(useVoucher);
@@ -344,6 +344,16 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                             ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
                                     "Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
                             thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+
+                            ThongBao thongBaoAD = new ThongBao("TB", "admin", "Đặt hàng Online",
+                                    " Khách hàng " + changeType.fullNameKhachHang(khachHang) +  " đã đặt đơn hàng " + laptop.getTenLaptop()
+                                            + " với giá " + donHang.getThanhTien() + "\n Chi tiết đơn hàng xem ở Màn hình đơn đặt hàng", getData.getNowDateSQL());
+                            thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+
+                            ThongBao thongBaoNV = new ThongBao("TB", "Online", "Đặt hàng Online",
+                                    " Khách hàng " + changeType.fullNameKhachHang(khachHang) +  " đã đặt đơn hàng " + laptop.getTenLaptop()
+                                            + " với giá " + donHang.getThanhTien() + "\n Chi tiết đơn hàng xem ở Màn hình đơn đặt hàng", getData.getNowDateSQL());
+                            thongBaoDAO.insertThongBao(thongBaoNV, "nv");
                             thToan = 1;
                         }
                     } else {
@@ -362,7 +372,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
 
                                 if (check == 1) {
                                     ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maVoucher=? and maKH=?", new String[]{gio.getMaVou(), khachHang.getMaKH()}, null);
-                                    if (listUS.size() > 0){
+                                    if (listUS.size() > 0) {
                                         UseVoucher useVoucher = listUS.get(0);
                                         useVoucher.setIsUsed("true");
                                         useVoucherDAO.updateUseVoucher(useVoucher);
@@ -383,7 +393,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
 
                                 if (check == 1) {
                                     ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maVoucher=? and maKH=?", new String[]{gio.getMaVou(), khachHang.getMaKH()}, null);
-                                    if (listUS.size() > 0){
+                                    if (listUS.size() > 0) {
                                         UseVoucher useVoucher = listUS.get(0);
                                         useVoucher.setIsUsed("true");
                                         useVoucherDAO.updateUseVoucher(useVoucher);
@@ -398,6 +408,16 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                                     ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
                                             "Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
                                     thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+
+                                    ThongBao thongBaoAD = new ThongBao("TB", "admin", "Đặt hàng Online",
+                                            " Khách hàng " + changeType.fullNameKhachHang(khachHang) +  " đã đặt đơn hàng " + laptop.getTenLaptop()
+                                                    + " với giá " + donHang.getThanhTien() + "\n Chi tiết đơn hàng xem ở Màn hình đơn đặt hàng", getData.getNowDateSQL());
+                                    thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+
+                                    ThongBao thongBaoNV = new ThongBao("TB", "Online", "Đặt hàng Online",
+                                            " Khách hàng " + changeType.fullNameKhachHang(khachHang) +  " đã đặt đơn hàng " + laptop.getTenLaptop()
+                                                    + " với giá " + donHang.getThanhTien() + "\n Chi tiết đơn hàng xem ở Màn hình đơn đặt hàng", getData.getNowDateSQL());
+                                    thongBaoDAO.insertThongBao(thongBaoNV, "nv");
                                     thToan = 1;
                                 }
                             }
@@ -405,9 +425,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                             Toast.makeText(context, "Bạn chưa tạo ví điện tử FPT Pay!", Toast.LENGTH_SHORT).show();
                         }
                     }
-                }
-
-                else if (laptop != null && khachHang != null) {
+                } else if (laptop != null && khachHang != null) {
                     if (httt.equals(arrHTTT[0])) {
                         Log.d(TAG, "onclickDatHang: Ofline");
                         DonHang donHang = new DonHang("", "No Data", khachHang.getMaKH(), laptop.getMaLaptop(),
@@ -420,6 +438,16 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                             ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
                                     " Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
                             thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+
+                            ThongBao thongBaoAD = new ThongBao("TB", "admin", "Đặt hàng Online",
+                                    " Khách hàng " + changeType.fullNameKhachHang(khachHang) +  " đã đặt đơn hàng " + laptop.getTenLaptop()
+                                            + " với giá " + donHang.getThanhTien() + "\n Chi tiết đơn hàng xem ở Màn hình đơn đặt hàng", getData.getNowDateSQL());
+                            thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+
+                            ThongBao thongBaoNV = new ThongBao("TB", "Online", "Đặt hàng Online",
+                                    " Khách hàng " + changeType.fullNameKhachHang(khachHang) +  " đã đặt đơn hàng " + laptop.getTenLaptop()
+                                            + " với giá " + donHang.getThanhTien() + "\n Chi tiết đơn hàng xem ở Màn hình đơn đặt hàng", getData.getNowDateSQL());
+                            thongBaoDAO.insertThongBao(thongBaoNV, "nv");
                             thToan = 1;
                         }
                     } else {
@@ -456,6 +484,16 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                                     ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
                                             " Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
                                     thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+
+                                    ThongBao thongBaoAD = new ThongBao("TB", "admin", "Đặt hàng Online",
+                                            " Khách hàng " + changeType.fullNameKhachHang(khachHang) +  " đã đặt đơn hàng " + laptop.getTenLaptop()
+                                                    + " với giá " + donHang.getThanhTien() + "\n Chi tiết đơn hàng xem ở Màn hình đơn đặt hàng", getData.getNowDateSQL());
+                                    thongBaoDAO.insertThongBao(thongBaoAD, "ad");
+
+                                    ThongBao thongBaoNV = new ThongBao("TB", "Online", "Đặt hàng Online",
+                                            " Khách hàng " + changeType.fullNameKhachHang(khachHang) +  " đã đặt đơn hàng " + laptop.getTenLaptop()
+                                                    + " với giá " + donHang.getThanhTien() + "\n Chi tiết đơn hàng xem ở Màn hình đơn đặt hàng", getData.getNowDateSQL());
+                                    thongBaoDAO.insertThongBao(thongBaoNV, "nv");
                                     thToan++;
                                 }
                             }

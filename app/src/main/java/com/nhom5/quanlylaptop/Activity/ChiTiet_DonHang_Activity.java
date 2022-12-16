@@ -87,57 +87,41 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
         }
     }
 
-    private void setTrangThai(String trangThai, String typeUser){
+    private void setTrangThai(String trangThai, String typeUser) {
         LinearLayout layoutReview = findViewById(R.id.layout_Review);
         TextView titleReview = findViewById(R.id.textView_TitleReview);
         TextView detailReview = findViewById(R.id.textView_DetailReview);
         ImageView imageReview = findViewById(R.id.imageView_Review);
 
         if (typeUser.equals("KH")) {
-            switch (trangThai) {
-                case "Chưa thanh toán": {
-                    titleReview.setText("Đơn hàng chưa được thanh toán!");
-                    detailReview.setText("Đơn hàng đang chờ được thanh toán. Bạn hãy sớm thanh toán đơn hàng để chúng tôi giao đơn hàng cho bạn nhé.");
-                    layoutReview.setBackgroundColor(Color.parseColor("#FF9800"));
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.waiting_confirm_icon);
-                    imageReview.setImageBitmap(bitmap);
-                    break;
-                }
-                case "Chờ xác nhận": {
-                    titleReview.setText("Đơn hàng đang chờ xác nhận!");
-                    detailReview.setText("Đơn hàng đang chờ được xác nhận. Đơn hàng đang được chờ Nhân viên bán hàng xác nhận đơn hàng để giao cho bạn.");
-                    layoutReview.setBackgroundColor(Color.parseColor("#FF9800"));
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.send_icon);
-                    imageReview.setImageBitmap(bitmap);
-                    break;
-                }
-                case "Đang giao hàng": {
-                    titleReview.setText("Đơn hàng đang được giao!");
-                    detailReview.setText("Đơn hàng đang trên đường giao. Đơn hàng đang được giao đến cho bạn, hãy xác nhận khi bạn nhận được đơn hàng nhé.");
-                    layoutReview.setBackgroundColor(Color.parseColor("#FF9800"));
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon_delivery_dining);
-                    imageReview.setImageBitmap(bitmap);
-                    break;
-                }
+            if (trangThai.equals("Chờ xác nhận")) {
+                titleReview.setText("Đơn hàng đang chờ xác nhận!");
+                detailReview.setText("Đơn hàng đang chờ được xác nhận. Đơn hàng đang được chờ Nhân viên bán hàng xác nhận đơn hàng để giao cho bạn.");
+                layoutReview.setBackgroundColor(Color.parseColor("#FF9800"));
+                imageReview.setImageResource(R.drawable.send_icon);
+            } else if (trangThai.equals("Đang giao hàng")) {
+                titleReview.setText("Đơn hàng đang được giao!");
+                detailReview.setText("Đơn hàng đang trên đường giao. Đơn hàng đang được giao đến cho bạn, hãy xác nhận khi bạn nhận được đơn hàng nhé.");
+                layoutReview.setBackgroundColor(Color.parseColor("#FF9800"));
+                imageReview.setImageResource(R.drawable.icon_delivery_dining);
+//            } else if (trangThai.equals("Chưa thanh toán")){
+            } else {
+                titleReview.setText("Đơn hàng chưa được thanh toán!");
+                detailReview.setText("Đơn hàng đang chờ được thanh toán. Bạn hãy sớm thanh toán đơn hàng để chúng tôi giao đơn hàng cho bạn nhé.");
+                layoutReview.setBackgroundColor(Color.parseColor("#FF9800"));
+                imageReview.setImageResource(R.drawable.waiting_confirm_icon);
             }
         } else {
-            switch (trangThai) {
-                case "Chờ xác nhận": {
-                    titleReview.setText("Đơn hàng đang chờ xác nhận!");
-                    detailReview.setText("Đơn hàng đang chờ được xác nhận. Đơn hàng đang được chờ Nhân viên bán hàng xác nhận đơn hàng.");
-                    layoutReview.setBackgroundColor(Color.parseColor("#FF9800"));
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.send_icon);
-                    imageReview.setImageBitmap(bitmap);
-                    break;
-                }
-                case "Đang giao hàng": {
-                    titleReview.setText("Đơn hàng đang được giao!");
-                    detailReview.setText("Đơn hàng đang trên đường giao. Đơn hàng đang được giao đến cho khách hàng.");
-                    layoutReview.setBackgroundColor(Color.parseColor("#FF9800"));
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.icon_delivery_dining);
-                    imageReview.setImageBitmap(bitmap);
-                    break;
-                }
+            if (trangThai.equals("Chờ xác nhận")) {
+                titleReview.setText("Đơn hàng đang chờ xác nhận!");
+                detailReview.setText("Đơn hàng đang chờ được xác nhận. Đơn hàng đang được chờ Nhân viên bán hàng xác nhận đơn hàng.");
+                layoutReview.setBackgroundColor(Color.parseColor("#FF9800"));
+                imageReview.setImageResource(R.drawable.send_icon);
+            } else if (trangThai.equals("Đang giao hàng")) {
+                titleReview.setText("Đơn hàng đang được giao!");
+                detailReview.setText("Đơn hàng đang trên đường giao. Đơn hàng đang được giao đến cho khách hàng.");
+                layoutReview.setBackgroundColor(Color.parseColor("#FF9800"));
+                imageReview.setImageResource(R.drawable.icon_delivery_dining);
             }
         }
     }
@@ -153,33 +137,29 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
                 titleReview.setText("Đơn hàng đã được đánh giá!");
                 detailReview.setText("Cảm ơn bạn đã đánh giá. Chúc bạn có một trải nghiệm tuyệt vời với sản phẩm của chúng tôi.");
                 layoutReview.setBackgroundColor(Color.parseColor("#26AB9A"));
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.star_check_icon);
-                imageReview.setImageBitmap(bitmap);
+                imageReview.setImageResource(R.drawable.star_check_icon);
             } else {
                 titleReview.setText("Đơn hàng chưa được đánh giá!");
                 detailReview.setText("Cảm ơn bạn đã mua sản phẩm. Bạn hãy sớm đánh giá sản phẩm để chúng tôi biết trải nghiệm của bạn về sản phẩm nhé.");
                 layoutReview.setBackgroundColor(Color.parseColor("#F44336"));
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.star_crossed_icon);
-                imageReview.setImageBitmap(bitmap);
+                imageReview.setImageResource(R.drawable.star_crossed_icon);
             }
         } else {
             if (isRate.equals("true")) {
                 titleReview.setText("Đơn hàng đã được đánh giá!");
                 detailReview.setText("Khách hàng đã đánh giá sản phẩm này. Xem chi tiết đánh giá thông qua nút đánh giá của đơn hàng.");
                 layoutReview.setBackgroundColor(Color.parseColor("#26AB9A"));
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.star_check_icon);
-                imageReview.setImageBitmap(bitmap);
+                imageReview.setImageResource(R.drawable.star_check_icon);
             } else {
                 titleReview.setText("Đơn hàng chưa được đánh giá!");
                 detailReview.setText("Khách hàng chưa đánh giá sản phẩm này. Xem chi tiết đánh giá thông qua nút đánh giá của đơn hàng.");
                 layoutReview.setBackgroundColor(Color.parseColor("#F44336"));
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.star_crossed_icon);
-                imageReview.setImageBitmap(bitmap);
+                imageReview.setImageResource(R.drawable.star_crossed_icon);
             }
         }
     }
 
-    private void setNhanVien(){
+    private void setNhanVien() {
         ImageView ava = findViewById(R.id.imageView_Avatar);
         TextView ten = findViewById(R.id.textView_TenUser);
         TextView email = findViewById(R.id.textView_Email);
@@ -187,13 +167,13 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
         ChangeType changeType = new ChangeType();
         NhanVien nhanVien = null;
         NhanVienDAO nhanVienDAO = new NhanVienDAO(context);
-        if (donHang != null){
-            ArrayList<NhanVien> list = nhanVienDAO.selectNhanVien(null,"maNV=?", new String[]{donHang.getMaNV()}, null);
-            if (list.size() > 0){
+        if (donHang != null) {
+            ArrayList<NhanVien> list = nhanVienDAO.selectNhanVien(null, "maNV=?", new String[]{donHang.getMaNV()}, null);
+            if (list.size() > 0) {
                 nhanVien = list.get(0);
             }
         }
-        if (nhanVien != null){
+        if (nhanVien != null) {
             ava.setImageBitmap(changeType.byteToBitmap(nhanVien.getAvatar()));
             ten.setText(changeType.fullNameNhanVien(nhanVien));
             email.setText(nhanVien.getEmail());
@@ -246,12 +226,12 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
 
         VoucherDAO voucherDAO = new VoucherDAO(context);
         ArrayList<Voucher> listV = voucherDAO.selectVoucher(null, "maVoucher=?", new String[]{donHang.getMaVoucher()}, null);
-        if (listV.size() > 0){
+        if (listV.size() > 0) {
             voucher = listV.get(0);
         }
 
         int giaTien;
-        if (laptop.getGiaTien().length() < 12){
+        if (laptop.getGiaTien().length() < 12) {
             giaTien = changeType.stringMoneyToInt(laptop.getGiaTien()) / 1000;
         } else {
             giaTien = changeType.stringMoneyToInt(laptop.getGiaTien());
@@ -300,7 +280,7 @@ public class ChiTiet_DonHang_Activity extends AppCompatActivity {
             }
         });
 
-        if (donHang.getTrangThai().equals("Hoàn thành")){
+        if (donHang.getTrangThai().equals("Hoàn thành")) {
             setReview(donHang.getIsDanhGia(), typeUser);
         } else {
             setTrangThai(donHang.getTrangThai(), typeUser);

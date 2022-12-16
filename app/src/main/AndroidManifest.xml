@@ -58,7 +58,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".FragmentNV_Admin.NVA_DonDat_Activity"
+            android:name=".ActivityNV_Admin.NVA_DonDat_Activity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

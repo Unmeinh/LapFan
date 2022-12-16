@@ -138,10 +138,13 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
                             @SuppressLint("NotifyDataSetChanged")
                             @Override
                             public void onClick(DialogInterface dialog, int stt) {
-                                donHangDAO.deleteDonHang(donHang);
-                                listDon.clear();
-                                listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "No Data"}, "ngayMua");
-                                notifyDataSetChanged();
+                                int check = donHangDAO.deleteDonHang(donHang);
+                                if (check == 1){
+                                    setThongBaoXoaDH(donHang);
+                                    listDon.clear();
+                                    listDon = donHangDAO.selectDonHang(null, "trangThai=? and maNV=?", new String[]{"Chờ xác nhận", "No Data"}, "ngayMua");
+                                    notifyDataSetChanged();
+                                }
                             }
                         });
                         aBuild.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -151,7 +154,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
                         });
                         android.app.AlertDialog alertDialog = aBuild.create();
                         alertDialog.show();
-                    } else  {
+                    } else {
                         android.app.AlertDialog.Builder aBuild = new android.app.AlertDialog.Builder(context);
                         aBuild.setTitle("Xác nhận đơn hàng " + donHang.getMaDH());
                         aBuild.setMessage("Sau khi thay đổi sẽ không thể hoàn tác!");
@@ -501,7 +504,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
         tilLap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hangLap != null){
+                if (hangLap != null) {
                     title.setText("Danh sách Laptop " + hangLap);
                     dialog.show();
                     ArrayList<Laptop> list = laptopDAO.selectLaptop(null, "maHangLap=?", new String[]{"L" + hangLap}, null);
@@ -524,7 +527,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
         tilLap.getEditText().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (hangLap != null){
+                if (hangLap != null) {
                     title.setText("Danh sách Laptop " + hangLap);
                     dialog.show();
                     ArrayList<Laptop> list = laptopDAO.selectLaptop(null, "maHangLap=?", new String[]{"L" + hangLap}, null);
@@ -709,6 +712,34 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
                 "Hoàn thành", "false", changeType.stringToStringMoney(tt), sl);
     }
 
+    private void setThongBaoXoaDH(DonHang donHang) {
+        ArrayList<Laptop> listLap = laptopDAO.selectLaptop(null, "maLaptop=?", new String[]{donHang.getMaLaptop()}, null);
+        if (listLap.size() > 0) {
+            laptop = listLap.get(0);
+        }
+
+        Toast.makeText(context, "Xóa đơn hàng thành công!", Toast.LENGTH_SHORT).show();
+        ThongBao thongBaoAll = new ThongBao("", "Online", "Xác nhận đơn hàng " + donHang.getMaDH(),
+                " Admin đã xóa đơn hàng " + donHang.getMaDH() + ". Đơn hàng sẽ không thể xác nhận được nữa", getData.getNowDateSQL());
+        thongBaoDAO.insertThongBao(thongBaoAll, "nv");
+
+        ThongBao thongBaoAd = new ThongBao("", "No Data", "Xác nhận đơn hàng " + donHang.getMaDH(),
+                " Bạn đã xóa đơn hàng " + donHang.getMaDH() + ". Thông báo sẽ được gửi đến cho khách hàng", getData.getNowDateSQL());
+        thongBaoDAO.insertThongBao(thongBaoAd, "ad");
+
+        if (laptop != null) {
+            ThongBao thongBaoKH = new ThongBao("TB", donHang.getMaKH(), "Đơn hàng đã được xác nhận",
+                    " Đơn hàng " + laptop.getTenLaptop() + " đã bị Admin xóa\n Chúng tôi rất tiếc về trường hợp này." +
+                            " Bạn hãy đặt lại Laptop hoặc đổi sang Laptop khác nhé", getData.getNowDateSQL());
+            thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+        } else {
+            ThongBao thongBaoKH = new ThongBao("TB", donHang.getMaKH(), "Đơn hàng đã được xác nhận",
+                    " Đơn hàng No data" + " đã bị Admin xóa\n Chúng tôi rất tiếc về trường hợp này." +
+                            " Bạn hãy đặt lại Laptop hoặc đổi sang Laptop khác nhé", getData.getNowDateSQL());
+            thongBaoDAO.insertThongBao(thongBaoKH, "kh");
+        }
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     private void xacNhanDonHang(DonHang donHang) {
         if (donHang.getMaNV().equals("No Data")) {
@@ -719,23 +750,28 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
                 }
                 donHang.setMaNV(getNV.getMaNV());
                 donHang.setTrangThai("Đang giao hàng");
+
                 int check = donHangDAO.updateDonHang(donHang);
                 if (check == 1) {
                     laptop.setSoLuong(laptop.getSoLuong() - donHang.getSoLuong());
                     laptop.setDaBan(laptop.getDaBan() + donHang.getSoLuong());
                     laptopDAO.updateLaptop(laptop);
+
                     Toast.makeText(context, "Xác nhận đơn hàng thành công!", Toast.LENGTH_SHORT).show();
-                    ThongBao thongBaoAll = new ThongBao("", "No Data", "Xác nhận đơn hàng " + donHang.getMaDH(),
-                            " Nhân viên +" + changeType.fullNameNhanVien(getNV) + "+ đã xác nhận đơn hàng " + donHang.getMaDH() + "\n Đơn hàng sẽ không thể xác nhận được nữa", getData.getNowDateSQL());
+                    ThongBao thongBaoAll = new ThongBao("", "Online", "Xác nhận đơn hàng " + donHang.getMaDH(),
+                            " Nhân viên " + changeType.fullNameNhanVien(getNV) + " đã xác nhận đơn hàng " + donHang.getMaDH() + "\n Đơn hàng sẽ không thể xác nhận được nữa", getData.getNowDateSQL());
                     thongBaoDAO.insertThongBao(thongBaoAll, "nv");
+
                     ThongBao thongBaoAd = new ThongBao("", "No Data", "Xác nhận đơn hàng " + donHang.getMaDH(),
                             " Nhân viên " + changeType.fullNameNhanVien(getNV) + " đã xác nhận đơn hàng " + donHang.getMaDH() + "\n Thông tin chi tiết đơn hàng ở trong Quản lý Đơn hàng", getData.getNowDateSQL());
                     thongBaoDAO.insertThongBao(thongBaoAd, "ad");
+
                     ThongBao thongBaoNV = new ThongBao("", getNV.getMaNV(), "Xác nhận đơn hàng " + donHang.getMaDH(),
                             " Bạn đã xác nhận đơn hàng " + donHang.getMaDH() + "\n Đơn hàng đã được lưu trong Đơn hàng đã bán", getData.getNowDateSQL());
                     thongBaoDAO.insertThongBao(thongBaoNV, "nv");
-                    listDon.set(getPosDH(), donHang);
+                    listDon.remove(donHang);
                     notifyDataSetChanged();
+
                     if (laptop != null) {
                         ThongBao thongBaoKH = new ThongBao("TB", donHang.getMaKH(), "Đơn hàng đã được xác nhận", " Đơn hàng "
                                 + laptop.getTenLaptop() + " đã được xác nhận\n Hãy vào Đơn hàng đã mua để xem đơn hàng nhé", getData.getNowDateSQL());
@@ -754,7 +790,7 @@ public class QL_DonHang_Adapter extends RecyclerView.Adapter<QL_DonHang_Adapter.
         }
     }
 
-    private void getUserNV(){
+    private void getUserNV() {
         SharedPreferences pref = context.getSharedPreferences("Who_Login", MODE_PRIVATE);
         if (pref == null) {
             getNV = null;

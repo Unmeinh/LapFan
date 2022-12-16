@@ -41,13 +41,13 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         // Bảng Voucher
         String tableUseVoucher = "CREATE TABLE UseVoucher( maUse INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " maVoucher INTEGER not null, maKH INTEGER not null, isUsed TEXT," +
-                " FOREIGN KEY(maVoucher) REFERENCES Voucher (maVoucher))";
+                " FOREIGN KEY(maKH) REFERENCES KhachHang (maKH), FOREIGN KEY(maVoucher) REFERENCES Voucher (maVoucher))";
 
         // Bảng Laptop
         String tableLaptop = "CREATE TABLE Laptop( maLaptop INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " maHangLap VARCHAR(15) not null, anhLaptop BLOB," +
                 " tenLaptop TEXT not null, thongSoKT TEXT, giaTien TEXT, soLuong INT, daBan INT," +
-                " FOREIGN KEY(maKH) REFERENCES KhachHang (maKH), FOREIGN KEY(maHangLap) REFERENCES HangLaptop (maHangLap))";
+                " FOREIGN KEY(maHangLap) REFERENCES HangLaptop (maHangLap))";
 
         // Bảng LaptopRate
         String tableLaptopRate = "CREATE TABLE LaptopRate( maRate INTEGER PRIMARY KEY not null," +
