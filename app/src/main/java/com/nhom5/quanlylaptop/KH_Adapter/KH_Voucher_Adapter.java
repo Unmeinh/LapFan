@@ -18,8 +18,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
+import com.nhom5.quanlylaptop.DAO.UseVoucherDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.IdData;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
+import com.nhom5.quanlylaptop.Entity.UseVoucher;
 import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Voucher_Adapter;
 import com.nhom5.quanlylaptop.R;
@@ -31,15 +35,20 @@ public class KH_Voucher_Adapter extends RecyclerView.Adapter<KH_Voucher_Adapter.
     Context context;
     ArrayList<Voucher> listVou;
     GioHangDAO gioHangDAO;
+    UseVoucherDAO useVoucherDAO;
     String TAG = "KH_Voucher_Adapter_____";
     GioHang gioHang;
+    KhachHang khachHang;
     int selectedPos = -1;
+    UseVoucher useVoucher;
 
     public KH_Voucher_Adapter(ArrayList<Voucher> listVou, Context context, GioHang gioHang) {
         this.listVou = listVou;
         this.context = context;
         this.gioHang = gioHang;
         gioHangDAO = new GioHangDAO(context);
+        useVoucherDAO = new UseVoucherDAO(context);
+        getUser();
     }
 
     @NonNull
@@ -52,9 +61,9 @@ public class KH_Voucher_Adapter extends RecyclerView.Adapter<KH_Voucher_Adapter.
     @Override
     public void onBindViewHolder(@NonNull KH_Voucher_Adapter.AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         String maVou = IdData.getInstance().getIdVou();
-        Voucher voucher = setRow(pos, author, maVou);
+        Voucher getVou = setRow(pos, author, maVou);
 
-        if (pos == selectedPos){
+        if (pos == selectedPos) {
             author.buttonUse.setVisibility(View.GONE);
             author.radioButton.setVisibility(View.VISIBLE);
         } else {
@@ -66,16 +75,15 @@ public class KH_Voucher_Adapter extends RecyclerView.Adapter<KH_Voucher_Adapter.
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
-                if (gioHang != null){
+                if (gioHang != null) {
                     selectedPos = pos;
-                    if (!gioHang.getMaGio().equals("Null")){
-                        GioHang update = new GioHang(gioHang.getMaGio(), gioHang.getMaLaptop(), gioHang.getMaKH(), gioHang.getNgayThem(),
-                                voucher.getMaVoucher(), gioHang.getSoLuong());
-                        gioHangDAO.updateGioHang(update);
+                    if (!gioHang.getMaGio().equals("Null")) {
+                        gioHang.setmaVou(getVou.getMaVoucher());
+                        gioHangDAO.updateGioHang(gioHang);
                     } else {
-                        IdData.getInstance().setIdVou(voucher.getMaVoucher());
+                        IdData.getInstance().setIdVou(getVou.getMaVoucher());
                     }
-                    setRow(pos, author, voucher.getMaVoucher());
+                    setRow(pos, author, getVou.getMaVoucher());
                     notifyDataSetChanged();
                 } else {
                     selectedPos = -1;
@@ -110,8 +118,20 @@ public class KH_Voucher_Adapter extends RecyclerView.Adapter<KH_Voucher_Adapter.
         Log.d(TAG, "setRow: " + pos);
         Voucher voucher = listVou.get(pos);
 
-        if (maVou != null){
-            if (maVou.equals(voucher.getMaVoucher())){
+        ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maVoucher=? and maKH=?", new String[]{voucher.getMaVoucher(), khachHang.getMaKH()}, null);
+        if (listUS.size() > 0) {
+            useVoucher = listUS.get(0);
+            if (useVoucher.getIsUsed().equals("false")) {
+                author.buttonUse.setEnabled(true);
+                author.buttonUse.setText("Sử dụng");
+            } else {
+                author.buttonUse.setEnabled(false);
+                author.buttonUse.setText("Đã hết");
+            }
+        }
+
+        if (maVou != null) {
+            if (maVou.equals(voucher.getMaVoucher())) {
                 selectedPos = pos;
             }
         }
@@ -124,5 +144,19 @@ public class KH_Voucher_Adapter extends RecyclerView.Adapter<KH_Voucher_Adapter.
             author.date.setText("Từ  " + voucher.getNgayBD() + "\nđến " + voucher.getNgayKT());
         }
         return voucher;
+    }
+
+    private void getUser() {
+        SharedPreferences pref = context.getSharedPreferences("Who_Login", MODE_PRIVATE);
+        if (pref == null) {
+            khachHang = null;
+        } else {
+            String user = pref.getString("who", "");
+            KhachHangDAO khachHangDAO = new KhachHangDAO(context);
+            ArrayList<KhachHang> list = khachHangDAO.selectKhachHang(null, "maKH=?", new String[]{user}, null);
+            if (list.size() > 0) {
+                khachHang = list.get(0);
+            }
+        }
     }
 }

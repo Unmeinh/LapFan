@@ -53,6 +53,13 @@ public class ChangeType {
         return checkByte;
     }
 
+    public String norDateToSqlDate(String norDate) {
+        String d = norDate.substring(0, 2);
+        String m = norDate.substring(3, 5);
+        String y = norDate.substring(6);
+        return y + "-" + m + "-" + d;
+    }
+
     public long stringToLongDate(String string) {
         long date = 0;
         try {

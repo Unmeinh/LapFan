@@ -8,11 +8,17 @@ import android.util.Log;
 import android.widget.EditText;
 
 import com.nhom5.quanlylaptop.DAO.DonHangDAO;
+import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
+import com.nhom5.quanlylaptop.DAO.UseVoucherDAO;
+import com.nhom5.quanlylaptop.DAO.VoucherDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
+import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.NhanVien;
+import com.nhom5.quanlylaptop.Entity.UseVoucher;
+import com.nhom5.quanlylaptop.Entity.Voucher;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +30,9 @@ public class GetData {
     NhanVienDAO nhanVienDAO;
     DonHangDAO donHangDAO;
     LaptopDAO laptopDAO;
+    UseVoucherDAO useVoucherDAO;
+    VoucherDAO voucherDAO;
+    KhachHangDAO khachHangDAO;
     ChangeType changeType = new ChangeType();
     String TAG = "AddData_____";
 
@@ -32,6 +41,20 @@ public class GetData {
         nhanVienDAO = new NhanVienDAO(context);
         donHangDAO = new DonHangDAO(context);
         laptopDAO = new LaptopDAO(context);
+        useVoucherDAO = new UseVoucherDAO(context);
+        khachHangDAO = new KhachHangDAO(context);
+        voucherDAO = new VoucherDAO(context);
+    }
+
+    public void addDataUseVoucher() {
+        ArrayList<KhachHang> listK = khachHangDAO.selectKhachHang(null, null, null, null);
+        ArrayList<Voucher> listV = voucherDAO.selectVoucher(null, null, null, null);
+        Voucher vou = listV.get(listV.size() - 1);
+        if (listK.size() > 0) {
+            for (KhachHang kh : listK) {
+                useVoucherDAO.insertUseVoucher(new UseVoucher("", vou.getMaVoucher(), kh.getMaKH(), "false"));
+            }
+        }
     }
 
     public void addDataDoanhSo(ArrayList<NhanVien> listNV, String[] getDate) {
@@ -92,6 +115,29 @@ public class GetData {
         }
         Log.d(TAG, "tinhTongKhoanChi: khoanChi: " + khoanChi);
         return khoanChi;
+    }
+
+    public ArrayList get8Laptop(ArrayList<Laptop> listLap, int pos) {
+        ArrayList<Laptop> list8 = new ArrayList<>();
+        int size = listLap.size();
+        if (size > 0) {
+            if (size >= 8) {
+                if ((pos + 1) * 8 <= size){
+                    for (int i = (pos * 8); i < ((pos + 1) * 8); i++) {
+                        list8.add(listLap.get(i));
+                    }
+                } else {
+                    for (int i = (pos * 8); i < size; i++) {
+                        list8.add(listLap.get(i));
+                    }
+                }
+            } else {
+                for (int i = 0; i < size; i++) {
+                    list8.add(listLap.get(i));
+                }
+            }
+        }
+        return list8;
     }
 
     public Laptop getTop1DoanhThu(ArrayList<Laptop> listLap) {

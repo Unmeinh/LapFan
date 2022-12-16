@@ -54,7 +54,7 @@ public class Tab_Laptop_Fragment extends Fragment {
     RecyclerView reView;
     String hangL = "all";
     LinearLayout loadingView, linearLayoutEmpty;
-    RelativeLayout relativeLayout;
+    RelativeLayout relativeLayout, layoutLaptop;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +63,7 @@ public class Tab_Laptop_Fragment extends Fragment {
         themLaptop = view.findViewById(R.id.button_Add_Laptop);
         loadingView = view.findViewById(R.id.loadingView);
         relativeLayout = view.findViewById(R.id.layoutView);
+        layoutLaptop = view.findViewById(R.id.layoutLaptop);
         reView = view.findViewById(R.id.recyclerView_Laptop);
         linearLayoutEmpty = view.findViewById(R.id.linearLaptopEmpty);
 
@@ -128,7 +129,7 @@ public class Tab_Laptop_Fragment extends Fragment {
                                     }
                                     RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getContext(), 2);
                                     reView.setLayoutManager(mLayoutManager);
-                                    QL_Laptop_Adapter ql_laptop_adapter = new QL_Laptop_Adapter(getList, listHang, getContext());
+                                    QL_Laptop_Adapter ql_laptop_adapter = new QL_Laptop_Adapter(getList, listHang, getContext(), Tab_Laptop_Fragment.this);
                                     reView.setAdapter(ql_laptop_adapter);
                                 } else {
                                     getHangLaptop(view);
@@ -217,10 +218,10 @@ public class Tab_Laptop_Fragment extends Fragment {
 
     private void setLaptop() {
         if ("all".equals(hangL)) {
-            QL_laptop_loader = new QL_Laptop_Loader(getContext(), reView, loadingView, linearLayoutEmpty, relativeLayout);
+            QL_laptop_loader = new QL_Laptop_Loader(getContext(), reView, loadingView, linearLayoutEmpty, relativeLayout, layoutLaptop, Tab_Laptop_Fragment.this);
             QL_laptop_loader.execute("all");
         } else {
-            QL_laptop_loader = new QL_Laptop_Loader(getContext(), reView, loadingView, linearLayoutEmpty, relativeLayout);
+            QL_laptop_loader = new QL_Laptop_Loader(getContext(), reView, loadingView, linearLayoutEmpty, relativeLayout, layoutLaptop, Tab_Laptop_Fragment.this);
             QL_laptop_loader.execute(hangL);
         }
     }

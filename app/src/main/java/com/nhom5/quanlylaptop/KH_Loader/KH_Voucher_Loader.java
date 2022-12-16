@@ -72,7 +72,9 @@ public class KH_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
 
         String dateS = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         try {
-            return voucherDAO.selectVoucher(null, "ngayKT>?", new String[]{String.valueOf(new SimpleDateFormat("yyyy-MM-dd").parse(dateS).getTime())}, "ngayBD");
+            String[] time = {String.valueOf(new SimpleDateFormat("yyyy-MM-dd").parse(dateS).getTime()),
+                    String.valueOf(new SimpleDateFormat("yyyy-MM-dd").parse(dateS).getTime())};
+            return voucherDAO.selectVoucher(null, "ngayKT>? and ngayBD<=?", time, "ngayBD");
         } catch (ParseException e) {
             e.printStackTrace();
         }

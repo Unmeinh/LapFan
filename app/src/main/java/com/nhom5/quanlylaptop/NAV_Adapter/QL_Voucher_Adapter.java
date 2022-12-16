@@ -27,14 +27,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.nhom5.quanlylaptop.DAO.NhanVienDAO;
+import com.nhom5.quanlylaptop.DAO.UseVoucherDAO;
 import com.nhom5.quanlylaptop.DAO.VoucherDAO;
 import com.nhom5.quanlylaptop.Entity.NhanVien;
+import com.nhom5.quanlylaptop.Entity.UseVoucher;
 import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.AuthorViewHolder> {
 
@@ -43,6 +49,7 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
     ArrayList<Voucher> listVou;
     VoucherDAO voucherDAO;
     String TAG = "QL_Voucher_Adapter_____";
+    TextInputLayout textInput_Name, textInput_GiamGia, textInput_NBD, textInput_NKT;
 
     public QL_Voucher_Adapter(ArrayList<Voucher> listVou, Context context) {
         this.listVou = listVou;
@@ -112,6 +119,8 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
                     case R.id.item_Xoa:
                         voucherDAO.deleteVoucher(voucher);
                         listVou.remove(getPosVou());
+                        UseVoucherDAO useVoucherDAO = new UseVoucherDAO(context);
+                        useVoucherDAO.deleteUseVoucher(voucher.getMaVoucher());
                         notifyDataSetChanged();
                         break;
                     case R.id.item_CapNhat:
@@ -150,10 +159,10 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
         View view = inft.inflate(R.layout.dialog_add_edit_voucher, null);
 
         TextView title = view.findViewById(R.id.textView_Title_Dialog);
-        TextInputLayout textInput_Name = view.findViewById(R.id.textInput_Name);
-        TextInputLayout textInput_GiamGia = view.findViewById(R.id.textInput_GiamGia);
-        TextInputLayout textInput_NBD = view.findViewById(R.id.textInput_NBD);
-        TextInputLayout textInput_NKT = view.findViewById(R.id.textInput_NKT);
+        textInput_Name = view.findViewById(R.id.textInput_Name);
+        textInput_GiamGia = view.findViewById(R.id.textInput_GiamGia);
+        textInput_NBD = view.findViewById(R.id.textInput_NBD);
+        textInput_NKT = view.findViewById(R.id.textInput_NKT);
         TextView onclick_NBD = view.findViewById(R.id.onlick_NBD);
         TextView onclick_NKT = view.findViewById(R.id.onlick_NKT);
         AppCompatButton button = view.findViewById(R.id.button_Dialog);
@@ -162,8 +171,8 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
         title.setText("Cập nhật Voucher");
         textInput_Name.getEditText().setText(voucher.getTenVoucher());
         textInput_GiamGia.getEditText().setText(voucher.getGiamGia());
-        textInput_NBD.getEditText().setText(voucher.getNgayBD());
-        textInput_NKT.getEditText().setText(voucher.getNgayKT());
+        textInput_NBD.getEditText().setText(changeType.norDateToSqlDate(voucher.getNgayBD()));
+        textInput_NKT.getEditText().setText(changeType.norDateToSqlDate(voucher.getNgayKT()));
         button.setText("Cập nhật");
 
         builder.setView(view);
@@ -180,15 +189,17 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
                 String giamGia = changeType.deleteSpaceText(textInput_GiamGia.getEditText().getText().toString());
                 String nbd = textInput_NBD.getEditText().getText().toString();
                 String nkt = textInput_NKT.getEditText().getText().toString();
-                voucher.setTenVoucher(tenVou);
-                voucher.setGiamGia(giamGia);
-                voucher.setNgayBD(nbd);
-                voucher.setNgayKT(nkt);
+                if (checkInputVoucher() == 1) {
+                    voucher.setTenVoucher(tenVou);
+                    voucher.setGiamGia(giamGia);
+                    voucher.setNgayBD(nbd);
+                    voucher.setNgayKT(nkt);
 
-                voucherDAO.updateVoucher(voucher);
-                listVou.set(getPosVou(), voucher);
-                dialog.dismiss();
-                notifyDataSetChanged();
+                    voucherDAO.updateVoucher(voucher);
+                    listVou.set(getPosVou(), voucher);
+                    dialog.dismiss();
+                    notifyDataSetChanged();
+                }
             }
         });
 
@@ -232,4 +243,43 @@ public class QL_Voucher_Adapter extends RecyclerView.Adapter<QL_Voucher_Adapter.
         });
     }
 
+    private int checkInputVoucher() {
+        int check = 1;
+        if (textInput_Name.getEditText().getText().toString().isEmpty()) {
+            textInput_Name.setError("Mã Voucher không được bỏ trống!");
+            textInput_Name.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_Name.setError("");
+            textInput_Name.setErrorEnabled(false);
+        }
+
+        if (textInput_GiamGia.getEditText().getText().toString().isEmpty()) {
+            textInput_GiamGia.setError("Ưu đãi không được bỏ trống!");
+            textInput_GiamGia.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_GiamGia.setError("");
+            textInput_GiamGia.setErrorEnabled(false);
+        }
+
+        if (textInput_NBD.getEditText().getText().toString().isEmpty()) {
+            textInput_NBD.setError("Ngày bắt đầu phải được chọn!");
+            textInput_NBD.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_NBD.setError("");
+            textInput_NBD.setErrorEnabled(false);
+        }
+
+        if (textInput_NKT.getEditText().getText().toString().isEmpty()) {
+            textInput_NKT.setError("Ngày kết thúc phải được chọn!");
+            textInput_NKT.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_NKT.setError("");
+            textInput_NKT.setErrorEnabled(false);
+        }
+        return check;
+    }
 }

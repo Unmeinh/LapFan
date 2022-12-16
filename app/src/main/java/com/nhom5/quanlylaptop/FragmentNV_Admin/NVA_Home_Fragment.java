@@ -154,7 +154,7 @@ public class NVA_Home_Fragment extends Fragment {
 
     private void setDoanhThu(String[] time) {
         if (time != null) {
-            listDon = donHangDAO.selectDonHang(null, "ngayMua>=? and ngayMua<?", time, null);
+            listDon = donHangDAO.selectDonHang(null, "ngayMua>=? and ngayMua<? and trangThai=?", new String[]{time[0], time[1], "Hoàn thành"}, null);
             if (listDon != null) {
                 Log.d(TAG, "setDoanhThu: hope");
                 if (listDon.size() > 0) {

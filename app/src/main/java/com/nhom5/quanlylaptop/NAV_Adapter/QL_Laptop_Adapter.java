@@ -31,8 +31,10 @@ import com.nhom5.quanlylaptop.Activity.Info_Laptop_Activity;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.HangLaptop;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.FragmentQuanLy.Tab_Laptop_Fragment;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
+import com.nhom5.quanlylaptop.Support.GetData;
 
 import java.util.ArrayList;
 
@@ -40,22 +42,29 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
 
     Spinner ramSpinner, hangLapSpinner;
     ChangeType changeType = new ChangeType();
+    GetData getData;
     TextInputLayout textInput_TenLaptop, textInput_GiaTien, textInput_SoLuong;
     ImageView imageView_Laptop;
     AppCompatButton button_Laptop_Manager;
     Context context;
     ArrayList<HangLaptop> listHang;
-    ArrayList<Laptop> listLap;
+    ArrayList<Laptop> listLap, list8Lap;
     Laptop laptop;
     LaptopDAO laptopDAO;
-    int posLap;
+    int posLap, posPage, maxPage;
     String TAG = "QL_Laptop_Adapter_____";
+    Tab_Laptop_Fragment tab_laptop_fragment;
+    TextView tvPrev, tvPage, tvNext;
 
-    public QL_Laptop_Adapter(ArrayList<Laptop> listLap, ArrayList<HangLaptop> listHang, Context context) {
+    public QL_Laptop_Adapter(ArrayList<Laptop> listLap, ArrayList<HangLaptop> listHang, Context context, Tab_Laptop_Fragment tab_laptop_fragment) {
         this.listLap = listLap;
         this.listHang = listHang;
         this.context = context;
+        this.tab_laptop_fragment = tab_laptop_fragment;
         laptopDAO = new LaptopDAO(context);
+        getData = new GetData(context);
+        posPage = 0;
+        list8Lap = getData.get8Laptop(listLap, posPage);
     }
 
     @NonNull
@@ -68,14 +77,15 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
     @Override
     public void onBindViewHolder(@NonNull AuthorViewHolder author, @SuppressLint("RecyclerView") final int pos) {
         setRow(pos, author);
+        set8Laptop();
 
         author.delete.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("NotifyDataSetChanged")
             @Override
             public void onClick(View v) {
-                laptop = listLap.get(getPosLap());
+                laptop = list8Lap.get(getPosLap());
                 laptopDAO.deleteLaptop(laptop);
-                listLap.remove(getPosLap());
+                list8Lap.remove(getPosLap());
                 notifyDataSetChanged();
             }
         });
@@ -84,7 +94,7 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, Info_Laptop_Activity.class);
-                Laptop laptop = listLap.get(pos);
+                Laptop laptop = list8Lap.get(pos);
                 if (laptop != null) {
                     final Bundle bundle = new Bundle();
                     bundle.putBinder("laptop", laptop);
@@ -109,7 +119,7 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
 
     @Override
     public int getItemCount() {
-        return listLap.size();
+        return list8Lap.size();
     }
 
     public class AuthorViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
@@ -138,7 +148,7 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
         private final MenuItem.OnMenuItemClickListener onEditMenu = new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                Laptop laptop = listLap.get(getPosLap());
+                Laptop laptop = list8Lap.get(getPosLap());
                 if (item.getItemId() == R.id.item_CapNhat) {
                     openDialogUpdate(laptop);
                 }
@@ -149,7 +159,7 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
 
     public void setRow(int pos, @NonNull AuthorViewHolder author) {
         Log.d(TAG, "setRow: " + pos);
-        Laptop laptop = listLap.get(pos);
+        Laptop laptop = list8Lap.get(pos);
         HangLaptop hangLaptop = new HangLaptop("No Data", "No Data", new byte[]{});
         Log.d(TAG, "setRow: Laptop: " + laptop.toString());
 
@@ -171,6 +181,65 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
         author.gia.setText("Giá tiền: " + laptop.getGiaTien());
         author.soLuong.setText(String.valueOf(laptop.getSoLuong()));
         author.daBan.setText(String.valueOf(laptop.getDaBan()));
+    }
+
+    private void set8Laptop() {
+        if (tab_laptop_fragment != null) {
+            tvPage = tab_laptop_fragment.getActivity().findViewById(R.id.textView_Page);
+            tvPrev = tab_laptop_fragment.getActivity().findViewById(R.id.textView_Prev);
+            tvNext = tab_laptop_fragment.getActivity().findViewById(R.id.textView_Next);
+            maxPage = listLap.size() / 8;
+
+            if (listLap.size() <= 8) {
+                tvPage.setText("1/1");
+                tvPrev.setVisibility(View.INVISIBLE);
+                tvNext.setVisibility(View.INVISIBLE);
+            } else {
+                tvNext.setVisibility(View.VISIBLE);
+                if (listLap.size() % 8 != 0) {
+                    tvPage.setText((posPage + 1) + "/" + (maxPage + 1));
+                } else {
+                    tvPage.setText((posPage + 1) + "/" + maxPage);
+                }
+            }
+
+            if (posPage == 0) {
+                tvPrev.setVisibility(View.INVISIBLE);
+            }
+            if (posPage == maxPage){
+                tvNext.setVisibility(View.INVISIBLE);
+            }
+
+            tvPrev.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("NotifyDataSetChanged")
+                @Override
+                public void onClick(View v) {
+                    if (posPage > 0) {
+                        posPage--;
+                        Log.d(TAG, "onClick: posPage = " + posPage);
+                        list8Lap = getData.get8Laptop(listLap, posPage);
+                        tvPrev.setVisibility(View.VISIBLE);
+                        tvNext.setVisibility(View.VISIBLE);
+                        notifyDataSetChanged();
+                    }
+                }
+            });
+
+            tvNext.setOnClickListener(new View.OnClickListener() {
+                @SuppressLint("NotifyDataSetChanged")
+                @Override
+                public void onClick(View v) {
+                    if (posPage < maxPage) {
+                        posPage++;
+                        Log.d(TAG, "onClick: posPage = " + posPage);
+                        list8Lap = getData.get8Laptop(listLap, posPage);
+                        tvPrev.setVisibility(View.VISIBLE);
+                        tvNext.setVisibility(View.VISIBLE);
+                        notifyDataSetChanged();
+                    }
+                }
+            });
+        }
     }
 
     private void openDialogUpdate(Laptop laptop) {
@@ -197,7 +266,7 @@ public class QL_Laptop_Adapter extends RecyclerView.Adapter<QL_Laptop_Adapter.Au
                 Laptop update = getTextInput(laptop);
                 if (update != null) {
                     laptopDAO.updateLaptop(update);
-                    listLap.set(posLap, update);
+                    list8Lap.set(posLap, update);
                     dialog.dismiss();
                     notifyDataSetChanged();
                 }

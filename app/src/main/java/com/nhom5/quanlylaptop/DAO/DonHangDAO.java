@@ -53,12 +53,12 @@ public class DonHangDAO {
                 }
                 String diaChi = c.getString(7);
                 @SuppressLint("Range") String ngayMua = changeType.longDateToString(c.getLong(c.getColumnIndex("ngayMua")));
-                String loaiThanhToan = c.getString(9);
+                String pthThanhToan = c.getString(9);
                 String trangThai = c.getString(10);
                 String isDanhGia = c.getString(11);
                 String thanhTien = c.getString(12);
                 DonHang newDH = new DonHang(maDH, maNV, maKH, maLaptop, maVoucher, maRate, diaChi,
-                        ngayMua, loaiThanhToan, trangThai, isDanhGia, thanhTien, soLuong);
+                        ngayMua, pthThanhToan, trangThai, isDanhGia, thanhTien, soLuong);
                 Log.d(TAG, "selectDonHang: new DonHang: " + newDH.toString());
 
                 listDH.add(newDH);
@@ -84,7 +84,7 @@ public class DonHangDAO {
         values.put("maRate", donHang.getMaRate());
         values.put("diaChi", donHang.getDiaChi());
         values.put("ngayMua", changeType.stringToLongDate(donHang.getNgayMua()));
-        values.put("loaiThanhToan", donHang.getLoaiThanhToan());
+        values.put("pthThanhToan", donHang.getLoaiThanhToan());
         values.put("trangThai", donHang.getTrangThai());
         values.put("isDanhGia", donHang.getIsDanhGia());
         values.put("thanhTien", donHang.getThanhTien());
@@ -115,7 +115,7 @@ public class DonHangDAO {
         values.put("maRate", donHang.getMaRate());
         values.put("diaChi", donHang.getDiaChi());
         values.put("ngayMua", changeType.stringToLongDate(donHang.getNgayMua()));
-        values.put("loaiThanhToan", donHang.getLoaiThanhToan());
+        values.put("pthThanhToan", donHang.getLoaiThanhToan());
         values.put("trangThai", donHang.getTrangThai());
         values.put("isDanhGia", donHang.getIsDanhGia());
         values.put("thanhTien", donHang.getThanhTien());

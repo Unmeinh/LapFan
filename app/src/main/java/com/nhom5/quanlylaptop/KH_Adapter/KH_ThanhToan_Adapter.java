@@ -31,6 +31,7 @@ import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
+import com.nhom5.quanlylaptop.DAO.UseVoucherDAO;
 import com.nhom5.quanlylaptop.DAO.ViTienDAO;
 import com.nhom5.quanlylaptop.DAO.VoucherDAO;
 import com.nhom5.quanlylaptop.Entity.DonHang;
@@ -40,6 +41,7 @@ import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.ThongBao;
+import com.nhom5.quanlylaptop.Entity.UseVoucher;
 import com.nhom5.quanlylaptop.Entity.ViTien;
 import com.nhom5.quanlylaptop.Entity.Voucher;
 import com.nhom5.quanlylaptop.R;
@@ -66,6 +68,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
     ThongBaoDAO thongBaoDAO;
     GioHangDAO gioHangDAO;
     LaptopDAO laptopDAO;
+    UseVoucherDAO useVoucherDAO;
     String maVou;
     GetData getData;
     ArrayList<Integer> listTotal = new ArrayList<>();
@@ -81,6 +84,7 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
         gioHangDAO = new GioHangDAO(context);
         laptopDAO = new LaptopDAO(context);
         getData = new GetData(context);
+        useVoucherDAO = new UseVoucherDAO(context);
         getUserKH();
     }
 
@@ -239,9 +243,35 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                 if (!gioHang.getMaGio().equals("No Data")) {
                     intent.putExtra("posLap", pos);
                     IdData.getInstance().setIdVou(gioHang.getMaVou());
+                    ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maKH=?", new String[]{khachHang.getMaKH()}, null);
+                    if (listUS.size() > 0){
+                        for (UseVoucher use: listUS) {
+                            if (use.getMaVoucher().equals(gioHang.getMaVou())){
+                                use.setIsUsed("truen't");
+                            } else {
+                                if (use.getIsUsed().equals("truen't")){
+                                    use.setIsUsed("false");
+                                }
+                            }
+                        }
+                    }
                 } else {
                     intent.putExtra("posLap", -1);
                     IdData.getInstance().setIdVou(maVou);
+                    ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maKH=?", new String[]{khachHang.getMaKH()}, null);
+                    if (listUS.size() > 0){
+                        for (UseVoucher use: listUS) {
+                            if (use.getMaVoucher().equals(maVou)){
+                                use.setIsUsed("truen't");
+                                useVoucherDAO.updateUseVoucher(use);
+                            } else {
+                                if (use.getIsUsed().equals("truen't")){
+                                    use.setIsUsed("false");
+                                    useVoucherDAO.updateUseVoucher(use);
+                                }
+                            }
+                        }
+                    }
                 }
                 context.startActivity(intent);
             }
@@ -304,6 +334,13 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                         int check = donHangDAO.insertDonHang(donHang);
 
                         if (check == 1) {
+                            ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maVoucher=? and maKH=?", new String[]{gio.getMaVou(), khachHang.getMaKH()}, null);
+                            if (listUS.size() > 0){
+                                UseVoucher useVoucher = listUS.get(0);
+                                useVoucher.setIsUsed("true");
+                                useVoucherDAO.updateUseVoucher(useVoucher);
+                            }
+
                             ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
                                     "Bạn đã đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien(), getData.getNowDateSQL());
                             thongBaoDAO.insertThongBao(thongBaoKH, "kh");
@@ -324,6 +361,13 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                                 int check = donHangDAO.insertDonHang(donHang);
 
                                 if (check == 1) {
+                                    ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maVoucher=? and maKH=?", new String[]{gio.getMaVou(), khachHang.getMaKH()}, null);
+                                    if (listUS.size() > 0){
+                                        UseVoucher useVoucher = listUS.get(0);
+                                        useVoucher.setIsUsed("true");
+                                        useVoucherDAO.updateUseVoucher(useVoucher);
+                                    }
+
                                     ThongBao thongBaoKH = new ThongBao("TB", khachHang.getMaKH(), "Quản lý đơn hàng",
                                             " Số dư trong ví FPT Pay không đủ để đặt đơn hàng " + laptop.getTenLaptop() + " với giá " + donHang.getThanhTien()
                                                     + "\nĐơn hàng sẽ được chuyển đến khu vực chờ thanh toán trong Ví FPT Pay", getData.getNowDateSQL());
@@ -338,6 +382,13 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                                 int check = donHangDAO.insertDonHang(donHang);
 
                                 if (check == 1) {
+                                    ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maVoucher=? and maKH=?", new String[]{gio.getMaVou(), khachHang.getMaKH()}, null);
+                                    if (listUS.size() > 0){
+                                        UseVoucher useVoucher = listUS.get(0);
+                                        useVoucher.setIsUsed("true");
+                                        useVoucherDAO.updateUseVoucher(useVoucher);
+                                    }
+
                                     setSoDu(getVi, money);
                                     GiaoDichDAO giaoDichDAO = new GiaoDichDAO(context);
                                     giaoDichDAO.insertGiaoDich(new GiaoDich("", getVi.getMaVi(), "Thanh toán đơn hàng",
@@ -350,7 +401,8 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                                     thToan = 1;
                                 }
                             }
-
+                        } else {
+                            Toast.makeText(context, "Bạn chưa tạo ví điện tử FPT Pay!", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
@@ -407,6 +459,8 @@ public class KH_ThanhToan_Adapter extends RecyclerView.Adapter<KH_ThanhToan_Adap
                                     thToan++;
                                 }
                             }
+                        } else {
+                            Toast.makeText(context, "Bạn chưa tạo ví điện tử FPT Pay!", Toast.LENGTH_SHORT).show();
                         }
                     }
 

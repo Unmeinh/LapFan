@@ -33,35 +33,41 @@ public class ThongBaoDAO {
         db = qlLaptopDB.getWritableDatabase();
         Cursor c = null;
         if (table != null){
-            if (table.equals("kh")){
-                c = db.query("KH_ThongBao", columns, selection, selectionArgs, null, null, orderBy);
-            } else if (table.equals("nv")){
-                c = db.query("NV_ThongBao", columns, selection, selectionArgs, null, null, orderBy);
-            } else if (table.equals("ad")){
-                c = db.query("AD_ThongBao", columns, selection, selectionArgs, null, null, orderBy);
+            switch (table) {
+                case "kh":
+                    c = db.query("KH_ThongBao", columns, selection, selectionArgs, null, null, orderBy);
+                    break;
+                case "nv":
+                    c = db.query("NV_ThongBao", columns, selection, selectionArgs, null, null, orderBy);
+                    break;
+                case "ad":
+                    c = db.query("AD_ThongBao", columns, selection, selectionArgs, null, null, orderBy);
+                    break;
             }
         }
-        Log.d(TAG, "selectThongBao: Cursor: " + c.toString());
+        if (c != null){
+            Log.d(TAG, "selectThongBao: Cursor: " + c.toString());
 
-        if (c.getCount() > 0) {
-            Log.d(TAG, "selectThongBao: Cursor not null");
-            c.moveToFirst();
-            while (!c.isAfterLast()) {
-                Log.d(TAG, "selectThongBao: Cursor not last");
-                String maTB = c.getString(0)+"";
-                String id = c.getString(1);
-                String title = c.getString(2);
-                String chiTiet = c.getString(3);
-                @SuppressLint("Range") String ngayTB = changeType.longDateToString(c.getLong(c.getColumnIndex("ngayTB")));
-                ThongBao newThongBao = new ThongBao(maTB, id, title, chiTiet, ngayTB);
-                Log.d(TAG, "selectThongBao: new ThongBao: " + newThongBao.toString());
+            if (c.getCount() > 0) {
+                Log.d(TAG, "selectThongBao: Cursor not null");
+                c.moveToFirst();
+                while (!c.isAfterLast()) {
+                    Log.d(TAG, "selectThongBao: Cursor not last");
+                    String maTB = c.getString(0)+"";
+                    String id = c.getString(1);
+                    String title = c.getString(2);
+                    String chiTiet = c.getString(3);
+                    @SuppressLint("Range") String ngayTB = changeType.longDateToString(c.getLong(c.getColumnIndex("ngayTB")));
+                    ThongBao newThongBao = new ThongBao(maTB, id, title, chiTiet, ngayTB);
+                    Log.d(TAG, "selectThongBao: new ThongBao: " + newThongBao.toString());
 
-                listTB.add(newThongBao);
-                c.moveToNext();
+                    listTB.add(newThongBao);
+                    c.moveToNext();
+                }
+                c.close();
+            } else {
+                Log.d(TAG, "selectThongBao: Cursor null");
             }
-            c.close();
-        } else {
-            Log.d(TAG, "selectThongBao: Cursor null");
         }
         db.close();
 
@@ -73,12 +79,16 @@ public class ThongBaoDAO {
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
         if (table != null){
-            if (table.equals("kh")){
-                values.put("maKH", thongBao.getId());
-            } else if (table.equals("nv")){
-                values.put("maNV", thongBao.getId());
-            } else if (table.equals("ad")){
-                values.put("admin", thongBao.getId());
+            switch (table) {
+                case "kh":
+                    values.put("maKH", thongBao.getId());
+                    break;
+                case "nv":
+                    values.put("maNV", thongBao.getId());
+                    break;
+                case "ad":
+                    values.put("admin", thongBao.getId());
+                    break;
             }
         }
         values.put("title", thongBao.getTitle());
@@ -89,12 +99,16 @@ public class ThongBaoDAO {
 
         long ketqua = 0;
         if (table != null){
-            if (table.equals("kh")){
-                ketqua = db.insert("KH_ThongBao", null, values);
-            } else if (table.equals("nv")){
-                ketqua = db.insert("NV_ThongBao", null, values);
-            } else if (table.equals("ad")){
-                ketqua = db.insert("AD_ThongBao", null, values);
+            switch (table) {
+                case "kh":
+                    ketqua = db.insert("KH_ThongBao", null, values);
+                    break;
+                case "nv":
+                    ketqua = db.insert("NV_ThongBao", null, values);
+                    break;
+                case "ad":
+                    ketqua = db.insert("AD_ThongBao", null, values);
+                    break;
             }
         }
         if (ketqua > 0) {
@@ -111,12 +125,16 @@ public class ThongBaoDAO {
         ContentValues values = new ContentValues();
         values.put("maTB", thongBao.getMaTB());
         if (table != null){
-            if (table.equals("kh")){
-                values.put("maKH", thongBao.getId());
-            } else if (table.equals("nv")){
-                values.put("maNV", thongBao.getId());
-            } else if (table.equals("ad")){
-                values.put("admin", thongBao.getId());
+            switch (table) {
+                case "kh":
+                    values.put("maKH", thongBao.getId());
+                    break;
+                case "nv":
+                    values.put("maNV", thongBao.getId());
+                    break;
+                case "ad":
+                    values.put("admin", thongBao.getId());
+                    break;
             }
         }
         values.put("title", thongBao.getTitle());
@@ -127,12 +145,16 @@ public class ThongBaoDAO {
 
         long ketqua = 0;
         if (table != null){
-            if (table.equals("kh")){
-                ketqua = db.update("KH_ThongBao", values, "maTB=?", new String[]{String.valueOf(thongBao.getMaTB())});
-            } else if (table.equals("nv")){
-                ketqua = db.update("NV_ThongBao", values, "maTB=?", new String[]{String.valueOf(thongBao.getMaTB())});
-            } else if (table.equals("ad")){
-                ketqua = db.update("AD_ThongBao", values, "maTB=?", new String[]{String.valueOf(thongBao.getMaTB())});
+            switch (table) {
+                case "kh":
+                    ketqua = db.update("KH_ThongBao", values, "maTB=?", new String[]{String.valueOf(thongBao.getMaTB())});
+                    break;
+                case "nv":
+                    ketqua = db.update("NV_ThongBao", values, "maTB=?", new String[]{String.valueOf(thongBao.getMaTB())});
+                    break;
+                case "ad":
+                    ketqua = db.update("AD_ThongBao", values, "maTB=?", new String[]{String.valueOf(thongBao.getMaTB())});
+                    break;
             }
         }
         if (ketqua > 0) {
@@ -150,12 +172,16 @@ public class ThongBaoDAO {
 
         long ketqua = 0;
         if (table != null){
-            if (table.equals("kh")){
-                ketqua = db.delete("KH_ThongBao", "maTB=?", new String[]{String.valueOf(thongBao.getMaTB())});
-            } else if (table.equals("nv")){
-                ketqua = db.delete("NV_ThongBao", "maTB=?", new String[]{String.valueOf(thongBao.getMaTB())});
-            } else if (table.equals("ad")){
-                ketqua = db.delete("AD_ThongBao", "maTB=?", new String[]{String.valueOf(thongBao.getMaTB())});
+            switch (table) {
+                case "kh":
+                    ketqua = db.delete("KH_ThongBao", "maTB=?", new String[]{String.valueOf(thongBao.getMaTB())});
+                    break;
+                case "nv":
+                    ketqua = db.delete("NV_ThongBao", "maTB=?", new String[]{String.valueOf(thongBao.getMaTB())});
+                    break;
+                case "ad":
+                    ketqua = db.delete("AD_ThongBao", "maTB=?", new String[]{String.valueOf(thongBao.getMaTB())});
+                    break;
             }
         }
 

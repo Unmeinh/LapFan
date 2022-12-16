@@ -59,7 +59,7 @@ public class VoucherDAO {
         return listVou;
     }
 
-    public void insertVoucher(Voucher voucher) {
+    public int insertVoucher(Voucher voucher) {
         qlLaptopDB = new QLLaptopDB(context);
         db = qlLaptopDB.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -71,12 +71,14 @@ public class VoucherDAO {
         Log.d(TAG, "insertVoucher: Values: " + values);
 
         long ketqua = db.insert("Voucher", null, values);
-        if (ketqua > 0) {
-            Log.d(TAG, "insertVoucher: Thêm thành công"); 
-        } else {
-            Log.d(TAG, "insertVoucher: Thêm thất bại");  
-        }
         db.close();
+        if (ketqua > 0) {
+            Log.d(TAG, "insertVoucher: Thêm thành công");
+            return 1;
+        } else {
+            Log.d(TAG, "insertVoucher: Thêm thất bại");
+            return -1;
+        }
     }
 
     public void updateVoucher(Voucher voucher) {

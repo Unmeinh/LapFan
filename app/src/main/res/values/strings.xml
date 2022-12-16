@@ -209,4 +209,8 @@
     <string name="th_ng_tin_nh_n_vi_n">Thông tin nhân viên:</string>
     <string name="l_do_x_a_t_i_kho_n">Lý do xóa tài khoản:</string>
     <string name="x_a_t_i_kho_n">Xóa tài khoản</string>
+    <string name="tr_c">Trước</string>
+    <string name="sau">Sau</string>
+    <string name="pre"><![CDATA[<<<]]></string>
+    <string name="nex"><![CDATA[>>>]]></string>
 </resources>

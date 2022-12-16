@@ -149,6 +149,8 @@ public class All_ThongBao_Adapter extends RecyclerView.Adapter<All_ThongBao_Adap
                                     viTien.setSoTien(changeType.stringToStringMoney(String.valueOf(changeType.stringMoneyToInt(viTien.getSoTien()) + soTienNap)));
                                     int check = viTienDAO.updateViTien(viTien);
                                     if (check == 1) {
+                                        thongBaoDAO.deleteThongBao(thongBao, "ad");
+
                                         GiaoDichDAO giaoDichDAO = new GiaoDichDAO(context);
                                         giaoDichDAO.insertGiaoDich(new GiaoDich("", viTien.getMaVi(), "Nạp tiền",
                                                 "Nạp tiền vào ví FPT Pay", changeType.stringToStringMoney(soTienNap + ""), getData.getNowDateSQL()));

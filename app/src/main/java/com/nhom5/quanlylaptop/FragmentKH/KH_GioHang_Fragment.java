@@ -20,9 +20,11 @@ import android.widget.RelativeLayout;
 import com.nhom5.quanlylaptop.ActivityKH.KH_ThanhToan_Activity;
 import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
+import com.nhom5.quanlylaptop.DAO.UseVoucherDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
+import com.nhom5.quanlylaptop.Entity.UseVoucher;
 import com.nhom5.quanlylaptop.KH_Loader.KH_GioHang_Loader;
 import com.nhom5.quanlylaptop.R;
 
@@ -62,6 +64,16 @@ public class KH_GioHang_Fragment extends Fragment {
                 intent.putExtra("input", "GioHang");
                 IdData.getInstance().setIdDC("");
                 IdData.getInstance().setIdVou("");
+                UseVoucherDAO useVoucherDAO = new UseVoucherDAO(getContext());
+                ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maKH=?", new String[]{khachHang.getMaKH()}, null);
+                if (listUS.size() > 0) {
+                    for (UseVoucher use : listUS) {
+                        if (use.getIsUsed().equals("truen't")) {
+                            use.setIsUsed("false");
+                            useVoucherDAO.updateUseVoucher(use);
+                        }
+                    }
+                }
                 startActivity(intent);
             }
         });

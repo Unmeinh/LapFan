@@ -11,14 +11,14 @@ public class DonHang extends Binder {
     private String maRate;
     private String diaChi;
     private String ngayMua;
-    private String loaiThanhToan;
+    private String pthThanhToan;
     private String trangThai;
     private String isDanhGia;
     private String thanhTien;
     private int soLuong;
 
     public DonHang(String maDH, String maNV, String maKH, String maLaptop, String maVoucher, String maRate, String diaChi,
-                   String ngayMua, String loaiThanhToan, String trangThai, String isDanhGia, String thanhTien, int soLuong) {
+                   String ngayMua, String pthThanhToan, String trangThai, String isDanhGia, String thanhTien, int soLuong) {
         this.maDH = maDH;
         this.maNV = maNV;
         this.maKH = maKH;
@@ -27,7 +27,7 @@ public class DonHang extends Binder {
         this.maRate = maRate;
         this.diaChi = diaChi;
         this.ngayMua = ngayMua;
-        this.loaiThanhToan = loaiThanhToan;
+        this.pthThanhToan = pthThanhToan;
         this.trangThai = trangThai;
         this.isDanhGia = isDanhGia;
         this.soLuong = soLuong;
@@ -99,11 +99,11 @@ public class DonHang extends Binder {
     }
 
     public String getLoaiThanhToan() {
-        return loaiThanhToan;
+        return pthThanhToan;
     }
 
-    public void setLoaiThanhToan(String loaiThanhToan) {
-        this.loaiThanhToan = loaiThanhToan;
+    public void setLoaiThanhToan(String pthThanhToan) {
+        this.pthThanhToan = pthThanhToan;
     }
 
     public String getTrangThai() {
@@ -149,7 +149,7 @@ public class DonHang extends Binder {
                 ", maRate = '" + maRate + '\'' +
                 ", diaChi = '" + diaChi + '\'' +
                 ", ngayMua = '" + ngayMua + '\'' +
-                ", loaiThanhToan = '" + loaiThanhToan + '\'' +
+                ", pthThanhToan = '" + pthThanhToan + '\'' +
                 ", trangThai = '" + trangThai + '\'' +
                 ", isDanhGia = '" + isDanhGia + '\'' +
                 ", thanhTien = '" + thanhTien + '\'' +

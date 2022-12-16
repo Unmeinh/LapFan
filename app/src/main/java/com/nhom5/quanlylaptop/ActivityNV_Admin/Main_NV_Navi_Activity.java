@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -176,7 +177,7 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     NV_ThongBao_Fragment nv_thongBao_fragment = new NV_ThongBao_Fragment();
                     manager.beginTransaction().replace(R.id.frLayout, nv_thongBao_fragment).commit();
                     itemNaviDr = 1;
-                    useToolbar("FPT Shop", 0);
+                    useToolbar("Thông Báo", 0);
                     bottomNavigationView.setVisibility(View.VISIBLE);
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_noti).setCheckable(true);
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_nv_noti).setChecked(true);
@@ -258,7 +259,12 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                         editor.apply();
                     }
                 }
-                drawerLayout.closeDrawer(GravityCompat.START);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                    }
+                }, 500);
                 return true;
             }
         });
@@ -290,7 +296,7 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     naviView.getMenu().getItem(1).setChecked(true);
                     naviView.getMenu().getItem(1).setCheckable(true);
                     itemNaviDr = 1;
-                    useToolbar("FPT Shop", 0);
+                    useToolbar("Thông Báo", 0);
                     getSupportActionBar().show();
                 }
                 if (i == R.id.item_navi_bottom_nv_thongKe) {

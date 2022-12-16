@@ -23,6 +23,7 @@ import com.nhom5.quanlylaptop.FragmentQuanLy.QL_Voucher_Fragment;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_NhanVien_Adapter;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Voucher_Adapter;
 import com.nhom5.quanlylaptop.R;
+import com.nhom5.quanlylaptop.Support.GetData;
 
 import java.util.ArrayList;
 
@@ -102,14 +103,17 @@ public class QL_Voucher_Loader extends AsyncTask<String, Void, ArrayList<Voucher
     }
 
     private void addDemoVoucher() {
+        GetData getData = new GetData(context);
         Voucher vou1 = new Voucher("", "NOVEM1611", "20%", "2022-11-11", "2022-11-20");
         voucherDAO.insertVoucher(vou1);
+        getData.addDataUseVoucher();
 
         Voucher vou2 = new Voucher("", "DECEM1212", "12%", "2022-12-12", "2022-12-12");
         voucherDAO.insertVoucher(vou2);
+        getData.addDataUseVoucher();
 
         Voucher vou3 = new Voucher("", "NOEL2512", "25%", "2022-12-25", "2022-12-25");
         voucherDAO.insertVoucher(vou3);
-
+        getData.addDataUseVoucher();
     }
 }

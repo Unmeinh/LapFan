@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
@@ -275,7 +276,12 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
                         editor.apply();
                     }
                 }
-                drawerLayout.closeDrawer(GravityCompat.START);
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                    }
+                }, 500);
                 return true;
             }
 

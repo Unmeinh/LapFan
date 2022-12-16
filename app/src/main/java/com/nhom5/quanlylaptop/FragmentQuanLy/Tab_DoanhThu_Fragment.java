@@ -71,7 +71,7 @@ public class Tab_DoanhThu_Fragment extends Fragment implements OnChartValueSelec
     }
 
     private void tinhThuChi() {
-        listDon = donHangDAO.selectDonHang(null, null, null, null);
+        listDon = donHangDAO.selectDonHang(null, "trangThai=?", new String[]{"Hoàn thành"}, null);
         listLap = laptopDAO.selectLaptop(null, null, null, null);
 
         khoanThu = getData.tinhTongKhoanThu(listDon);
@@ -149,7 +149,7 @@ public class Tab_DoanhThu_Fragment extends Fragment implements OnChartValueSelec
 
     private void setDoanhThu(String[] time) {
         if (time != null) {
-            listDon = donHangDAO.selectDonHang(null, "ngayMua>=? and ngayMua<?", time, null);
+            listDon = donHangDAO.selectDonHang(null, "ngayMua>=? and ngayMua<? and trangThai=?", new String[]{time[0], time[1], "Hoàn thành"}, null);
             if (listDon != null) {
                 if (listDon.size() > 0) {
                     int doanhThu = getData.tinhTongKhoanThu(listDon) * 1000;

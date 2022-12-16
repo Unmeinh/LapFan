@@ -45,6 +45,7 @@ import com.nhom5.quanlylaptop.NAV_Adapter.QL_Voucher_Adapter;
 import com.nhom5.quanlylaptop.NVA_Loader.QL_Voucher_Loader;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
+import com.nhom5.quanlylaptop.Support.GetData;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -61,6 +62,7 @@ public class QL_Voucher_Fragment extends Fragment {
     RelativeLayout relativeLayout;
     LinearLayout linearLayout, linearVoucherEmpty;
     ChangeType changeType = new ChangeType();
+    TextInputLayout textInput_Name, textInput_GiamGia, textInput_NBD, textInput_NKT;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,24 +87,24 @@ public class QL_Voucher_Fragment extends Fragment {
     private void searchVoucher(View view) {
         TextView textView_Progress = view.findViewById(R.id.textView_Progress);
         SeekBar seekBar = view.findViewById(R.id.seekBar);
-        textView_Progress.setText("Mức giảm giá: = 0%");
-        seekBar.setProgress(0);
+        textView_Progress.setText("Mức giảm giá: < 100%");
+        seekBar.setProgress(100);
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 ArrayList<Voucher> getList = new ArrayList<>();
-                if (progress == 0) {
-                    textView_Progress.setText("Mức giảm giá: = 0%");
+                if (progress == 100) {
+                    textView_Progress.setText("Mức giảm giá: < 100%");
                     QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(getContext(), reView, linearLayout, linearVoucherEmpty, relativeLayout);
                     ql_voucher_loader.execute("");
                 } else {
                     textView_Progress.setText("Mức giảm giá: < " + progress + "%");
                     for (Voucher vou : listVou) {
-                        if (changeType.voucherToInt(vou.getGiamGia()) < progress){
+                        if (changeType.voucherToInt(vou.getGiamGia()) < progress) {
                             getList.add(vou);
                         }
                     }
-                    if (listVou.size() == 0){
+                    if (getList.size() == 0) {
                         linearVoucherEmpty.setVisibility(View.VISIBLE);
                     } else {
                         linearVoucherEmpty.setVisibility(View.GONE);
@@ -132,10 +134,10 @@ public class QL_Voucher_Fragment extends Fragment {
         View view = inft.inflate(R.layout.dialog_add_edit_voucher, null);
 
         TextView title = view.findViewById(R.id.textView_Title_Dialog);
-        TextInputLayout textInput_Name = view.findViewById(R.id.textInput_Name);
-        TextInputLayout textInput_GiamGia = view.findViewById(R.id.textInput_GiamGia);
-        TextInputLayout textInput_NBD = view.findViewById(R.id.textInput_NBD);
-        TextInputLayout textInput_NKT = view.findViewById(R.id.textInput_NKT);
+        textInput_Name = view.findViewById(R.id.textInput_Name);
+        textInput_GiamGia = view.findViewById(R.id.textInput_GiamGia);
+        textInput_NBD = view.findViewById(R.id.textInput_NBD);
+        textInput_NKT = view.findViewById(R.id.textInput_NKT);
         TextView onclick_NBD = view.findViewById(R.id.onlick_NBD);
         TextView onclick_NKT = view.findViewById(R.id.onlick_NKT);
         AppCompatButton button = view.findViewById(R.id.button_Dialog);
@@ -166,12 +168,17 @@ public class QL_Voucher_Fragment extends Fragment {
                 String nbd = textInput_NBD.getEditText().getText().toString();
                 String nkt = textInput_NKT.getEditText().getText().toString();
 
-                Voucher voucher = new Voucher("", tenVou, giamGia + "%", nbd, nkt);
-                voucherDAO.insertVoucher(voucher);
+                if (checkInputVoucher() == 1){
+                    Voucher voucher = new Voucher("", tenVou, giamGia + "%", nbd, nkt);
+                    int check = voucherDAO.insertVoucher(voucher);
 
-                QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(getContext(), reView, linearLayout, linearVoucherEmpty, relativeLayout);
-                ql_voucher_loader.execute("");
-                dialog.dismiss();
+                    if (check == 1){
+                        new GetData(getContext()).addDataUseVoucher();
+                        QL_Voucher_Loader ql_voucher_loader = new QL_Voucher_Loader(getContext(), reView, linearLayout, linearVoucherEmpty, relativeLayout);
+                        ql_voucher_loader.execute("");
+                        dialog.dismiss();
+                    }
+                }
             }
         });
     }
@@ -206,4 +213,43 @@ public class QL_Voucher_Fragment extends Fragment {
         });
     }
 
+    private int checkInputVoucher() {
+        int check = 1;
+        if (textInput_Name.getEditText().getText().toString().isEmpty()) {
+            textInput_Name.setError("Mã Voucher không được bỏ trống!");
+            textInput_Name.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_Name.setError("");
+            textInput_Name.setErrorEnabled(false);
+        }
+
+        if (textInput_GiamGia.getEditText().getText().toString().isEmpty()) {
+            textInput_GiamGia.setError("Ưu đãi không được bỏ trống!");
+            textInput_GiamGia.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_GiamGia.setError("");
+            textInput_GiamGia.setErrorEnabled(false);
+        }
+
+        if (textInput_NBD.getEditText().getText().toString().isEmpty()) {
+            textInput_NBD.setError("Ngày bắt đầu phải được chọn!");
+            textInput_NBD.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_NBD.setError("");
+            textInput_NBD.setErrorEnabled(false);
+        }
+
+        if (textInput_NKT.getEditText().getText().toString().isEmpty()) {
+            textInput_NKT.setError("Ngày kết thúc phải được chọn!");
+            textInput_NKT.setErrorEnabled(true);
+            check = -1;
+        } else {
+            textInput_NKT.setError("");
+            textInput_NKT.setErrorEnabled(false);
+        }
+        return check;
+    }
 }

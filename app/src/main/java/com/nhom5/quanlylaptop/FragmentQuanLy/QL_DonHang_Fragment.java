@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
@@ -61,9 +62,9 @@ public class QL_DonHang_Fragment extends Fragment {
     ArrayList<DonHang> listDon = new ArrayList<>();
     ArrayList<Laptop> listLap = new ArrayList<>();
     ArrayList<KhachHang> listKH = new ArrayList<>();
-    LaptopDAO laptopDAO = new LaptopDAO(getContext());
-    KhachHangDAO khachHangDAO = new KhachHangDAO(getContext());
-    DonHangDAO donHangDAO = new DonHangDAO(getContext());
+    LaptopDAO laptopDAO;
+    KhachHangDAO khachHangDAO;
+    DonHangDAO donHangDAO;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -77,6 +78,9 @@ public class QL_DonHang_Fragment extends Fragment {
         linearDonHangEmpty = view.findViewById(R.id.linearDonHangEmpty);
         change_Time = view.findViewById(R.id.change_Time);
         textView_Date = view.findViewById(R.id.textView_Date);
+        laptopDAO = new LaptopDAO(getContext());
+        khachHangDAO = new KhachHangDAO(getContext());
+        donHangDAO = new DonHangDAO(getContext());
 
         QL_DonHang_Loader ql_donHang_loader = new QL_DonHang_Loader(getContext(), recyclerView, count, linearLayout, linearDonHangEmpty, relativeLayout);
         ql_donHang_loader.execute("create");
@@ -172,15 +176,13 @@ public class QL_DonHang_Fragment extends Fragment {
 
     private void setDonHang(String[] time) {
         if (time != null) {
-            listDon = donHangDAO.selectDonHang(null, "trangThai=? and ngayMua>=? and ngayMua<?", new String[]{"Chờ xác nhận", time[0], time[1]}, "ngayMua");
+            listDon = donHangDAO.selectDonHang(null, "trangThai=? and ngayMua>=? and ngayMua<?", new String[]{"Hoàn thành", time[0], time[1]}, "ngayMua");
             if (listDon != null) {
-                if (listDon.size() > 0) {
-                    QL_DonHang_Adapter ql_donHang_adapter = new QL_DonHang_Adapter(listLap, listDon, listKH, getContext(), count);
-                    recyclerView.setAdapter(ql_donHang_adapter);
-                } else {
-                    QL_DonHang_Adapter ql_donHang_adapter = new QL_DonHang_Adapter(listLap, listDon, listKH, getContext(), count);
-                    recyclerView.setAdapter(ql_donHang_adapter);
-                }
+                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+                recyclerView.setLayoutManager(linearLayoutManager);
+                QL_DonHang_Adapter ql_donHang_adapter = new QL_DonHang_Adapter(listLap, listDon, listKH, getContext(), count);
+                recyclerView.setAdapter(ql_donHang_adapter);
+                count.setText(String.valueOf(listDon.size()));
             }
         }
     }

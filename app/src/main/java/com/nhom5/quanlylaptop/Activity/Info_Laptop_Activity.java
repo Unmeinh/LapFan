@@ -22,12 +22,14 @@ import com.nhom5.quanlylaptop.DAO.GioHangDAO;
 import com.nhom5.quanlylaptop.DAO.KhachHangDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopRateDAO;
 import com.nhom5.quanlylaptop.DAO.ThongBaoDAO;
+import com.nhom5.quanlylaptop.DAO.UseVoucherDAO;
 import com.nhom5.quanlylaptop.Entity.GioHang;
 import com.nhom5.quanlylaptop.Entity.IdData;
 import com.nhom5.quanlylaptop.Entity.KhachHang;
 import com.nhom5.quanlylaptop.Entity.Laptop;
 import com.nhom5.quanlylaptop.Entity.LaptopRate;
 import com.nhom5.quanlylaptop.Entity.ThongBao;
+import com.nhom5.quanlylaptop.Entity.UseVoucher;
 import com.nhom5.quanlylaptop.R;
 import com.nhom5.quanlylaptop.Support.ChangeType;
 
@@ -101,6 +103,16 @@ public class Info_Laptop_Activity extends AppCompatActivity {
                         IdData.getInstance().setIdDC("");
                         IdData.getInstance().setIdVou("");
                         context.startActivity(intent);
+                        UseVoucherDAO useVoucherDAO = new UseVoucherDAO(context);
+                        ArrayList<UseVoucher> listUS = useVoucherDAO.selectUseVoucher(null, "maKH=?", new String[]{khachHang.getMaKH()}, null);
+                        if (listUS.size() > 0) {
+                            for (UseVoucher use : listUS) {
+                                if (use.getIsUsed().equals("truen't")) {
+                                    use.setIsUsed("false");
+                                    useVoucherDAO.updateUseVoucher(use);
+                                }
+                            }
+                        }
                     } else {
                         Toast.makeText(context, "Sản phẩm đang hết hàng!\nXin vui lòng đợi chúng tôi nhập sản phẩm!", Toast.LENGTH_SHORT).show();
                     }

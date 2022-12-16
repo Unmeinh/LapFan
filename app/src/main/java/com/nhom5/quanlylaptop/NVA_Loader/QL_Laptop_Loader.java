@@ -15,6 +15,7 @@ import com.nhom5.quanlylaptop.DAO.HangLaptopDAO;
 import com.nhom5.quanlylaptop.DAO.LaptopDAO;
 import com.nhom5.quanlylaptop.Entity.HangLaptop;
 import com.nhom5.quanlylaptop.Entity.Laptop;
+import com.nhom5.quanlylaptop.FragmentQuanLy.Tab_Laptop_Fragment;
 import com.nhom5.quanlylaptop.NAV_Adapter.QL_Laptop_Adapter;
 import com.nhom5.quanlylaptop.Support.GetData;
 
@@ -32,14 +33,17 @@ public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>>
     @SuppressLint("StaticFieldLeak")
     LinearLayout loadingView, linearEmpty;
     @SuppressLint("StaticFieldLeak")
-    RelativeLayout relativeLayout;
+    RelativeLayout relativeLayout, layoutLaptop;
+    Tab_Laptop_Fragment tab_laptop_fragment;
 
-    public QL_Laptop_Loader(Context context, RecyclerView reView, LinearLayout loadingView, LinearLayout linearEmpty, RelativeLayout relativeLayout) {
+    public QL_Laptop_Loader(Context context, RecyclerView reView, LinearLayout loadingView, LinearLayout linearEmpty, RelativeLayout relativeLayout, RelativeLayout layoutLaptop, Tab_Laptop_Fragment tab_laptop_fragment) {
         this.context = context;
         this.reView = reView;
         this.loadingView = loadingView;
         this.linearEmpty = linearEmpty;
         this.relativeLayout = relativeLayout;
+        this.tab_laptop_fragment = tab_laptop_fragment;
+        this.layoutLaptop = layoutLaptop;
     }
 
     @Override
@@ -81,12 +85,14 @@ public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>>
                             relativeLayout.setVisibility(View.VISIBLE);
                             loadingView.setVisibility(View.GONE);
                             reView.setVisibility(View.GONE);
+                            layoutLaptop.setVisibility(View.GONE);
                             linearEmpty.setVisibility(View.VISIBLE);
                         } else {
                             relativeLayout.setVisibility(View.VISIBLE);
                             loadingView.setVisibility(View.GONE);
                             reView.setVisibility(View.VISIBLE);
                             linearEmpty.setVisibility(View.GONE);
+                            layoutLaptop.setVisibility(View.VISIBLE);
                             setupReView(listLap, reView);
                         }
                     }
@@ -99,7 +105,7 @@ public class QL_Laptop_Loader extends AsyncTask<String, Void, ArrayList<Laptop>>
         listHang = hangLaptopDAO.selectHangLaptop(null, null, null, null);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(context, 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        QL_Laptop_Adapter ql_laptop_adapter = new QL_Laptop_Adapter(listLap, listHang, context);
+        QL_Laptop_Adapter ql_laptop_adapter = new QL_Laptop_Adapter(listLap, listHang, context, tab_laptop_fragment);
         recyclerView.setAdapter(ql_laptop_adapter);
     }
 

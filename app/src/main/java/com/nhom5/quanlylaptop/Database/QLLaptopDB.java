@@ -40,13 +40,14 @@ public class QLLaptopDB extends SQLiteOpenHelper {
 
         // Bảng Voucher
         String tableUseVoucher = "CREATE TABLE UseVoucher( maUse INTEGER PRIMARY KEY AUTOINCREMENT," +
-                " maVoucher INTEGER not null, maKH INTEGER not null, isUsed TEXT)";
+                " maVoucher INTEGER not null, maKH INTEGER not null, isUsed TEXT," +
+                " FOREIGN KEY(maVoucher) REFERENCES Voucher (maVoucher))";
 
         // Bảng Laptop
         String tableLaptop = "CREATE TABLE Laptop( maLaptop INTEGER PRIMARY KEY AUTOINCREMENT," +
                 " maHangLap VARCHAR(15) not null, anhLaptop BLOB," +
                 " tenLaptop TEXT not null, thongSoKT TEXT, giaTien TEXT, soLuong INT, daBan INT," +
-                " FOREIGN KEY(maHangLap) REFERENCES HangLaptop (maHangLap))";
+                " FOREIGN KEY(maKH) REFERENCES KhachHang (maKH), FOREIGN KEY(maHangLap) REFERENCES HangLaptop (maHangLap))";
 
         // Bảng LaptopRate
         String tableLaptopRate = "CREATE TABLE LaptopRate( maRate INTEGER PRIMARY KEY not null," +
@@ -57,7 +58,7 @@ public class QLLaptopDB extends SQLiteOpenHelper {
         String tableDonHang = "CREATE TABLE DonHang( maDH INTEGER PRIMARY KEY not null, maNV INT not null," +
                 " maKH INT not null, maLaptop INT not null, maVoucher INT not null," +
                 " maRate INT not null, soLuong INT not null, diaChi TEXT, ngayMua DATE not null," +
-                " loaiThanhToan TEXT, trangThai TEXT, isDanhGia TEXT, thanhTien TEXT not null," +
+                " pthThanhToan TEXT, trangThai TEXT, isDanhGia TEXT, thanhTien TEXT not null," +
                 " FOREIGN KEY(maNV) REFERENCES NhanVien (maNV), FOREIGN KEY(maKH) REFERENCES KhachHang (maKH)," +
                 " FOREIGN KEY(maLaptop) REFERENCES Laptop (maLaptop), FOREIGN KEY(maVoucher) REFERENCES Voucher (maVoucher)," +
                 " FOREIGN KEY(maRate) REFERENCES LaptopRate (maRate))";
