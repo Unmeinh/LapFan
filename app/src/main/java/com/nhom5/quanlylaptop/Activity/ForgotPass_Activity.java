@@ -91,10 +91,11 @@ public class ForgotPass_Activity extends AppCompatActivity {
         KhachHangDAO khachHangDAO = new KhachHangDAO(context);
         list = khachHangDAO.selectKhachHang(null, null, null, null);
         if (list.size() > 0) {
+            ChangeType changeType = new ChangeType();
             int check = 0;
             for (int i = 0; i < list.size(); i++) {
                 KhachHang khachHang = list.get(i);
-                if (edt_email.getText().toString().equals(khachHang.getEmail())) {
+                if (changeType.deleteSpaceText(edt_email.getText().toString()).equals(khachHang.getEmail())) {
                     showMyNotify(1, "Mật khẩu cũ", "Mật khẩu của bạn là: " + khachHang.getMatKhau());
                     Log.d(TAG, khachHang.getMatKhau());
                     check = 1;

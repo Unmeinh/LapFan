@@ -113,6 +113,7 @@ public class Main_KH_Navi_Activity extends AppCompatActivity {
         ImageView imageView = findViewById(R.id.imageView_Avatar);
         TextView titleView = findViewById(R.id.textView_Title_Toolbar_Acc);
         titleView.setText(title);
+        getUser();
         if (khachHang != null) {
             imageView.setImageBitmap(changeType.byteToBitmap(khachHang.getAvatar()));
         }

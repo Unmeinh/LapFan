@@ -134,6 +134,7 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
         TextView titleView = findViewById(R.id.textView_Title_Toolbar_Acc);
         ImageView imageView = findViewById(R.id.imageView_Avatar);
 
+        getUser();
         layoutAcc.setVisibility(View.VISIBLE);
         layoutSearch.setVisibility(View.GONE);
         titleView.setText(title);
