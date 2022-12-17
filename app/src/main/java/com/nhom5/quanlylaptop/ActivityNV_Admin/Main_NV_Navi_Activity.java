@@ -245,7 +245,6 @@ public class Main_NV_Navi_Activity extends AppCompatActivity {
                     itemNaviDr = 10;
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 8 - log out");
-                    bottomNavigationView.setVisibility(View.VISIBLE);
                     SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
                     if (pref != null) {
                         if (pref.getString("isLogin", "").equals("true")){

@@ -208,9 +208,10 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                     bottomNavigationView.getMenu().findItem(R.id.item_navi_bottom_admin_thongKe).setChecked(true);
                 }
                 if (id == R.id.item_navi_drawer_admin_Them_NV) {
+                    itemNaviDr = 9;
+                    item.setCheckable(true);
                     Add_Staff_Fragment add_staff_fragment  = new Add_Staff_Fragment();
                     manager.beginTransaction().replace(R.id.frLayout, add_staff_fragment).commit();
-                    itemNaviDr = 9;
                     Log.d(TAG, "onNavigationItemSelected: itemNavi: " + itemNaviDr);
                     naviView.getMenu().getItem(itemNaviDr).setChecked(false);
                     naviView.getMenu().getItem(itemNaviDr).setCheckable(false);
@@ -224,7 +225,6 @@ public class Main_Admin_Navi_Activity extends AppCompatActivity {
                     itemNaviDr = 10;
                     item.setCheckable(true);
                     Log.d(TAG, "onNavigationItemSelected: 8 - log out");
-                    bottomNavigationView.setVisibility(View.VISIBLE);
                     SharedPreferences pref = getSharedPreferences("Who_Login", MODE_PRIVATE);
                     if (pref != null) {
                         if (pref.getString("isLogin", "").equals("true")){
